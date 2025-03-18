@@ -10,14 +10,14 @@ title = "logPhile"
   rtl = false
   dateFormat = "2 January 2006"
   # logo = "img/logo.png"
-  secondaryLogo = "assets/logphile-avatar.jpg"
+  secondaryLogo = "logphile-avatar.jpg"
   # description = "My awesome website"
   copyright = "&copy; 2025 logPhile. All Rights Reserved."
 
  [params.author]
    name = "Phil Boyce"
    email = "phil@logphile.com"
-   image = "assets/logphile-avatar.jpg"
+   image = "logphile-avatar.jpg"
    imageQuality = 96
    headline = "Evolving with the Cloud"
 #   bio = "A little bit about you"
