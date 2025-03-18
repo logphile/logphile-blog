@@ -2,7 +2,7 @@ disabled = false
 languageCode = "en"
 languageName = "English"
 weight = 1
-title = "Blowfish"
+title = "logPhile"
 
 [params]
   displayName = "EN"
@@ -12,13 +12,13 @@ title = "Blowfish"
   # logo = "img/logo.png"
   # secondaryLogo = "img/secondary-logo.png"
   # description = "My awesome website"
-  # copyright = "Copy, _right?_ :thinking_face:"
+  copyright = "&copy; 2025 logPhile. All Rights Reserved."
 
  [params.author]
    name = "Phil Boyce"
    email = "phil@logphile.com"
-#   image = "assets/img/blowfish_logo.png"
-#   imageQuality = 96
+   image = "assets/img/logphile-avatar"
+   imageQuality = 96
    headline = "Evolving with the Cloud"
 #   bio = "A little bit about you"
 #   links = [
