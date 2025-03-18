@@ -17,7 +17,7 @@ title = "logPhile"
  [params.author]
    name = "Phil Boyce"
    email = "phil@logphile.com"
-   image = "assets/img/logphile-avatar.jpg"
+   image = "assets/logphile-avatar.jpg"
    imageQuality = 96
    headline = "Evolving with the Cloud"
 #   bio = "A little bit about you"
