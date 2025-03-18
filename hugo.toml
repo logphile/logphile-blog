@@ -1,4 +1,4 @@
-baseURL = 'c:\Users\phoyc\Downloads\logphile-avatar.jpg'
+baseURL = 'https://mango-beach-00293d90f.6.azurestaticapps.net'
 languageCode = 'en-us'
 title = 'logPhile'
 theme = 'blowfish'
