@@ -15,7 +15,7 @@ title = "Blowfish"
   # copyright = "Copy, _right?_ :thinking_face:"
 
 # [params.author]
-#   name = "Your name here"
+   name = "Phil Boyce"
 #   email = "youremail@example.com"
 #   image = "img/blowfish_logo.png"
 #   imageQuality = 96
