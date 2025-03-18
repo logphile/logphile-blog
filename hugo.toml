@@ -1,4 +1,4 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://gray-stone-0badcfa0f.6.azurestaticapps.net'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'logPhile'
 theme = 'blowfish'
