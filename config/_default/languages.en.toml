@@ -10,7 +10,7 @@ title = "logPhile"
   rtl = false
   dateFormat = "2 January 2006"
   # logo = "img/logo.png"
-  # secondaryLogo = "img/secondary-logo.png"
+   secondaryLogo = "assets/logphile-avatar.jpg"
   # description = "My awesome website"
   copyright = "&copy; 2025 logPhile. All Rights Reserved."
 
