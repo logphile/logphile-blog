@@ -9,7 +9,17 @@
     <managingEditor>phil@logphile.com (Phil Boyce)</managingEditor>
     <webMaster>phil@logphile.com (Phil Boyce)</webMaster>
     <copyright>&amp;copy; 2025 logPhile. All Rights Reserved.</copyright>
-    <atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 02 Feb 2024 04:14:54 -0800</lastBuildDate><atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Example</title>
+      <link>http://localhost:1313/blog/firstpost/</link>
+      <pubDate>Fri, 02 Feb 2024 04:14:54 -0800</pubDate>
+      <author>phil@logphile.com (Phil Boyce)</author>
+      <guid>http://localhost:1313/blog/firstpost/</guid>
+      <description></description>
+      
+    </item>
     
   </channel>
 </rss>
