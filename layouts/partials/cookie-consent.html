@@ -1,5 +1,6 @@
 <div id="cookie-notice">
-    <span class="cookie-icon">
+    <!-- Cookie Icon on the Left -->
+    <div class="cookie-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" class="cookie-base"/>
             <circle cx="8" cy="8" r="1.5" class="chocolate-chip"/>
@@ -7,12 +8,19 @@
             <circle cx="16" cy="15" r="1.5" class="chocolate-chip"/>
             <circle cx="10" cy="16" r="1.2" class="chocolate-chip"/>
         </svg>
-    </span>
-    <span>Cookies are used to make your experience on this website better (and for compliance).</span>
-    <a id="cookie-notice-accept" class="btn btn-primary btn-sm">Yes, please!</a>
-    <a id="cookie-notice-deny" class="btn btn-primary btn-sm">No... I'm full</a>
-    <a href="/privacy" class="btn btn-primary btn-sm">Read more</a>
+    </div>
+
+    <!-- Text on the Right -->
+    <div class="cookie-text">
+        <span>Cookies are used to make your experience on this website better (and for compliance).</span>
+        <div class="cookie-buttons">
+            <a id="cookie-notice-accept" class="btn btn-primary btn-sm">Yes, please!</a>
+            <a id="cookie-notice-deny" class="btn btn-primary btn-sm">No... I'm full</a>
+            <a href="/privacy" class="btn btn-primary btn-sm">Read more</a>
+        </div>
+    </div>
 </div>
+
 
 <script>
     function createCookie(name, value, days) {
@@ -58,7 +66,7 @@
             window.dataLayer = window.dataLayer || [];
             function gtag() { dataLayer.push(arguments); }
             gtag('js', new Date());
-            gtag('config', 'G-FZVBM8WM6B', { 'anonymize_ip': true });
+            gtag('config', 'G-Q25R62NR7', { 'anonymize_ip': true });
         });
 
         {{ end }}
