@@ -50,3 +50,64 @@ div.flex.flex-wrap a:hover {
 h2.text-xl {
     color: rgb(var(--color-primary-500)) !important;
 }
+
+h1, h2, h3, h4, h5, h6 {
+    color: rgb(var(--color-primary-500)) !important;
+}
+
+p {
+    color: rgb(var(--color-primary-500)) !important;
+}
+
+.toc a {
+    color: rgb(var(--color-primary-500)) !important;
+}
+
+.toc a:hover {
+    color: rgb(var(--color-secondary-500)) !important;
+}
+
+div.font-semibold.leading-6 {
+    color: rgb(var(--color-primary-500)) !important;
+}
+
+div.uppercase.leading-3 {
+    color: rgb(var(--color-primary-500)) !important;
+}
+
+div.flex.flex-row.flex-wrap.items-center time,
+div.flex.flex-row.flex-wrap.items-center span {
+    color: rgb(var(--color-secondary-500)) !important;
+}
+
+div.min-w-\[220px\] {
+    border-left: 2px dotted rgb(var(--color-secondary-500)) !important;
+}
+
+article hr {
+    border-bottom: 1px dotted rgb(var(--color-secondary-500)) !important;
+}
+
+blockquote {
+    border-left: 2px dotted rgb(var(--color-secondary-500)) !important;
+}
+
+div.prose.dark\:prose-invert {
+    color: rgb(var(--color-primary-500)) !important;
+}
+
+p.border-t {
+    border-color: rgb(var(--color-secondary-500)) !important;
+}
+
+a.text-base.font-medium.text-gray-500 {
+    color: rgb(var(--color-secondary-500)) !important;
+}
+
+a.text-base.font-medium.text-gray-500:hover {
+    color: rgb(var(--color-secondary-700)) !important;
+}
+
+svg.fa-search path {
+    fill: rgb(var(--color-secondary-500)) !important;
+}

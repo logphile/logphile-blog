@@ -38,7 +38,7 @@ forgejoDefaultServer = "https://v8.next.forgejo.org"
   showMenu = true
   showCopyright = true
   showThemeAttribution = false
-  showAppearanceSwitcher = true
+  showAppearanceSwitcher = false
   showScrollToTop = true
 
 [homepage]
