@@ -112,54 +112,46 @@ svg.fa-search path {
     fill: rgb(var(--color-secondary-500)) !important;
 }
 
+.cookie-icon svg {
+    width: 24px; /* Adjust size */
+    height: 24px;
+    vertical-align: middle; /* Aligns with text */
+    margin-right: 8px; /* Space between icon and text */
+}
+
+/* The cookie base */
+.cookie-base {
+    fill: rgb(var(--color-secondary-500)); /* Red color from your site */
+    stroke: rgb(var(--color-secondary-700)); /* Slightly darker outline */
+    stroke-width: 1.5;
+}
+
+/* Chocolate chips */
+.chocolate-chip {
+    fill: rgb(var(--color-primary-500)); /* Dark site color */
+}
+
 #cookie-notice {
     font-size: medium;
-    padding: 1rem;
+    padding: 0.75rem;
     display: none;
-    text-align: left; /* Align text to the left */
+    text-align: center;
     position: fixed;
     bottom: 20px;
     right: 20px;
     left: auto;
     width: 50%;
-    max-width: 600px;
+    max-width: 400px;
     background: rgb(var(--color-secondary-500)); /* Red background */
     color: rgb(0, 0, 0); /* Black text */
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    display: flex; /* Enables flexbox for layout */
-    flex-direction: row; /* Puts cookie and text side-by-side */
-    align-items: center; /* Vertically aligns items */
 }
 
-/* Enlarged cookie */
-.cookie-icon {
-    flex: 1; /* Takes 25% width */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-right: 10px;
-}
-
-.cookie-icon svg {
-    width: 100px; /* Doubled size */
-    height: 100px;
-}
-
-/* The text section */
-.cookie-text {
-    flex: 3; /* Takes 75% width */
-}
-
-/* Buttons remain below */
-.cookie-buttons {
-    width: 100%;
-    margin-top: 10px;
-    display: flex;
-    justify-content: center;
-}
-
-.cookie-buttons a {
+#cookie-notice a {
+    font-weight: 600;
+    display: inline-flex;
+    cursor: pointer;
     margin: 0.3rem;
     padding: 0.4rem 0.8rem;
     border-radius: 5px;
@@ -167,24 +159,37 @@ svg.fa-search path {
     transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* Adjust mobile layout */
+#cookie-notice-accept {
+    background: rgb(0, 0, 0); /* Black buttons */
+    color: rgb(var(--color-secondary-500)); /* Red text */
+}
+
+#cookie-notice-accept:hover {
+    background: rgb(50, 50, 50); /* Slightly lighter black */
+}
+
+#cookie-notice-deny {
+    background: rgb(0, 0, 0); /* Black buttons */
+    color: rgb(var(--color-secondary-500)); /* Red text */
+}
+
+#cookie-notice-deny:hover {
+    background: rgb(50, 50, 50);
+}
+
+#cookie-notice a[href="/privacy"] {
+    background: rgb(0, 0, 0);
+    color: rgb(var(--color-secondary-500));
+}
+
+#cookie-notice a[href="/privacy"]:hover {
+    background: rgb(50, 50, 50);
+}
+
 @media (max-width: 767px) {
     #cookie-notice {
-        flex-direction: column; /* Stack elements vertically */
-        align-items: center;
         width: 90%;
-        max-width: 400px;
-    }
-
-    .cookie-icon {
-        padding-bottom: 10px;
-    }
-
-    .cookie-text {
-        text-align: center;
-    }
-
-    .cookie-buttons {
-        flex-direction: column;
+        max-width: 300px;
+        right: 10px;
     }
 }
