@@ -113,46 +113,86 @@ svg.fa-search path {
 }
 
 #cookie-notice {
-    font-size: larger;
-    padding: 0.5rem 1rem;
+    font-size: medium;
+    padding: 0.75rem;
     display: none;
     text-align: center;
     position: fixed;
-    bottom: 0;
-    left: 20px;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    width: 100%;
-    background: rgb(70, 70, 70);
-    color: rgba(255, 255, 255, 0.8);
+    bottom: 20px;
+    right: 20px;
+    left: auto;
+    width: 50%;
+    max-width: 400px;
+    background: rgb(var(--color-secondary-500)); /* Red background */
+    color: rgb(0, 0, 0); /* Black text */
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 #cookie-notice a {
     font-weight: 600;
     display: inline-flex;
     cursor: pointer;
-    margin-left: 0.5rem;
+    margin: 0.3rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 #cookie-notice-accept {
-    color: rgb(86, 228, 58);
+    background: rgb(0, 0, 0); /* Black buttons */
+    color: rgb(var(--color-secondary-500)); /* Red text */
+}
+
+#cookie-notice-accept:hover {
+    background: rgb(50, 50, 50); /* Slightly lighter black */
 }
 
 #cookie-notice-deny {
-    color: rgb(243, 34, 34);
+    background: rgb(0, 0, 0); /* Black buttons */
+    color: rgb(var(--color-secondary-500)); /* Red text */
+}
+
+#cookie-notice-deny:hover {
+    background: rgb(50, 50, 50);
+}
+
+#cookie-notice a[href="/privacy"] {
+    background: rgb(0, 0, 0);
+    color: rgb(var(--color-secondary-500));
+}
+
+#cookie-notice a[href="/privacy"]:hover {
+    background: rgb(50, 50, 50);
 }
 
 @media (max-width: 767px) {
-    #cookie-notice span {
-        display: block;
-        padding-top: 3px;
-        margin-bottom: 1rem;
-    }
-    #cookie-notice a {
-        position: relative;
-        bottom: 4px;
-    }
     #cookie-notice {
-        left: 0px;
+        width: 90%;
+        max-width: 300px;
+        right: 10px;
     }
 }
+
+.cookie-icon svg {
+    width: 24px; /* Adjust size */
+    height: 24px;
+    vertical-align: middle; /* Aligns with text */
+    margin-right: 8px; /* Space between icon and text */
+}
+
+/* The cookie base */
+.cookie-base {
+    fill: rgb(var(--color-secondary-500)); /* Red color from your site */
+    stroke: rgb(var(--color-secondary-700)); /* Slightly darker outline */
+    stroke-width: 1.5;
+}
+
+/* Chocolate chips */
+.chocolate-chip {
+    fill: rgb(var(--color-primary-500)); /* Dark site color */
+}
+
+
+
