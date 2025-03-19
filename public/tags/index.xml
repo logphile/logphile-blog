@@ -9,7 +9,37 @@
     <managingEditor>phil@logphile.com (Phil Boyce)</managingEditor>
     <webMaster>phil@logphile.com (Phil Boyce)</webMaster>
     <copyright>&amp;copy; 2025 logPhile. All Rights Reserved.</copyright>
-    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Mar 2025 12:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Cloud Computing</title>
+      <link>http://localhost:1313/tags/cloud-computing/</link>
+      <pubDate>Tue, 18 Mar 2025 12:00:00 +0000</pubDate>
+      <author>phil@logphile.com (Phil Boyce)</author>
+      <guid>http://localhost:1313/tags/cloud-computing/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Future Trends</title>
+      <link>http://localhost:1313/tags/future-trends/</link>
+      <pubDate>Tue, 18 Mar 2025 12:00:00 +0000</pubDate>
+      <author>phil@logphile.com (Phil Boyce)</author>
+      <guid>http://localhost:1313/tags/future-trends/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Technology</title>
+      <link>http://localhost:1313/tags/technology/</link>
+      <pubDate>Tue, 18 Mar 2025 12:00:00 +0000</pubDate>
+      <author>phil@logphile.com (Phil Boyce)</author>
+      <guid>http://localhost:1313/tags/technology/</guid>
+      <description></description>
+      
+    </item>
     
   </channel>
 </rss>
