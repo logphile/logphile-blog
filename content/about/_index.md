@@ -1,5 +1,5 @@
 ---
-title: "Recipes"
+title: "Lorum Ipsum?"
 description: "Recipes, guides, and tutorials for Blowfish"
 
 cascade:
