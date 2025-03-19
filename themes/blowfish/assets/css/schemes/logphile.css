@@ -38,3 +38,15 @@
 footer p {
     color: rgb(var(--color-secondary-500)) !important;
 }
+
+div.flex.flex-wrap a {
+    color: rgb(var(--color-secondary-500)) !important;
+}
+
+div.flex.flex-wrap a:hover {
+    color: rgb(var(--color-secondary-700)) !important;
+}
+
+h2.text-xl {
+    color: rgb(var(--color-primary-500)) !important;
+}

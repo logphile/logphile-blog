@@ -4,18 +4,22 @@
     <title>logPhile</title>
     <link>http://localhost:1313/blog/</link>
     <description>Recent content on logPhile</description>
-    <generator>Hugo</generator>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>phil@logphile.com (Phil Boyce)</managingEditor>
     <webMaster>phil@logphile.com (Phil Boyce)</webMaster>
-    <lastBuildDate>Tue, 18 Mar 2025 12:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>&amp;copy; 2025 logPhile. All Rights Reserved.</copyright>
+    <lastBuildDate>Tue, 18 Mar 2025 12:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
+    
     <item>
       <title>Exploring the Future of Cloud Computing</title>
       <link>http://localhost:1313/blog/firstpost/</link>
-      <pubDate>Tue, 18 Mar 2025 12:00:00 +0000</pubDate><author>phil@logphile.com (Phil Boyce)</author>
+      <pubDate>Tue, 18 Mar 2025 12:00:00 +0000</pubDate>
+      <author>phil@logphile.com (Phil Boyce)</author>
       <guid>http://localhost:1313/blog/firstpost/</guid>
       <description>A glimpse into how cloud computing is evolving and what to expect in the near future.</description>
+      
     </item>
+    
   </channel>
 </rss>
