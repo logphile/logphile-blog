@@ -16,7 +16,7 @@ buildFuture = false
 
 enableEmoji = true
 
-# googleAnalytics = "G-QZ25R62NR7"
+googleAnalytics = "G-QZ25R62NR7"
 
 [pagination]
   pagerSize = 100
