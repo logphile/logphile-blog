@@ -1,0 +1,33 @@
+:root { 
+--color-neutral: 255, 255, 255;
+--color-neutral-50:     227,234,241;
+--color-neutral-100:    177,195,215;
+--color-neutral-200:    126,155,189;
+--color-neutral-300:    81,117,158;
+--color-neutral-400:    55,79,108;
+--color-neutral-500:    29,42,57;
+--color-neutral-600:    15,22,30;
+--color-neutral-700:    1,2,3;
+--color-neutral-800:    0,0,0;
+--color-neutral-900:    0,0,0;
+--color-primary-50:     221,202,197;
+--color-primary-100:    192,158,149;
+--color-primary-200:    164,115,101;
+--color-primary-300:    118,81,70;
+--color-primary-400:    70,48,41;
+--color-primary-500:    22,15,13;
+--color-primary-600:    0,0,0;
+--color-primary-700:    0,0,0;
+--color-primary-800:    0,0,0;
+--color-primary-900:    0,0,0;
+--color-secondary-50:     255,255,255;
+--color-secondary-100:    255,255,255;
+--color-secondary-200:    252,244,243;
+--color-secondary-300:    236,188,182;
+--color-secondary-400:    221,133,121;
+--color-secondary-500:    205,77,60;
+--color-secondary-600:    178,61,46;
+--color-secondary-700:    146,50,37;
+--color-secondary-800:    113,39,29;
+--color-secondary-900:    81,28,21;
+}
