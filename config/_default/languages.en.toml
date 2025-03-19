@@ -21,9 +21,9 @@ title = "logPhile"
    imageQuality = 96
    headline = "Evolving with the Cloud"
 #   bio = "A little bit about you"
-   links = [
-     { email = "mailto:phil@logphile.com" },
+   links = [     
      { github = "https://github.com/logphile" },
      { linkedin = "https://www.linkedin.com/in/phil-boyce" },
-     { x-twitter = "https://x.com/LogPhile" }
+     { x-twitter = "https://x.com/LogPhile" },
+     { email = "mailto:phil@logphile.com" },
    ]
