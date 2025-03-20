@@ -26,8 +26,8 @@
   
   
   
-  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.c519c3bcb812766c91107f5ea9d8c3aba9343c7793ea6ebbba6d4ad61080ccd275561d4941ca82d4770e7e014e1b56eff16450bb3d25b7fab5c5d543d4649467.css"
-    integrity="sha512-xRnDvLgSdmyREH9eqdjDq6k0PHeT6m67um1K1hCAzNJ1Vh1JQcqC1HcOfgFOG1bv8WRQuz0lt/q1xdVD1GSUZw==" />
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.7cb25ad1c6f6699284ac8b6fbd85ef90d7e8e3b7068574a81aeaa9abdc9fc10afbaaebf71af7bb7d1f06dc48c11b8cccdb767b39607ae52a187af18f9331fe9f.css"
+    integrity="sha512-fLJa0cb2aZKErItvvYXvkNfo47cGhXSoGuqpq9yfwQr7quv3Gve7fR8G3EjBG4zM23Z7OWB65SoYevGPkzH&#43;nw==" />
   
   
   <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
@@ -136,12 +136,56 @@
 
 
   <div id="cookie-notice">
-    
-    <span>We use cookies to improve your experience...</span>
-    <a id="cookie-notice-accept" class="btn btn-primary btn-sm">Approve</a>
-    <a id="cookie-notice-deny" class="btn btn-primary btn-sm">Deny</a>
-    <a href="/privacy" class="btn btn-primary btn-sm">More info</a>
+    <div class="cookie-content">
+        <p>Let's get this over with. Cookies are used on this site (like every site). All done.</p>
+
+        <div class="cookie-buttons">
+            <a id="cookie-notice-accept" class="btn btn-primary btn-sm">Accept</a>
+            <a id="cookie-notice-deny" class="btn btn-primary btn-sm">Decline</a>
+            <a href="/privacy" id="cookie-notice-read" class="btn btn-primary btn-sm">Privacy Policy</a>
+        </div>
+    </div>
 </div>
+
+
+<script>
+    function createCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + value + expires + "; path=/";
+    }
+
+    function readCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i].trim();
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    
+    if (readCookie('cookie-notice-option') !== 'true' && readCookie('cookie-notice-option') !== 'false') {
+        document.getElementById('cookie-notice').style.display = 'block';
+    }
+
+    
+    document.getElementById('cookie-notice-accept').addEventListener("click", function () {
+        createCookie('cookie-notice-option', 'true', 31);
+        document.getElementById('cookie-notice').style.display = 'none';
+    });
+
+    document.getElementById('cookie-notice-deny').addEventListener("click", function () {
+        createCookie('cookie-notice-option', 'false', 31);
+        document.getElementById('cookie-notice').style.display = 'none';
+    });
+</script>
+
   
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FZVBM8WM6B"></script>

@@ -1,7 +1,50 @@
 <div id="cookie-notice">
-    
-    <span>We use cookies to improve your experience...</span>
-    <a id="cookie-notice-accept" class="btn btn-primary btn-sm">Approve</a>
-    <a id="cookie-notice-deny" class="btn btn-primary btn-sm">Deny</a>
-    <a href="/privacy" class="btn btn-primary btn-sm">More info</a>
+    <div class="cookie-content">
+        <p>Let's get this over with. Cookies are used on this site (like every site). All done.</p>
+
+        <div class="cookie-buttons">
+            <a id="cookie-notice-accept" class="btn btn-primary btn-sm">Accept</a>
+            <a id="cookie-notice-deny" class="btn btn-primary btn-sm">Decline</a>
+            <a href="/privacy" id="cookie-notice-read" class="btn btn-primary btn-sm">Privacy Policy</a>
+        </div>
+    </div>
 </div>
+
+<!-- ✅ JavaScript for Show/Hide Functionality -->
+<script>
+    function createCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + value + expires + "; path=/";
+    }
+
+    function readCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i].trim();
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    // ✅ Show cookie notice only if it hasn't been accepted/denied
+    if (readCookie('cookie-notice-option') !== 'true' && readCookie('cookie-notice-option') !== 'false') {
+        document.getElementById('cookie-notice').style.display = 'block';
+    }
+
+    // ✅ Hide the box and store user choice
+    document.getElementById('cookie-notice-accept').addEventListener("click", function () {
+        createCookie('cookie-notice-option', 'true', 31);
+        document.getElementById('cookie-notice').style.display = 'none';
+    });
+
+    document.getElementById('cookie-notice-deny').addEventListener("click", function () {
+        createCookie('cookie-notice-option', 'false', 31);
+        document.getElementById('cookie-notice').style.display = 'none';
+    });
+</script>

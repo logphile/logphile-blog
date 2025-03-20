@@ -112,65 +112,98 @@ svg.fa-search path {
     fill: rgb(var(--color-secondary-500)) !important;
 }
 
+/* ✅ Cookie Consent Box */
 #cookie-notice {
     font-size: medium;
-    padding: 0.75rem;
+    padding: 1rem;
     display: none;
-    text-align: center;
     position: fixed;
     bottom: 20px;
     right: 20px;
-    left: auto;
     width: 50%;
-    max-width: 400px;
+    max-width: 500px;
     background: rgb(var(--color-secondary-500)); /* Red background */
     color: rgb(0, 0, 0); /* Black text */
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
 }
 
-#cookie-notice a {
-    font-weight: 600;
-    display: inline-flex;
-    cursor: pointer;
-    margin: 0.3rem;
-    padding: 0.4rem 0.8rem;
+/* ✅ Text */
+.cookie-content p {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: normal;
+    color: rgb(var(--color-neutral-500)) !important; /* #FC5749 */
+}
+
+/* ✅ Buttons */
+.cookie-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;    
+}
+
+.cookie-buttons a {
+    padding: 8px 12px;
     border-radius: 5px;
     text-decoration: none;
-    transition: background 0.3s ease, color 0.3s ease;
-}
-
-#cookie-notice-accept {
-    background: rgb(0, 0, 0); /* Black buttons */
+    background: rgb(var(--color-neutral-500)) !important; /* #FC5749 */
     color: rgb(var(--color-secondary-500)); /* Red text */
+    font-weight: bold;
+    border: 2px solid transparent;
+    transition: all 0.3s ease-in-out;
 }
 
-#cookie-notice-accept:hover {
-    background: rgb(50, 50, 50); /* Slightly lighter black */
+/* ✅ Button Hover Effects */
+.cookie-buttons a:hover {
+    background: rgb(var(--color-secondary-700)); /* Darker red */
+    color: rgb(255, 255, 255); /* White text */
+    border-color: rgb(0, 0, 0);
 }
 
-#cookie-notice-deny {
-    background: rgb(0, 0, 0); /* Black buttons */
-    color: rgb(var(--color-secondary-500)); /* Red text */
-}
-
-#cookie-notice-deny:hover {
-    background: rgb(50, 50, 50);
-}
-
-#cookie-notice a[href="/privacy"] {
-    background: rgb(0, 0, 0);
-    color: rgb(var(--color-secondary-500));
-}
-
-#cookie-notice a[href="/privacy"]:hover {
-    background: rgb(50, 50, 50);
-}
-
+/* ✅ Mobile Adjustments */
 @media (max-width: 767px) {
     #cookie-notice {
         width: 90%;
-        max-width: 300px;
-        right: 10px;
+        max-width: 350px;
     }
+
+    .cookie-buttons {
+        flex-direction: column;
+    }
+}
+
+/* Ensure list numbers match the site text color */
+ol {
+    color: rgb(var(--color-primary-500)) !important;
+}
+
+/* Ensure list items inherit the correct color */
+ol li {
+    color: inherit !important;
+}
+
+/* ✅ Ensure ordered list numbers are properly colored */
+li::marker {
+    color: rgb(var(--color-secondary-500)) !important;
+}
+
+/* Ensure list numbers match the site text color */
+li {
+    color: rgb(var(--color-primary-500)) !important;
+}
+
+/* ✅ Make email and website links red */
+.privacy-contact {
+    color: rgb(var(--color-secondary-500)) !important; /* #FC5749 */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* ✅ Add a hover effect (optional) */
+.privacy-contact a:hover {
+    color: rgb(var(--color-secondary-700)) !important; /* Darker red */
+    text-decoration: underline;
 }
