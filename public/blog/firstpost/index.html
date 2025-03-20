@@ -26,8 +26,8 @@
   
   
   
-  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.82d573edd44c95d0d2e7d7386f78e85a0610b66de1b8c994f9812a2a2c60b59e68e140c3b61423f03d360c656761dd84c9449cad77ea27d25a4966e58f1fcf2f.css"
-    integrity="sha512-gtVz7dRMldDS59c4b3joWgYQtm3huMmU&#43;YEqKixgtZ5o4UDDthQj8D02DGVnYd2EyUScrXfqJ9JaSWbljx/PLw==" />
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.c519c3bcb812766c91107f5ea9d8c3aba9343c7793ea6ebbba6d4ad61080ccd275561d4941ca82d4770e7e014e1b56eff16450bb3d25b7fab5c5d543d4649467.css"
+    integrity="sha512-xRnDvLgSdmyREH9eqdjDq6k0PHeT6m67um1K1hCAzNJ1Vh1JQcqC1HcOfgFOG1bv8WRQuz0lt/q1xdVD1GSUZw==" />
   
   
   <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
@@ -169,66 +169,12 @@
 
 
   <div id="cookie-notice">
-    <span class="cookie-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="10" class="cookie-base"/>
-            <circle cx="8" cy="8" r="1.5" class="chocolate-chip"/>
-            <circle cx="14" cy="10" r="1.2" class="chocolate-chip"/>
-            <circle cx="16" cy="15" r="1.5" class="chocolate-chip"/>
-            <circle cx="10" cy="16" r="1.2" class="chocolate-chip"/>
-        </svg>
-    </span>
-    <span>Cookies are used to make your experience on this website better (and for compliance).</span>
-    <a id="cookie-notice-accept" class="btn btn-primary btn-sm">Yes, please!</a>
-    <a id="cookie-notice-deny" class="btn btn-primary btn-sm">No... I'm full</a>
-    <a href="/privacy" class="btn btn-primary btn-sm">Read more</a>
+    
+    <span>We use cookies to improve your experience...</span>
+    <a id="cookie-notice-accept" class="btn btn-primary btn-sm">Approve</a>
+    <a id="cookie-notice-deny" class="btn btn-primary btn-sm">Deny</a>
+    <a href="/privacy" class="btn btn-primary btn-sm">More info</a>
 </div>
-
-<script>
-    function createCookie(name, value, days) {
-        var expires = "";
-        if (days) {
-            var date = new Date();
-            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-            expires = "; expires=" + date.toUTCString();
-        }
-        document.cookie = name + "=" + value + expires + "; path=/";
-    }
-
-    function readCookie(name) {
-        var nameEQ = name + "=";
-        var ca = document.cookie.split(';');
-        for (var i = 0; i < ca.length; i++) {
-            var c = ca[i];
-            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-        }
-        return null;
-    }
-
-    function eraseCookie(name) {
-        createCookie(name, "", -1);
-    }
-
-    if (readCookie('cookie-notice-option') == 'true') {
-        
-    } else if (readCookie('cookie-notice-option') != 'false') {
-        document.getElementById('cookie-notice').style.display = 'block';
-    }
-
-    document.getElementById('cookie-notice-accept').addEventListener("click", function () {
-        createCookie('cookie-notice-option', 'true', 31);
-        document.getElementById('cookie-notice').style.display = 'none';
-        location.reload();
-    });
-
-    document.getElementById('cookie-notice-deny').addEventListener("click", function () {
-        createCookie('cookie-notice-option', 'false', 31);
-        document.getElementById('cookie-notice').style.display = 'none';
-        location.reload();
-    });
-</script>
-
   
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FZVBM8WM6B"></script>

@@ -18,6 +18,9 @@ enableEmoji = true
 
 googleAnalytics = "G-FZVBM8WM6B"
 
+[params]
+  colorScheme = "logphile"
+
 [pagination]
   pagerSize = 100
 
