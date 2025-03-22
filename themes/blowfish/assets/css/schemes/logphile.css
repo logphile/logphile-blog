@@ -207,3 +207,13 @@ li {
     color: rgb(var(--color-secondary-700)) !important; /* Darker red */
     text-decoration: underline;
 }
+
+/* Thin underline below the About page title */
+.about-title::after {
+    content: "";
+    display: block;
+    margin-top: 0.5rem;
+    width: 150px;
+    height: 2px;
+    background-color: rgb(var(--color-secondary-500)); /* Red line */
+}
