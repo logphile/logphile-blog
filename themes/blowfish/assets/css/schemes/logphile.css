@@ -207,3 +207,9 @@ li {
     color: rgb(var(--color-secondary-700)) !important; /* Darker red */
     text-decoration: underline;
 }
+
+/* Increase the default font size */
+html {
+    font-size: 13pt;
+  }
+  
