@@ -1,5 +1,5 @@
 ---
-title: "Welcome"
+title: "About this site"
 description: "About Phil Boyce – Cloud, Systems, and IT Infrastructure"
 cascade:
   showDate: false
