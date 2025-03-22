@@ -1,5 +1,5 @@
 ---
-title: "About this site"
+title: "About Me"
 description: "About Phil Boyce – Cloud, Systems, and IT Infrastructure"
 cascade:
   showDate: false
@@ -9,16 +9,12 @@ cascade:
 
 ***
 
-Lorem Ipsum is simply dummy text of the printing and typesetting industry...
+<span style="color: white;">
+  Hey! My name is <strong>Phil Boyce</strong> and <a href="https://www.logphile.com" style="color:white; font-weight: bold;">logPhile</a> is my blog. is my blog.
+</span>
 
-What is Lorem Ipsum?
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+At 14, one of my older friends introduced me to [MUDs](https://en.wikipedia.org/wiki/Multi-user_dungeon). I begged my parents the entire school year and they finally bought me a computer. My friends and I mowed lawns that summer. They saved up for SNES games. I saved up for a 28.8 Kbs modem. Computers became my life.
 
-Why do we use it?
-It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+I've spent 20 years as a Sys Admin "jack of all trades" and exposed to all kinds of tech. Then I had a kid and have been a stay-at-home dad for a few years. Being a father to a little girl I became a different kind of "jack of all trades". Now that she is older I am looking to reenter the industry.
 
-
-Where does it come from?
-Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10..
-
-The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+**logPhile** is a collection of things I am working on, learning, and a way to track my progress and share my thoughts.

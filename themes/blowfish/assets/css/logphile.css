@@ -174,3 +174,11 @@ svg.fa-search path {
         right: 10px;
     }
 }
+
+/* Red horizontal rule styling */
+hr {
+    border: none;
+    height: 2px;
+    background-color: rgb(var(--color-secondary-500)) !important;
+    margin: 1rem 0;
+}

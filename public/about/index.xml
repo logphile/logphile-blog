@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>About this site on logPhile</title>
+    <title>About Me on logPhile</title>
     <link>http://localhost:1313/about/</link>
-    <description>Recent content in About this site on logPhile</description>
+    <description>Recent content in About Me on logPhile</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>phil@logphile.com (Phil Boyce)</managingEditor>
