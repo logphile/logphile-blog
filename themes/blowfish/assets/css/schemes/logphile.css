@@ -213,3 +213,11 @@ html {
     font-size: 13pt;
   }
   
+/* Red horizontal rule styling */
+hr {
+    border: none;
+    height: 2px;
+    background-color: rgb(var(--color-secondary-500)) !important;
+    margin: 1rem 0;
+}
+
