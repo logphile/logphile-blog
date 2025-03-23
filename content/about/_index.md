@@ -27,10 +27,10 @@ This blog is a collection of things I am working on, learning, and a way to trac
 
 I got into computers the old-school way—through [MUDs](https://en.wikipedia.org/wiki/Multi-user_dungeon), BBSes, curiosity, and a dial-up connection that became my one and only ask. While my friends were saving up for SNES cartridges, I was saving lawn-mowing money for a 28.8k modem. And I never really stopped.
 
-I’ve spent two decades as a sysadmin—one of those “jack of all trades” types. I’ve worked across stacks, solved problems nobody could reproduce, and kept things running quietly behind the scenes. Then I hit pause to raise a little girl, and that came with its own version of uptime monitoring, triage, and soft skills.
+I’ve spent two decades as a sysadmin—one of those “jack of all trades” types. I’ve worked across stacks, made broken things work again, and kept things running quietly behind the scenes. Then I hit pause to focus on something even more important--my daughter. That came with its own version of uptime monitoring, triage, and soft skills.
 
-Now that she’s older, I’m ready to step back into the field—with fresh perspective, sharpened skills, and the same curiosity that got me into tech in the first place.
+Now that she’s older, I’m ready to step back into the field—-with fresh perspective, sharpened skills, and the same curiosity that got me into tech in the first place.
 
-**logPhile** is where I document what I’m building, learning, and exploring. Sometimes it’s cloud infrastructure. Sometimes it’s a weird little side project. Mostly it’s a way to stay honest, stay sharp, and keep moving forward.
+**logPhile** is where I document what I’m learning, building and exploring. Sometimes it’s cloud infrastructure. Sometimes it’s a weird little side project. Mostly it’s a way to stay honest, stay sharp, and keep moving forward.
 
 Thanks for stopping by.
