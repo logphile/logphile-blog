@@ -1,0 +1,12 @@
+{{ define "main" }}
+  <section class="section container">
+    <header class="mb-10">
+      <h1 class="text-4xl font-bold">{{ .Title }}</h1>
+      
+    </header>
+
+    <div class="prose dark:prose-invert max-w-none">
+      {{ .Content }}
+    </div>
+  </section>
+{{ end }}

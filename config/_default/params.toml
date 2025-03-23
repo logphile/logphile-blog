@@ -52,6 +52,17 @@ forgejoDefaultServer = "https://v8.next.forgejo.org"
   cardViewScreenWidth = false
   layoutBackgroundBlur = false # only used when layout equals background
 
+[blog]
+  layout = "profile" # or "card", "hero", etc.
+  homepageImage = "logphile-avatar.jpg"
+  showRecent = true
+  showRecentItems = 5
+  showMoreLink = true
+  showMoreLinkDest = "/blog/"
+  cardView = true
+  cardViewScreenWidth = true
+  layoutBackgroundBlur = false
+
 [article]
   showDate = true
   showViews = false
