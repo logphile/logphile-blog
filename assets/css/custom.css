@@ -209,13 +209,13 @@ a.text-base.font-medium.text-gray-500[href="/"] {
     color: white !important;
   }
   
-/* Social icons default red, white on hover */
-a.px-1 {
-    color: rgb(var(--color-secondary-500)) !important; /* Red */
-    transition: color 0.2s ease-in-out;
+/* 🔥 Force red base color for social icons */
+div.flex.flex-wrap.text-neutral-400 > a {
+    color: rgb(var(--color-secondary-500)) !important;
   }
   
-  a.px-1:hover {
+  /* 🎯 On hover, change to white */
+  div.flex.flex-wrap.text-neutral-400 > a:hover {
     color: white !important;
-  }
+  } 
   
