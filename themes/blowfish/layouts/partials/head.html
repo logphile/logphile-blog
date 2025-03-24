@@ -34,7 +34,7 @@
   {{ end -}}
   {{/* Asset bundles */}}
   {{ $assets := newScratch }}
-  {{ $cssScheme := resources.Get (printf "css/schemes/%s.css" (.Site.Params.colorScheme | default "logphile")) }}
+  {{ $cssScheme := resources.Get (printf "css/schemes/%s.css" (.Site.Params.colorScheme | default "custom")) }}
   {{ if not $cssScheme }}
   {{ $cssScheme = resources.Get "css/schemes/custom.css" }}
   {{ end }}
@@ -150,6 +150,10 @@
     var auth = firebase.auth();
 
   </script>
+
   {{ end }}
   {{ end }}
+
+  <link rel="stylesheet" href="/css/schemes/custom.css">
+
 </head>
