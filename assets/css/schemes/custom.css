@@ -179,8 +179,7 @@ svg.fa-search path {
   color: white !important;
 }
 
-/* Add breathing room above the Blog page title */
-body.section-blog h1.text-4xl {
+/* Add top margin above the blog page title */
+section.container > header {
     margin-top: 3rem;
   }
-  

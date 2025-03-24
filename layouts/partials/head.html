@@ -34,9 +34,9 @@
   {{ end -}}
   {{/* Asset bundles */}}
   {{ $assets := newScratch }}
-  {{ $cssScheme := resources.Get (printf "css/schemes/%s.css" (.Site.Params.colorScheme | default "logphile")) }}
+  {{ $cssScheme := resources.Get (printf "css/schemes/%s.css" (.Site.Params.colorScheme | default "custom")) }}
   {{ if not $cssScheme }}
-  {{ $cssScheme = resources.Get "css/schemes/logphile.css" }}
+  {{ $cssScheme = resources.Get "css/schemes/custom.css" }}
   {{ end }}
   {{ $assets.Add "css" (slice $cssScheme) }}
   {{ $cssMain := resources.Get "css/compiled/main.css" }}
@@ -153,7 +153,7 @@
 
   </script>
 
-  <link rel="stylesheet" href="/css/logphile.css">
+  <link rel="stylesheet" href="/css/schemes/custom.css">
 
   {{ end }}
   {{ end }}

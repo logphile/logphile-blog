@@ -36,7 +36,7 @@
   {{ $assets := newScratch }}
   {{ $cssScheme := resources.Get (printf "css/schemes/%s.css" (.Site.Params.colorScheme | default "logphile")) }}
   {{ if not $cssScheme }}
-  {{ $cssScheme = resources.Get "css/schemes/logphile.css" }}
+  {{ $cssScheme = resources.Get "css/schemes/custom.css" }}
   {{ end }}
   {{ $assets.Add "css" (slice $cssScheme) }}
   {{ $cssMain := resources.Get "css/compiled/main.css" }}
