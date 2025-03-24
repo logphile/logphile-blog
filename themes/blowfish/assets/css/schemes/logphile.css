@@ -221,3 +221,12 @@ hr {
     margin: 1rem 0;
 }
 
+/* Site title / logo link */
+.site-title a,
+.site-title a:visited {
+  color: rgb(var(--color-secondary-500)) !important; /* Red */
+}
+
+.site-title a:hover {
+  color: white !important;
+}

@@ -13,7 +13,8 @@ enableSearch = true
 enableCodeCopy = true
 
 [params]
-  customCSS = ["assets/css/custom.css"]
+  customCSS = ["/css/custom.css"]
+
 
 replyByEmail = false
 
