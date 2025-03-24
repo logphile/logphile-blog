@@ -20,6 +20,7 @@ googleAnalytics = "G-FZVBM8WM6B"
 
 [params]
   colorScheme = "custom"
+  customCSS = ["css/custom.css"]
 
 [pagination]
   pagerSize = 100

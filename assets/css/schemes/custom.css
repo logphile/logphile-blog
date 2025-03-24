@@ -163,19 +163,24 @@ svg.fa-search path {
 /* Site title / logo link */
 .site-title a,
 .site-title a:visited {
-  color: rgb(var(--color-secondary-500)) !important;
+  color: rgb(var(--color-secondary-500)) !important; /* Red */
 }
 
-/* Hover effect (optional but nice) */
 .site-title a:hover {
-  color: rgb(var(--color-secondary-700)) !important;
+  color: white !important;
 }
 
 /* Social icons */
 .social-icons a {
-  color: rgb(var(--color-secondary-500)) !important;
+  color: rgb(var(--color-secondary-500)) !important; /* Red */
 }
 
 .social-icons a:hover {
-  color: rgb(var(--color-secondary-700)) !important;
+  color: white !important;
 }
+
+/* Add breathing room above the Blog page title */
+body.section-blog h1.text-4xl {
+    margin-top: 3rem;
+  }
+  

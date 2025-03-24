@@ -12,6 +12,10 @@ autoSwitchAppearance = false
 enableSearch = true
 enableCodeCopy = true
 
+[params]
+  customCSS = ["css/custom.css"]
+
+
 replyByEmail = false
 
 # mainSections = ["section1", "section2"]
@@ -53,13 +57,13 @@ forgejoDefaultServer = "https://v8.next.forgejo.org"
   layoutBackgroundBlur = false # only used when layout equals background
 
 [blog]
-  layout = "profile" # or "card", "hero", etc.
+  layout = "card" # or "card", "hero", etc.
+  cardView = true
   homepageImage = "logphile-avatar.jpg"
   showRecent = true
   showRecentItems = 5
   showMoreLink = true
   showMoreLinkDest = "/blog/"
-  cardView = true
   cardViewScreenWidth = true
   layoutBackgroundBlur = false
 

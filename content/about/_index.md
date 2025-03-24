@@ -7,7 +7,7 @@ cascade:
   invertPagination: true
 ---
 
-<hr>
+
 
 <span style="color: white;">
   Hey, I’m <strong>Phil Boyce</strong>, and <a href="https://www.logphile.com" style="color:white; font-weight: bold;">logPhile</a> is my space to learn out loud.
