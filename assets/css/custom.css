@@ -160,14 +160,6 @@ svg.fa-search path {
     }
 }
 
-a.px-1 {
-    color: rgb(var(--color-secondary-500)) !important;
-  }
-  
-  a.px-1:hover {
-    color: white !important;
-  }  
-
 /* Add space above the blog page title */
 section.container > header {
     margin-top: 4rem !important;
@@ -207,3 +199,23 @@ article.group img {
   a[href="/"]:hover {
     color: white !important;
   }
+
+  /* Override for the site title */
+a.text-base.font-medium.text-gray-500[href="/"] {
+    color: rgb(var(--color-secondary-500)) !important;
+  }
+  
+  a.text-base.font-medium.text-gray-500[href="/"]:hover {
+    color: white !important;
+  }
+  
+/* Social icons default red, white on hover */
+a.px-1 {
+    color: rgb(var(--color-secondary-500)) !important; /* Red */
+    transition: color 0.2s ease-in-out;
+  }
+  
+  a.px-1:hover {
+    color: white !important;
+  }
+  
