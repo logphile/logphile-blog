@@ -34,9 +34,9 @@
   {{ end -}}
   {{/* Asset bundles */}}
   {{ $assets := newScratch }}
-  {{ $cssScheme := resources.Get (printf "css/schemes/%s.css" (.Site.Params.colorScheme | default "custom")) }}
+  {{ $cssScheme := resources.Get (printf "css/%s.css" (.Site.Params.colorScheme | default "custom")) }}
   {{ if not $cssScheme }}
-  {{ $cssScheme = resources.Get "css/schemes/custom.css" }}
+  {{ $cssScheme = resources.Get "css/custom.css" }}
   {{ end }}
   {{ $assets.Add "css" (slice $cssScheme) }}
   {{ $cssMain := resources.Get "css/compiled/main.css" }}
@@ -156,6 +156,6 @@
   {{ end }}
   {{ end }}
 
-  <link rel="stylesheet" href="/css/schemes/custom.css">
+  <link rel="stylesheet" href="/css/custom.css">
 
 </head>

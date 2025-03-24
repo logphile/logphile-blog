@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tha Future of Cloud Computing on logPhile</title>
+    <link>http://localhost:1313/blog/fifthpost/</link>
+    <description>Recent content in Tha Future of Cloud Computing on logPhile</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>phil@logphile.com (Phil Boyce)</managingEditor>
+    <webMaster>phil@logphile.com (Phil Boyce)</webMaster>
+    <copyright>&amp;copy; 2025 logPhile. All Rights Reserved.</copyright>
+    <lastBuildDate>Tue, 18 Mar 2025 12:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/blog/fifthpost/index.xml" rel="self" type="application/rss+xml" />
+    
+  </channel>
+</rss>

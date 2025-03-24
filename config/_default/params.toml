@@ -5,7 +5,7 @@
 # Refer to the theme docs for more details about each of these parameters.
 # https://blowfish.page/docs/configuration/#theme-parameters
 
-colorScheme = "logphile"
+colorScheme = "custom"
 defaultAppearance = "dark" # valid options: light or dark
 autoSwitchAppearance = false
 
@@ -13,8 +13,7 @@ enableSearch = true
 enableCodeCopy = true
 
 [params]
-  customCSS = ["css/custom.css"]
-
+  customCSS = ["assets/css/custom.css"]
 
 replyByEmail = false
 
@@ -26,7 +25,7 @@ disableTextInHeader = false
 # backgroundImageWidth = 1200
 
 # defaultBackgroundImage = "IMAGE.jpg" # used as default for background images 
-# defaultFeaturedImage = "IMAGE.jpg" # used as default for featured images in all articles
+# defaultFeaturedImage = "feature.png" # used as default for featured images in all articles
 
 # highlightCurrentMenuArea = true
 # smartTOC = true
@@ -59,13 +58,14 @@ forgejoDefaultServer = "https://v8.next.forgejo.org"
 [blog]
   layout = "card" # or "card", "hero", etc.
   cardView = true
-  homepageImage = "logphile-avatar.jpg"
+  cardViewShowSummary = true
   showRecent = true
-  showRecentItems = 5
+  showRecentItems = 6
   showMoreLink = true
   showMoreLinkDest = "/blog/"
-  cardViewScreenWidth = true
+  cardViewScreenWidth = false
   layoutBackgroundBlur = false
+
 
 [article]
   showDate = true
@@ -75,8 +75,8 @@ forgejoDefaultServer = "https://v8.next.forgejo.org"
   showDateUpdated = false
   showAuthor = true
   # showAuthorBottom = true
-  showHero = false
-  # heroStyle = "" # valid options: basic, big, background, thumbAndBackground
+  showHero = true
+  heroStyle = "thumbAndBackground" # valid options: basic, big, background, thumbAndBackground
   layoutBackgroundBlur = true # only used when heroStyle equals background or thumbAndBackground
   layoutBackgroundHeaderSpace = true # only used when heroStyle equals background
   showBreadcrumbs = false
@@ -99,8 +99,8 @@ forgejoDefaultServer = "https://v8.next.forgejo.org"
   showZenMode = false
 
 [list]
-  showHero = false
-  # heroStyle = "background" # valid options: basic, big, background, thumbAndBackground
+  showHero = true
+  heroStyle = "thumbAndBackground" # valid options: basic, big, background, thumbAndBackground
   layoutBackgroundBlur = true # only used when heroStyle equals background or thumbAndBackground
   layoutBackgroundHeaderSpace = true # only used when heroStyle equals background
   showBreadcrumbs = false
@@ -120,8 +120,8 @@ forgejoDefaultServer = "https://v8.next.forgejo.org"
 
 [taxonomy]
   showTermCount = true
-  showHero = false
-  # heroStyle = "background" # valid options: basic, big, background, thumbAndBackground
+  showHero = true
+  heroStyle = "background" # valid options: basic, big, background, thumbAndBackground
   showBreadcrumbs = false
   showViews = false
   showLikes = false

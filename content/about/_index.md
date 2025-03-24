@@ -1,12 +1,12 @@
 ---
-title: "About Me"
 description: "About Phil Boyce – Cloud, Systems, and IT Infrastructure"
 cascade:
   showDate: false
   showAuthor: false
   invertPagination: true
 ---
-
+<h1 class="mt-12 mb-2 text-4xl font-extrabold text-neutral-900 dark:text-neutral">About Me</h1>
+<hr class="mt-2 mb-6 border-neutral-700 dark:border-neutral-600">
 
 
 <span style="color: white;">

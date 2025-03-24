@@ -179,7 +179,31 @@ svg.fa-search path {
   color: white !important;
 }
 
-/* Add top margin above the blog page title */
+/* Add space above the blog page title */
 section.container > header {
-    margin-top: 3rem;
+    margin-top: 3rem !important;
+}
+  
+ 
+/* Slightly shrink blog post cards */
+article.group {
+    transform: scale(0.90) !important;
+    transform-origin: top left !important;
+  }
+  
+/* Optional: reduce padding inside the cards */
+article.group {
+    padding: 1.5rem !important;
+    border-color: #FC5749 !important;      
+    border-width: .25rem;
+    border-style: inset;
+  }
+  
+/* Optional: shrink image a bit */
+article.group img {
+    border-radius: .25rem !important;
+  }
+  
+  article.group {
+    background-color: rgb(var(--color-neutral-800)) !important;
   }

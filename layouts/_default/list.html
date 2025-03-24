@@ -1,0 +1,20 @@
+{{ define "main" }}
+<main id="main-content" class="grow">
+
+  <section class="mt-12 mb-6 px-4 sm:px-6 md:px-8 lg:px-12">
+    <h1 class="text-4xl font-extrabold text-neutral-900 dark:text-neutral mb-0 !mb-0">Recent Posts</h1>
+    <hr class="mt-1 border-t border-secondary-500 w-full mb-6">
+  </section>
+
+  <section class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3 px-4 sm:px-6 md:px-8 lg:px-12">
+    {{ $pages := .Pages }}
+    {{ if .IsHome }}
+      {{ $pages = where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
+    {{ end }}
+    {{ range $pages }}
+      {{ partial "article-link/card.html" . }}
+    {{ end }}
+  </section>
+
+</main>
+{{ end }}
