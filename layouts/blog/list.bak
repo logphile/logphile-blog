@@ -9,7 +9,5 @@
       {{ .Content }}
     </div>
   </section>
-
-  
 {{ end }}
 
