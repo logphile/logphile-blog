@@ -65,13 +65,13 @@ div.flex.flex-row.flex-wrap.items-center span {
 
 div.min-w-\[220px\],
 blockquote {
-    border-left: 2px dotted rgb(var(--color-secondary-500)) !important;
+    border-left: 2px solid rgb(var(--color-secondary-500)) !important;
 }
 
 article hr,
 p.border-t,
 hr {
-    border-bottom: 1px dotted rgb(var(--color-secondary-500)) !important;
+    border-bottom: 1px solid rgb(var(--color-secondary-500)) !important;
     background-color: rgb(var(--color-secondary-500)) !important;
     height: 1px;
     border: none;
@@ -99,30 +99,28 @@ svg.fa-search path {
 
 /* Cookie Consent Box */
 #cookie-notice {
-    font-size: medium;
-    padding: 1rem;
     position: fixed;
-    bottom: 0;
-    width: 100%;
-    max-width: 500px;
-    background: rgb(var(--color-secondary-500));
-    color: rgb(0, 0, 0);
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
+    bottom: 20px;
+    right: 20px;
     z-index: 9999;
-}
-
+    max-width: 400px;
+    background-color: rgb(var(--color-neutral-700));
+    padding: 1rem;
+    border-radius: 20px;
+    border-color: rgb(var(--color-secondary-700));
+    border-width: .25rem;
+  }
+  
 .cookie-content p {
-    margin: 0;
+    text-align: center;
     font-size: 1.2rem;
-    font-weight: normal;
-    color: rgb(var(--color-neutral-500)) !important;
+    font-weight: light;
+    color: rgb(var(--color-secondary-500)) !important;
 }
 
 .cookie-buttons {
     display: flex;
-    justify-content: center;
+    justify-content: center !important;
     gap: 10px;
     margin-top: 10px;
 }
@@ -135,19 +133,19 @@ svg.fa-search path {
     padding: 8px 12px;
     border-radius: 5px;
     text-decoration: none;
-    background: rgb(var(--color-neutral-500)) !important;
-    color: rgb(var(--color-secondary-500));
-    font-weight: bold;
-    border: 2px solid transparent;
+    background: rgb(var(--color-secondary-600)) !important;
+    color: rgb(var(--color-primary-500)) !important;
+    font-weight: normal;
+    border: 5px solid transparent;
     transition: all 0.3s ease-in-out;
 }
 
 #cookie-notice-accept:hover,
 #cookie-notice-deny:hover,
 .cookie-buttons a:hover {
-    background-color: rgb(var(--color-secondary-500));
+    background-color: rgb(var(--color-neutral-500));
     color: white !important;
-    border-color: rgb(0, 0, 0);
+    border-color: #F5F4F1;
 }
 
 @media (max-width: 767px) {
@@ -218,4 +216,8 @@ div.flex.flex-wrap.text-neutral-400 > a {
   div.flex.flex-wrap.text-neutral-400 > a:hover {
     color: white !important;
   } 
+  
+  footer p.text-sm {
+    color: rgb(var(--color-secondary-500)) !important;
+  }
   

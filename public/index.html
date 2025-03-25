@@ -33,8 +33,8 @@
   
   
   
-  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.cadab23911accc78717e27e9f57de89934b605ba796b81e2e6f5c61708f79de2cf7795f0d6b13297bbd2f321aa58a339f3f8a75a76a69a100f76ca8a2d6963a0.css"
-    integrity="sha512-ytqyORGszHhxfifp9X3omTS2Bbp5a4Hi5vXGFwj3neLPd5Xw1rEyl7vS8yGqWKM58/inWnammhAPdsqKLWljoA==" />
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.60408d225345ea3f2ce128a8d301991cc1e2fb425054fef3a0d980f4c62d12a23119e46d0b6b11b6aa99bdc96205e18115235f2e5e0336c5b8c03d3bdf952b90.css"
+    integrity="sha512-YECNIlNF6j8s4Sio0wGZHMHi&#43;0JQVP7zoNmA9MYtEqIxGeRtC2sRtqqZvcliBeGBFSNfLl4DNsW4wD0735UrkA==" />
   
   
   <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
@@ -158,57 +158,93 @@
 
 
 
+  <style>
+    #cookie-notice {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 1000;
+      background: #2D2C36;
+      color: #fff;
+      padding: 1.5rem;
+      border-radius: 10px;
+      max-width: 320px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      display: none;
+    }
+  
+    #cookie-notice .cookie-buttons {
+      margin-top: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+  
+    #cookie-notice a {
+      background: #2D2C36;
+      color: #fff;
+      padding: 0.4rem 0.8rem;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 0.9rem;
+    }
+      
+    #cookie-notice a:hover {
+      background: #000;
+    }
+  </style>
+  
   <div id="cookie-notice">
     <div class="cookie-content">
-        <p>Let's get this over with. Cookies are used on this site (like every site). All done.</p>
-
-        <div class="cookie-buttons">
-            <a id="cookie-notice-accept" class="btn btn-primary btn-sm">Accept</a>
-            <a id="cookie-notice-deny" class="btn btn-primary btn-sm">Decline</a>
-            <a href="/privacy" id="cookie-notice-read" class="btn btn-primary btn-sm">Privacy Policy</a>
-        </div>
+      <p>Another day, another cookie banner. You know the drill.</p>
+      <div class="cookie-buttons">
+        <a id="cookie-notice-accept">Accept</a>
+        <a id="cookie-notice-deny">Decline</a>
+        <a href="/privacy" id="cookie-notice-read">Privacy Policy</a>
+      </div>
     </div>
-</div>
-
-
-<script>
-    function createCookie(name, value, days) {
+  </div>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      function createCookie(name, value, days) {
         var expires = "";
         if (days) {
-            var date = new Date();
-            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-            expires = "; expires=" + date.toUTCString();
+          var date = new Date();
+          date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+          expires = "; expires=" + date.toUTCString();
         }
         document.cookie = name + "=" + value + expires + "; path=/";
-    }
-
-    function readCookie(name) {
+      }
+  
+      function readCookie(name) {
         var nameEQ = name + "=";
         var ca = document.cookie.split(';');
         for (var i = 0; i < ca.length; i++) {
-            var c = ca[i].trim();
-            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+          var c = ca[i].trim();
+          if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
         }
         return null;
-    }
-
-    
-    if (readCookie('cookie-notice-option') !== 'true' && readCookie('cookie-notice-option') !== 'false') {
-        document.getElementById('cookie-notice').style.display = 'block';
-    }
-
-    
-    document.getElementById('cookie-notice-accept').addEventListener("click", function () {
-        createCookie('cookie-notice-option', 'true', 31);
-        document.getElementById('cookie-notice').style.display = 'none';
+      }
+  
+      const cookieNotice = document.getElementById("cookie-notice");
+      const accepted = readCookie("cookie-notice-option");
+  
+      if (!accepted) {
+        cookieNotice.style.display = "block";
+      }
+  
+      document.getElementById("cookie-notice-accept").addEventListener("click", function () {
+        createCookie("cookie-notice-option", "true", 365);
+        cookieNotice.style.display = "none";
+      });
+  
+      document.getElementById("cookie-notice-deny").addEventListener("click", function () {
+        createCookie("cookie-notice-option", "false", 365);
+        cookieNotice.style.display = "none";
+      });
     });
-
-    document.getElementById('cookie-notice-deny').addEventListener("click", function () {
-        createCookie('cookie-notice-option', 'false', 31);
-        document.getElementById('cookie-notice').style.display = 'none';
-    });
-</script>
-
+  </script>
   
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FZVBM8WM6B"></script>
