@@ -15,7 +15,6 @@ enableCodeCopy = true
 [params]
   customCSS = ["/css/custom.css"]
 
-
 replyByEmail = false
 
 # mainSections = ["section1", "section2"]
@@ -59,7 +58,7 @@ forgejoDefaultServer = "https://v8.next.forgejo.org"
 [blog]
   layout = "card" # or "card", "hero", etc.
   cardView = true
-  cardViewShowSummary = true
+  cardViewShowSummary = false
   showRecent = true
   showRecentItems = 6
   showMoreLink = true

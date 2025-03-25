@@ -221,3 +221,25 @@ div.flex.flex-wrap.text-neutral-400 > a {
     color: rgb(var(--color-secondary-500)) !important;
   }
   
+/* Override blog post metadata color */
+.blog-meta {
+    color: #FC5749 !important;
+  }
+  
+  .blog-meta span {
+    color: white !important; /* The dots */
+  }
+  
+  /* Make all post card titles bold */
+.card-title {
+    font-weight: 700; /* Bold */
+  }
+  
+  /* Optional variations */
+  .card-title.medium {
+    font-weight: 600; /* Semi-bold */
+  }
+  
+  .card-title.extra-bold {
+    font-weight: 800; /* Extra bold */
+  }

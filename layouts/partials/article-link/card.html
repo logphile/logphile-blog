@@ -12,19 +12,22 @@
   {{ end }}
 
   <div class="flex flex-col gap-1">
-    <h2 class="text-xl font-semibold leading-snug">
+    <h2 class="text-xl leading-snug card-title">
       <a href="{{ .RelPermalink }}">{{ .Title }}</a>
     </h2>
-
-    <p class="text-sm text-red-500 mt-1">
+    
+    {{ $summary := .Params.summary | default .Summary }}
+    <p class="text-sm mt-1 blog-meta">
       {{ .Date.Format "January 2, 2006" }}
-      &nbsp;•&nbsp; {{ .WordCount }} words
-      &nbsp;•&nbsp; {{ .ReadingTime }} min read
+      &nbsp;<span class="text-white">•</span>&nbsp; {{ .WordCount }} words
+      &nbsp;<span class="text-white">•</span>&nbsp; {{ .ReadingTime }} min read
     </p>
     
-    {{ with .Params.summary | default .Summary }}
-      <p class="text-sm text-neutral-400 mt-2">{{ . }}</p>
-    {{ end }}
+
+{{ with $summary }}
+  <p class="text-sm text-neutral-400 mt-2">{{ . }}</p>
+{{ end }}
+
   </div>
 </article>
 
