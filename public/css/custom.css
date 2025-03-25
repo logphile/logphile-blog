@@ -243,3 +243,13 @@ div.flex.flex-wrap.text-neutral-400 > a {
   .card-title.extra-bold {
     font-weight: 800; /* Extra bold */
   }
+
+  /* Prevent zoom-in cursor on card images */
+.card img.medium-zoom-image,
+.article-link img.medium-zoom-image {
+  cursor: pointer !important;
+}
+
+hr.thicc {
+  height: 6px !important;
+}

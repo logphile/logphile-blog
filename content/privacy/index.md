@@ -9,7 +9,7 @@ cascade:
   invertPagination: true
 ---
 <h1 class="mt-2 mb-2 text-4xl font-extrabold text-neutral-900 dark:text-neutral">Privacy Notice</h1>
-<hr class="mt-2 mb-6 border-neutral-700 dark:border-neutral-600">
+<hr class="mt-3 mb-6 border-neutral-700 dark:border-neutral-600 thicc">
 
 ## 1. Introduction
 Welcome to **[logPhile]** ("we," "our," or "us"). Your privacy is important to us. This Privacy Notice explains how we collect, use, disclose, and protect your personal information when you use our website, [logphile.com].

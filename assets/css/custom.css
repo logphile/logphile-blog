@@ -58,9 +58,12 @@ a.text-base.font-medium.text-gray-500:hover,
     color: rgb(var(--color-secondary-700)) !important;
 }
 
-div.flex.flex-row.flex-wrap.items-center time,
+div.flex.flex-row.flex-wrap.items-center time {
+    color: rgb(var(--color-primary-500)) !important;
+}
+
 div.flex.flex-row.flex-wrap.items-center span {
-    color: rgb(var(--color-secondary-500)) !important;
+    color: rgb(var(--color-neutral-500)) !important;
 }
 
 div.min-w-\[220px\],
@@ -229,7 +232,7 @@ div.flex.flex-wrap.text-neutral-400 > a {
   .blog-meta span {
     color: white !important; /* The dots */
   }
-  
+
   /* Make all post card titles bold */
 .card-title {
     font-weight: 700; /* Bold */
@@ -243,3 +246,38 @@ div.flex.flex-wrap.text-neutral-400 > a {
   .card-title.extra-bold {
     font-weight: 800; /* Extra bold */
   }
+
+/* Prevent zoom-in cursor on card images */
+.card img.medium-zoom-image,
+.article-link img.medium-zoom-image {
+  cursor: pointer !important;
+}
+
+/* Ensure card image cursor is correct */
+.card img,
+.article-link img {
+  cursor: pointer !important;
+}
+
+.medium-zoom-image {
+    cursor: pointer !important;
+  }
+
+  .thumbnail_card {
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: .25rem;
+    box-shadow: 0 0 0px rgba(255, 0, 80, 0);
+  }
+  
+  .flex.flex-row.flex-wrap.items-center > span.text-primary-500 {
+    color: #ffffff !important;
+  } 
+  
+  hr.thicc {
+    border-top-width: 3px !important;
+  }
+  
+  
+  

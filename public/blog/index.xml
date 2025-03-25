@@ -13,12 +13,32 @@
     
     <item>
       <title>Tha Future of Cloud Computing</title>
+      <link>http://localhost:1313/blog/fifthpost/</link>
+      <pubDate>Tue, 18 Mar 2025 12:00:00 +0000</pubDate>
+      <author>phil@logphile.com (Phil Boyce)</author>
+      <guid>http://localhost:1313/blog/fifthpost/</guid>
+      <description>A glimpse into how cloud computing is evolving and what to expect in the near future.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/blog/fifthpost/feature.png" />
+    </item>
+    
+    <item>
+      <title>Tha Future of Cloud Computing</title>
       <link>http://localhost:1313/blog/firstpost/</link>
       <pubDate>Tue, 18 Mar 2025 12:00:00 +0000</pubDate>
       <author>phil@logphile.com (Phil Boyce)</author>
       <guid>http://localhost:1313/blog/firstpost/</guid>
       <description>A glimpse into how cloud computing is evolving and what to expect in the near future.</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/blog/firstpost/feature.png" />
+    </item>
+    
+    <item>
+      <title>Tha Future of Cloud Computing</title>
+      <link>http://localhost:1313/blog/seventhpost/</link>
+      <pubDate>Tue, 18 Mar 2025 12:00:00 +0000</pubDate>
+      <author>phil@logphile.com (Phil Boyce)</author>
+      <guid>http://localhost:1313/blog/seventhpost/</guid>
+      <description>A glimpse into how cloud computing is evolving and what to expect in the near future.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/blog/seventhpost/feature.png" />
     </item>
     
   </channel>

@@ -13,6 +13,16 @@
     
     <item>
       <title>Tha Future of Cloud Computing</title>
+      <link>http://localhost:1313/blog/fifthpost/</link>
+      <pubDate>Tue, 18 Mar 2025 12:00:00 +0000</pubDate>
+      <author>phil@logphile.com (Phil Boyce)</author>
+      <guid>http://localhost:1313/blog/fifthpost/</guid>
+      <description>A glimpse into how cloud computing is evolving and what to expect in the near future.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/blog/fifthpost/feature.png" />
+    </item>
+    
+    <item>
+      <title>Tha Future of Cloud Computing</title>
       <link>http://localhost:1313/blog/firstpost/</link>
       <pubDate>Tue, 18 Mar 2025 12:00:00 +0000</pubDate>
       <author>phil@logphile.com (Phil Boyce)</author>
@@ -22,13 +32,23 @@
     </item>
     
     <item>
+      <title>Tha Future of Cloud Computing</title>
+      <link>http://localhost:1313/blog/seventhpost/</link>
+      <pubDate>Tue, 18 Mar 2025 12:00:00 +0000</pubDate>
+      <author>phil@logphile.com (Phil Boyce)</author>
+      <guid>http://localhost:1313/blog/seventhpost/</guid>
+      <description>A glimpse into how cloud computing is evolving and what to expect in the near future.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/blog/seventhpost/feature.png" />
+    </item>
+    
+    <item>
       <title></title>
       <link>http://localhost:1313/privacy/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <author>phil@logphile.com (Phil Boyce)</author>
       <guid>http://localhost:1313/privacy/</guid>
       <description>&lt;h1 class=&#34;mt-2 mb-2 text-4xl font-extrabold text-neutral-900 dark:text-neutral&#34;&gt;Privacy Notice&lt;/h1&gt;
-&lt;hr class=&#34;mt-2 mb-6 border-neutral-700 dark:border-neutral-600&#34;&gt;
+&lt;hr class=&#34;mt-3 mb-6 border-neutral-700 dark:border-neutral-600 thicc&#34;&gt;
 
 
 &lt;h2 class=&#34;relative group&#34;&gt;1. Introduction 

@@ -1,12 +1,14 @@
 ---
 description: "About Phil Boyce – Cloud, Systems, and IT Infrastructure"
+showTableOfContents: true
 cascade:
   showDate: false
   showAuthor: false
   invertPagination: true
 ---
 <h1 class="mt-12 mb-2 text-4xl font-extrabold text-neutral-900 dark:text-neutral">About Me</h1>
-<hr class="mt-2 mb-6 border-neutral-700 dark:border-neutral-600">
+<hr class="mt-2 mb-6 border-neutral-700 dark:border-neutral-600 thicc">
+
 
 
 <span style="color: white;">
@@ -22,3 +24,6 @@ Now that she’s older, I’m ready to step back into the field—-with fresh pe
 **logPhile** is where I document what I’m learning, building and exploring. Sometimes it’s cloud infrastructure. Sometimes it’s a weird little side project. Mostly it’s a way to stay honest, stay sharp, and keep moving forward.
 
 Thanks for stopping by.
+
+
+<hr class="mt-2 mb-6 border-neutral-700 dark:border-neutral-600 thicc">

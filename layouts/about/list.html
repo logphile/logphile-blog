@@ -1,12 +1,10 @@
 {{ define "main" }}
-  <section class="section container">
-    <header class="mb-10">
-        <h1 class="mt-12 text-4xl font-bold">{{ .Title }}</h1>
-      
-    </header>
+<article class="prose dark:prose-invert max-w-7xl mx-auto px-4 py-10">
+  <header class="mb-10">
+    <h1 class="text-4xl font-extrabold">{{ .Title }}</h1>
+  </header>
 
-    <div class="prose dark:prose-invert max-w-none">
-      {{ .Content }}
-    </div>
-  </section>
+  {{ .Content }}
+</article>
 {{ end }}
+

@@ -1,0 +1,18 @@
+{{ define "main" }}
+
+<article class="prose dark:prose-invert max-w-7xl mx-auto px-4 py-10">
+  <h1 class="text-4xl font-extrabold mb-2">{{ .Title }}</h1>
+  <p class="text-sm text-neutral-500 dark:text-neutral-400">
+    {{ .Date.Format "January 2, 2006" }} • {{ .ReadingTime }} min read
+  </p>
+
+  {{ with .Params.featured_image }}
+    <img src="{{ . | relURL }}" alt="{{ $.Title }}" class="rounded-lg shadow mb-6 w-full object-cover max-h-[500px]" />
+  {{ end }}
+
+  {{ .Content }}
+</article>
+
+{{ end }}
+
+

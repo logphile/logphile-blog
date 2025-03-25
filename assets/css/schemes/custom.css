@@ -58,20 +58,23 @@ a.text-base.font-medium.text-gray-500:hover,
     color: rgb(var(--color-secondary-700)) !important;
 }
 
-div.flex.flex-row.flex-wrap.items-center time,
+div.flex.flex-row.flex-wrap.items-center time {
+    color: rgb(var(--color-primary-500)) !important;
+}
+
 div.flex.flex-row.flex-wrap.items-center span {
-    color: rgb(var(--color-secondary-500)) !important;
+    color: rgb(var(--color-neutral-500)) !important;
 }
 
 div.min-w-\[220px\],
 blockquote {
-    border-left: 2px dotted rgb(var(--color-secondary-500)) !important;
+    border-left: 2px solid rgb(var(--color-secondary-500)) !important;
 }
 
 article hr,
 p.border-t,
 hr {
-    border-bottom: 1px dotted rgb(var(--color-secondary-500)) !important;
+    border-bottom: 1px solid rgb(var(--color-secondary-500)) !important;
     background-color: rgb(var(--color-secondary-500)) !important;
     height: 1px;
     border: none;
@@ -99,30 +102,28 @@ svg.fa-search path {
 
 /* Cookie Consent Box */
 #cookie-notice {
-    font-size: medium;
-    padding: 1rem;
     position: fixed;
-    bottom: 0;
-    width: 100%;
-    max-width: 500px;
-    background: rgb(var(--color-secondary-500));
-    color: rgb(0, 0, 0);
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
+    bottom: 20px;
+    right: 20px;
     z-index: 9999;
-}
-
+    max-width: 400px;
+    background-color: rgb(var(--color-neutral-700));
+    padding: 1rem;
+    border-radius: 20px;
+    border-color: rgb(var(--color-secondary-700));
+    border-width: .25rem;
+  }
+  
 .cookie-content p {
-    margin: 0;
+    text-align: center;
     font-size: 1.2rem;
-    font-weight: normal;
-    color: rgb(var(--color-neutral-500)) !important;
+    font-weight: light;
+    color: rgb(var(--color-secondary-500)) !important;
 }
 
 .cookie-buttons {
     display: flex;
-    justify-content: center;
+    justify-content: center !important;
     gap: 10px;
     margin-top: 10px;
 }
@@ -135,19 +136,19 @@ svg.fa-search path {
     padding: 8px 12px;
     border-radius: 5px;
     text-decoration: none;
-    background: rgb(var(--color-neutral-500)) !important;
-    color: rgb(var(--color-secondary-500));
-    font-weight: bold;
-    border: 2px solid transparent;
+    background: rgb(var(--color-secondary-600)) !important;
+    color: rgb(var(--color-primary-500)) !important;
+    font-weight: normal;
+    border: 5px solid transparent;
     transition: all 0.3s ease-in-out;
 }
 
 #cookie-notice-accept:hover,
 #cookie-notice-deny:hover,
 .cookie-buttons a:hover {
-    background-color: rgb(var(--color-secondary-500));
+    background-color: rgb(var(--color-neutral-500));
     color: white !important;
-    border-color: rgb(0, 0, 0);
+    border-color: #F5F4F1;
 }
 
 @media (max-width: 767px) {
@@ -159,14 +160,6 @@ svg.fa-search path {
         flex-direction: column;
     }
 }
-
-a.px-1 {
-    color: rgb(var(--color-secondary-500)) !important;
-}
-  
-  a.px-1:hover {
-    color: white !important;
-}   
 
 /* Add space above the blog page title */
 section.container > header {
@@ -200,12 +193,95 @@ article.group img {
     background-color: rgb(var(--color-neutral-800)) !important;
   }
   
-  /* Force logPhile site title color */
-a[href="/"] {
+  a[href="/"] {
     color: rgb(var(--color-secondary-500)) !important;
   }
   
   a[href="/"]:hover {
     color: white !important;
+  }
+
+  /* Override for the site title */
+a.text-base.font-medium.text-gray-500[href="/"] {
+    color: rgb(var(--color-secondary-500)) !important;
+  }
+  
+  a.text-base.font-medium.text-gray-500[href="/"]:hover {
+    color: white !important;
+  }
+  
+/* 🔥 Force red base color for social icons */
+div.flex.flex-wrap.text-neutral-400 > a {
+    color: rgb(var(--color-secondary-500)) !important;
+  }
+  
+  /* 🎯 On hover, change to white */
+  div.flex.flex-wrap.text-neutral-400 > a:hover {
+    color: white !important;
+  } 
+  
+  footer p.text-sm {
+    color: rgb(var(--color-secondary-500)) !important;
+  }
+  
+/* Override blog post metadata color */
+.blog-meta {
+    color: #FC5749 !important;
+  }
+  
+  .blog-meta span {
+    color: white !important; /* The dots */
+  }
+
+  /* Make all post card titles bold */
+.card-title {
+    font-weight: 700; /* Bold */
+  }
+  
+  /* Optional variations */
+  .card-title.medium {
+    font-weight: 600; /* Semi-bold */
+  }
+  
+  .card-title.extra-bold {
+    font-weight: 800; /* Extra bold */
+  }
+
+/* Prevent zoom-in cursor on card images */
+.card img.medium-zoom-image,
+.article-link img.medium-zoom-image {
+  cursor: pointer !important;
+}
+
+/* Ensure card image cursor is correct */
+.card img,
+.article-link img {
+  cursor: pointer !important;
+}
+
+.medium-zoom-image {
+    cursor: pointer !important;
+  }
+
+  .thumbnail_card {
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: .25rem;
+    box-shadow: 0 0 0px rgba(255, 0, 80, 0);
+  }
+  
+  .thumbnail_card:hover {
+    transform: scale(1.10);
+    box-shadow: 0 0 12px rgba(255, 0, 80, 0.3);
+  }
+  
+/* Make blog post metadata separators white without affecting other .text-primary-500 usage */
+.flex > span.text-primary-500 {
+    color: white !important;
+  }
+  
+  hr.thicc {
+    border-top-width: 3px !important;
   }
   
