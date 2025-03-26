@@ -35,7 +35,7 @@
 }
 
 html {
-  font-size: 14pt;
+  font-size: 16pt;
 }
 
 footer p,
@@ -312,4 +312,9 @@ aside::-webkit-scrollbar-thumb {
 
 aside::-webkit-scrollbar-thumb:hover {
   background: #F5F4F1;
+}
+
+.single-post-meta time,
+.single-post-meta span {
+  color: #FC5749 !important;
 }

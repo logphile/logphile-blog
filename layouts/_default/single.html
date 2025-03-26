@@ -13,22 +13,16 @@
   {{ end }}
   {{ end }}
 
-  <header id="single_header" class="mt-5 max-w-prose">
+  {{ $authorsData := .Site.Data.authors }}
+  {{ $taxonomies := .Site.Taxonomies.authors }}
+  {{ $baseURL := .Site.BaseURL }}
+  {{ $taxonomyLink := 0 }}
+  {{ $showAuthor := 0 }}
+
+  <header id="single_header" class="mt-10 max-w-prose">
     {{ if .Params.showBreadcrumbs | default (.Site.Params.article.showBreadcrumbs | default false) }}
     {{ partial "breadcrumbs.html" . }}
-    {{ end }}
-    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
-      {{ .Title | emojify }}
-    </h1>
-    <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
-      {{ partial "article-meta/basic.html" (dict "context" . "scope" "single") }}
-    </div>
-
-    {{ $authorsData := .Site.Data.authors }}
-    {{ $taxonomies := .Site.Taxonomies.authors }}
-    {{ $baseURL := .Site.BaseURL }}
-    {{ $taxonomyLink := 0 }}
-    {{ $showAuthor := 0 }}
+    {{ end }}    
 
     {{ if not (strings.HasSuffix $baseURL "/") }}
     {{ $baseURL = delimit (slice $baseURL "/") "" }}
@@ -59,6 +53,14 @@
 
     {{ end }}
 
+    <div class="mt-1 mb-6 text-base red-meta print:hidden">
+      {{ partial "article-meta/basic.html" (dict "context" . "scope" "single") }}
+    </div>
+
+    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+      {{ .Title | emojify }}
+    </h1>
+
   </header>
   
   <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
@@ -79,7 +81,7 @@
         
         {{ partial "series/series.html" . }}
 
-        <div class="article-content max-w-prose mb-20">
+        <div class="article-content max-w-prose mb-5">
           {{ .Content }}
           {{ $defaultReplyByEmail := .Site.Params.replyByEmail }}
           {{ $replyByEmail := default $defaultReplyByEmail .Params.replyByEmail }}

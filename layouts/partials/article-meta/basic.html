@@ -53,7 +53,7 @@
 {{ end }}
 
 
-<div class="flex flex-row flex-wrap items-center red-meta">
+<div class="flex flex-row flex-wrap items-center blog-meta red-meta">
   {{/* Output partials */}}
   {{ with ($meta.Get "partials") }}
   {{ delimit . "<span class=\"px-2 text-primary-500\">&middot;</span>" | safeHTML }}
@@ -66,7 +66,7 @@
 </div>
 
 {{ if .Params.showAuthorsBadges | default (.Site.Params.article.showAuthorsBadges | default false) }}
-<div class="flex flex-row flex-wrap items-center">
+<div class="flex flex-row flex-wrap items-center blog-meta red-meta">
   {{ range $taxonomy, $terms := .Site.Taxonomies }}
   {{ if (eq $taxonomy "authors")}}
   {{ if (gt (len ($context.GetTerms $taxonomy)) 0) }}
@@ -81,7 +81,7 @@
 
 {{/* Output taxonomies */}}
 {{ if .Params.showTaxonomies | default (.Site.Params.article.showTaxonomies | default false) }}
-<div class="flex flex-row flex-wrap items-center">
+<div class="flex flex-row flex-wrap items-center blog-meta red-meta">
   {{ range $taxonomy, $terms := .Site.Taxonomies }}
   {{ if and (not (eq $taxonomy "authors")) (not (eq $taxonomy "series"))}}
   {{ if (gt (len ($context.GetTerms $taxonomy)) 0) }}
