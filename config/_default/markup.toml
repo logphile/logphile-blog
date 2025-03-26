@@ -8,6 +8,7 @@
 [highlight]
   noClasses = false
 
-[tableOfContents]
+[markup]
+  [markup.tableOfContents]
   startLevel = 2
   endLevel = 4
