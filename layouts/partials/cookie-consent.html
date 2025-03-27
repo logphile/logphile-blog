@@ -1,74 +1,73 @@
-  
-  <div id="cookie-notice">
-    <div class="cookie-content">
-      <p>Another day, another cookie banner. You know the drill.</p>
-      <div class="cookie-buttons">
-        <button id="cookie-notice-accept">Accept</button>
-        <button id="cookie-notice-deny">Decline</button>
-        <a href="/privacy" id="cookie-notice-read">Privacy Policy</a>
-      </div>
+<div id="cookie-notice" style="display: none;">
+  <div class="cookie-content">
+    <p>Another day, another cookie banner. You know the drill.</p>
+    <div class="cookie-buttons">
+      <button id="cookie-notice-accept">Accept</button>
+      <button id="cookie-notice-deny">Decline</button>
+      <a href="/privacy" id="cookie-notice-read">Privacy Policy</a>
     </div>
   </div>
-  
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      // Delay to ensure DOM is fully ready
-      setTimeout(function () {
-  
-        function createCookie(name, value, days) {
-          var expires = "";
-          if (days) {
-            var date = new Date();
-            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-            expires = "; expires=" + date.toUTCString();
-          }
-          document.cookie = name + "=" + value + expires + "; path=/";
-          console.log("Created cookie:", name, value);
-        }
-  
-        function readCookie(name) {
-          var nameEQ = name + "=";
-          var ca = document.cookie.split(';');
-          for (var i = 0; i < ca.length; i++) {
-            var c = ca[i].trim();
-            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-          }
-          return null;
-        }
-  
-        const cookieNotice = document.getElementById("cookie-notice");
-        const acceptBtn = document.getElementById("cookie-notice-accept");
-        const denyBtn = document.getElementById("cookie-notice-deny");
-  
-        const accepted = readCookie("cookie-notice-option");
-  
-        console.log("🍪 Cookie value on page load:", accepted);
-  
-        if (!accepted) {
-          console.log("🔔 Cookie not set. Showing cookie notice...");
-          cookieNotice.style.display = "block";
-        } else {
-          console.log("✅ Cookie set already. Hiding cookie notice.");
-          cookieNotice.style.display = "none";
-        }
-  
-        if (acceptBtn) {
-          acceptBtn.addEventListener("click", function () {
-            console.log("👉 Accept clicked");
-            createCookie("cookie-notice-option", "true", 365);
-            cookieNotice.style.display = "none";
-            cookieNotice.classList.add("hidden");
-          });
-        }
-  
-        if (denyBtn) {
-          denyBtn.addEventListener("click", function () {
-            console.log("🚫 Deny clicked");
-            createCookie("cookie-notice-option", "false", 365);
-            cookieNotice.style.display = "none";
-            cookieNotice.classList.add("hidden");
-          });
-        }
-      }, 0); // optional short delay
-    });
-  </script>
+</div>
+
+<!-- /layouts/partials/cookie-consent.html -->
+<div id="cookie-notice" style="display: none;">
+  <div class="cookie-content">
+    <p>Another day, another cookie banner. You know the drill.</p>
+    <div class="cookie-buttons">
+      <button id="cookie-notice-accept">Accept</button>
+      <button id="cookie-notice-deny">Decline</button>
+      <a href="/privacy" id="cookie-notice-read">Privacy Policy</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    function createCookie(name, value, days) {
+      var expires = "";
+      if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+      }
+      document.cookie = name + "=" + value + expires + "; path=/";
+      console.log("✅ Cookie set:", name, "=", value);
+    }
+
+    function readCookie(name) {
+      var nameEQ = name + "=";
+      var ca = document.cookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i].trim();
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length);
+      }
+      return null;
+    }
+
+    const cookieNotice = document.getElementById("cookie-notice");
+    const acceptBtn = document.getElementById("cookie-notice-accept");
+    const denyBtn = document.getElementById("cookie-notice-deny");
+
+    const accepted = readCookie("cookie-notice-option");
+    console.log("🍪 Detected cookie:", accepted);
+
+    if (!accepted && cookieNotice) {
+      cookieNotice.style.display = "flex"; // Not block—matches your CSS
+    }
+
+    if (acceptBtn) {
+      acceptBtn.addEventListener("click", function () {
+        createCookie("cookie-notice-option", "true", 365);
+        cookieNotice.style.display = "none";
+      });
+    }
+
+    if (denyBtn) {
+      denyBtn.addEventListener("click", function () {
+        createCookie("cookie-notice-option", "false", 365);
+        cookieNotice.style.display = "none";
+      });
+    }
+  });
+</script>
+
