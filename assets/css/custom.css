@@ -127,13 +127,13 @@ svg.fa-search path {
 #cookie-notice .cookie-buttons {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap; /* Allow wrapping if needed */
+  flex-wrap: wrap; 
   gap: 0.75rem;
   margin-top: 1rem;  
 }
 
 #cookie-notice .cookie-buttons a {
-  flex: 1 1 auto;          /* Let buttons shrink/grow */
+  flex: 1 1 auto;         
   text-align: center;
   white-space: nowrap;
   padding: 0.5rem 1rem;
@@ -146,10 +146,34 @@ svg.fa-search path {
   background-color: rgb(var(--color-secondary-500));
 }
 
+#cookie-notice .cookie-buttons button,
+#cookie-notice .cookie-buttons a {
+  cursor: pointer;
+  flex: 1 1 auto;
+  text-align: center;
+  white-space: nowrap;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  line-height: 1.2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100px;
+  background-color: rgb(var(--color-secondary-500));
+  border: none;
+  border-radius: 4px;
+  color: #F5F4F1;
+}
+
+#cookie-notice .cookie-buttons button:hover,
+#cookie-notice .cookie-buttons a:hover {
+  background-color: rgb(var(--color-primary-500));
+  color: rgb(var(--color-secondary-500));
+}
 
 #cookie-notice .cookie-buttons a:hover {
-  background-color: rgb(var(--color-neutral-500));
-  color: white;
+  background-color: rgb(var(--color-primary-500));
+  color: rgb(var(--color-secondary-500));
 }
 
 @media (max-width: 768px) {
@@ -169,6 +193,7 @@ svg.fa-search path {
     width: 100%;
   }
 }
+
 
 
 /* Add space above the blog page title */

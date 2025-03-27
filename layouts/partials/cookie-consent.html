@@ -1,45 +1,10 @@
-<style>
-    #cookie-notice {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      z-index: 1000;
-      background: #2D2C36;
-      color: #fff;
-      padding: 1.5rem;
-      border-radius: 10px;
-      max-width: 320px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-      display: none;
-    }
-  
-    #cookie-notice .cookie-buttons {
-      margin-top: 1rem;
-      display: flex;
-      gap: 0.5rem;
-      justify-content: center;
-    }
-  
-    #cookie-notice a {
-      background: #2D2C36;
-      color: #fff;
-      padding: 0.4rem 0.8rem;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 0.9rem;
-    }
-      
-    #cookie-notice a:hover {
-      background: #000;
-    }
-  </style>
   
   <div id="cookie-notice">
     <div class="cookie-content">
       <p>Another day, another cookie banner. You know the drill.</p>
       <div class="cookie-buttons">
-        <a id="cookie-notice-accept">Accept</a>
-        <a id="cookie-notice-deny">Decline</a>
+        <button id="cookie-notice-accept">Accept</button>
+        <button id="cookie-notice-deny">Decline</button>
         <a href="/privacy" id="cookie-notice-read">Privacy Policy</a>
       </div>
     </div>

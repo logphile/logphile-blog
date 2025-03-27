@@ -148,7 +148,7 @@ svg.fa-search path {
 
 
 #cookie-notice .cookie-buttons a:hover {
-  background-color: rgb(var(--color-neutral-500));
+  background-color: rgb(var(--color-secondary-500));
   color: white;
 }
 
@@ -169,7 +169,6 @@ svg.fa-search path {
     width: 100%;
   }
 }
-
 
 /* Add space above the blog page title */
 section.container > header {
