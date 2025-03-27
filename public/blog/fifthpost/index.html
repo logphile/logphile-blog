@@ -28,8 +28,8 @@
   
   
   
-  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.ac8ebd394cf56883545a00f2c639dbafd51cb3fcc7d479102b6e300c0948e3ff65706123b123a9b7f427c8313e77e004af89bc518ccd026a159ec79b9b9e49d7.css"
-    integrity="sha512-rI69OUz1aINUWgDyxjnbr9Ucs/zH1HkQK24wDAlI4/9lcGEjsSOpt/QnyDE&#43;d&#43;AEr4m8UYzNAmoVnsebm55J1w==" />
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.2dadbcee25ab9104724b3b9744ffe577e005abab8293f0e2ab2a98e2350964d421f8d88d7d1ed824c0db401b0c43ccfb3e8edd357a718868b57b1fbc18e921e6.css"
+    integrity="sha512-La287iWrkQRySzuXRP/ld&#43;AFq6uCk/DiqyqY4jUJZNQh&#43;NiNfR7YJMDbQBsMQ8z7Po7dNXpxiGi1ex&#43;8GOkh5g==" />
   
   
   <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
@@ -172,60 +172,8 @@
 
 
 
-    
-  <div id="cookie-notice">
-    <div class="cookie-content">
-      <p>Another day, another cookie banner. You know the drill.</p>
-      <div class="cookie-buttons">
-        <button id="cookie-notice-accept">Accept</button>
-        <button id="cookie-notice-deny">Decline</button>
-        <a href="/privacy" id="cookie-notice-read">Privacy Policy</a>
-      </div>
-    </div>
-  </div>
   
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      function createCookie(name, value, days) {
-        var expires = "";
-        if (days) {
-          var date = new Date();
-          date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-          expires = "; expires=" + date.toUTCString();
-        }
-        document.cookie = name + "=" + value + expires + "; path=/";
-      }
   
-      function readCookie(name) {
-        var nameEQ = name + "=";
-        var ca = document.cookie.split(';');
-        for (var i = 0; i < ca.length; i++) {
-          var c = ca[i].trim();
-          if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-        }
-        return null;
-      }
-  
-      const cookieNotice = document.getElementById("cookie-notice");
-      const accepted = readCookie("cookie-notice-option");
-  
-      if (!accepted) {
-        cookieNotice.style.display = "block";
-      }
-  
-      document.getElementById("cookie-notice-accept").addEventListener("click", function () {
-        createCookie("cookie-notice-option", "true", 365);
-        cookieNotice.style.display = "none";
-        cookieNotice.classList.add("hidden");
-      });
-      
-      document.getElementById("cookie-notice-deny").addEventListener("click", function () {
-        createCookie("cookie-notice-option", "false", 365);
-        cookieNotice.style.display = "none";
-        cookieNotice.classList.add("hidden");
-      });
-    });
-  </script>
   
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FZVBM8WM6B"></script>
@@ -244,8 +192,6 @@
   <meta name="theme-color"/>
   
   
-
-  <link rel="stylesheet" href="/css/custom.css">
 
 </head>
 <body class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32 scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600">
@@ -1134,44 +1080,64 @@
   
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      function createCookie(name, value, days) {
-        var expires = "";
-        if (days) {
-          var date = new Date();
-          date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-          expires = "; expires=" + date.toUTCString();
-        }
-        document.cookie = name + "=" + value + expires + "; path=/";
-      }
-  
-      function readCookie(name) {
-        var nameEQ = name + "=";
-        var ca = document.cookie.split(';');
-        for (var i = 0; i < ca.length; i++) {
-          var c = ca[i].trim();
-          if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-        }
-        return null;
-      }
-  
-      const cookieNotice = document.getElementById("cookie-notice");
-      const accepted = readCookie("cookie-notice-option");
-  
-      if (!accepted) {
-        cookieNotice.style.display = "block";
-      }
-  
-      document.getElementById("cookie-notice-accept").addEventListener("click", function () {
-        createCookie("cookie-notice-option", "true", 365);
-        cookieNotice.style.display = "none";
-        cookieNotice.classList.add("hidden");
-      });
       
-      document.getElementById("cookie-notice-deny").addEventListener("click", function () {
-        createCookie("cookie-notice-option", "false", 365);
-        cookieNotice.style.display = "none";
-        cookieNotice.classList.add("hidden");
-      });
+      setTimeout(function () {
+  
+        function createCookie(name, value, days) {
+          var expires = "";
+          if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+          }
+          document.cookie = name + "=" + value + expires + "; path=/";
+          console.log("Created cookie:", name, value);
+        }
+  
+        function readCookie(name) {
+          var nameEQ = name + "=";
+          var ca = document.cookie.split(';');
+          for (var i = 0; i < ca.length; i++) {
+            var c = ca[i].trim();
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+          }
+          return null;
+        }
+  
+        const cookieNotice = document.getElementById("cookie-notice");
+        const acceptBtn = document.getElementById("cookie-notice-accept");
+        const denyBtn = document.getElementById("cookie-notice-deny");
+  
+        const accepted = readCookie("cookie-notice-option");
+  
+        console.log("🍪 Cookie value on page load:", accepted);
+  
+        if (!accepted) {
+          console.log("🔔 Cookie not set. Showing cookie notice...");
+          cookieNotice.style.display = "block";
+        } else {
+          console.log("✅ Cookie set already. Hiding cookie notice.");
+          cookieNotice.style.display = "none";
+        }
+  
+        if (acceptBtn) {
+          acceptBtn.addEventListener("click", function () {
+            console.log("👉 Accept clicked");
+            createCookie("cookie-notice-option", "true", 365);
+            cookieNotice.style.display = "none";
+            cookieNotice.classList.add("hidden");
+          });
+        }
+  
+        if (denyBtn) {
+          denyBtn.addEventListener("click", function () {
+            console.log("🚫 Deny clicked");
+            createCookie("cookie-notice-option", "false", 365);
+            cookieNotice.style.display = "none";
+            cookieNotice.classList.add("hidden");
+          });
+        }
+      }, 0); 
     });
   </script>
 
