@@ -51,6 +51,11 @@ h1, h2, h3, h4, h5, h6 {
   color: rgb(var(--color-primary-500)) !important;
 }
 
+nav a:hover p,
+nav button:hover {
+  color: #FC5749 !important;
+}
+
 div.flex.flex-wrap a:hover,
 a.text-base.font-medium.text-gray-500:hover,
 .toc a:hover,
@@ -104,8 +109,7 @@ svg.fa-search path {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  z-index: 1000;
-  background: rgb(var(--color-neutral-700));
+  z-index: 1000;  
   color: rgb(var(--color-secondary-500));
   padding: 1.5rem;
   border-radius: 16px;
@@ -125,7 +129,7 @@ svg.fa-search path {
   justify-content: center;
   flex-wrap: wrap; /* Allow wrapping if needed */
   gap: 0.75rem;
-  margin-top: 1rem;
+  margin-top: 1rem;  
 }
 
 #cookie-notice .cookie-buttons a {
@@ -139,6 +143,7 @@ svg.fa-search path {
   align-items: center;
   justify-content: center;
   min-width: 100px;
+  background-color: rgb(var(--color-secondary-500));
 }
 
 
@@ -157,7 +162,7 @@ svg.fa-search path {
 
   #cookie-notice .cookie-buttons {
     flex-direction: column;
-    align-items: center;
+    align-items: center;    
   }
 
   #cookie-notice .cookie-buttons a {
@@ -348,4 +353,9 @@ a.text-base.font-medium.text-gray-500[href="/"] {
 
 .aside-social-listed {
   color: #F5F4F1 !important;
+}
+
+nav a:hover p,
+nav button:hover {
+  color: #FC5749 !important;
 }
