@@ -6,8 +6,8 @@ cascade:
   showAuthor: false
   invertPagination: true
 ---
-<h1 class="mt-12 mb-2 text-4xl font-extrabold text-neutral-900 dark:text-neutral">About Me</h1>
-<hr class="mt-2 mb-6 border-neutral-700 dark:border-neutral-600 thicc">
+<h1 class="text-4xl font-extrabold text-neutral-900 dark:text-neutral mb-3 !mb-3">About Me</h1>
+  <hr class="mt-3 border-t border-secondary-500 w-full mb-8 thicc">
 
 
 

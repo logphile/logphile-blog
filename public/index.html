@@ -33,8 +33,8 @@
   
   
   
-  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.1ea78ce52b4cba54da003acaf74cdf5eb30d3883c625937b29c2c904ac09c9c87735b4f2b3a8c2453941a875b47df1d8a214de15733698d2fdc7c60da0d201a6.css"
-    integrity="sha512-HqeM5StMulTaADrK90zfXrMNOIPGJZN7KcLJBKwJych3NbTys6jCRTlBqHW0ffHYohTeFXM2mNL9x8YNoNIBpg==" />
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.f72cb55768050624c5208073a508fd55ce43180cb966e7161967a20b571ed6b035f4d99c17e988054f867b5bcf185e9cf5ceba404300260ad7d988d3d231e2a1.css"
+    integrity="sha512-9yy1V2gFBiTFIIBzpQj9Vc5DGAy5ZucWGWeiC1ce1rA19NmcF&#43;mIBU&#43;Ge1vPGF6c9c66QEMAJgrX2YjT0jHioQ==" />
   
   
   <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
@@ -237,11 +237,13 @@
       document.getElementById("cookie-notice-accept").addEventListener("click", function () {
         createCookie("cookie-notice-option", "true", 365);
         cookieNotice.style.display = "none";
+        cookieNotice.classList.add("hidden");
       });
-  
+      
       document.getElementById("cookie-notice-deny").addEventListener("click", function () {
         createCookie("cookie-notice-option", "false", 365);
         cookieNotice.style.display = "none";
+        cookieNotice.classList.add("hidden");
       });
     });
   </script>
@@ -467,8 +469,10 @@
 
   
   <div class="relative flex flex-col grow">
+   
     <main id="main-content" class="grow">
       
+        
   
   
     
@@ -589,6 +593,9 @@
   
 
       
+    </main>
+
+      
     </main><footer id="site-footer" class="py-10 print:hidden">
   
   
@@ -676,6 +683,96 @@
 </div>
 
   </div>
+
+  <style>
+    #cookie-notice {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 1000;
+      background: #2D2C36;
+      color: #fff;
+      padding: 1.5rem;
+      border-radius: 10px;
+      max-width: 320px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      display: none;
+    }
+  
+    #cookie-notice .cookie-buttons {
+      margin-top: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+  
+    #cookie-notice a {
+      background: #2D2C36;
+      color: #fff;
+      padding: 0.4rem 0.8rem;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 0.9rem;
+    }
+      
+    #cookie-notice a:hover {
+      background: #000;
+    }
+  </style>
+  
+  <div id="cookie-notice">
+    <div class="cookie-content">
+      <p>Another day, another cookie banner. You know the drill.</p>
+      <div class="cookie-buttons">
+        <a id="cookie-notice-accept">Accept</a>
+        <a id="cookie-notice-deny">Decline</a>
+        <a href="/privacy" id="cookie-notice-read">Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      function createCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+          var date = new Date();
+          date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+          expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + value + expires + "; path=/";
+      }
+  
+      function readCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+          var c = ca[i].trim();
+          if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+      }
+  
+      const cookieNotice = document.getElementById("cookie-notice");
+      const accepted = readCookie("cookie-notice-option");
+  
+      if (!accepted) {
+        cookieNotice.style.display = "block";
+      }
+  
+      document.getElementById("cookie-notice-accept").addEventListener("click", function () {
+        createCookie("cookie-notice-option", "true", 365);
+        cookieNotice.style.display = "none";
+        cookieNotice.classList.add("hidden");
+      });
+      
+      document.getElementById("cookie-notice-deny").addEventListener("click", function () {
+        createCookie("cookie-notice-option", "false", 365);
+        cookieNotice.style.display = "none";
+        cookieNotice.classList.add("hidden");
+      });
+    });
+  </script>
 
 </body>
 

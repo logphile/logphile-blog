@@ -22,8 +22,54 @@
   {{ partial "partials/header/basic.html" . }}
   {{ end }}
   <div class="relative flex flex-col grow">
+   
     <main id="main-content" class="grow">
-      {{ block "main" . }}{{ end }}
+      {{ if .IsHome }}
+        {{ block "main" . }}{{ end }}
+      {{ else }}
+        <div class="flex flex-col lg:flex-row gap-10 max-w-7xl mx-auto px-4 py-10">
+          <div class="flex-grow">
+            {{ block "main" . }}{{ end }}
+          </div>
+
+<!-- Unified Right Sidebar Column -->
+<div class="hidden lg:block w-full max-w-[200px] sticky top-24 self-start text-sm text-neutral-400 dark:text-neutral-400 ml-6 mt-20 space-y-8">
+
+  <aside class="aside-social">
+    <hr class="mt-5 mb-2 border-t border-secondary-500 w-full thicc">
+    <h2 class="text-xl font-bold mt-1 mb-1 text-primary-500">Connect</h2>
+    <hr class="mt-2 mb-2 border-t border-secondary-500 w-full thicc">
+    <div class="flex flex-wrap gap-3 text-2xl mb-2">
+      {{ partial "author-links.html" . }}
+    </div>
+  </aside>
+
+
+
+  <aside class="aside-tags">
+    <hr class="mt-5 mb-2 border-t border-secondary-500 w-full thicc">
+    <h2 class="text-xl font-bold mt-1 mb-1 text-primary-500">Tags</h2>
+    <hr class="mt-2 mb-2 border-t border-secondary-500 w-full thicc">
+    <ul class="space-y-1">
+      {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+        <li>
+          <a href="{{ "/tags/" | relLangURL }}{{ $name | urlize }}/" class="hover:text-secondary-500 aside-tags-listed">
+            #{{ $name }} ({{ len $taxonomy }})
+          </a>
+        </li>
+      {{ end }}
+    </ul>
+  </aside>
+
+
+
+</div>
+
+
+        </div>
+      {{ end }}
+    </main>
+
       {{ if and (.Site.Params.footer.showScrollToTop | default true) (gt .WordCount 1) }}
       {{- partial "scroll-to-top.html" . -}}
       {{ end }}
@@ -33,6 +79,8 @@
     {{- partial "search.html" . -}}
     {{ end }}
   </div>
+
+  {{ partial "cookie-consent.html" . }}
 
 </body>
 {{ if .Site.Params.buymeacoffee.globalWidget | default false }}

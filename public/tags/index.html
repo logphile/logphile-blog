@@ -30,8 +30,8 @@
   
   
   
-  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.1ea78ce52b4cba54da003acaf74cdf5eb30d3883c625937b29c2c904ac09c9c87735b4f2b3a8c2453941a875b47df1d8a214de15733698d2fdc7c60da0d201a6.css"
-    integrity="sha512-HqeM5StMulTaADrK90zfXrMNOIPGJZN7KcLJBKwJych3NbTys6jCRTlBqHW0ffHYohTeFXM2mNL9x8YNoNIBpg==" />
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.f72cb55768050624c5208073a508fd55ce43180cb966e7161967a20b571ed6b035f4d99c17e988054f867b5bcf185e9cf5ceba404300260ad7d988d3d231e2a1.css"
+    integrity="sha512-9yy1V2gFBiTFIIBzpQj9Vc5DGAy5ZucWGWeiC1ce1rA19NmcF&#43;mIBU&#43;Ge1vPGF6c9c66QEMAJgrX2YjT0jHioQ==" />
   
   
   <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
@@ -218,11 +218,13 @@
       document.getElementById("cookie-notice-accept").addEventListener("click", function () {
         createCookie("cookie-notice-option", "true", 365);
         cookieNotice.style.display = "none";
+        cookieNotice.classList.add("hidden");
       });
-  
+      
       document.getElementById("cookie-notice-deny").addEventListener("click", function () {
         createCookie("cookie-notice-option", "false", 365);
         cookieNotice.style.display = "none";
+        cookieNotice.classList.add("hidden");
       });
     });
   </script>
@@ -448,8 +450,12 @@
 
   
   <div class="relative flex flex-col grow">
+   
     <main id="main-content" class="grow">
       
+        <div class="flex flex-col lg:flex-row gap-10 max-w-7xl mx-auto px-4 py-10">
+          <div class="flex-grow">
+            
 
 
 
@@ -556,6 +562,134 @@
 
 
 
+          </div>
+
+
+<div class="hidden lg:block w-full max-w-[200px] sticky top-24 self-start text-sm text-neutral-400 dark:text-neutral-400 ml-6 mt-20 space-y-8">
+
+  <aside class="aside-social">
+    <hr class="mt-5 mb-2 border-t border-secondary-500 w-full thicc">
+    <h2 class="text-xl font-bold mt-1 mb-1 text-primary-500">Connect</h2>
+    <hr class="mt-2 mb-2 border-t border-secondary-500 w-full thicc">
+    <div class="flex flex-wrap gap-3 text-2xl mb-2">
+      
+  <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://github.com/logphile"
+          target="_blank"
+          aria-label="Github"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://www.linkedin.com/in/phil-boyce"
+          target="_blank"
+          aria-label="Linkedin"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://x.com/LogPhile"
+          target="_blank"
+          aria-label="X-Twitter"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="mailto:phil@logphile.com"
+          target="_blank"
+          aria-label="Email"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+  </div>
+
+
+    </div>
+  </aside>
+
+
+
+  <aside class="aside-tags">
+    <hr class="mt-5 mb-2 border-t border-secondary-500 w-full thicc">
+    <h2 class="text-xl font-bold mt-1 mb-1 text-primary-500">Tags</h2>
+    <hr class="mt-2 mb-2 border-t border-secondary-500 w-full thicc">
+    <ul class="space-y-1">
+      
+        <li>
+          <a href="/tags/cloud-computing/" class="hover:text-secondary-500 aside-tags-listed">
+            #cloud computing (7)
+          </a>
+        </li>
+      
+        <li>
+          <a href="/tags/future-trends/" class="hover:text-secondary-500 aside-tags-listed">
+            #future trends (7)
+          </a>
+        </li>
+      
+        <li>
+          <a href="/tags/technology/" class="hover:text-secondary-500 aside-tags-listed">
+            #technology (7)
+          </a>
+        </li>
+      
+    </ul>
+  </aside>
+
+
+
+</div>
+
+
+        </div>
+      
+    </main>
+
       
     </main><footer id="site-footer" class="py-10 print:hidden">
   
@@ -644,6 +778,96 @@
 </div>
 
   </div>
+
+  <style>
+    #cookie-notice {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 1000;
+      background: #2D2C36;
+      color: #fff;
+      padding: 1.5rem;
+      border-radius: 10px;
+      max-width: 320px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      display: none;
+    }
+  
+    #cookie-notice .cookie-buttons {
+      margin-top: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+  
+    #cookie-notice a {
+      background: #2D2C36;
+      color: #fff;
+      padding: 0.4rem 0.8rem;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 0.9rem;
+    }
+      
+    #cookie-notice a:hover {
+      background: #000;
+    }
+  </style>
+  
+  <div id="cookie-notice">
+    <div class="cookie-content">
+      <p>Another day, another cookie banner. You know the drill.</p>
+      <div class="cookie-buttons">
+        <a id="cookie-notice-accept">Accept</a>
+        <a id="cookie-notice-deny">Decline</a>
+        <a href="/privacy" id="cookie-notice-read">Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      function createCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+          var date = new Date();
+          date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+          expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + value + expires + "; path=/";
+      }
+  
+      function readCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+          var c = ca[i].trim();
+          if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+      }
+  
+      const cookieNotice = document.getElementById("cookie-notice");
+      const accepted = readCookie("cookie-notice-option");
+  
+      if (!accepted) {
+        cookieNotice.style.display = "block";
+      }
+  
+      document.getElementById("cookie-notice-accept").addEventListener("click", function () {
+        createCookie("cookie-notice-option", "true", 365);
+        cookieNotice.style.display = "none";
+        cookieNotice.classList.add("hidden");
+      });
+      
+      document.getElementById("cookie-notice-deny").addEventListener("click", function () {
+        createCookie("cookie-notice-option", "false", 365);
+        cookieNotice.style.display = "none";
+        cookieNotice.classList.add("hidden");
+      });
+    });
+  </script>
 
 </body>
 

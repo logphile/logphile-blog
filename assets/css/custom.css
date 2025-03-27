@@ -100,66 +100,71 @@ svg.fa-search path {
   font-weight: bold;
 }
 
-/* Cookie Consent Box */
 #cookie-notice {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 9999;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1000;
+  background: rgb(var(--color-neutral-700));
+  color: rgb(var(--color-secondary-500));
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 3px solid rgb(var(--color-secondary-700));
   max-width: 400px;
-  background-color: rgb(var(--color-neutral-700));
-  padding: 1rem;
-  border-radius: 20px;
-  border-color: rgb(var(--color-secondary-700));
-  border-width: .25rem;
-}
-
-.cookie-content p {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  font-size: 1rem;
+  line-height: 1.5;
   text-align: center;
-  font-size: 1.2rem;
-  font-weight: light;
-  color: rgb(var(--color-secondary-500)) !important;
-}
-
-.cookie-buttons {
   display: flex;
-  justify-content: center !important;
-  gap: 10px;
-  margin-top: 10px;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.cookie-buttons a,
-#cookie-notice-accept,
-#cookie-notice-deny {
-  cursor: pointer;
-  pointer-events: auto;
-  padding: 8px 12px;
-  border-radius: 5px;
-  text-decoration: none;
-  background: rgb(var(--color-secondary-600)) !important;
-  color: rgb(var(--color-primary-500)) !important;
-  font-weight: normal;
-  border: 5px solid transparent;
-  transition: all 0.3s ease-in-out;
+#cookie-notice .cookie-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* Allow wrapping if needed */
+  gap: 0.75rem;
+  margin-top: 1rem;
 }
 
-#cookie-notice-accept:hover,
-#cookie-notice-deny:hover,
-.cookie-buttons a:hover {
+#cookie-notice .cookie-buttons a {
+  flex: 1 1 auto;          /* Let buttons shrink/grow */
+  text-align: center;
+  white-space: nowrap;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  line-height: 1.2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100px;
+}
+
+
+#cookie-notice .cookie-buttons a:hover {
   background-color: rgb(var(--color-neutral-500));
-  color: white !important;
-  border-color: #F5F4F1;
+  color: white;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   #cookie-notice {
-      width: 90%;
-      max-width: 350px;
+    width: 90%;
+    right: 5%;
+    left: 5%;
+    bottom: 1rem;
   }
-  .cookie-buttons {
-      flex-direction: column;
+
+  #cookie-notice .cookie-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #cookie-notice .cookie-buttons a {
+    width: 100%;
   }
 }
+
 
 /* Add space above the blog page title */
 section.container > header {
@@ -210,15 +215,15 @@ a.text-base.font-medium.text-gray-500[href="/"]:hover {
   color: white !important;
 }
 
-/* 🔥 Force red base color for social icons */
+/* 🔄 Make social icons white by default */
 div.flex.flex-wrap.text-neutral-400 > a {
-  color: rgb(var(--color-secondary-500)) !important;
+  color: rgb(var(--color-primary-500)) !important;
 }
 
-/* 🎯 On hover, change to white */
+/* 🔁 Hover turns them red */
 div.flex.flex-wrap.text-neutral-400 > a:hover {
-  color: white !important;
-} 
+  color: rgb(var(--color-secondary-500)) !important;
+}
 
 footer p.text-sm {
   color: rgb(var(--color-secondary-500)) !important;
@@ -294,7 +299,7 @@ article aside ul {
 
 article aside a {
   color: #F5F4F1;
-  text-decoration: none;
+  text-decoration: none;  
 }
 
 article aside a:hover {
@@ -325,3 +330,22 @@ a.text-base.font-medium.text-gray-500[href="/"] {
   font-size: 1.5rem; /* Adjust size here */
 }
 
+.aside-tags h2 {
+  color: #FC5749 !important;
+}
+
+.aside-tags-listed {
+  color: #F5F4F1 !important;
+}
+
+.aside-tags-listed:hover {
+  color: #FC5749 !important;
+}
+
+.aside-social h2 {
+  color: #FC5749 !important;
+}
+
+.aside-social-listed {
+  color: #F5F4F1 !important;
+}

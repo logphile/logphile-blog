@@ -1,9 +1,11 @@
 {{ define "main" }}
-<article class="prose dark:prose-invert max-w-7xl mx-auto px-4 py-10">
-  <header class="mb-10">
-    <h1 class="text-4xl font-extrabold">{{ .Title }}</h1>
-  </header>
 
+
+<article class="prose dark:prose-invert max-w-7xl mx-auto px-4 py-10">
+  <header class="mb-8">
+    <h1 class="text-4xl font-extrabold text-neutral-900 dark:text-neutral mb-3 !mb-3"></h1>{{ .Title }}</h1>
+    <hr class="mt-3 border-t border-secondary-500 w-full mb-3 thicc">
+  </header>
   {{ .Content }}
 </article>
 {{ end }}
