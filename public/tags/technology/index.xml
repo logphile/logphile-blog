@@ -9,77 +9,7 @@
     <managingEditor>phil@logphile.com (Phil Boyce)</managingEditor>
     <webMaster>phil@logphile.com (Phil Boyce)</webMaster>
     <copyright>&amp;copy; 2025 logPhile. All Rights Reserved.</copyright>
-    <lastBuildDate>Tue, 18 Mar 2025 12:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/technology/index.xml" rel="self" type="application/rss+xml" />
-    
-    <item>
-      <title>Tha Future of Cloud Computing</title>
-      <link>http://localhost:1313/blog/fifthpost/</link>
-      <pubDate>Tue, 18 Mar 2025 12:00:00 +0000</pubDate>
-      <author>phil@logphile.com (Phil Boyce)</author>
-      <guid>http://localhost:1313/blog/fifthpost/</guid>
-      <description>A glimpse into how cloud computing is evolving and what to expect in the near future.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/blog/fifthpost/feature.png" />
-    </item>
-    
-    <item>
-      <title>Tha Future of Cloud Computing</title>
-      <link>http://localhost:1313/blog/firstpost/</link>
-      <pubDate>Tue, 18 Mar 2025 12:00:00 +0000</pubDate>
-      <author>phil@logphile.com (Phil Boyce)</author>
-      <guid>http://localhost:1313/blog/firstpost/</guid>
-      <description>A glimpse into how cloud computing is evolving and what to expect in the near future.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/blog/firstpost/feature.png" />
-    </item>
-    
-    <item>
-      <title>Tha Future of Cloud Computing</title>
-      <link>http://localhost:1313/blog/fourthpost/</link>
-      <pubDate>Tue, 18 Mar 2025 12:00:00 +0000</pubDate>
-      <author>phil@logphile.com (Phil Boyce)</author>
-      <guid>http://localhost:1313/blog/fourthpost/</guid>
-      <description>A glimpse into how cloud computing is evolving and what to expect in the near future.</description>
-      
-    </item>
-    
-    <item>
-      <title>Tha Future of Cloud Computing</title>
-      <link>http://localhost:1313/blog/secondpost/</link>
-      <pubDate>Tue, 18 Mar 2025 12:00:00 +0000</pubDate>
-      <author>phil@logphile.com (Phil Boyce)</author>
-      <guid>http://localhost:1313/blog/secondpost/</guid>
-      <description>A glimpse into how cloud computing is evolving and what to expect in the near future.</description>
-      
-    </item>
-    
-    <item>
-      <title>Tha Future of Cloud Computing</title>
-      <link>http://localhost:1313/blog/seventhpost/</link>
-      <pubDate>Tue, 18 Mar 2025 12:00:00 +0000</pubDate>
-      <author>phil@logphile.com (Phil Boyce)</author>
-      <guid>http://localhost:1313/blog/seventhpost/</guid>
-      <description>A glimpse into how cloud computing is evolving and what to expect in the near future.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/blog/seventhpost/feature.png" />
-    </item>
-    
-    <item>
-      <title>Tha Future of Cloud Computing</title>
-      <link>http://localhost:1313/blog/sixthpost/</link>
-      <pubDate>Tue, 18 Mar 2025 12:00:00 +0000</pubDate>
-      <author>phil@logphile.com (Phil Boyce)</author>
-      <guid>http://localhost:1313/blog/sixthpost/</guid>
-      <description>A glimpse into how cloud computing is evolving and what to expect in the near future.</description>
-      
-    </item>
-    
-    <item>
-      <title>Tha Future of Cloud Computing</title>
-      <link>http://localhost:1313/blog/thirdpost/</link>
-      <pubDate>Tue, 18 Mar 2025 12:00:00 +0000</pubDate>
-      <author>phil@logphile.com (Phil Boyce)</author>
-      <guid>http://localhost:1313/blog/thirdpost/</guid>
-      <description>A glimpse into how cloud computing is evolving and what to expect in the near future.</description>
-      
-    </item>
+    <atom:link href="http://localhost:1313/tags/technology/index.xml" rel="self" type="application/rss+xml" />
     
   </channel>
 </rss>

@@ -9,49 +9,13 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>http://localhost:1313/blog/ditch-the-portal-create-entra-users-with-powershell-plus-graph/</loc>
+    <lastmod>2025-03-18T12:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2025-03-18T12:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://localhost:1313/blog/fifthpost/</loc>
-    <lastmod>2025-03-18T12:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://localhost:1313/blog/firstpost/</loc>
-    <lastmod>2025-03-18T12:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://localhost:1313/blog/fourthpost/</loc>
-    <lastmod>2025-03-18T12:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://localhost:1313/blog/secondpost/</loc>
-    <lastmod>2025-03-18T12:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://localhost:1313/blog/seventhpost/</loc>
-    <lastmod>2025-03-18T12:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://localhost:1313/blog/sixthpost/</loc>
-    <lastmod>2025-03-18T12:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://localhost:1313/blog/thirdpost/</loc>
     <lastmod>2025-03-18T12:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>

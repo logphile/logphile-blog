@@ -1,0 +1,13 @@
+<article class="border-b border-neutral-700 pb-6 mb-6">
+    <h2 class="text-2xl font-bold mb-2">
+      <a href="{{ .RelPermalink }}" class="hover:text-primary-500">
+        {{ .Title }}
+      </a>
+    </h2>
+    <p class="text-sm text-neutral-400 mb-2">
+      {{ .Date.Format "January 2, 2006" }} • {{ .ReadingTime }} min read
+    </p>
+    <p class="text-neutral-300">
+      {{ .Summary }}
+    </p>
+  </article>

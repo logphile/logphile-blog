@@ -65,6 +65,7 @@
   {{ end }}
 </div>
 
+
 {{ if .Params.showAuthorsBadges | default (.Site.Params.article.showAuthorsBadges | default false) }}
 <div class="flex flex-row flex-wrap items-center blog-meta red-meta">
   {{ range $taxonomy, $terms := .Site.Taxonomies }}
@@ -94,6 +95,7 @@
   {{ end }}
   {{ end }}
 </div>
+<div class="flex flex-row mt-5 flex-wrap items-center"></div>
 {{ end }}
 
 {{ end }}

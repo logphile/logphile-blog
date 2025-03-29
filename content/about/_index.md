@@ -1,13 +1,11 @@
 ---
 description: "About Phil Boyce – Cloud, Systems, and IT Infrastructure"
-showTableOfContents: true
-cascade:
-  showDate: false
-  showAuthor: false
-  invertPagination: true
+showTableOfContents: false
+showAuthor: true
 ---
-<h1 class="text-4xl font-extrabold text-neutral-900 dark:text-neutral mb-3 !mb-3">About Me</h1>
-  <hr class="mt-3 border-t border-secondary-500 w-full mb-8 thicc">
+  <hr class="mt-5 border-t border-secondary-500 w-full mb-3 thicc">
+  <h1 class="text-4xl font-extrabold text-neutral-900 dark:text-neutral mb-3 !mb-3">About Me</h1>
+  <hr class="mt-3 border-t border-secondary-500 w-full mb-5 thicc">
 
 
 

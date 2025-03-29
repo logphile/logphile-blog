@@ -37,9 +37,9 @@
 
   <aside class="aside-social">
     <hr class="mt-5 mb-2 border-t border-secondary-500 w-full thicc">
-    <h2 class="text-xl font-bold mt-1 mb-1 text-primary-500">Connect</h2>
+    <h2 class="text-2xl font-bold mt-1 mb-1 text-primary-500">Connect</h2>
     <hr class="mt-2 mb-2 border-t border-secondary-500 w-full thicc">
-    <div class="flex flex-wrap gap-3 text-2xl mb-2">
+    <div class="flex flex-wrap gap-3 text-2xl mb-10">
       {{ partial "author-links.html" . }}
     </div>
   </aside>
@@ -48,7 +48,7 @@
 
   <aside class="aside-tags">
     <hr class="mt-5 mb-2 border-t border-secondary-500 w-full thicc">
-    <h2 class="text-xl font-bold mt-1 mb-1 text-primary-500">Tags</h2>
+    <h2 class="text-2xl font-bold mt-1 mb-1 text-primary-500">Tags</h2>
     <hr class="mt-2 mb-2 border-t border-secondary-500 w-full thicc">
     <ul class="space-y-1">
       {{ range $name, $taxonomy := .Site.Taxonomies.tags }}

@@ -358,3 +358,24 @@ nav a:hover p,
 nav button:hover {
   color: #FC5749 !important;
 }
+
+img {
+  cursor: zoom-in;
+}
+
+img.medium-zoom-image {
+  cursor: zoom-in;
+  max-width: 100%;
+  height: auto;
+}
+
+article li > a {
+  text-decoration: underline !important;
+  text-underline-offset: 2px !important;
+  text-decoration-thickness: 1.5px !important;
+}
+
+article li > a:hover {
+  color: rgb(var(--color-secondary-500)) !important;
+  text-decoration-thickness: 2px !important;
+}

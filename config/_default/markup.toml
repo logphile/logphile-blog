@@ -1,14 +1,14 @@
 # -- Markup --
 # These settings are required for the theme to function.
 
-[goldmark]
-[goldmark.renderer]
-  unsafe = true
-
-[highlight]
-  noClasses = false
-
 [markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+  [markup.highlight]
+    noClasses = false
+
   [markup.tableOfContents]
-  startLevel = 2
-  endLevel = 4
+    startLevel = 2
+    endLevel = 4
