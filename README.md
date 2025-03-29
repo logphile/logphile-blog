@@ -1,6 +1,6 @@
 # 💻 Logphile: Azure Cloud Blog for the Curious and Technical
 
-This is the repository for my blog, [logPhile](https:/logphile.com). It's where I share what I'm working on, what I'm learning, and where my technical focus is right now. Think of it as a working portfolio.
+This is the repository for my blog, [logPhile](https://logphile.com). It's where I share what I'm working on, what I'm learning, and where my technical focus is right now. Think of it as a working portfolio.
 
 ---
 
