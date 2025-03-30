@@ -99,7 +99,7 @@ New-SmartUser -DisplayName "Beast" `
 ## :scroll: The Results 
 
 ```bash
-C:\Users\beast> New-SmartUser -DisplayName "Beast" `
+C:\Users\logphile> New-SmartUser -DisplayName "Beast" `
 >>     -UserPrincipalName "hank.mccoy@logphile.com" `
 >>     -Password "P@ssword123!" `
 >>     -Department "R&D" `

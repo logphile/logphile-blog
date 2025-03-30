@@ -125,7 +125,7 @@
     "keywords": ["entra id","microsoft graph","powershell","automation","user audit"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "329"
+    "wordCount": "470"
   }]
   </script>
 
@@ -578,7 +578,7 @@
 <div class="flex flex-row flex-wrap items-center blog-meta red-meta">
   
   
-  <time datetime="2025-03-28T12:00:00&#43;00:00">March 28, 2025</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">2 mins</span>
+  <time datetime="2025-03-28T12:00:00&#43;00:00">March 28, 2025</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">3 mins</span>
   
 
   
@@ -807,21 +807,50 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>$results | Format-Table -AutoSize
 </span></span></code></pre></div>
-<figure>
-        <img
-          class="my-0 rounded-md wider-image no-zoom"
-          srcset="
-          /blog/directory-drift/logphile-script-missing-properties-output_hu_fe93e4f9ad558411.PNG 330w,
-          /blog/directory-drift/logphile-script-missing-properties-output_hu_505fff41bb7473b5.PNG 660w,
-          /blog/directory-drift/logphile-script-missing-properties-output_hu_56e1c49fd888f03a.PNG 1024w,
-          /blog/directory-drift/logphile-script-missing-properties-output_hu_cfe6669f6bb46d0.PNG 2x"
-          src="/blog/directory-drift/logphile-script-missing-properties-output_hu_505fff41bb7473b5.PNG"
-          alt=""
-        />
-  
-  
-  </figure>
-<hr>
+
+<h2 class="relative group">The Results 
+    <div id="the-results" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#the-results" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>PS C:<span style="color:#ae81ff">\U</span>sers<span style="color:#ae81ff">\l</span>ogphile&gt; New-SmartUser $propertiesToCheck <span style="color:#f92672">=</span> @<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Department&#34;</span>, <span style="color:#e6db74">&#34;JobTitle&#34;</span>, <span style="color:#e6db74">&#34;UsageLocation&#34;</span>, <span style="color:#e6db74">&#34;Manager&#34;</span>, <span style="color:#e6db74">&#34;MobilePhone&#34;</span>, <span style="color:#e6db74">&#34;OfficeLocation&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>&gt;&gt; $results <span style="color:#f92672">=</span> @<span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>&gt;&gt; $users <span style="color:#f92672">=</span> Get-MgUser -All -Property <span style="color:#e6db74">&#34;Id,DisplayName,UserPrincipalName,Department,JobTitle,UsageLocation,Manager,MobilePhone,OfficeLocation&#34;</span>
+</span></span><span style="display:flex;"><span>&gt;&gt; foreach <span style="color:#f92672">(</span>$user in $users<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>&gt;&gt;     $missingProps <span style="color:#f92672">=</span> @<span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>&gt;&gt;     foreach <span style="color:#f92672">(</span>$prop in $propertiesToCheck<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>&gt;&gt;         <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>-not $user.$prop<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>&gt;&gt;             $missingProps +<span style="color:#f92672">=</span> $prop
+</span></span><span style="display:flex;"><span>&gt;&gt;         <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>&gt;&gt;     <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>&gt;&gt;     <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>$missingProps.Count -gt 0<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>&gt;&gt;         $results +<span style="color:#f92672">=</span> <span style="color:#f92672">[</span>PSCustomObject<span style="color:#f92672">]</span>@<span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>&gt;&gt;             DisplayName <span style="color:#f92672">=</span> $user.DisplayName
+</span></span><span style="display:flex;"><span>&gt;&gt;             UserPrincipalName <span style="color:#f92672">=</span> $user.UserPrincipalName
+</span></span><span style="display:flex;"><span>&gt;&gt;             MissingProperties <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>$missingProps -join <span style="color:#e6db74">&#34;, &#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>&gt;&gt;         <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>&gt;&gt;     <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>&gt;&gt; <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>&gt;&gt; $results | Format-Table -AutoSize
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>DisplayName                         UserPrincipalName                            Missing Properties
+</span></span><span style="display:flex;"><span>-----------                         -----------------                            ------------------
+</span></span><span style="display:flex;"><span>Warren Worthington                  angel@logphile.com                           UsageLocation
+</span></span><span style="display:flex;"><span>Hank McCoy                          beast@logphile.com                           UsageLocation
+</span></span><span style="display:flex;"><span>Piotr Nikolayevich Rasputin         colossus@logphile.com                        UsageLocation
+</span></span><span style="display:flex;"><span>Scott Summers                       cyclops@logphile.com                         UsageLocation
+</span></span><span style="display:flex;"><span>Bobby Drake                         iceman@logphile.com                          UsageLocation
+</span></span><span style="display:flex;"><span>Jean Grey                           marvelgirl@logphile.com                      UsageLocation
+</span></span><span style="display:flex;"><span>Kurt Wagner                         nightcrawler@logphile.com                    OfficeLocation
+</span></span><span style="display:flex;"><span>Phil Boyce                          phil@logphile.com                            Department, JobTitle, MobilePhone, OfficeLocation            
+</span></span><span style="display:flex;"><span>Charles Xavier                      profx@logphile.com                           UsageLocation
+</span></span><span style="display:flex;"><span>James Howlett                       wolverine@logphile.com                       UsageLocation
+</span></span></code></pre></div><hr>
 
 
 <h2 class="relative group">📤 Exporting to CSV (Optional) 
@@ -985,7 +1014,7 @@
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="flex group mr-3" href="/blog/az-graph-powershell/">
+            <a class="flex group mr-3" href="/blog/faking-org-chart/">
               <span
                 class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
                 >&larr;</span
@@ -997,11 +1026,11 @@
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >Az vs Graph: What PowerShell Module to Use (and When)</span
+                  >Faking an Org Chart in Entra: Mapping Hierarchies with PowerShell + Graph</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
-                    <time datetime="2025-03-22T12:00:00&#43;00:00">March 22, 2025</time>
+                    <time datetime="2025-03-23T12:00:00&#43;00:00">March 23, 2025</time>
                   
                 </span>
               </span>
@@ -1120,7 +1149,7 @@
       
         <li>
           <a href="/tags/automation/" class="hover:text-secondary-500 aside-tags-listed">
-            #automation (1)
+            #automation (2)
           </a>
         </li>
       
@@ -1144,19 +1173,25 @@
       
         <li>
           <a href="/tags/entra-id/" class="hover:text-secondary-500 aside-tags-listed">
-            #entra id (2)
+            #entra id (3)
           </a>
         </li>
       
         <li>
           <a href="/tags/microsoft-graph/" class="hover:text-secondary-500 aside-tags-listed">
-            #microsoft graph (3)
+            #microsoft graph (4)
+          </a>
+        </li>
+      
+        <li>
+          <a href="/tags/org-chart/" class="hover:text-secondary-500 aside-tags-listed">
+            #org chart (1)
           </a>
         </li>
       
         <li>
           <a href="/tags/powershell/" class="hover:text-secondary-500 aside-tags-listed">
-            #powershell (3)
+            #powershell (4)
           </a>
         </li>
       

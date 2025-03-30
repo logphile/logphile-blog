@@ -75,7 +75,42 @@ foreach ($user in $users) {
 $results | Format-Table -AutoSize
 ```
 
-{{< figure src="/logphile-script-missing-properties-output.png" class="wider-image no-zoom" >}}
+## The Results
+
+```bash
+PS C:\Users\logphile> New-SmartUser $propertiesToCheck = @("Department", "JobTitle", "UsageLocation", "Manager", "MobilePhone", "OfficeLocation")
+>> $results = @()
+>> $users = Get-MgUser -All -Property "Id,DisplayName,UserPrincipalName,Department,JobTitle,UsageLocation,Manager,MobilePhone,OfficeLocation"
+>> foreach ($user in $users) {
+>>     $missingProps = @()
+>>     foreach ($prop in $propertiesToCheck) {
+>>         if (-not $user.$prop) {
+>>             $missingProps += $prop
+>>         }
+>>     }
+>>     if ($missingProps.Count -gt 0) {
+>>         $results += [PSCustomObject]@{
+>>             DisplayName = $user.DisplayName
+>>             UserPrincipalName = $user.UserPrincipalName
+>>             MissingProperties = ($missingProps -join ", ")
+>>         }
+>>     }
+>> }
+>> $results | Format-Table -AutoSize
+
+DisplayName                         UserPrincipalName                            Missing Properties
+-----------                         -----------------                            ------------------
+Warren Worthington                  angel@logphile.com                           UsageLocation
+Hank McCoy                          beast@logphile.com                           UsageLocation
+Piotr Nikolayevich Rasputin         colossus@logphile.com                        UsageLocation
+Scott Summers                       cyclops@logphile.com                         UsageLocation
+Bobby Drake                         iceman@logphile.com                          UsageLocation
+Jean Grey                           marvelgirl@logphile.com                      UsageLocation
+Kurt Wagner                         nightcrawler@logphile.com                    OfficeLocation
+Phil Boyce                          phil@logphile.com                            Department, JobTitle, MobilePhone, OfficeLocation            
+Charles Xavier                      profx@logphile.com                           UsageLocation
+James Howlett                       wolverine@logphile.com                       UsageLocation
+```
 
 ---
 

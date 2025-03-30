@@ -1,0 +1,149 @@
+---
+title: "Faking an Org Chart in Entra: Mapping Hierarchies with PowerShell + Graph"
+description: "Use Microsoft Graph and PowerShell to extract and visualize manager relationships in Microsoft Entra ID."
+meta: "Extract org chart data from Microsoft Entra ID using PowerShell and Microsoft Graph. Build a tree view from manager properties and export to JSON or Graphviz."
+date: 2025-03-30T12:00:00Z
+tags: ["entra id", "microsoft graph", "powershell", "org chart", "automation"]
+categories: ["Azure Identity", "Automation"]
+summary: "What if your org chart wasn’t buried in HR PDFs but lived where access decisions are made? Use Microsoft Graph to recursively trace Entra ID hierarchies."
+draft: false
+showHero: false
+---
+
+What if your org chart wasn’t buried in HR PDFs but lived where access decisions are made?
+
+Microsoft Entra ID supports a `manager` property on each user object, which can be used to simulate an organizational chart—if populated correctly.
+
+In this post, we’ll use **PowerShell and Microsoft Graph** to recursively build an org chart based on `manager` relationships, then optionally export it to **JSON** or **Graphviz DOT** format for visualization.
+
+---
+
+## 🧱 What You’ll Learn
+
+- How to query user-manager relationships with Microsoft Graph
+- How to recursively walk Entra ID's hierarchy using PowerShell
+- Where org chart data tends to break in the real world
+- How to output to structured formats like JSON and DOT
+
+---
+
+## ⚙️ Prerequisites
+
+```powershell
+Install-Module Microsoft.Graph -Scope CurrentUser -Force
+Connect-MgGraph -Scopes "User.Read.All", "Directory.Read.All"
+```
+
+---
+
+## 🧠 Key Graph Properties
+
+We’ll need:
+- `Id`
+- `DisplayName`
+- `UserPrincipalName`
+- `Department`
+- `Manager`
+
+---
+
+## 🔁 Recursive Org Chart Builder (PowerShell)
+
+```powershell
+function Get-OrgNode {
+    param (
+        [string]$UserId,
+        [int]$Depth = 0
+    )
+
+    $user = Get-MgUser -UserId $UserId -Property "Id,DisplayName,UserPrincipalName,Department" -ErrorAction SilentlyContinue
+    if (-not $user) { return }
+
+    $indent = " " * ($Depth * 4)
+    Write-Host "$indent├── $($user.DisplayName) [$($user.Department)]" -ForegroundColor Cyan
+
+    $directReports = Get-MgUserDirectReport -UserId $UserId -ErrorAction SilentlyContinue
+
+    foreach ($report in $directReports) {
+        Get-OrgNode -UserId $report.Id -Depth ($Depth + 1)
+    }
+}
+
+# Replace with the ID of your top-level manager (e.g., CEO or head of department)
+$rootUser = Get-MgUser -Filter "displayName eq 'Charles Xavier'"
+Get-OrgNode -UserId $rootUser.Id
+```
+
+> 📸 **[Insert screenshot here]**: Terminal output showing nested org structure (tree-style).
+
+---
+
+## 📤 Export to JSON (Optional)
+
+```powershell
+function Build-OrgTreeJson {
+    param ([string]$UserId)
+
+    $user = Get-MgUser -UserId $UserId -Property "Id,DisplayName,UserPrincipalName,Department"
+    $directReports = Get-MgUserDirectReport -UserId $UserId
+
+    $children = foreach ($report in $directReports) {
+        Build-OrgTreeJson -UserId $report.Id
+    }
+
+    return [PSCustomObject]@{
+        Name       = $user.DisplayName
+        UPN        = $user.UserPrincipalName
+        Department = $user.Department
+        Reports    = $children
+    }
+}
+
+$tree = Build-OrgTreeJson -UserId $rootUser.Id
+$tree | ConvertTo-Json -Depth 10 | Out-File ".\orgTree.json"
+```
+
+---
+
+## 🧷 Where This Breaks
+
+- Missing `manager` field = orphaned node
+- Cycles (rare but possible in messy directories)
+- Manager points to deactivated or deleted accounts
+- Top-level user has no `manager` = must start with known name
+
+---
+
+## 🔍 Bonus: Graphviz DOT Export
+
+```powershell
+function Export-ToDot {
+    param ([object]$Node)
+
+    $lines = @()
+    foreach ($report in $Node.Reports) {
+        $lines += "`"{0}`" -> `"{1}`"" -f $Node.Name, $report.Name
+        $lines += Export-ToDot -Node $report
+    }
+    return $lines
+}
+
+$dot = @("digraph OrgChart {")
+$dot += Export-ToDot -Node $tree
+$dot += "}"
+$dot -join "`n" | Out-File ".\orgchart.dot"
+```
+
+> 📸 **[Insert screenshot here]**: Graphviz rendering of org chart.
+
+---
+
+## 📎 References
+
+- [Microsoft Graph `manager` relationship](https://learn.microsoft.com/en-us/graph/api/user-list-manager)
+- [Graphviz Online Renderer](https://dreampuf.github.io/GraphvizOnline/)
+- [Get-MgUserDirectReport Docs](https://learn.microsoft.com/en-us/powershell/module/microsoft.graph.users/get-mguserdirectreport)
+
+---
+
+Want your org chart to update itself? Use this with Azure Automation or GitHub Actions and post the output to Teams or SharePoint. Clean. Reusable. Always current.

@@ -21,5 +21,15 @@
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/blog/directory-drift/logphile-profx-data-center-featured-post.png" />
     </item>
     
+    <item>
+      <title>Faking an Org Chart in Entra: Mapping Hierarchies with PowerShell &#43; Graph</title>
+      <link>http://localhost:1313/blog/faking-org-chart/</link>
+      <pubDate>Sun, 23 Mar 2025 12:00:00 +0000</pubDate>
+      <author>phil@logphile.com (Phil Boyce)</author>
+      <guid>http://localhost:1313/blog/faking-org-chart/</guid>
+      <description>What if your org chart wasn’t buried in HR PDFs but lived where access decisions are made? Use Microsoft Graph to recursively trace Entra ID hierarchies.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/blog/faking-org-chart/logphile-spiderman-torn-mask-featured-post.jpg" />
+    </item>
+    
   </channel>
 </rss>
