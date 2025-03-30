@@ -8,16 +8,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title>User Audit &middot; logPhile</title>
-  <meta name="title" content="User Audit &middot; logPhile" />
+  <title>Az vs Graph: What PowerShell Module to Use (and When) &middot; logPhile</title>
+  <meta name="title" content="Az vs Graph: What PowerShell Module to Use (and When) &middot; logPhile" />
   
-  <meta name="description" content="Lorum ipsum lorum ipsum" />
+  <meta name="description" content="Azure has two major PowerShell modules: Az and Microsoft.Graph. Learn when to use each, why it matters, and how they overlap." />
+  <meta name="keywords" content="azure, entra id, powershell, microsoft graph, az module, " />
   
   
-  
-  <link rel="canonical" href="http://localhost:1313/tags/user-audit/" />
-  
-  <link rel="alternate" type="application/rss+xml" href="/tags/user-audit/index.xml" title="logPhile" />
+  <link rel="canonical" href="http://localhost:1313/blog/az-graph-powershell/" />
   
   
   
@@ -80,20 +78,57 @@
   gtag('config', 'G-FZVBM8WM6B');
 </script>
   
-  <meta property="og:url" content="http://localhost:1313/tags/user-audit/">
+  <meta property="og:url" content="http://localhost:1313/blog/az-graph-powershell/">
   <meta property="og:site_name" content="logPhile">
-  <meta property="og:title" content="User Audit">
-  <meta property="og:description" content="Lorum ipsum lorum ipsum">
+  <meta property="og:title" content="Az vs Graph: What PowerShell Module to Use (and When)">
+  <meta property="og:description" content="Understand the difference between the Az and Microsoft.Graph PowerShell modules—and when to use which.">
   <meta property="og:locale" content="en">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2025-03-22T12:00:00+00:00">
+    <meta property="article:modified_time" content="2025-03-22T12:00:00+00:00">
+    <meta property="article:tag" content="Azure">
+    <meta property="article:tag" content="Entra Id">
+    <meta property="article:tag" content="Powershell">
+    <meta property="article:tag" content="Microsoft Graph">
+    <meta property="article:tag" content="Az Module">
+    <meta property="og:image" content="http://localhost:1313/blog/az-graph-powershell/logphile-hulk-vs-wolverine-featured-post.png">
 
   
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="User Audit">
-  <meta name="twitter:description" content="Lorum ipsum lorum ipsum">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/blog/az-graph-powershell/logphile-hulk-vs-wolverine-featured-post.png">
+  <meta name="twitter:title" content="Az vs Graph: What PowerShell Module to Use (and When)">
+  <meta name="twitter:description" content="Understand the difference between the Az and Microsoft.Graph PowerShell modules—and when to use which.">
 
   
-  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "",
+    "name": "Az vs Graph: What PowerShell Module to Use (and When)",
+    "headline": "Az vs Graph: What PowerShell Module to Use (and When)",
+    "description": "Understand the difference between the Az and Microsoft.Graph PowerShell modules—and when to use which.",
+    "abstract": "Azure has two major PowerShell modules: Az and Microsoft.Graph. Learn when to use each, why it matters, and how they overlap.",
+    "inLanguage": "en",
+    "url" : "http:\/\/localhost:1313\/blog\/az-graph-powershell\/",
+    "author" : {
+      "@type": "Person",
+      "name": "Phil Boyce"
+    },
+    "copyrightYear": "2025",
+    "dateCreated": "2025-03-22T12:00:00\u002b00:00",
+    "datePublished": "2025-03-22T12:00:00\u002b00:00",
+    
+    "dateModified": "2025-03-22T12:00:00\u002b00:00",
+    
+    "keywords": ["azure","entra id","powershell","microsoft graph","az module"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "424"
+  }]
+  </script>
+
 
   
   
@@ -369,102 +404,148 @@
             
 
 
- <header>
+<article class="prose dark:prose-invert max-w-7xl mx-auto px-4 py-10 blog-post">
   
-  <h1 class="mt-5 text-4xl font-extrabold text-neutral-900 dark:text-neutral">User Audit</h1>
-  <div class="mt-1 mb-2 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+
+  
+  
+  
+  
+  
+
+  <header id="single_header" class="mt-10 max-w-prose">
+        
+
     
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="flex flex-row flex-wrap items-center">
+    
+      
+      
+        
+        
+<div class="flex author">
   
+    
+    
+      
+    
+    
+      
+        
+      
+      <img class="!mt-0 !mb-0 h-24 w-24 rounded-full ltr:mr-4 rtl:ml-4" width="96" height="96"
+      alt="Phil Boyce" src="/logphile-avatar_hu_b8ee3a9d64c04fc4.jpg" />
+    
   
+  <div class="place-self-center">
+    
+    <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+      Author
+    </div>
+    <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+      Phil Boyce
+    </div>
+    
+    
+    <div class="text-2xl sm:text-lg">
+  <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://github.com/logphile"
+          target="_blank"
+          aria-label="Github"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://www.linkedin.com/in/phil-boyce"
+          target="_blank"
+          aria-label="Linkedin"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://x.com/LogPhile"
+          target="_blank"
+          aria-label="X-Twitter"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="mailto:phil@logphile.com"
+          target="_blank"
+          aria-label="Email"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+  </div>
+
+</div>
+  </div>
 </div>
 
+      
 
-  </div>
-  </header>
+      
 
-  <section class="flex flex-col max-w-full mt-0 mb-5 prose dark:prose-invert lg:flex-row">
+      
+      <div class="mb-5"></div>
+      
+
     
-  </section>
+
+    <div class="mt-1 mb-6 text-base red-meta print:hidden">
+      
+
+
+
 
 
   
-
   
-  
-  
-
-  
-
-  <section class="space-y-10 w-full">
-    
-    
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <a class="flex flex-wrap article border border-neutral-200 dark:border-neutral-700 border-2 rounded-md overflow-hidden" href="/blog/directory-drift/">
-    
-        
-        <div class="w-full md:w-auto h-full thumbnail nozoom " style="background-image:url(/blog/directory-drift/logphile-profx-data-center-featured-post_hu_167ffd9704970fd.png);"></div>
-        
-      <div class=" p-4">
-      <div class="items-center text-left text-xl font-semibold">
-        
-        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
-          href="/blog/directory-drift/">Directory Drift: Auditing Incomplete Entra User Profiles with PowerShell + Graph</div>
-        
-        
-        
-      </div>
-      <div class="text-sm text-neutral-500 dark:text-neutral-400">
-        
-
-
-
-
 
 
 
@@ -497,7 +578,7 @@
 <div class="flex flex-row flex-wrap items-center blog-meta red-meta">
   
   
-  <time datetime="2025-03-28T12:00:00&#43;00:00">March 28, 2025</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">2 mins</span>
+  <time datetime="2025-03-22T12:00:00&#43;00:00">March 22, 2025</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">2 mins</span>
   
 
   
@@ -524,10 +605,10 @@
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/automation/&#34;,'_self');return false;">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/powershell/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    Automation
+    PowerShell
   </span>
 </span>
   </span>
@@ -539,19 +620,19 @@
   
   
   
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/azure/&#34;,'_self');return false;">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Azure
+  </span>
+</span>
+  </span>
   
   <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/entra-id/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Entra Id
-  </span>
-</span>
-  </span>
-  
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/microsoft-graph/&#34;,'_self');return false;">
-    <span class="flex" style="cursor: pointer;">
-  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    Microsoft Graph
   </span>
 </span>
   </span>
@@ -564,18 +645,18 @@
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/automation/&#34;,'_self');return false;">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/microsoft-graph/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    Automation
+    Microsoft Graph
   </span>
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/user-audit/&#34;,'_self');return false;">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/az-module/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    User Audit
+    Az Module
   </span>
 </span>
   </span>
@@ -589,27 +670,362 @@
 
 
 
-      </div>
-      
-      <div class="py-1 max-w-fit prose dark:prose-invert">
-        Missing user metadata can break your policies, groups, and reports. Learn how to audit Entra ID user profiles using PowerShell and Microsoft Graph.
-      </div>
-      
     </div>
-  </a>
+
+    <h1 class="mt-0 mb-2 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+      Az vs Graph: What PowerShell Module to Use (and When)
+    </h1>
+
+ 
+
+  </header>
+  
+  <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+    
+    
+
+      <div class="min-w-0 min-h-0 max-w-fit">
+        
+        
+
+
+        <div class="article-content max-w-prose mb-1">
+          <blockquote>
+<p><em>“Why do I need two different PowerShell modules just to manage Azure?”</em></p></blockquote>
+<p>That’s the common frustration—<strong>Az</strong> and <strong>Microsoft.Graph</strong> are both official modules, but they serve completely different purposes. This post breaks down when to use each, with examples, a comparison matrix, and tips for choosing the right one.</p>
+<hr>
+
+
+<h2 class="relative group">🔍 What&rsquo;s the Difference? 
+    <div id="-whats-the-difference" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#-whats-the-difference" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<ul>
+<li><strong>Az</strong> is for managing <strong>Azure resources</strong>—think subscriptions, VMs, networking, storage.</li>
+<li><strong>Microsoft.Graph</strong> is for managing <strong>Microsoft Entra ID</strong> (Azure AD) and Microsoft 365 identities—users, groups, licenses, directory roles.</li>
+</ul>
+<p>They&rsquo;re both used in the Azure ecosystem, but they hit different APIs and serve different layers.</p>
+<hr>
+
+
+<h2 class="relative group">🧭 Comparison Matrix 
+    <div id="-comparison-matrix" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#-comparison-matrix" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Feature / Action</th>
+          <th><code>Az</code> Module</th>
+          <th><code>Microsoft.Graph</code> Module</th>
+          <th>Use This When…</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Create/Manage VMs, Storage, etc.</td>
+          <td>✅ <code>Az.Compute</code>, etc.</td>
+          <td>❌</td>
+          <td>You’re managing Azure infrastructure.</td>
+      </tr>
+      <tr>
+          <td>Create/Update Users &amp; Groups in Entra ID</td>
+          <td>❌</td>
+          <td>✅ <code>Microsoft.Graph.Users</code></td>
+          <td>You’re managing Entra identity objects.</td>
+      </tr>
+      <tr>
+          <td>Assign RBAC Roles to Azure resources</td>
+          <td>✅</td>
+          <td>✅ (via role assignments)</td>
+          <td>Either works, but <code>Az</code> is more common.</td>
+      </tr>
+      <tr>
+          <td>Create/Manage Subscriptions &amp; Resource Groups</td>
+          <td>✅ <code>Az.Resources</code></td>
+          <td>❌</td>
+          <td>Managing the Azure structure itself.</td>
+      </tr>
+      <tr>
+          <td>Assign Microsoft 365 licenses</td>
+          <td>❌</td>
+          <td>✅ <code>Microsoft.Graph.Licenses</code></td>
+          <td>Working with SaaS identity entitlements.</td>
+      </tr>
+      <tr>
+          <td>Use Azure Policy / ARM Templates</td>
+          <td>✅</td>
+          <td>❌</td>
+          <td>Infrastructure governance and templates.</td>
+      </tr>
+      <tr>
+          <td>Modify Conditional Access / Entra Policies</td>
+          <td>❌</td>
+          <td>✅</td>
+          <td>Identity security config.</td>
+      </tr>
+      <tr>
+          <td>Read/Write Entra Group Memberships</td>
+          <td>❌</td>
+          <td>✅</td>
+          <td>Directory group automation.</td>
+      </tr>
+      <tr>
+          <td>Automate Identity Lifecycle (HR sync, etc.)</td>
+          <td>❌</td>
+          <td>✅</td>
+          <td>Microsoft Graph is the only option.</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+
+
+<h2 class="relative group">✍️ Syntax Side-by-Side 
+    <div id="-syntax-side-by-side" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#-syntax-side-by-side" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+
+
+<h3 class="relative group">Create Resource Group (Az) 
+    <div id="create-resource-group-az" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#create-resource-group-az" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>Connect-AzAccount
+</span></span><span style="display:flex;"><span>New-AzResourceGroup -Name <span style="color:#e6db74">&#34;dev-rg&#34;</span> -Location <span style="color:#e6db74">&#34;eastus&#34;</span>
+</span></span></code></pre></div>
+
+<h3 class="relative group">Create Entra User (Graph) 
+    <div id="create-entra-user-graph" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#create-entra-user-graph" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>Connect-MgGraph -Scopes <span style="color:#e6db74">&#34;User.ReadWrite.All&#34;</span>
+</span></span><span style="display:flex;"><span>New-MgUser -DisplayName <span style="color:#e6db74">&#34;Logphile Test&#34;</span> -UserPrincipalName <span style="color:#e6db74">&#34;logtest@domain.com&#34;</span> -MailNickname <span style="color:#e6db74">&#34;logtest&#34;</span> -AccountEnabled:$true -PasswordProfile @{
+</span></span><span style="display:flex;"><span>    Password = <span style="color:#e6db74">&#34;SecurePass123!&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+
+
+<h2 class="relative group">🧠 When You Might Use Both 
+    <div id="-when-you-might-use-both" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#-when-you-might-use-both" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>Here’s a practical scenario:</p>
+<ul>
+<li>Use <code>Microsoft.Graph</code> to create a user and assign them a role in Entra ID.</li>
+<li>Then use <code>Az</code> to grant that user access to a resource group with <code>New-AzRoleAssignment</code>.</li>
+</ul>
+<p>It&rsquo;s not either/or—it’s knowing when each tool is appropriate.</p>
+<hr>
+
+
+<h2 class="relative group">💡 Tips to Keep in Mind 
+    <div id="-tips-to-keep-in-mind" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#-tips-to-keep-in-mind" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<ul>
+<li>If you’re dealing with <strong>subscriptions, infra, RBAC</strong>, use <code>Az</code>.</li>
+<li>If you’re touching <strong>users, groups, licenses, roles</strong>, use <code>Microsoft.Graph</code>.</li>
+<li>Want automation across both? Combine them in the same script—just authenticate each separately.</li>
+</ul>
+<hr>
+
+
+<h2 class="relative group">📎 References 
+    <div id="-references" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#-references" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/powershell/microsoftgraph/overview" target="_blank">Microsoft.Graph PowerShell Docs</a></li>
+<li><a href="https://learn.microsoft.com/en-us/powershell/azure/new-azureps-module-az" target="_blank">Az PowerShell Module Docs</a></li>
+<li><a href="https://learn.microsoft.com/en-us/powershell/azure/az-module" target="_blank">Compare Az and AzureRM</a></li>
+</ul>
+<hr>
+<blockquote>
+<p>Not knowing which module to use costs time. Knowing the difference builds momentum.</p></blockquote>
+
+  
+  
+  
+  
+
+
+
+<div
+  
+    class="flex px-4 py-3 rounded-md"
+    style="background-color: #FC5749"
+  >
+
+  <span
+    
+      class="text-primary-400 ltr:pr-3 rtl:pl-3 flex items-center"
+    >
+
+    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+<path fill="currentColor"  d="M159.3 5.4c7.8-7.3 19.9-7.2 27.7 .1c27.6 25.9 53.5 53.8 77.7 84c11-14.4 23.5-30.1 37-42.9c7.9-7.4 20.1-7.4 28 .1c34.6 33 63.9 76.6 84.5 118c20.3 40.8 33.8 82.5 33.8 111.9C448 404.2 348.2 512 224 512C98.4 512 0 404.1 0 276.5c0-38.4 17.8-85.3 45.4-131.7C73.3 97.7 112.7 48.6 159.3 5.4zM225.7 416c25.3 0 47.7-7 68.8-21c42.1-29.4 53.4-88.2 28.1-134.4c-2.8-5.6-5.6-11.2-9.8-16.8l-50.6 58.8s-81.4-103.6-87.1-110.6C133.1 243.8 112 273.2 112 306.8C112 375.4 162.6 416 225.7 416z"/></svg>
+  </span>
+
+
+  </span>
+
+  <span
+    
+      style="color: #F5F4F1"
+    >After several years as a stay-at-home dad, I&rsquo;m working my way back into the tech field—brushing up on tools, learning what’s changed, and sharing the journey along the way. This blog is part learning tool, part signal to employers, and part proof of work. Thanks for reading!</span>
+</div>
+
+
+          
+          
+          
+        </div>
+        
+        
+
+        
+        
+
+          
+      </div>
+     
+      
+      
+        
+        
+          
+          
+        
+      <script>
+        var oid = "views_blog\\az-graph-powershell\\index.md"
+        var oid_likes = "likes_blog\\az-graph-powershell\\index.md"
+      </script>
+      
+      
+      <script type="text/javascript" src="/js/page.min.0860cf4e04fa2d72cc33ddba263083464d48f67de06114529043cb4623319efed4f484fd7f1730df5abea0e2da6f3538855634081d02f2d6e920b956f063e823.js" integrity="sha512-CGDPTgT6LXLMM926JjCDRk1I9n3gYRRSkEPLRiMxnv7U9IT9fxcw31q&#43;oOLabzU4hVY0CB0C8tbpILlW8GPoIw=="></script>
+      
+  
+    </section>
+  <footer class="pt-1 max-w-prose print:hidden">
+
+    
+  
+    
+    
+    
+    <div class="pt-8">
+      
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="flex group mr-3" href="/blog/ditch-the-portal-create-entra-users-with-powershell-plus-graph/">
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Ditch the Portal: Create Entra Users with PowerShell + Graph</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2025-03-18T12:00:00&#43;00:00">March 18, 2025</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="flex text-right group ml-3" href="/blog/directory-drift/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Directory Drift: Auditing Incomplete Entra User Profiles with PowerShell + Graph</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2025-03-28T12:00:00&#43;00:00">March 28, 2025</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
 
 
     
-    
-  </section>
+  </footer>
+</article>
 
-  
-
-  
-
-  
-
-  
           </div>
 
 
@@ -768,7 +1184,13 @@
       
     </main>
 
-      
+      <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
+  <a href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="Scroll to top" title="Scroll to top">
+    &uarr;
+  </a>
+</div>
     </main><footer id="site-footer" class="py-10 print:hidden">
   
   

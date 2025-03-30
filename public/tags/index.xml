@@ -62,9 +62,19 @@
     </item>
     
     <item>
+      <title>Az Module</title>
+      <link>http://localhost:1313/tags/az-module/</link>
+      <pubDate>Sat, 22 Mar 2025 12:00:00 +0000</pubDate>
+      <author>phil@logphile.com (Phil Boyce)</author>
+      <guid>http://localhost:1313/tags/az-module/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
       <title>Azure</title>
       <link>http://localhost:1313/tags/azure/</link>
-      <pubDate>Tue, 18 Mar 2025 12:00:00 +0000</pubDate>
+      <pubDate>Sat, 22 Mar 2025 12:00:00 +0000</pubDate>
       <author>phil@logphile.com (Phil Boyce)</author>
       <guid>http://localhost:1313/tags/azure/</guid>
       <description></description>

@@ -2,7 +2,7 @@
 title: "Az vs Graph: What PowerShell Module to Use (and When)"
 description: "Understand the difference between the Az and Microsoft.Graph PowerShell modules—and when to use which."
 meta: "Az module vs Microsoft Graph PowerShell module. When to use each for Azure and Entra ID management. Clear matrix and examples provided."
-date: 2025-03-30T12:00:00Z
+date: 2025-03-22T12:00:00Z
 tags: ["azure", "entra id", "powershell", "microsoft graph", "az module"]
 categories: ["Azure Identity", "PowerShell"]
 summary: "Azure has two major PowerShell modules: Az and Microsoft.Graph. Learn when to use each, why it matters, and how they overlap."
@@ -89,3 +89,7 @@ It's not either/or—it’s knowing when each tool is appropriate.
 ---
 
 > Not knowing which module to use costs time. Knowing the difference builds momentum.
+
+{{< alert icon="fire" cardColor="#FC5749" textColor="#F5F4F1">}}
+After several years as a stay-at-home dad, I'm working my way back into the tech field—brushing up on tools, learning what’s changed, and sharing the journey along the way. This blog is part learning tool, part signal to employers, and part proof of work. Thanks for reading!
+{{< /alert >}}

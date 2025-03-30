@@ -22,6 +22,16 @@
     </item>
     
     <item>
+      <title>Az vs Graph: What PowerShell Module to Use (and When)</title>
+      <link>http://localhost:1313/blog/az-graph-powershell/</link>
+      <pubDate>Sat, 22 Mar 2025 12:00:00 +0000</pubDate>
+      <author>phil@logphile.com (Phil Boyce)</author>
+      <guid>http://localhost:1313/blog/az-graph-powershell/</guid>
+      <description>Azure has two major PowerShell modules: Az and Microsoft.Graph. Learn when to use each, why it matters, and how they overlap.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/blog/az-graph-powershell/logphile-hulk-vs-wolverine-featured-post.png" />
+    </item>
+    
+    <item>
       <title>Ditch the Portal: Create Entra Users with PowerShell &#43; Graph</title>
       <link>http://localhost:1313/blog/ditch-the-portal-create-entra-users-with-powershell-plus-graph/</link>
       <pubDate>Tue, 18 Mar 2025 12:00:00 +0000</pubDate>
