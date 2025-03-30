@@ -115,11 +115,11 @@ User added to group 'Research & Development'.
 
 Log into Entra ID > Users and confirm the user shows up with correct info.
 
-![PowerShell command results showing successful Microsoft 365 user user creation](/logphile-user-beast-created.png)
+{{< figure src="/logphile-user-beast-created.png" class="wider-image no-zoom" >}}
 
 Then check Groups to confirm group creation and membership.
 
-![PowerShell command results showing successful Microsoft 365 group creation and group membership](/logphile-group-created-beast-added.png)
+{{< figure src="/logphile-group-created-beast-added.png" class="wider-image no-zoom" >}}
 
 ---
 
