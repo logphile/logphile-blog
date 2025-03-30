@@ -83,7 +83,7 @@
         
         {{ partial "series/series.html" . }}
 
-        <div class="article-content max-w-prose mb-5">
+        <div class="article-content max-w-prose mb-1">
           {{ .Content }}
           {{ $defaultReplyByEmail := .Site.Params.replyByEmail }}
           {{ $replyByEmail := default $defaultReplyByEmail .Params.replyByEmail }}
@@ -145,14 +145,14 @@
       {{ end }}
   
     </section>
-  <footer class="pt-8 max-w-prose print:hidden">
+  <footer class="pt-1 max-w-prose print:hidden">
 
     {{ partial "article-pagination.html" . }}
     {{ if .Params.showComments | default (.Site.Params.article.showComments | default false) }}
     {{ if templates.Exists "partials/comments.html" }}
-    <div class="pt-3">
-      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
-      <div class="pt-3">
+    <div class="pt-1">
+      
+      <div class="pt-1">
         {{ partial "comments.html" . }}
       </div>
     </div>

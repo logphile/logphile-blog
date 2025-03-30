@@ -195,3 +195,7 @@ Still using the Azure Portal or legacy PowerShell modules like `AzureAD` or `MSO
 * [Graph Permissions Guide](https://learn.microsoft.com/en-us/graph/permissions-reference)
 
 ---
+
+{{< alert icon="fire" cardColor="#FC5749" textColor="#F5F4F1">}}
+After several years as a stay-at-home dad, I'm working my way back into the tech field—brushing up on tools, learning what’s changed, and sharing the journey along the way. This blog is part learning tool, part signal to employers, and part proof of work. Thanks for reading!
+{{< /alert >}}

@@ -471,3 +471,18 @@ th, td {
   padding: 8px;
   color: #F5F4F1 !important;
 }
+
+
+
+.wider-image.medium-zoom-image {
+  width: 100% !important;
+  max-width: none !important;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.no-zoom.medium-zoom-image {
+  pointer-events: none;
+  cursor: default;
+}

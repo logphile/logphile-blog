@@ -23,5 +23,4 @@ Now that she’s older, I’m ready to step back into the field—-with fresh pe
 
 Thanks for stopping by.
 
-
 <hr class="mt-2 mb-6 border-neutral-700 dark:border-neutral-600 thicc">

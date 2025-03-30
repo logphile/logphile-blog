@@ -28,8 +28,8 @@
   
   
   
-  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.1751edeee7c7561ce32dc73f079a5a36168508086b35950894b8d7339982bae66ba8465fead2f4a3c5846b1d44191def09015b40d74009dc4c270d1d8eb95d43.css"
-    integrity="sha512-F1Ht7ufHVhzjLcc/B5paNhaFCAhrNZUIlLjXM5mCuuZrqEZf6tL0o8WEax1EGR3vCQFbQNdACdxMJw0djrldQw==" />
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.ff6a7cbfca223d98173d17c75d3c0d9e48e71fa05f94dfc421fbe028d7c326f3b90041c6639668810e0732c83167ac61a5908a0c071208506d312154bdfdcf75.css"
+    integrity="sha512-/2p8v8oiPZgXPRfHXTwNnkjnH6BflN/EIfvgKNfDJvO5AEHGY5ZogQ4HMsgxZ6xhpZCKDAcSCFBtMSFUvf3PdQ==" />
   
   
   <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
@@ -124,7 +124,7 @@
     "keywords": ["microsoft graph","powershell","entra","azure"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "685"
+    "wordCount": "732"
   }]
   </script>
 
@@ -680,7 +680,7 @@
         
 
 
-        <div class="article-content max-w-prose mb-5">
+        <div class="article-content max-w-prose mb-1">
           <p>One-off user creation is fine—until you need scale, consistency, and future-proofing. That’s where Microsoft Graph comes in. In this post, I’ll walk you through how to create Microsoft Entra ID users using <strong>PowerShell and Microsoft Graph</strong>—with clean, scalable scripting.</p>
 
 
@@ -871,11 +871,11 @@
         class="my-0 rounded-md"
         loading="lazy"
         srcset="
-        /images/logphile-user-beast-created_hu_eda0eea16d1a7a1.png 330w,
-        /images/logphile-user-beast-created_hu_9b1ea3ca308a2ad4.png 660w,
-        /images/logphile-user-beast-created_hu_fa9d4e426a894ef6.png 1024w,
-        /images/logphile-user-beast-created_hu_820c81cdc8ba52c3.png 2x"
-        src="/images/logphile-user-beast-created_hu_9b1ea3ca308a2ad4.png"
+        /blog/ditch-the-portal-create-entra-users-with-powershell-plus-graph/logphile-user-beast-created_hu_eda0eea16d1a7a1.PNG 330w,
+        /blog/ditch-the-portal-create-entra-users-with-powershell-plus-graph/logphile-user-beast-created_hu_9b1ea3ca308a2ad4.PNG 660w,
+        /blog/ditch-the-portal-create-entra-users-with-powershell-plus-graph/logphile-user-beast-created_hu_fa9d4e426a894ef6.PNG 1024w,
+        /blog/ditch-the-portal-create-entra-users-with-powershell-plus-graph/logphile-user-beast-created_hu_820c81cdc8ba52c3.PNG 2x"
+        src="/blog/ditch-the-portal-create-entra-users-with-powershell-plus-graph/logphile-user-beast-created_hu_9b1ea3ca308a2ad4.PNG"
         alt="PowerShell command results showing successful Microsoft 365 user user creation"
       />
       
@@ -888,11 +888,11 @@
         class="my-0 rounded-md"
         loading="lazy"
         srcset="
-        /images/logphile-group-created-beast-added_hu_6096fe43c5230e5d.png 330w,
-        /images/logphile-group-created-beast-added_hu_ad17006ab66db3b.png 660w,
-        /images/logphile-group-created-beast-added_hu_473d3c31c9990b6f.png 1024w,
-        /images/logphile-group-created-beast-added_hu_8f8e2d253774d0d0.png 2x"
-        src="/images/logphile-group-created-beast-added_hu_ad17006ab66db3b.png"
+        /blog/ditch-the-portal-create-entra-users-with-powershell-plus-graph/logphile-group-created-beast-added_hu_6096fe43c5230e5d.PNG 330w,
+        /blog/ditch-the-portal-create-entra-users-with-powershell-plus-graph/logphile-group-created-beast-added_hu_ad17006ab66db3b.PNG 660w,
+        /blog/ditch-the-portal-create-entra-users-with-powershell-plus-graph/logphile-group-created-beast-added_hu_473d3c31c9990b6f.PNG 1024w,
+        /blog/ditch-the-portal-create-entra-users-with-powershell-plus-graph/logphile-group-created-beast-added_hu_8f8e2d253774d0d0.PNG 2x"
+        src="/blog/ditch-the-portal-create-entra-users-with-powershell-plus-graph/logphile-group-created-beast-added_hu_ad17006ab66db3b.PNG"
         alt="PowerShell command results showing successful Microsoft 365 group creation and group membership"
       />
       
@@ -1079,6 +1079,41 @@
 </ul>
 <hr>
 
+  
+  
+  
+  
+
+
+
+<div
+  
+    class="flex px-4 py-3 rounded-md"
+    style="background-color: #FC5749"
+  >
+
+  <span
+    
+      class="text-primary-400 ltr:pr-3 rtl:pl-3 flex items-center"
+    >
+
+    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+<path fill="currentColor"  d="M159.3 5.4c7.8-7.3 19.9-7.2 27.7 .1c27.6 25.9 53.5 53.8 77.7 84c11-14.4 23.5-30.1 37-42.9c7.9-7.4 20.1-7.4 28 .1c34.6 33 63.9 76.6 84.5 118c20.3 40.8 33.8 82.5 33.8 111.9C448 404.2 348.2 512 224 512C98.4 512 0 404.1 0 276.5c0-38.4 17.8-85.3 45.4-131.7C73.3 97.7 112.7 48.6 159.3 5.4zM225.7 416c25.3 0 47.7-7 68.8-21c42.1-29.4 53.4-88.2 28.1-134.4c-2.8-5.6-5.6-11.2-9.8-16.8l-50.6 58.8s-81.4-103.6-87.1-110.6C133.1 243.8 112 273.2 112 306.8C112 375.4 162.6 416 225.7 416z"/></svg>
+  </span>
+
+
+  </span>
+
+  <span
+    
+      style="color: #F5F4F1"
+    >After several years as a stay-at-home dad, I&rsquo;m working my way back into the tech field—brushing up on tools, learning what’s changed, and sharing the journey along the way. This blog is part learning tool, part signal to employers, and part proof of work. Thanks for reading!</span>
+</div>
+
+
           
           
           
@@ -1109,9 +1144,46 @@
       
   
     </section>
-  <footer class="pt-8 max-w-prose print:hidden">
+  <footer class="pt-1 max-w-prose print:hidden">
 
     
+  
+    
+    
+    
+    <div class="pt-8">
+      
+      <div class="flex justify-between pt-3">
+        <span>
+          
+        </span>
+        <span>
+          
+            <a class="flex text-right group ml-3" href="/blog/directory-drift/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Directory Drift: Auditing Incomplete Entra User Profiles with PowerShell + Graph</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2025-03-28T12:00:00&#43;00:00">March 28, 2025</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
   
 
 
@@ -1218,6 +1290,12 @@
     <ul class="space-y-1">
       
         <li>
+          <a href="/tags/automation/" class="hover:text-secondary-500 aside-tags-listed">
+            #automation (1)
+          </a>
+        </li>
+      
+        <li>
           <a href="/tags/azure/" class="hover:text-secondary-500 aside-tags-listed">
             #azure (1)
           </a>
@@ -1230,14 +1308,26 @@
         </li>
       
         <li>
+          <a href="/tags/entra-id/" class="hover:text-secondary-500 aside-tags-listed">
+            #entra id (1)
+          </a>
+        </li>
+      
+        <li>
           <a href="/tags/microsoft-graph/" class="hover:text-secondary-500 aside-tags-listed">
-            #microsoft graph (1)
+            #microsoft graph (2)
           </a>
         </li>
       
         <li>
           <a href="/tags/powershell/" class="hover:text-secondary-500 aside-tags-listed">
-            #powershell (1)
+            #powershell (2)
+          </a>
+        </li>
+      
+        <li>
+          <a href="/tags/user-audit/" class="hover:text-secondary-500 aside-tags-listed">
+            #user audit (1)
           </a>
         </li>
       
