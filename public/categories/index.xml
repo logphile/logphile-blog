@@ -32,6 +32,26 @@
     </item>
     
     <item>
+      <title>Tools</title>
+      <link>http://localhost:1313/categories/tools/</link>
+      <pubDate>Mon, 24 Mar 2025 12:00:00 +0000</pubDate>
+      <author>phil@logphile.com (Phil Boyce)</author>
+      <guid>http://localhost:1313/categories/tools/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Workflow</title>
+      <link>http://localhost:1313/categories/workflow/</link>
+      <pubDate>Mon, 24 Mar 2025 12:00:00 +0000</pubDate>
+      <author>phil@logphile.com (Phil Boyce)</author>
+      <guid>http://localhost:1313/categories/workflow/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
       <title>PowerShell</title>
       <link>http://localhost:1313/categories/powershell/</link>
       <pubDate>Sat, 22 Mar 2025 12:00:00 +0000</pubDate>

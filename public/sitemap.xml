@@ -21,6 +21,12 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>http://localhost:1313/blog/windows-terminal-xmen-colors/</loc>
+    <lastmod>2025-03-24T12:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>http://localhost:1313/blog/faking-org-chart/</loc>
     <lastmod>2025-03-23T12:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
