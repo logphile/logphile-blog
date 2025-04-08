@@ -1,16 +1,24 @@
 {{ define "main" }}
   <main class="main-content">
+    <div><h1 class="mt-8 text-4xl font-extrabold mr-5 tag-spef">latest<span class="bash-suffix">@logphile:~$</span>
+    </h1></div>
     {{ partial "breadcrumbs.html" . }}
 
-    
-    <div class="mt-8 mb-8"></div>
+    {{ if eq .Kind "taxonomyTerm" }}
+      <h1 class="text-4xl font-extrabold text-primary-500 mb-4 border-b-4 border-pink-600 inline-block pb-2">
+        #{{ .Title }}
+      </h1>
+    {{ else }}
+      <h1 class="text-4xl font-extrabold text-primary-500 mb-4">
+        {{ .Title }}
+      </h1>
+    {{ end }}
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 mt-8 gap-6">
       {{ range .Pages }}
         {{ partial "card.html" . }}
       {{ end }}
     </div>
-    
 
     {{ partial "pagination.html" . }}
   </main>
