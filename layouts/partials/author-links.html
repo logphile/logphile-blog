@@ -1,0 +1,22 @@
+{{ with .Site.Params.Author.links }}
+<div class="flex flex-wrap home-social-icons social-icons-grid">
+
+    {{ range $links := . }}
+      {{ range $name, $url := $links }}
+      <a
+      href="{{ $url | safeURL }}"
+      target="_blank"
+      aria-label="{{ $name | title }}"
+      rel="me noopener noreferrer"
+      class="social-icon" style="color: #FF0062;"
+    >
+    
+          <span class="inline-block align-text-bottom">
+            {{ partial "icon.html" $name }}
+          </span>
+        </a>
+      {{ end }}
+    {{ end }}
+  </div>
+{{ end }}
+

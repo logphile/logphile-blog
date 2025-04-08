@@ -1,0 +1,20 @@
+<div class="space-y-6 text-xs">
+  
+<!-- Connect Box -->
+<div class="px-6 pt-6 pb-5 mt-4 rounded-lg sidebar-box w-full sidebar-panel">  
+{{ partial "social-icons.html" . }}
+<hr class="sidebar-hr">
+<!-- Tags Box -->
+<div class="px-6 pt-6 pb-5 rounded-lg sidebar-box w-full sidebar-panel">
+  <div class="w-full text-center text-2xl font-semibold tags-title" style="color: rgb(var(--color-primary-500));">
+  </div>
+  <div class="grid grid-cols-[minmax(0,_1fr)_minmax(0,_1fr)] gap-x-2 gap-y-2 w-full tags-grid">
+
+    {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+    <a href="{{ `/tags/` | relLangURL }}{{ $name | urlize }}"
+    class="inline-block px-3 py-1 text-sm text-white text-center rounded-md whitespace-nowrap transition-colors duration-200">
+      #{{ $name }}
+    </a>
+     {{ end }}
+  </div>
+</div>

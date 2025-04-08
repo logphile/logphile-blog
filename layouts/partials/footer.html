@@ -10,7 +10,7 @@
             title="{{ .Title }}">
             {{ if .Pre }}
             <span {{ if and .Pre .Name}} class="mr-1" {{ end }}>
-                {{ partial "icon.html" .Pre }}
+              {{ partial "icon.html" .Pre }}
             </span>
             {{ end }}
             {{ .Name | markdownify }}
@@ -21,6 +21,7 @@
     </nav>
     {{ end }}
   {{ end }}
+
   <div class="flex items-center justify-between">
 
     {{/* Copyright */}}
@@ -29,9 +30,7 @@
       {{- with replace .Site.Params.copyright "{ year }" now.Year  }}
       {{ . | markdownify }}
       {{- else }}
-      &copy;
-      {{ now.Format "2006" }}
-      {{ .Site.Params.Author.name | markdownify }}
+      &copy; {{ now.Format "2006" }} {{ .Site.Params.Author.name | markdownify }}
       {{- end }}
     </p>
     {{ end }}
@@ -40,8 +39,7 @@
     {{ if .Site.Params.footer.showThemeAttribution | default true }}
     <p class="text-xs text-neutral-500 dark:text-neutral-400">
       {{ $hugo := printf `<a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
-        href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a>`
-      }}
+        href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a>` }}
       {{ $blowfish := printf `<a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
         href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a>` }}
       {{ i18n "footer.powered_by" (dict "Hugo" $hugo "Theme" $blowfish) | safeHTML }}
@@ -49,18 +47,22 @@
     {{ end }}
 
   </div>
+
+  <!-- ✅ Updated medium-zoom init: only affects .medium-zoom-image -->
   <script>
     {{ if not .Site.Params.disableImageZoom | default true }}
-    mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+    mediumZoom(document.querySelectorAll(".medium-zoom-image"), {
       margin: 24,
       background: 'rgba(0,0,0,0.5)',
       scrollOffset: 0,
     })
     {{ end }}
   </script>
+
   {{ $jsProcess := resources.Get "js/process.js" }}
   {{ $jsProcess = $jsProcess | resources.Minify | resources.Fingerprint "sha512" }}
   <script type="text/javascript" src="{{ $jsProcess.RelPermalink }}" integrity="{{ $jsProcess.Data.Integrity }}"></script>
+
   {{/* Extend footer - eg. for extra scripts, etc. */}}
   {{ if templates.Exists "partials/extend-footer.html" }}
   {{ partialCached "extend-footer.html" . }}

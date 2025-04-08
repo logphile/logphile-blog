@@ -3,6 +3,7 @@ title: "Ditch the Portal: Create Entra Users with PowerShell + Graph"
 description: "Logphile Article - How to automate Microsoft Entra ID user creation with Powershell and Microsoft Graph."
 meta: "Learn how to automate Microsoft Entra ID user creation using PowerShell and Microsoft Graph. Skip the portal, reduce human error, and scale identity management."
 date: 2025-03-18T12:00:00Z
+featureimage: "logphile-beast-featured-post.png"
 tags: ["microsoft graph", "powershell", "entra", "azure"]
 categories: ["Azure Identity", "Automation"]
 summary: "Ditch the portal and script like a pro—this post shows you how to create Entra ID users with PowerShell and Microsoft Graph for smarter, faster, mistake-free identity management."

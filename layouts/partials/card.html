@@ -1,0 +1,30 @@
+<!-- Card -->
+<article class="rounded-xl overflow-hidden mb-10 mr-5 flex flex-col main-cards-shadow">
+
+  <!-- Featured Image -->
+  {{ with .Resources.GetMatch .Params.featureimage }}
+    <a href="{{ $.RelPermalink }}">
+      <img 
+        src="{{ .RelPermalink }}" 
+        alt="{{ $.Title }}" 
+        loading="lazy"
+        class="w-full h-48 overflow-hidden object-cover main-cards"
+      />
+    </a>
+  {{ end }}
+  
+  
+  <!-- Content -->
+  <div class="card-content p-4 rounded-x2 overflow-hidden flex flex-col grow bg-[#2e3140]">
+    <h2 class="text-2xl font-extrabold text-white leading-tight mb-2 hover:underline">
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    </h2>
+    <p class="text-base text-article-bg leading-relaxed mt-2 mb-4">{{ .Params.Summary }}</p>
+    
+    <div class="text-sm text-neutral-300 font-bold mt-4 tracking-wide flex justify-between items-center listing-date-time">
+      <span>{{ .Date.Format "Jan 2, 2006" }}</span>
+      
+      <span>{{ .ReadingTime }} min read</span>
+    </div>
+  </div>
+</article>

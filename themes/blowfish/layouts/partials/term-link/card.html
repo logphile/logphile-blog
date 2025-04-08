@@ -31,10 +31,8 @@
     {{ if site.Params.taxonomy.showTermCount | default true }}
     <span class="absolute bottom-0 right-0 m-2">
       <span class="flex">
-        <span
-          class="rounded-md border border-primary-400 px-1 py-[1px] text-xl font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400"
-        >
-        {{ .Count }}
+        <span class="author-taxonomy-tag">
+          {{ . }}
         </span>
       </span>
     </span>

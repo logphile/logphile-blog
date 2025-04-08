@@ -1,41 +1,101 @@
 :root {
-  --color-neutral: 255, 255, 255;
-  --color-neutral-50: 79, 78, 91;
-  --color-neutral-100: 69, 68, 80;
-  --color-neutral-200: 59, 58, 69;
-  --color-neutral-300: 50, 49, 57;
-  --color-neutral-400: 40, 39, 46;
-  --color-neutral-500: 45, 44, 54;
-  --color-neutral-600: 34, 33, 41;
-  --color-neutral-700: 25, 24, 31;
-  --color-neutral-800: 17, 16, 20;
-  --color-neutral-900: 8, 8, 10;
+  /* Base Colors */
+  --color-bg: 52, 52, 52;           /* #343434 – Site background */
+  --color-text: 255, 255, 255;      /* #FFFFFF – Headings, body text, subtitles */
 
-  --color-primary-50: 253, 253, 252;
-  --color-primary-100: 245, 244, 241;
-  --color-primary-200: 230, 229, 226;
-  --color-primary-300: 215, 214, 211;
-  --color-primary-400: 200, 199, 196;
-  --color-primary-500: 245, 244, 241;
-  --color-primary-600: 156, 155, 153;
-  --color-primary-700: 117, 116, 115;
-  --color-primary-800: 78, 77, 76;
-  --color-primary-900: 39, 38, 38;
+  /* Accent Colors */
+  --color-accent-pink: 255, 0, 98;  /* #FF0062 – Optional accent (e.g., buttons, highlights) */
+  --color-accent-yellow: 255, 216, 8; /* #FFD808 – Borders, outlines */
+  --color-accent-purple: 47, 48, 97;  /* #2F3061 – Metadata, tags, sidebar icons */
 
-  --color-secondary-50: 253, 205, 202;
-  --color-secondary-100: 251, 164, 158;
-  --color-secondary-200: 249, 123, 114;
-  --color-secondary-300: 247, 82, 70;
-  --color-secondary-400: 245, 60, 49;
-  --color-secondary-500: 252, 87, 73;
-  --color-secondary-600: 202, 70, 58;
-  --color-secondary-700: 151, 52, 43;
-  --color-secondary-800: 101, 35, 29;
-  --color-secondary-900: 50, 17, 14;
+  /* Usage-specific Mappings */
+  --color-primary-500: var(--color-text);         /* Main text color */
+  --color-secondary-500: var(--color-accent-pink);/* Optional pop color */
+  --coloar-article-bg: 0, 0, 0;
+  --color-card-bg: 66, 66, 66;                     /* Slightly lighter than bg for contrast */
+
+  --color-border: var(--color-accent-yellow);     /* Border color for boxes, cards, tags */
+  --color-meta: var(--color-accent-purple);       /* Use on dates, time-to-read, etc. */
+  --color-tag: var(--color-accent-purple);        /* Sidebar tag pills/icons */
 }
 
+
+/*
+:root {
+  --color-bg: 2,3,212,255;
+  --color-primary-500: 246,36,8,255;
+  --color-secondary-500: 230,230,245;
+  --color-card-bg: 43,41,115,255;
+}
+*/
+
+/*
+:root {
+  --color-bg: 251,246,0,255; 
+  --color-primary-500: 51,216,243,255;
+  --color-secondary-500: 1,1,0,255;
+  --color-card-bg: 1,1,0,255;
+}
+*/
+
+
+/*
+:root {
+  --color-bg: 47, 52, 71;
+  --color-neutral-900: 47, 52, 71;
+
+  --color-primary-500: 254, 250, 251;
+
+  --color-secondary-500: 235, 70, 108;
+
+  --color-card-bg: 234, 189, 83;
+}
+*/
+
+body {
+  background-color: #FFD808;
+  color: rgb(var(--color-text));
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+h1, h2, h3 {
+  color: rgb(var(--color-primary-500));
+  line-height: 1.25;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.25;
+  color: rgb(var(--color-primary-500));
+}
+
+.card-subtitle {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.6;
+}
+
+.card-meta {
+  font-size: 0.875rem;
+  color: #FF0062;
+  font-style: italic;
+  letter-spacing: 0.03em;
+}
+
+/*
+.card-container {
+  background-color: rgb(var(--color-card-bg));
+  border: 1px solid rgb(var(--color-secondary-500));
+  border-radius: 0.75rem;
+  padding: 1rem;
+}
+*/
+
+
 html {
-  font-size: 16pt;
+  font-size: 16px;
 }
 
 footer p,
@@ -48,12 +108,7 @@ div.prose.dark\:prose-invert,
 li,
 p,
 h1, h2, h3, h4, h5, h6 {
-  color: rgb(var(--color-primary-500)) !important;
-}
-
-nav a:hover p,
-nav button:hover {
-  color: #FC5749 !important;
+  color: #FFF;
 }
 
 div.flex.flex-wrap a:hover,
@@ -64,14 +119,16 @@ a.text-base.font-medium.text-gray-500:hover,
 }
 
 div.flex.flex-row.flex-wrap.items-center time {
-  color: rgb(var(--color-secondary-500));
+  color: #F5F4F1;
 }
 
 div.flex.flex-row.flex-wrap.items-center span {
-  color: rgb(var(--color-secondary-500));
+  color: #FF0062;
 }
 
-
+div.flex.flex-row.flex-wrap.items-center span {
+  color: #F5F4F1;
+}
 
 article hr,
 p.border-t,
@@ -79,8 +136,7 @@ hr {
   border-bottom: 1px solid rgb(var(--color-secondary-500)) !important;
   background-color: rgb(var(--color-secondary-500)) !important;
   height: 1px;
-  border: none;
-  margin: 1rem 0;
+  border: none;  
 }
 
 ol,
@@ -93,7 +149,12 @@ li::marker {
 }
 
 svg.fa-search path {
-  fill: rgb(var(--color-secondary-500)) !important;
+  fill: #2A2A72 !important;
+  transition: fill 0.3s ease;
+}
+
+svg.fa-search path:hover{
+  fill: #FF0062 !important;
 }
 
 .privacy-contact {
@@ -204,35 +265,12 @@ section.w-full {
   margin-top: 4rem !important;
 }
 
-/* Slightly shrink blog post cards */
-article.group {
-  transform: scale(0.90) !important;
-  transform-origin: top left !important;
-}
-
-/* Optional: reduce padding inside the cards */
-article.group {
-  padding: 1.5rem !important;
-  border-color: #FC5749 !important;      
-  border-width: .25rem;
-  border-style: inset;
-}
-
-/* Optional: shrink image a bit */
-article.group img {
-  border-radius: .25rem !important;
-}
-
-article.group {
-  background-color: rgb(var(--color-neutral-800)) !important;
-}
-
 a[href="/"] {
   color: rgb(var(--color-secondary-500)) !important;
 }
 
 a[href="/"]:hover {
-  color: white !important;
+  color: rgb(#FA1F16) !important;
 }
 
 /* Override for the site title */
@@ -244,65 +282,51 @@ a.text-base.font-medium.text-gray-500[href="/"]:hover {
   color: white !important;
 }
 
-/* 🔄 Make social icons white by default */
-div.flex.flex-wrap.text-neutral-400 > a {
-  color: rgb(var(--color-primary-500)) !important;
+/*
+.aside-social a {
+  color: rgb(var(--color-primary-500));
+  transition: fill 0.3s ease;
+}
+.aside-social a svg {
+  fill: rgb(var(--color-primary-500));
+  transition: fill 0.3s ease;
 }
 
-/* 🔁 Hover turns them red */
-div.flex.flex-wrap.text-neutral-400 > a:hover {
-  color: rgb(var(--color-secondary-500)) !important;
+.aside-social a:hover svg {
+  fill: rgb(var(--color-secondary-500));
 }
+*/
+
 
 footer p.text-sm {
   color: rgb(var(--color-secondary-500)) !important;
 }
 
 /* Override blog post metadata color */
-.blog-meta {
-  color: #FC5749 !important;
-}
+
 
 .blog-meta span {
-  color: white !important; /* The dots */
-}
-
-/* Make all post card titles bold */
-.card-title {
-  font-weight: 700; /* Bold */
-}
-
-/* Optional variations */
-.card-title.medium {
-  font-weight: 600; /* Semi-bold */
-}
-
-.card-title.extra-bold {
-  font-weight: 800; /* Extra bold */
+  color: #FF0062;
 }
 
 /* Prevent zoom-in cursor on card images */
 .card img.medium-zoom-image,
 .article-link img.medium-zoom-image {
 cursor: pointer !important;
+
 }
 
-/* Ensure card image cursor is correct */
+
+/* Ensure card image cursor is correct 
 .card img,
 .article-link img {
 cursor: pointer !important;
 }
+*/
+
 
 .medium-zoom-image {
   cursor: pointer !important;
-}
-
-.thumbnail_card {
-  background-size: stretch;
-  background-position: top;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-radius: .25rem;
-  box-shadow: 0 0 0px rgba(255, 0, 80, 0);
 }
 
 .flex.flex-row.flex-wrap.items-center > span.text-primary-500 {
@@ -332,7 +356,8 @@ article aside a {
 }
 
 article aside a:hover {
-  color: #FC5749;
+  color: rgb(var(--color-secondary-500));
+  text-shadow: 0 0 6px rgba(var(--color-secondary-500), 0.6);
 }
 
 aside::-webkit-scrollbar {
@@ -348,50 +373,36 @@ aside::-webkit-scrollbar-thumb:hover {
   background: #F5F4F1;
 }
 
-.red-meta,
 .red-meta time,
 .red-meta span {
-  color: #FC5749 !important;
+  color: rgb(var(--color-accent-yellow));  
 }
+
 
 a.text-base.font-medium.text-gray-500[href="/"] {
-  color: rgb(var(--color-secondary-500)) !important;
+  color: #FFF;
   font-size: 1.5rem; /* Adjust size here */
-}
-
-.aside-tags h2 {
-  color: .aside-social h2;
-}
-
-.aside-tags-listed {
-  color: #F5F4F1 !important;
-}
-
-.aside-tags-listed:hover {
-  color: #FC5749 !important;
-}
-
-.aside-social h2 {
-  color: #F5F4F1 !important;
-}
-
-.aside-social-listed {
-  color: #F5F4F1 !important;
-}
-
-.aside-toc h2 {
-  color: #F5F4F1 !important;
-}
-
-.aside-toc-listed {
-  color: #FC5749 !important;
 }
 
 nav a:hover p,
 nav button:hover {
-  color: #FC5749 !important;
+  color: rgb(var(--color-secondary-500));
 }
 
+.aside-tags h2,
+.aside-social h2,
+.aside-toc h2 {
+  color: rgb(var(--color-accent-pink)) !important;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+
+.aside-tags-listed:hover {
+  color: rgb(var(--color-secondary-500)) !important;
+}
 
 
 /* Target highlighted code spans */
@@ -405,18 +416,23 @@ pre code {
 }
 
 code span.s2 {
-  color: #FC5749 !important; /* lime green for strings */
+  color: rgb(var(--color-secondary-500));
+  text-shadow: 0 0 6px rgba(var(--color-secondary-500), 0.6);
 }
 
+/*
 img {
   cursor: zoom-in;
 }
+*/
 
+/*
 img.medium-zoom-image {
   cursor: zoom-in;
   max-width: 100%;
   height: auto;
 }
+*/
 
 article li a[href^="http"] {
   text-decoration: underline !important;
@@ -434,37 +450,6 @@ article li a[href^="http"]:hover {
   max-width: 85ch !important;
 }
 
-.aside-toc ul {
-  list-style: square;
-  padding-left: 1rem;
-}
-
-.aside-toc li {
-  margin-left: 0.25rem;
-  color: var(--text-color);
-}
-
-.aside-toc li:hover{
-  color: #FC5749 !important;
-}
-
-#TableOfContents ul {
-  list-style-position: outside;
-  margin-left: 0;
-  padding-left: 1rem; /* You can reduce this further */
-}
-
-#TableOfContents li {
-  padding-left: 0;
-  margin-bottom: 5px;
-  margin-left: 0;
-}
-
-#TableOfContents li::marker {
-  color: #ef4444; /* Tailwind red-500 */
-  font-size: 1rem;
-}
-
 th, td {
   border: 1px solid #F5F4F1;
   border-collapse: collapse;
@@ -472,8 +457,7 @@ th, td {
   color: #F5F4F1 !important;
 }
 
-
-
+/*
 .wider-image.medium-zoom-image {
   width: 100% !important;
   max-width: none !important;
@@ -481,8 +465,518 @@ th, td {
   margin-left: auto;
   margin-right: auto;
 }
+*/
 
-.no-zoom.medium-zoom-image {
-  pointer-events: none;
-  cursor: default;
+.aside {
+  width: 300px;              /* or 280px depending on your mockup preference */
+  max-width: 300px;
+  min-width: 300px;
+  flex-shrink: 0;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tags a {
+  flex: 1 1 calc(50% - 0.5rem);  /* two per row */
+  box-sizing: border-box;
+}
+
+.sidebar-box {  
+  /*
+  background-color: #2F3061;
+  border: 2px solid rgb(var(--color-secondary-500));
+  border-radius: .75rem;
+  color: rgb(var(--color-text));
+  */
+  padding: 1rem;
+  
+}
+
+/* Only tag links */
+.sidebar-box .tags-grid a {
+  /*
+  background-color: #2F3061;
+  border-color: rgb(var(--color-border));  
+  border-radius: 0.375rem;
+  */
+  padding: 0.25rem 0.75rem;
+  display: inline-block;
+  text-align: center;
+  transition: background-color 0.2s;  
+}
+
+
+/* Optional hover
+.sidebar-box .tags-grid a:hover {
+  background-color: rgb(var(--color-bg));
+  color: #000;
+}
+*/  
+
+/*
+.sidebar-box .tags-title {
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+}
+*/
+
+/*
+.sidebar-box .icons-title {
+  margin-top: .5rem;  
+}
+*/
+
+.sidebar-wrapper {  
+  position: sticky;
+  top: 30px;
+  align-self: flex-start;
+  z-index: 10;
+  margin-left: 20px;
+  background-color: #2F3061;
+  border-radius: 0.75rem;
+  box-shadow: 
+  0 8px 24px rgba(0, 0, 0, 0.3), 
+  0 0 10px rgba(255, 0, 98, 0.3);
+}
+
+.px-4 {
+  padding-left:2rem;
+  padding-right:2rem
+}
+
+article {
+  display: flex;
+  flex-direction: column;
+}
+
+.auto-rows-fr {
+  grid-auto-rows: 1fr;
+}
+
+/* Make all code blocks responsive and prevent layout breaking */
+.highlight {
+  max-width: 100%;
+  overflow-x: auto;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background-color: #2F3061; /* fallback dark bg */
+}
+
+/* Make sure <pre> doesn't stretch the layout */
+.highlight pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-x: auto;
+}
+
+.hover-effect:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgb(var(--color-bg));
+  border-radius: 0.5rem;
+  transition: all 0.3s ease-in-out;
+}
+
+html {
+  background-color: #FFD808;
+  font-size: 1.125rem; /* ~18px */
+}
+
+body,
+p,
+.article-content {
+  font-size: 1rem;        /* fallback = 18px */
+  line-height: 1.7;
+  color: #FFF;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.25;
+  color: #F5F4F1;
+}
+
+.card-subtitle {
+  font-size: 1.05rem;
+  color: rgb(156, 163, 175); /* neutral-400 */
+  line-height: 1.6;
+}
+
+.card-meta {
+  font-size: 0.875rem;
+  color: #FF0062; /* neutral-500 */
+  font-style: italic;
+  letter-spacing: 0.03em;
+  line-height: 1.5;
+}
+
+h1, h2, h3 {
+  line-height: 1.25;
+}
+
+.text-neutral-500 {
+  color: rgb(var(--color-bg));
+}
+
+.tags a,
+.sidebar-box .tags-grid a {
+  margin-top: 5px;
+  display: inline-block;
+  font-size: 1rem;
+  color: #FF0062;  
+  border-color: #FF0062;
+  border-radius: 10px;  
+  background-color: #FFD808;
+  padding: 0.55rem 0.75rem;
+  text-align: left;
+  transition: all 0.3s ease;
+  margin-bottom: 0.3rem;
+}
+
+.tags a:hover,
+.sidebar-box .tags-grid a:hover {
+  background-color: #FF0062;
+  color: #F5F4F1;
+  box-shadow: 0 0 8px rgba(var(--color-accent-yellow), 0.4);
+}
+
+.button {
+  background-color: rgb(var(--color-secondary-500));
+  color: rgb(var(--color-bg));
+  border: none;
+  padding: 0.5rem 1.25rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.button:hover {
+  background-color: rgb(var(--color-card-bg));
+  color: rgb(var(--color-bg));
+  box-shadow: 0 0 12px 3px rgba(var(--color-card-bg), 0.5);
+}
+
+a:hover svg {
+  color: rgb(var(--color-secondary-500));
+  fill: currentColor;
+}
+
+.card {
+  border-radius: 0.75rem;
+  overflow: hidden;  
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);  
+}
+
+.card-content {
+  background-color: #2A2A72; /* your chosen text area bg */
+  padding: 1.5rem;
+}
+
+.main-cards {    
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;  
+}
+
+.main-cards:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px #FF0062;
+}
+
+.main-cards-shadow {
+  border-radius: 0.75rem;
+  box-shadow: 
+  0 8px 24px rgba(0, 0, 0, 0.3), 
+  0 0 10px rgba(255, 0, 98, 0.3);
+}
+
+@font-face {
+  font-family: 'Urbanist';
+  src: url('/assets/fonts/Urbanist/Urbanist-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Urbanist';
+  src: url('/assets/fonts/Urbanist/Urbanist-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Urbanist';
+  src: url('/assets/fonts/Urbanist/Urbanist-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Urbanist';
+  src: url('/assets/fonts/Urbanist/Urbanist-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Urbanist';
+  src: url('/assets/fonts/Urbanist/Urbanist-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Urbanist';
+  src: url('/assets/fonts/Urbanist/Urbanist-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Urbanist';
+  src: url('/assets/fonts/Urbanist/Urbanist-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Urbanist';
+  src: url('/assets/fonts/Urbanist/Urbanist-ExtraBoldItalic.ttf') format('truetype');
+  font-weight: 800;
+  font-style: italic;
+}
+
+body {
+  font-family: 'Urbanist', sans-serif;
+}
+
+em {
+  font-style: italic;
+}
+
+html {
+  font-family: 'Urbanist', sans-serif;
+}
+
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/JetBrainsMono/JetBrainsMono-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/JetBrainsMono/JetBrainsMono-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Apply to code blocks */
+code, pre, kbd, samp {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* If using Tailwind's prose plugin */
+.prose code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+}
+
+.home-social-icons .social-icon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.5rem;
+  height: 2.5rem;  
+  background-color: transparent;
+  color: #FFD808;
+  transition: all 0.3s ease-in-out;
+  font-size: 1.25rem;
+  transform: translateY(0);  
+}
+.home-social-icons .social-icon:hover {
+  color: #2A2A72;  
+  box-shadow: 0 0 6px rgba(42, 42, 114, 0.5);
+  transform: translateY(-4px); /* slight lift */
+  border-radius: 9999px;
+}
+
+.home-social-icons .social-icon svg {
+  fill: currentColor;
+  width: 2.5rem;
+  height: 2.5rem;
+  transition: fill 0.3s ease-in-out;
+}
+
+.home-byline {
+  color: #2F3061 !important;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.listing-date-time {
+  color: #FFD808;
+}
+
+.logphile-logo {
+  height: 4.5rem;
+}
+
+.about-wrapper {
+  background-color: #2F3061;
+  border-radius: 0.75rem;
+  box-shadow: 
+  0 8px 24px rgba(0, 0, 0, 0.3), 
+  0 0 10px rgba(255, 0, 98, 0.3);
+  padding: 2.5rem;
+  margin-right: 25px;
+}
+
+nav a > p {
+  color: #FF0062 !important;
+  font-size: 1.125rem;     /* text-lg */
+  font-weight: 700;        /* bold */
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
+
+nav a:hover > p {
+  color: #2F3061 !important;  
+}
+
+/* Entire blurred background overlay */
+#search-wrapper {
+  background-color: rgba(47, 48, 97, 0.75) !important; /* Purple, semi-transparent */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* Modal container */
+#search-modal {
+  background-color: #2F3061 !important; /* Deep purple */
+  border: 2px solid #FFD808 !important; /* Yellow border */
+  border-radius: 1rem;
+  box-shadow: 0 0 25px rgba(255, 0, 98, 0.3);
+}
+
+/* Search icon color (magnifying glass) */
+#search-modal svg {
+  color: #FFD808 !important;
+  fill: currentColor !important;
+}
+
+/* Search input field */
+#search-query {
+  color: #FF0062 !important; /* Neon pink text */
+  font-family: 'Urbanist', sans-serif;
+  font-size: 1.2rem;
+  caret-color: #FFD808;
+}
+
+#search-query::placeholder {
+  color: #ffe86b !important;
+  opacity: 50%;
+}
+
+/* Close button (X) */
+#close-search-button {
+  color: #FFD808 !important;
+  transition: transform 0.2s ease;
+}
+
+#close-search-button:hover {
+  color: #FF0062 !important;
+  transform: scale(1.2);
+}
+
+#search-query:focus {
+  outline: none !important;
+  box-shadow: 0 0 8px #FF0062, 0 0 12px #FF0062; /* pink glow */
+  border: 1px solid #FF0062;
+}
+
+.sidebar-panel {
+  background-color: #2F3061;  
+  border-radius: 0.75rem;  
+  align-items: center;
+}
+
+.side-icons {
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+}
+
+.social-icons-grid {
+  display:inline;
+  grid-template-columns: repeat(2, 2fr);
+  gap: 3rem !important;
+  justify-items: center;
+  align-items: center;
+  margin: 0 auto;
+  width: max-content;
+}
+
+.sidebar-hr {
+  border: none;
+  border-top: 2px solid #FF0062; /* neon pink */
+  margin: .5rem auto;
+  width: 70%;
+  opacity: 0.8;
+  box-shadow: 0 0 6px rgba(255, 0, 98, 0.7);
+}
+
+.author-taxonomy-tag {
+  display: inline-block;
+  background-color: #FFD808;
+  color: #F5F4F1;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  margin: 0.25rem;
+  line-height: 1;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.author-taxonomy-tag:hover {
+  background-color: #FF0062;  
+  box-shadow: 0 0 6px rgba(255, 0, 98, 0.4);
+  cursor: pointer;
+}
+
+div.flex.flex-row.flex-wrap.items-center span[onclick] {
+  background-color: #FF0062;
+  color: #FFF;  
+  padding: 2px 6px;
+  border-radius: 6px;
+  margin-right: 4px;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none !important;  /* 💥 Kill that border */
+}
+
+div.flex.flex-row.flex-wrap.items-center span:hover {
+  background-color: #FFF;
+  color: #FF0062;
+  padding: 2px 6px;
+  border-radius: 6px;
+  margin-right: 4px;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none !important;  /* 💥 Kill that border */
+}
+
+/* Target badges used in author taxonomy */
+span.border-primary-400 {
+  border: none !important;  
+}
+
+.prose :where(h1):not(:where([class~=not-prose],[class~=not-prose] *)) {
+  color: #F5F4F1;
 }

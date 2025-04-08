@@ -2,6 +2,7 @@
 title: "X-Men Colors in the Windows Terminal"
 description: "A fun and nostalgic Windows Terminal theme inspired by the 90s X-Men comic era, using bold blues, yellows, and whites for a clean and readable terminal experience."
 date: 2025-03-24T12:00:00Z
+featureimage: "logphile-storm-interface-featured-post.png"
 tags: ["windows", "terminal", "themes", "customization", "x-men"]
 categories: ["tools", "workflow"]
 summary: "Channel Jim Lee’s 90s X-Men in your Windows Terminal without the comic book store smell. A simple tweak that makes terminal life a little less painful."
@@ -9,7 +10,7 @@ draft: false
 showHero: false
 ---
 
-🧬 Customizing Windows Terminal with X-Men Colors
+## 🧬 Customizing Windows Terminal with X-Men Colors
 
 After reformatting my machine recently, I took the opportunity to rebuild my terminal environment from scratch. One of the first customizations? Knock the color out so there's something to look at while you keep customizing.
 
@@ -17,7 +18,7 @@ If you're like me, you're old. Since you're reading this post, you're probably a
 
 ---
 
-🎨 Meet the “X-Men” Theme
+## 🎨 Meet the “X-Men” Theme
 
 Here’s a snapshot of the terminal with the theme applied:
 
@@ -75,6 +76,28 @@ If you're new to Windows Terminal and asking where the settings.json file is...
 Just make sure to set your terminal profile to use **"colorScheme": "X-Men"**!
 {{< /alert >}}
 
+```powershell
+$propertiesToCheck = @("Department", "JobTitle", "UsageLocation", "Manager", "MobilePhone", "OfficeLocation")
+$results = @()
+
+$users = Get-MgUser -All -Property "Id,DisplayName,UserPrincipalName,Department,JobTitle,UsageLocation,Manager,MobilePhone,OfficeLocation"
+
+foreach ($user in $users) {
+    $missingProps = @()
+    foreach ($prop in $propertiesToCheck) {
+        if (-not $user.$prop) {
+            $missingProps += $prop
+        }
+    }
+
+    if ($missingProps.Count -gt 0) {
+        $results += [PSCustomObject]@{
+            DisplayName = $user.DisplayName
+            UserPrincipalName = $user.UserPrincipalName
+            MissingProperties = ($missingProps -join ", ")
+        }
+    }
+}
 
 
 :question: Why Customize?

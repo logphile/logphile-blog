@@ -1,91 +1,49 @@
 <!DOCTYPE html>
-<html lang="{{ with .Site.Params.isoCode | default (.Site.LanguageCode | default " en") }} {{- . -}} {{ end }}" dir="{{ if .Site.Params.rtl | default false -}}
-    rtl
-  {{- else -}}
-    ltr
-  {{- end }}" class="scroll-smooth" data-default-appearance="{{ .Site.Params.defaultAppearance | default " dark" }}"
-  data-auto-appearance="{{ .Site.Params.autoSwitchAppearance | default " true" }}">
+<html lang="{{ with .Site.Params.isoCode | default (.Site.LanguageCode | default " en") }}{{ . }}{{ end }}" dir="{{ if .Site.Params.rtl | default false }}rtl{{ else }}ltr{{ end }}"
+  class="scroll-smooth"
+  data-default-appearance="{{ .Site.Params.defaultAppearance | default "dark" }}"
+  data-auto-appearance="{{ .Site.Params.autoSwitchAppearance | default "true" }}">
 {{- partial "head.html" . -}}
 
 <body class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32 scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600">
- 
+
   <div id="the-top" class="absolute flex self-center">
     <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
-      href="#main-content"><span
-        class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>{{ i18n
-      "nav.skip_to_main" }}</a>
+      href="#main-content"><span class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>{{ i18n "nav.skip_to_main" }}</a>
   </div>
+
   {{ $header := print "partials/header/" .Site.Params.header.layout ".html" }}
   {{ if templates.Exists $header }}
-  {{ partial $header . }}
+    {{ partial $header . }}
   {{ else }}
-  {{ partial "partials/header/basic.html" . }}
+    {{ partial "partials/header/basic.html" . }}
   {{ end }}
+
   <div class="relative flex flex-col grow">
-   
     <main id="main-content" class="grow">
       {{ if .IsHome }}
         {{ block "main" . }}{{ end }}
       {{ else }}
-        <div class="flex flex-col lg:flex-row gap-10 max-w-7xl mx-auto px-4 py-10">
-          <div class="flex-grow">
-            {{ block "main" . }}{{ end }}
-          </div>
-
-<!-- Unified Right Sidebar Column -->
-<div class="hidden lg:block w-full max-w-[200px] sticky top-24 self-start text-sm text-neutral-400 dark:text-neutral-400 ml-6 mt-20 space-y-8">
-
-  <aside class="aside-social">
-    <hr class="mt-5 mb-2 border-t border-secondary-500 w-full thicc">
-    <h2 class="text-2xl font-bold mt-1 mb-1 text-primary-500">Connect</h2>
-    <hr class="mt-2 mb-2 border-t border-secondary-500 w-full thicc">
-    <div class="flex flex-wrap gap-3 text-2xl mb-10">
-      {{ partial "author-links.html" . }}
-    </div>
-  </aside>
-
-
-
-  <aside class="aside-tags">
-    <hr class="mt-5 mb-2 border-t border-secondary-500 w-full thicc">
-    <h2 class="text-2xl font-bold mt-1 mb-1 text-primary-500">Tags</h2>
-    <hr class="mt-2 mb-2 border-t border-secondary-500 w-full thicc">
-    <ul class="space-y-1">
-      {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
-        <li>
-          <a href="{{ "/tags/" | relLangURL }}{{ $name | urlize }}/" class="hover:text-secondary-500 aside-tags-listed">
-            #{{ $name }} ({{ len $taxonomy }})
-          </a>
-        </li>
-      {{ end }}
-    </ul>
-  </aside>
-
-
-
-</div>
-
-
+      <div class="flex flex-col lg:flex-row gap-8 w-full max-w-[110rem] mx-auto px-4 py-10">
+        <div class="flex-grow min-w-0">
+          {{ block "main" . }}{{ end }}
         </div>
+        <aside class="hidden lg:block w-[36rem] shrink-0 mt-8 sidebar-wrapper">
+          {{ partial "sidebar.html" . }}
+        </aside>
+      </div>
       {{ end }}
     </main>
 
-      {{ if and (.Site.Params.footer.showScrollToTop | default true) (gt .WordCount 1) }}
+    {{ if and (.Site.Params.footer.showScrollToTop | default true) (gt .WordCount 1) }}
       {{- partial "scroll-to-top.html" . -}}
-      {{ end }}
-    </main>
+    {{ end }}
     {{- partial "footer.html" . -}}
     {{ if .Site.Params.enableSearch | default false }}
-    {{- partial "search.html" . -}}
+      {{- partial "search.html" . -}}
     {{ end }}
   </div>
 
   {{ partial "cookie-consent.html" . }}
-
 </body>
-{{ if .Site.Params.buymeacoffee.globalWidget | default false }}
-<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
-  data-id="{{ .Site.Params.buymeacoffee.identifier }}" data-description="Support me on Buy me a coffee!" data-message="{{ .Site.Params.buymeacoffee.globalWidgetMessage | default "" }}"
-  data-color="{{ .Site.Params.buymeacoffee.globalWidgetColor | default "#FFDD00" }}" data-position="{{ .Site.Params.buymeacoffee.globalWidgetPosition | default "Left" }}" data-x_margin="18" data-y_margin="18"></script>
-{{ end }}
 </html>

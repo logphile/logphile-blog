@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Azure on logPhile</title>
+    <title>Azure on </title>
     <link>http://localhost:1313/tags/azure/</link>
-    <description>Recent content in Azure on logPhile</description>
+    <description>Recent content in Azure on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>phil@logphile.com (Phil Boyce)</managingEditor>

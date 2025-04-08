@@ -19,8 +19,28 @@ enableEmoji = true
 googleAnalytics = "G-FZVBM8WM6B"
 
 [params]
-  colorScheme = "custom"
-  customCSS = ["css/custom.css"]
+  [[params.social]]
+  name = "Github"
+  icon = "github"
+  url = "https://github.com/logphile"
+
+  [[params.social]]
+  name = "Linkedin"
+  icon = "linkedin"
+  url = "https://www.linkedin.com/in/phil-boyce"
+
+  [[params.social]]
+  name = "X-Twitter"
+  icon = "x-twitter"
+  url = "https://x.com/LogPhile"
+
+  [[params.social]]
+  name = "Email"
+  icon = "envelope"
+  url = "mailto:phil@logphile.com"
+  
+colorScheme = "custom"
+customCSS = ["css/custom.css"]
 
 [pagination]
   pagerSize = 100

@@ -3,6 +3,7 @@ title: "Faking an Org Chart in Entra: Mapping Hierarchies with PowerShell + Grap
 description: "Use Microsoft Graph and PowerShell to extract and visualize manager relationships in Microsoft Entra ID."
 meta: "Extract org chart data from Microsoft Entra ID using PowerShell and Microsoft Graph. Build a tree view from manager properties and export to JSON or Graphviz."
 date: 2025-03-23T12:00:00Z
+featureimage: "logphile-spiderman-torn-mask-featured-post.jpg"
 tags: ["entra id", "microsoft graph", "powershell", "org chart", "automation"]
 categories: ["Azure Identity", "Automation"]
 summary: "What if your org chart wasn’t buried in HR PDFs but lived where access decisions are made? Use Microsoft Graph to recursively trace Entra ID hierarchies."

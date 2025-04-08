@@ -2,14 +2,14 @@ disabled = false
 languageCode = "en"
 languageName = "English"
 weight = 1
-title = "logPhile"
+#title = "logPhile"
 
 [params]
   displayName = "EN"
   isoCode = "en"
   rtl = false
   dateFormat = "January 2, 2006"
-  # logo = "img/logo.png"
+  logo = "images/logo.png"
   secondaryLogo = "logphile-avatar.jpg"
   description = "Lorum ipsum lorum ipsum"
   copyright = "&copy; 2025 logPhile. All Rights Reserved."

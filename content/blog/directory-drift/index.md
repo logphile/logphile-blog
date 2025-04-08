@@ -3,14 +3,15 @@ title: "Directory Drift: Auditing Incomplete Entra User Profiles with PowerShell
 description: "Audit Microsoft Entra ID users for missing key properties using PowerShell and Microsoft Graph."
 meta: "Check Microsoft Entra ID user profiles for missing department, title, and usageLocation using PowerShell and Graph. Prevent dynamic group failures and policy misfires."
 date: 2025-03-28T12:00:00Z
+featureimage: "logphile-profx-data-center-featured-post.png"
 tags: ["entra id", "microsoft graph", "powershell", "automation", "user audit"]
 categories: ["Azure Identity", "Automation"]
 summary: "Missing user metadata can break your policies, groups, and reports. Learn how to audit Entra ID user profiles using PowerShell and Microsoft Graph."
 draft: false
 showHero: false
----
+---  
 
-If it's not in Entra, it doesn't exist—to your policies, dynamic groups, or audit logs. Missing user metadata like `department`, `title`, or `usageLocation` can silently break downstream automations and cause inconsistencies that are hard to debug.
+If it's not in Entra, it doesn't exist—to your policies, dynamic groups, or audit logs. Missing user metadata like `department`, `title`, or `usageLocation` can silently break downstream automations and cause inconsistencies that are hard to debug.  
 
 This post walks through how to **audit Entra ID user profiles** using **PowerShell and Microsoft Graph**, flagging any accounts with incomplete or empty property fields.
 
