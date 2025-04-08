@@ -1101,7 +1101,7 @@ span.border-primary-400 {
 .flip-card-back p {
   padding: 20px;
   color: #FFD808;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 700;
   line-height: 1.4;
 }
@@ -1121,4 +1121,8 @@ span.border-primary-400 {
 .pronounce-phonetic {
   font-size: 2rem;  
   color: #FFD808;
+}
+
+.about-logphile {
+  color: #FF0062;
 }
