@@ -5,10 +5,7 @@ keywords: ["azure", "powershell", "identity", "entra", "automation", "blog"]
 #image: "site-preview.png"
 robots: "index, follow"
 ---
-
-<span style="color: white;">
-  Hey, I’m <strong>Phil Boyce</strong>, and <a href="https://www.logphile.com" style="color:white; font-weight: bold;">logPhile</a> is my space to learn out loud.
-</span>
+Hey, I’m Phil, and this is my blog where I learn out loud.
 
 I got into computers the old-school way—through [MUDs](https://en.wikipedia.org/wiki/Multi-user_dungeon), BBSes, curiosity, and a dial-up connection. This became my one and only ask. While my friends were saving up for SNES cartridges, I was saving lawn-mowing money for a 28.8k modem. And I never really stopped.
 

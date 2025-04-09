@@ -14,8 +14,8 @@ enableCodeCopy = true
 
 [params]
   customCSS = ["/css/custom.css"]
-
   logo = "images/logo.png"
+  
 
 replyByEmail = false
 

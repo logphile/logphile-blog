@@ -1,10 +1,3 @@
----
-title: "logPhile@blog:~$ | The Logs Know What Broke First"
-description: "Log don't lie. A personal record of technical process, terminal lessons, and the art of keeping things working."
-keywords: ["azure", "powershell", "identity", "entra", "automation", "blog"]
-#image: "site-preview.png"
-robots: "index, follow"
----
 <h1 class="mt-2 mb-2 text-4xl font-extrabold text-neutral-900 dark:text-neutral">Privacy Notice</h1>
 <hr class="mt-3 mb-6 border-neutral-700 dark:border-neutral-600 thicc">
 

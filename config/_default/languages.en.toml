@@ -2,7 +2,8 @@ disabled = false
 languageCode = "en"
 languageName = "English"
 weight = 1
-#title = "logPhile"
+
+
 
 [params]
   displayName = "EN"
@@ -11,7 +12,8 @@ weight = 1
   dateFormat = "January 2, 2006"
   logo = "images/logo.png"
   secondaryLogo = "images/logphile-avatar.jpg"
-  description = "Lorum ipsum lorum ipsum"
+  
+  description = "Log don't lie. A personal record of technical process, terminal lessons, and the art of keeping things working."
   copyright = "&copy; 2025 logPhile. All Rights Reserved."
 
  [params.author]
@@ -27,3 +29,4 @@ weight = 1
      { x-twitter = "https://x.com/LogPhile" },
      { email = "mailto:phil@logphile.com" },
    ]
+

@@ -53,9 +53,11 @@
       {{ .Key }}
     </h2>
     {{ end }}
-    {{ range .Pages }}
-    {{ partial "article-link/simple.html" . }}
-    {{ end }}
+    <div class="grid grid-cols-1 md:grid-cols-2 mt-8 gap-6">
+      {{ range .Pages }}
+        {{ partial "card.html" . }}
+      {{ end }}
+    </div>
     {{ end }}
   </section>
 
