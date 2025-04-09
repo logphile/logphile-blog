@@ -1,9 +1,10 @@
 ---
-description: "About Phil Boyce – Cloud, Systems, and IT Infrastructure"
-showTableOfContents: false
-showAuthor: true
+title: "logPhile@blog:~$ | The Logs Know What Broke First"
+description: "Log don't lie. A personal record of technical process, terminal lessons, and the art of keeping things working."
+keywords: ["azure", "powershell", "identity", "entra", "automation", "blog"]
+#image: "site-preview.png"
+robots: "index, follow"
 ---
-
 
 <span style="color: white;">
   Hey, I’m <strong>Phil Boyce</strong>, and <a href="https://www.logphile.com" style="color:white; font-weight: bold;">logPhile</a> is my space to learn out loud.

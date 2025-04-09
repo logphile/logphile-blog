@@ -262,6 +262,10 @@ section.container > header {
   margin-top: 4rem !important;
 }
 
+section.w-full.tags-rm-margin {
+  margin-top: 2rem !important;  
+}
+
 section.w-full {
   margin-top: 4rem !important;
 }
@@ -1125,4 +1129,43 @@ span.border-primary-400 {
 
 .about-logphile {
   color: #FF0062;
+}
+
+.article.tag-spef-border {
+  background-color: #2F3061;
+  border: 2px solid #FF0062;
+  color: #FFD808;
+  text-align: center;  
+  border-radius: 1rem;
+  box-shadow: 0 10px 20px rgba(255, 0, 98, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-weight: 700;  
+  max-width: 200px;
+}
+
+.article.tag-spef-border:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 12px 25px rgba(255, 0, 98, 0.35);
+}
+
+.article.tag-spef-border a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.article.tag-spef-border .text-sm {
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 400;  
+  opacity: 0.85;
+}
+
+.article.tag-spef-border .text-lg {
+  font-size: 1.125rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: none;
+  text-overflow: ellipsis;
+  display: inline-block;
+  max-width: 100%; /* <- THIS IS THE KEY */
 }

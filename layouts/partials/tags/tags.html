@@ -45,7 +45,7 @@
 
   {{ if not $cardView }}
 
-  <section class="space-y-10 w-full">
+  <section class="space-y-10 w-full space-tags">
     {{ range (.Paginate (.Pages.GroupByDate "2006")).PageGroups }}
     {{ if $groupByYear }}
     <h2 class="mt-12 text-2xl font-bold text-neutral-700 first:mt-8 dark:text-neutral-300">
