@@ -17,6 +17,9 @@ This post walks through how to **audit Entra ID user profiles** using **PowerShe
 
 ---
 
+
+{{< figure src="/icons/face-lock-EntraDrift.svg" alt="Lock Icon" class="icon-inline" >}}
+
 ## ⚙️ Prerequisites
 
 - PowerShell 7+
@@ -42,7 +45,7 @@ We’ll be checking each user for the following missing or blank fields:
 - `jobTitle`
 - `usageLocation`
 - `manager`
-- Optional: `mobilePhone`, `officeLocation`
+- `mobilePhone`, `officeLocation` (both optional)
 
 You can customize this based on your environment.
 
@@ -76,7 +79,7 @@ foreach ($user in $users) {
 $results | Format-Table -AutoSize
 ```
 
-## The Results
+## 🧾 The Results
 
 ```bash
 PS C:\Users\logphile> New-SmartUser $propertiesToCheck = @("Department", "JobTitle", "UsageLocation", "Manager", "MobilePhone", "OfficeLocation")

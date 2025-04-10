@@ -3,7 +3,10 @@ languageCode = "en"
 languageName = "English"
 weight = 1
 
-
+metaTitle = "logPhile@blog:~$ | The Logs Know What Broke First"
+description = "Log don't lie. A personal record of technical process, terminal lessons, and the art of keeping things working."
+keywords = ["cloud", "terminal", "logs", "automation", "tech", "shell", "scripting", "systems"]
+robots = "index, follow"
 
 [params]
   displayName = "EN"
