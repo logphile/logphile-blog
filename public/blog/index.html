@@ -35,8 +35,8 @@
   
   
   
-  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.ed69c6f8c50dfac90473500705481c74ce5aeb51e461548f87e09ccb298de0e89f3aa9a378405acdd11f83f6557473c40ac9026ddcac6fa873eed6bfc20b7f37.css"
-    integrity="sha512-7WnG&#43;MUN&#43;skEc1AHBUgcdM5a61HkYVSPh&#43;CcyymN4OifOqmjeEBazdEfg/ZVdHPECskCbdysb6hz7ta/wgt/Nw==" />
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.7ff3b5cf801df45b739589e71c0bee9b690fd516577e3d3bf662c0440e1f197610a342f1e4308bf508431be3039a13f38f3f41d497bcbd1a047d8a55e1a19247.css"
+    integrity="sha512-f/O1z4Ad9FtzlYnnHAvum2kP1RZXfj079mLARA4fGXYQo0Lx5DCL9QhDG&#43;MDmhPzjz9B1Je8vRoEfYpV4aGSRw==" />
   
   
   <script type="text/javascript" src="/js/appearance.min.a945cf4247d18e2a51e932a3f0c7f7c8ba05fc067f6857175e078d064ce60d2dd6bab8c141d8d3090fe662ddc63127bc93cd5faa86f9049c6af0cb8e8f93f29d.js"
@@ -417,9 +417,9 @@
       
     
 
-    <div class="grid grid-cols-1 md:grid-cols-2 mt-8 gap-6">
+    <div class="grid gap-8 mt-8 recent-grid">
       
-        
+      
 <article class="rounded-xl overflow-hidden mb-10 mr-5 flex flex-col main-cards-shadow">
 
   
@@ -436,7 +436,7 @@
   
   
   
-  <div class="card-content p-4 rounded-x2 overflow-hidden flex flex-col grow bg-[#2e3140]">
+  <div class="card-content p-6 rounded-x2 overflow-hidden grow flex flex-col">
     <h2 class="text-2xl font-extrabold text-white leading-tight mb-2 hover:underline">
       <a href="/blog/directory-drift/">Directory Drift: Auditing Incomplete Entra User Profiles with PowerShell &#43; Graph</a>
     </h2>
@@ -449,8 +449,9 @@
     </div>
   </div>
 </article>
+
       
-        
+      
 <article class="rounded-xl overflow-hidden mb-10 mr-5 flex flex-col main-cards-shadow">
 
   
@@ -467,7 +468,7 @@
   
   
   
-  <div class="card-content p-4 rounded-x2 overflow-hidden flex flex-col grow bg-[#2e3140]">
+  <div class="card-content p-6 rounded-x2 overflow-hidden grow flex flex-col">
     <h2 class="text-2xl font-extrabold text-white leading-tight mb-2 hover:underline">
       <a href="/blog/windows-terminal-xmen-colors/">X-Men Colors in the Windows Terminal</a>
     </h2>
@@ -480,8 +481,9 @@
     </div>
   </div>
 </article>
+
       
-        
+      
 <article class="rounded-xl overflow-hidden mb-10 mr-5 flex flex-col main-cards-shadow">
 
   
@@ -498,7 +500,7 @@
   
   
   
-  <div class="card-content p-4 rounded-x2 overflow-hidden flex flex-col grow bg-[#2e3140]">
+  <div class="card-content p-6 rounded-x2 overflow-hidden grow flex flex-col">
     <h2 class="text-2xl font-extrabold text-white leading-tight mb-2 hover:underline">
       <a href="/blog/faking-org-chart/">Faking an Org Chart in Entra: Mapping Hierarchies with PowerShell &#43; Graph</a>
     </h2>
@@ -511,8 +513,9 @@
     </div>
   </div>
 </article>
+
       
-        
+      
 <article class="rounded-xl overflow-hidden mb-10 mr-5 flex flex-col main-cards-shadow">
 
   
@@ -529,7 +532,7 @@
   
   
   
-  <div class="card-content p-4 rounded-x2 overflow-hidden flex flex-col grow bg-[#2e3140]">
+  <div class="card-content p-6 rounded-x2 overflow-hidden grow flex flex-col">
     <h2 class="text-2xl font-extrabold text-white leading-tight mb-2 hover:underline">
       <a href="/blog/az-graph-powershell/">Az vs Graph: What PowerShell Module to Use (and When)</a>
     </h2>
@@ -542,8 +545,9 @@
     </div>
   </div>
 </article>
+
       
-        
+      
 <article class="rounded-xl overflow-hidden mb-10 mr-5 flex flex-col main-cards-shadow">
 
   
@@ -560,7 +564,7 @@
   
   
   
-  <div class="card-content p-4 rounded-x2 overflow-hidden flex flex-col grow bg-[#2e3140]">
+  <div class="card-content p-6 rounded-x2 overflow-hidden grow flex flex-col">
     <h2 class="text-2xl font-extrabold text-white leading-tight mb-2 hover:underline">
       <a href="/blog/ditch-the-portal-create-entra-users-with-powershell-plus-graph/">Ditch the Portal: Create Entra Users with PowerShell &#43; Graph</a>
     </h2>
@@ -573,8 +577,24 @@
     </div>
   </div>
 </article>
+
       
     </div>
+      <style>
+        @media (min-width: 640px) {
+          .recent-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+        }
+        @media (min-width: 1024px) {
+          .recent-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+          }
+        }
+      </style>
+    
+
+    
 
     
   </main>

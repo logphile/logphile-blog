@@ -20,7 +20,7 @@ enableCodeCopy = true
 replyByEmail = false
 
 # mainSections = ["section1", "section2"]
- robots = "/static/robots.txt"
+robots = "static/robots.txt"
 
 disableImageOptimization = false
 disableTextInHeader = false

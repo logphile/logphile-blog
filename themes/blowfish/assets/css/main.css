@@ -1,6 +1,6 @@
 /*! Blowfish | MIT License | https://github.com/nunocoracao/blowfish */
 
-@import 'components/zen-mode.css';
+/* @import 'components/zen-mode.css'; */
 
 @tailwind base;
 @tailwind components;
@@ -29,16 +29,20 @@ body button {
   @apply hidden;
 }
 
-/* RTL support */
+/* RTL support
 .prose blockquote {
   @apply rtl:pr-4 rtl:border-l-0 rtl:border-r-4;
 }
+*/
 
+/*
 .prose ul>li,
 .prose ol>li {
   @apply rtl:pl-0 rtl:pr-2 rtl:mr-7;
 }
+*/
 
+/*
 .prose ol>li:before,
 .prose ul>li:before {
   @apply rtl:left-auto rtl:right-1;
@@ -49,10 +53,12 @@ body button {
   @apply rtl:pr-0;
 }
 
+/*
 .prose thead td:last-child,
 .prose thead th:last-child {
   @apply rtl:pl-0;
 }
+*/
 
 /* Adjust first child within prose */
 .prose div.min-w-0.max-w-prose>*:first-child {
@@ -66,16 +72,24 @@ body button {
 }
 
 .toc ul ul {
-  @apply ltr:pl-4 rtl:pr-4;
+  @apply ltr:pl-4;
 }
+
+/*
+.toc ul ul {
+  @apply rtl:pr-4;
+}
+*/
 
 .toc a {
   @apply font-normal text-neutral-700 dark:text-neutral-400;
 }
 
+/*
 .toc ul>li {
   @apply rtl:mr-0;
 }
+*/
 
 /* Code Copy */
 .highlight-wrapper {

@@ -690,6 +690,7 @@ a:hover svg {
 .card-content {
   background-color: #2A2A72; /* your chosen text area bg */
   padding: 1.5rem;
+  height: 250px;
 }
 
 .main-cards {    
@@ -1248,3 +1249,6 @@ span.border-primary-400 {
   display: inline-block;
   vertical-align: middle;
 }
+
+
+

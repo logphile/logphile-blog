@@ -1,3 +1,24 @@
+{{ define "head" }}
+  <style>
+    .recent-grid {
+      display: grid;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      gap: 2rem;
+    }
+
+    @media (min-width: 640px) {
+      .recent-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .recent-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+  </style>
+  {{ end }}
 {{ define "main" }}
   <main class="main-content">
     <div><h1 class="mt-8 text-4xl font-extrabold mr-5 tag-spef">latest<span class="bash-suffix">@logphile:~$</span>
@@ -12,11 +33,26 @@
       
     {{ end }}
 
-    <div class="grid grid-cols-1 md:grid-cols-2 mt-8 gap-6">
+    <div class="grid gap-8 mt-8 recent-grid">
       {{ range .Pages }}
-        {{ partial "card.html" . }}
+      {{ partial "card.html" . }}
       {{ end }}
     </div>
+      <style>
+        @media (min-width: 640px) {
+          .recent-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+        }
+        @media (min-width: 1024px) {
+          .recent-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+          }
+        }
+      </style>
+    
+
+    
 
     {{ partial "pagination.html" . }}
   </main>
