@@ -24,7 +24,7 @@ jobs:
         run: sudo apt-get install hugo
 
       - name: Build site with Hugo
-        run: hugo --baseURL "https://logphile.com/" --minify
+        run: hugo --config config.toml --baseURL "https://logphile.com/" --minify
 
       - name: Build And Deploy
         id: builddeploy
