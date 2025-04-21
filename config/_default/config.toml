@@ -2,6 +2,9 @@
 # Refer to the theme docs for more details about each of these parameters.
 # https://blowfish.page/docs/getting-started/
 
+configDir = "config"
+markup = "markup.toml"
+
 theme = "blowfish"
 baseURL = "https://logphile.com"
 defaultContentLanguage = "en"
@@ -40,10 +43,11 @@ googleAnalytics = "G-FZVBM8WM6B"
   url = "mailto:phil@logphile.com"
   
 colorScheme = "custom"
-customCSS = ["css/custom.css"]
+customCSS = ["css/custom.css", "css/icons.css"]
 
 [pagination]
-  pagerSize = 100
+  paginate = 4
+  pagerSize = 4
 
 [imaging]
   anchor = 'Center'

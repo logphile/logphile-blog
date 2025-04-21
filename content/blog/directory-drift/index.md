@@ -9,18 +9,18 @@ categories: ["Azure Identity", "Automation"]
 summary: "Missing user metadata can break your policies, groups, and reports. Learn how to audit Entra ID user profiles using PowerShell and Microsoft Graph."
 draft: false
 showHero: false
----  
-
-If it's not in Entra, it doesn't exist—to your policies, dynamic groups, or audit logs. Missing user metadata like `department`, `title`, or `usageLocation` can silently break downstream automations and cause inconsistencies that are hard to debug.  
-
-This post walks through how to **audit Entra ID user profiles** using **PowerShell and Microsoft Graph**, flagging any accounts with incomplete or empty property fields.
+---
 
 ---
 
+If it's not in Entra, it doesn't exist—to your policies, dynamic groups, or audit logs. Missing user metadata like {{< glow >}}department, {{< /glow >}}{{< glow >}}title, {{< /glow >}}or {{< glow >}}usageLocation{{< /glow >}}can silently break downstream automations and cause inconsistencies that are hard to debug.  
 
-{{< figure src="/icons/face-lock-EntraDrift.svg" alt="Lock Icon" class="icon-inline" >}}
+This post walks through how to{{< glow >}} audit Entra ID user profiles{{< /glow >}} using {{< glow >}}PowerShell and Microsoft Graph,{{< /glow >}} flagging any accounts with incomplete or empty property fields.
 
-## ⚙️ Prerequisites
+---
+{{< headingrow icon="logphile-icon-fire" text="Prerequisites" >}}
+<br><br>
+
 
 - PowerShell 7+
 - [Microsoft Graph PowerShell SDK](https://learn.microsoft.com/en-us/powershell/microsoftgraph/installation)
@@ -32,26 +32,26 @@ Connect-MgGraph -Scopes "User.Read.All", "Directory.Read.All"
 ```
 
 {{< alert icon="circle-info" cardColor="#F5F4F1" iconColor="#FC5749" textColor="#2D2C36" >}}
-Note: You only need read access for this operation, not User.Write.All.
+Note: You only need read access for this operation, not *User.Write.All*.
 {{< /alert >}}
 
 ---
 
-## 🔍 Properties We’re Auditing
+{{< headingrow icon="logphile-checklist" text="Properties We're Auditing" >}}
 
 We’ll be checking each user for the following missing or blank fields:
 
-- `department`
-- `jobTitle`
-- `usageLocation`
-- `manager`
-- `mobilePhone`, `officeLocation` (both optional)
+- {{< glow >}}department{{< /glow >}}
+- {{< glow >}}jobTitle{{< /glow >}}
+- {{< glow >}}usageLocation{{< /glow >}}
+- {{< glow >}}manager{{< /glow >}}
+- {{< glow >}}mobilePhone{{< /glow >}}, {{< glow >}}officeLocation{{< /glow >}} (both optional)
 
 You can customize this based on your environment.
 
 ---
 
-## 🛠️ PowerShell Script
+{{< headingrow icon="logphile-powershell" text="Powershell Script" >}}
 
 ```powershell
 $propertiesToCheck = @("Department", "JobTitle", "UsageLocation", "Manager", "MobilePhone", "OfficeLocation")
@@ -78,8 +78,9 @@ foreach ($user in $users) {
 
 $results | Format-Table -AutoSize
 ```
+---
 
-## 🧾 The Results
+{{< headingrow icon="logphile-results" text="The Results" >}}
 
 ```bash
 PS C:\Users\logphile> New-SmartUser $propertiesToCheck = @("Department", "JobTitle", "UsageLocation", "Manager", "MobilePhone", "OfficeLocation")
@@ -118,17 +119,16 @@ James Howlett                       wolverine@logphile.com                      
 
 ---
 
-## 📤 Exporting to CSV (Optional)
+{{< headingrow icon="logphile-export" text="Exporting to CSV (Optional)" >}}
 
 ```powershell
 $results | Export-Csv -Path "EntraUserAudit.csv" -NoTypeInformation
 ```
-
-{{< figure src="/logphile-csv-missing-properties.png" class="wider-image no-zoom" >}}
+{{< figure src="/logphile-csv-missing-properties.png" class="wider-image" attr="data-zoomable" >}}
 
 ---
 
-## 🧠 Why This Matters
+{{< headingrow icon="logphile-brain" text="Why This Matters" >}}
 
 - Broken dynamic group rules  
 - License assignment failures  
@@ -139,15 +139,15 @@ Directory drift happens quietly. This gives you visibility and control.
 
 ---
 
-## 🚀 Ideas to Extend This
+{{< headingrow icon="logphile-extend" text="Ideas to Extend This" >}}
 
-- Auto-tag users with `profileStatus = incomplete`
+- Auto-tag users with {{< glow >}}profileStatus = incomplete{{< /glow >}}
 - Send Teams alerts or email summaries
 - Schedule via Azure Automation or GitHub Actions
 
 ---
 
-## 📎 Resources
+{{< headingrow icon="logphile-paperclip" text="References" >}}
 
 - [Microsoft Graph PowerShell SDK Docs](https://learn.microsoft.com/en-us/powershell/microsoftgraph/overview)
 - [User Resource Type - Microsoft Graph](https://learn.microsoft.com/en-us/graph/api/resources/user)

@@ -13,8 +13,9 @@ enableSearch = true
 enableCodeCopy = true
 
 [params]
-  customCSS = ["/css/custom.css"]
+  customCSS = ["/css/custom.css", "/css/icons.css"]
   logo = "images/logo.png"
+  disableImageZoom = false
   
 
 replyByEmail = false

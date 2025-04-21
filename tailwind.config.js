@@ -28,7 +28,7 @@ module.exports = {
         '22': '5rem',
       },
       fontFamily: {
-        sans: ['Urbanist', ...fontFamily.sans],
+        sans: ['Urbanist', 'sans-serif'],
         mono: ['JetBrains Mono', ...fontFamily.mono],
       },
       typography: ({ theme }) => ({

@@ -2,8 +2,7 @@
 <div class="mt-8">
 <div class="flip-card">
   <div class="flip-card-inner">
-    <div class="flip-card-front">
-         
+    <div class="flip-card-front">         
       <p class="pronounce">log·phile <span class="pronounce-phonetic">[lawg-fahyl]</span></p>
     </div>
     <div class="flip-card-back">
@@ -12,14 +11,33 @@
   </div>
 </div>
 </div>
+<div>
+  <h1 class="mt-8 text-4xl font-extrabold mr-5 tag-spef">
+    about<span class="bash-suffix">@logphile:~$</span>
+    <span class="cursor-blink-about">█</span>
+  </h1>
+</div>
 
 <article class="prose dark:prose-invert max-w-7xl mx-auto mt-8 px-4 py-10 rounded-xl shadow-lg about-wrapper">
+<div class="about-paragraph terminal-reveal">
+  {{ .Content }}  
+  <p>
 
-  <header class="mb-8">    
-      <h1 class="text-4xl font-extrabold mt-3 mb-3 !mb-3" style="color: #FFD808">about<span class="about-logphile">@logphile:~$</h1></span>
-  </header>
-  {{ .Content }}
+    <a href="mailto:phil@logphile.com" class="neon-link hover:underline">logPhile</a> is where I document what
+    I’m learning, building and exploring. Sometimes it’s cloud infrastructure a weird little side project or a 
+    thought. Just a way to try and keep up.
   
+  </p> 
+  <p>
+
+
+    If I get something wrong or could have been done better, let me know and
+    <a href="mailto:phil@logphile.com" class="neon-link hover-underline">route it through Neo-Tokyo!</a>
+    I’m here to learn and improve.
+  </p>
+</div>
+
+
 </article>
 
 {{ end }}

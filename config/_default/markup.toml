@@ -6,6 +6,10 @@
     [markup.goldmark.renderer]
       unsafe = true
 
+[goldmark]
+[goldmark.renderer]
+  unsafe = true
+  
   [markup.highlight]
     noClasses = false
 

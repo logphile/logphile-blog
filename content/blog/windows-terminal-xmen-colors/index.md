@@ -10,7 +10,7 @@ draft: false
 showHero: false
 ---
 
-## 🧬 Customizing Windows Terminal with X-Men Colors
+---
 
 After reformatting my machine recently, I took the opportunity to rebuild my terminal environment from scratch. One of the first customizations? Knock the color out so there's something to look at while you keep customizing.
 
@@ -18,11 +18,12 @@ If you're like me, you're old. Since you're reading this post, you're probably a
 
 ---
 
-## 🎨 Meet the “X-Men” Theme
+{{< headingrow icon="logphile-brain" text="Customizing Windows Terminal with X-Men Colors" >}}
 
 Here’s a snapshot of the terminal with the theme applied:
 
-{{< figure src="/xmen-preview.png" class="wider-image no-zoom" >}}
+{{< figure-zoom src="/xmen-preview.png" caption="Preview of Windows Terminal using X-Men colors." class="wider-image" attr="data-zoomable" >}}
+
 
 And here’s the color scheme you can drop into your settings.json:
 
@@ -65,16 +66,16 @@ Colors used in this theme:
 If you're new to Windows Terminal and asking where the settings.json file is...
 {{< /alert >}}
 
-1. Open **Windows Terminal**
-2. Hit **Ctrl + ,**
-3. Click **Open JSON** file in the bottom left.
+1. Open {{< glow >}}Windows Terminal{{< /glow >}}
+2. Hit {{< glow >}}Ctrl{{< /glow >}} + {{< glow >}},{{< /glow >}}
+3. Click {{< glow >}}Open JSON{{< /glow >}} file in the bottom left.
 
 ---
-
 
 {{< alert icon="fire" cardColor="#FC5749" iconColor="#F5F4F1" textColor="#2D2C36" >}}
 Just make sure to set your terminal profile to use **"colorScheme": "X-Men"**!
 {{< /alert >}}
+<br>
 
 ```powershell
 $propertiesToCheck = @("Department", "JobTitle", "UsageLocation", "Manager", "MobilePhone", "OfficeLocation")
@@ -99,8 +100,11 @@ foreach ($user in $users) {
     }
 }
 
+```
 
-:question: Why Customize?
+---
+
+{{< headingrow icon="logphile-question" text="Why Customize?" >}}
 
 If you spend hours a day in the terminal, it should be a place that feels good to be in—like Storm’s hot tub, sipping wine—not a 1v1 with Wolverine in the Danger Room. Changes that make life easier on your eyes and help create a more focused, personalized workspace add up—and should absolutely be taken advantage of.
 
@@ -112,10 +116,14 @@ If you spend hours a day in the terminal, it should be a place that feels good t
 * [Powerline Fonts](https://github.com/powerline/fonts)
 * [Oh My Zsh](https://ohmyz.sh/)
 
-💡 Bonus Resource
+---
 
-I highly recommend [Windows Terminal Themes](https://windowsterminalthemes.dev/) to explore more themes. It’s a simple site that lets you browse and copy themes with a click — super useful when hunting for new ideas.
+{{< headingrow icon="logphile-bonus" text="Bonus" >}}
 
+I highly recommend *[Windows Terminal Themes](https://windowsterminalthemes.dev/)* to explore more themes. It’s a simple site that lets you browse and copy themes with a click — super useful when hunting for new ideas.
+
+---
+  
 {{< alert icon="fire" cardColor="#FC5749" textColor="#F5F4F1">}}
 After several years as a stay-at-home dad, I'm working my way back into the tech field—brushing up on tools, learning what’s changed, and sharing the journey along the way. This blog is part learning tool, part signal to employers, and part proof of work. Thanks for reading!
 {{< /alert >}}

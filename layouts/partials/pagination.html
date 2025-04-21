@@ -1,0 +1,50 @@
+{{- if gt .Paginator.TotalPages 1 -}}
+  <ul class="flex flex-row pagination-style mt-8 justify-center">
+    {{- .Scratch.Set "paginator.ellipsed" false -}}
+    {{ if $.Paginator.HasPrev }}
+    <li>
+      <a
+          href="{{ $.Paginator.Prev.URL }}"
+          class="mx-1 block min-w-[1.8rem] pagination-style rounded text-center"
+          rel="prev"
+      >&larr;</a>
+    </li>
+    {{ end }}
+    {{- range $.Paginator.Pagers -}}
+      {{- $right := sub .TotalPages .PageNumber -}}
+      {{- $showNumber := or (le .PageNumber 1) (eq $right 0) -}}
+      {{- $showNumber := or $showNumber (and (gt .PageNumber (sub $.Paginator.PageNumber 3)) (lt .PageNumber (add $.Paginator.PageNumber 3))) -}}
+      {{- if $showNumber -}}
+        {{- $.Scratch.Set "paginator.ellipsed" false -}}
+        {{- $.Scratch.Set "paginator.shouldEllipse" false -}}
+      {{- else -}}
+        {{- $.Scratch.Set "paginator.shouldEllipse" (not ($.Scratch.Get "paginator.ellipsed") ) -}}
+        {{- $.Scratch.Set "paginator.ellipsed" true -}}
+      {{- end -}}
+      {{- if $showNumber -}}
+        <li>
+          {{ $isActive := eq . $.Paginator }}
+          <a
+            href="{{ .URL }}"
+            class="mx-1 block min-w-[1.8rem] rounded text-center pagination-style {{ if $isActive }}bg-[#F4227A] text-white font-extrabold shadow-md ring-2 ring-offset-2 ring-[#F4227A]{{ end }}"
+          >
+            {{ .PageNumber }}
+          </a>          
+      </li>
+      {{- else if ($.Scratch.Get "paginator.shouldEllipse") -}}
+        <li class="page-item ">
+          <span class="page-link" aria-hidden="true">&hellip;</span>
+        </li>
+      {{- end -}}
+    {{- end -}}
+    {{ if $.Paginator.HasNext }}
+    <li>
+      <a
+          href="{{ $.Paginator.Next.URL }}"
+          class="mx-1 block min-w-[1.8rem] pagination-style rounded text-center"
+          rel="next"
+      >&rarr;</a>
+    </li>
+    {{ end }}
+  </ul>
+{{- end -}}

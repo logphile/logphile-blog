@@ -11,22 +11,24 @@ draft: false
 showHero: false
 ---
 
+---
+
 > *“Why do I need two different PowerShell modules just to manage Azure?”*
 
-That’s the common frustration—**Az** and **Microsoft.Graph** are both official modules, but they serve completely different purposes. This post breaks down when to use each, with examples, a comparison matrix, and tips for choosing the right one.
+That’s the common frustration—*Az* and *Microsoft.Graph* are both official modules, but they serve completely different purposes. This post breaks down when to use each, with examples, a comparison matrix, and tips for choosing the right one.
 
 ---
 
-## 🔍 What's the Difference?
+{{< headingrow icon="logphile-question" text="What's the Difference?" >}}
 
-- **Az** is for managing **Azure resources**—think subscriptions, VMs, networking, storage.
-- **Microsoft.Graph** is for managing **Microsoft Entra ID** (Azure AD) and Microsoft 365 identities—users, groups, licenses, directory roles.
+- *Az* is for managing *Azure resources*—think subscriptions, VMs, networking, storage.
+- *Microsoft.Graph* is for managing *Microsoft Entra ID* (Azure AD) and Microsoft 365 identities—users, groups, licenses, directory roles.
 
 They're both used in the Azure ecosystem, but they hit different APIs and serve different layers.
 
 ---
 
-## 🧭 Comparison Matrix
+{{< headingrow icon="logphile-scale" text="Comparison Matrix" >}}
 
 | Feature / Action                             | `Az` Module             | `Microsoft.Graph` Module       | Use This When…                                  |
 |---------------------------------------------|-------------------------|-------------------------------|-------------------------------------------------|
@@ -42,10 +44,10 @@ They're both used in the Azure ecosystem, but they hit different APIs and serve 
 
 ---
 
-## ✍️ Syntax Side-by-Side
+{{< headingrow icon="logphile-question" text="Syntax Side-by-Side" >}}
+
 
 ### Create Resource Group (Az)
-
 ```powershell
 Connect-AzAccount
 New-AzResourceGroup -Name "dev-rg" -Location "eastus"
@@ -62,26 +64,26 @@ New-MgUser -DisplayName "Logphile Test" -UserPrincipalName "logtest@domain.com" 
 
 ---
 
-## 🧠 When You Might Use Both
+{{< headingrow icon="logphile-brain" text="Syntax Side-by-Side" >}}
 
 Here’s a practical scenario:
 
-- Use `Microsoft.Graph` to create a user and assign them a role in Entra ID.
-- Then use `Az` to grant that user access to a resource group with `New-AzRoleAssignment`.
+- Use *Microsoft.Graph* to create a user and assign them a role in Entra ID.
+- Then use *Az* to grant that user access to a resource group with *New-AzRoleAssignment*.
 
 It's not either/or—it’s knowing when each tool is appropriate.
 
 ---
 
-## 💡 Tips to Keep in Mind
+{{< headingrow icon="logphile-lightbulb" text="Syntax Side-by-Side" >}}
 
-- If you’re dealing with **subscriptions, infra, RBAC**, use `Az`.
-- If you’re touching **users, groups, licenses, roles**, use `Microsoft.Graph`.
+- If you’re dealing with *subscriptions*, *infra*, *RBAC*, use *Az*.
+- If you’re touching *users*, *groups*, *licenses*, *roles*, use *Microsoft.Graph*.
 - Want automation across both? Combine them in the same script—just authenticate each separately.
 
 ---
 
-## 📎 References
+{{< headingrow icon="logphile-paperclip" text="References" >}}
 
 - [Microsoft.Graph PowerShell Docs](https://learn.microsoft.com/en-us/powershell/microsoftgraph/overview)
 - [Az PowerShell Module Docs](https://learn.microsoft.com/en-us/powershell/azure/new-azureps-module-az)
@@ -89,7 +91,7 @@ It's not either/or—it’s knowing when each tool is appropriate.
 
 ---
 
-> Not knowing which module to use costs time. Knowing the difference builds momentum.
+
 
 {{< alert icon="fire" cardColor="#FC5749" textColor="#F5F4F1">}}
 After several years as a stay-at-home dad, I'm working my way back into the tech field—brushing up on tools, learning what’s changed, and sharing the journey along the way. This blog is part learning tool, part signal to employers, and part proof of work. Thanks for reading!

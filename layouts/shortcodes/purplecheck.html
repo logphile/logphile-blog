@@ -1,0 +1,11 @@
+{{- $icon := .Get "icon" | default "logphile-purple-check" -}}
+{{- $text := .Inner | markdownify -}}
+
+<div class="flex purple-check-styling items-start gap-3">
+  <div class="w-5 purple-check-spacing mt-1">
+    {{ partial (printf "icons/%s.html" $icon) (dict "size" "1em") }}
+  </div>
+  <div class="leading-snug purple-check-p-spacing text-left">
+    {{ $text }}
+  </div>
+</div>

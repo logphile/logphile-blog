@@ -14,13 +14,14 @@
         {{ if not $disableImageOptimization }}
           {{ $authorImage = $authorImage.Fill (print "288x288 q" ( $.Site.Params.Author.imagequality | default "96" )) }}
         {{ end }}
-        <a href="/blog">
+        <a href="/blog">        
           <img
-            class="mb-2 rounded-full h-36 w-36 transition-all duration-300 ease-in-out transform hover:-translate-y-2 hover:scale-105 hover:shadow-[0_10px_20px_rgba(255,0,98,0.5)]"
+            class="rounded-full mb-5 w-36 h-36 shadow-lg transition-transform duration-500 ease-in-out hover:scale-105 neon-ring"
             width="144" height="144"
             alt="{{ $.Site.Params.Author.name | default " Author" }}"
             src="{{ $authorImage.RelPermalink }}" />
         </a>
+      
                
       {{ end }}
     {{ end }}

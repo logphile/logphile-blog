@@ -1,0 +1,11 @@
+<div class="flex items-start gap-3 mb-4">
+    {{ if .Get "icon" }}
+      {{ partial "icons/logphile-purple-check.svg" . }} <!-- or inline your SVG here -->
+    {{ else }}
+      <svg class="w-6 h-6 mt-1 text-pink-400">...</svg>
+    {{ end }}
+    <p class="text-lg text-neutral-100">
+      {{ .Inner | markdownify }}
+    </p>
+  </div>
+  

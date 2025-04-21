@@ -1,7 +1,9 @@
 <!-- Card -->
-<article class="rounded-xl overflow-hidden mb-10 mr-5 flex flex-col main-cards-shadow">
+<article class="rounded-xl overflow-hidden mb-6 mr-5 main-cards-shadow">
+
 
   <!-- Featured Image -->
+  {{/*
   {{ with .Resources.GetMatch .Params.featureimage }}
     <a href="{{ $.RelPermalink }}">
       <img 
@@ -12,19 +14,22 @@
       />
     </a>
   {{ end }}
-  
+  */}}
   
   <!-- Content -->
-  <div class="card-content p-6 rounded-x2 overflow-hidden grow flex flex-col">
-    <h2 class="text-2xl font-extrabold text-white leading-tight mb-2 hover:underline">
-      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-    </h2>
-    <p class="text-base text-article-bg leading-relaxed mt-2 mb-4">{{ .Params.Summary }}</p>
-    
-    <div class="text-sm text-neutral-300 font-bold mt-4 tracking-wide flex justify-between items-center listing-date-time">
-      <span>{{ .Date.Format "Jan 2, 2006" }}</span>
-      
-      <span>{{ .ReadingTime }} min read</span>
+  <a href="{{ .RelPermalink }}" class="card-link-wrapper group h-full">
+    <div class="card-content-wrapper h-full">
+      <div class="card-content h-full p-6 rounded-x2 overflow-hidden grow flex flex-col">
+        <h2 class="card-title text-2xl font-extrabold text-white leading-tight group-hover:underline">
+          {{ .Title }}
+        </h2>
+        <p class="card-summary">{{ .Params.Summary }}</p>
+  
+        <div class="card-meta text-sm text-neutral-300 font-bold tracking-wide flex justify-between items-center listing-date-time">
+          <span>{{ .Date.Format "Jan 2, 2006" }}</span>
+          <span>{{ .ReadingTime }} min read</span>
+        </div>
+      </div>
     </div>
-  </div>
+  </a>
 </article>

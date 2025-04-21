@@ -1,91 +1,86 @@
 {{ define "main" }}
 {{ .Scratch.Set "scope" "single" }}
-<article class="prose dark:prose-invert max-w-7xl mx-auto mt-8 px-4 py-10 rounded-xl shadow-lg about-wrapper">
 
-<div class="flex flex-col lg:flex-row gap-10 max-w-7xl mx-auto px-2 py-0">
-  <!-- Left column: Main content -->
-  <div class="flex-grow">
-    <article class="flex px-2 py-6 blog-post">
-      <div class="w-full lg:w-[700px] ml-[1rem] lg:ml-[4rem]">
+<article class="max-w-7xl mx-auto mt-8 px-4 py-10 rounded-xl shadow-lg post-wrapper post-sidebar-wrapper">
+  <div class="prose dark:prose-invert post-prose w-full">
+    
+    {{ if .Params.showHero | default (.Site.Params.article.showHero | default false) }}
+      {{ $heroStyle := .Params.heroStyle }}
+      {{ if not $heroStyle }}{{ $heroStyle = .Site.Params.article.heroStyle }}{{ end }}
+      {{ $heroStyle := print "partials/hero/" $heroStyle ".html" }}
+      {{ if templates.Exists $heroStyle }}
+        {{ partial $heroStyle . }}
+      {{ else }}
+        {{ partial "partials/hero/basic.html" . }}
+      {{ end }}
+    {{ end }}
 
-        {{ if .Params.showHero | default (.Site.Params.article.showHero | default false) }}
-          {{ $heroStyle := .Params.heroStyle }}
-          {{ if not $heroStyle }}{{ $heroStyle = .Site.Params.article.heroStyle }}{{ end }}
-          {{ $heroStyle := print "partials/hero/" $heroStyle ".html" }}
-          {{ if templates.Exists $heroStyle }}
-            {{ partial $heroStyle . }}
-          {{ else }}
-            {{ partial "partials/hero/basic.html" . }}
-          {{ end }}
+    {{ $authorsData := .Site.Data.authors }}
+    {{ $taxonomies := .Site.Taxonomies.authors }}
+    {{ $baseURL := .Site.BaseURL }}
+    {{ $taxonomyLink := 0 }}
+    {{ $showAuthor := 0 }}
+
+    <header id="single_header" class="w-full">
+      {{ if .Params.showBreadcrumbs | default (.Site.Params.article.showBreadcrumbs | default false) }}
+        {{ partial "breadcrumbs.html" . }}
+      {{ end }}
+
+      {{ if not (strings.HasSuffix $baseURL "/") }}
+        {{ $baseURL = delimit (slice $baseURL "/") "" }}
+      {{ end }}
+
+      {{ if not (.Params.showAuthorBottom | default (.Site.Params.article.showAuthorBottom | default false)) }}
+        {{ if .Params.showAuthor | default (.Site.Params.article.showAuthor | default true) }}
+          {{ $showAuthor = 1 }}
+          {{ partial "author.html" . }}
         {{ end }}
 
-        {{ $authorsData := .Site.Data.authors }}
-        {{ $taxonomies := .Site.Taxonomies.authors }}
-        {{ $baseURL := .Site.BaseURL }}
-        {{ $taxonomyLink := 0 }}
-        {{ $showAuthor := 0 }}
-
-        <header id="single_header" class="w-full">
-          {{ if .Params.showBreadcrumbs | default (.Site.Params.article.showBreadcrumbs | default false) }}
-            {{ partial "breadcrumbs.html" . }}
-          {{ end }}
-
-          {{ if not (strings.HasSuffix $baseURL "/") }}
-            {{ $baseURL = delimit (slice $baseURL "/") "" }}
-          {{ end }}
-
-          {{ if not (.Params.showAuthorBottom | default ( .Site.Params.article.showAuthorBottom | default false)) }}
-            {{ if .Params.showAuthor | default (.Site.Params.article.showAuthor | default true) }}
-              {{ $showAuthor = 1 }}
-              {{ partial "author.html" . }}
+        {{ range $author := .Page.Params.authors }}
+          {{ $authorData := index $authorsData $author }}
+          {{- if $authorData -}}
+            {{ range $taxonomyname, $taxonomy := $taxonomies }}
+              {{ if (eq $taxonomyname $author) }}
+                {{ $taxonomyLink = delimit (slice $baseURL "authors/" $author "/") "" }}
+              {{ end }}
             {{ end }}
+            {{ partial "author-extra.html" (dict "context" . "data" $authorData "link" $taxonomyLink) }}
+          {{- end -}}
+        {{ end }}
 
-            {{ range $author := .Page.Params.authors }}
-              {{ $authorData := index $authorsData $author }}
-              {{- if $authorData -}}
-                {{ range $taxonomyname, $taxonomy := $taxonomies }}
-                  {{ if (eq $taxonomyname $author) }}
-                    {{ $taxonomyLink = delimit (slice $baseURL "authors/" $author "/") "" }}
-                  {{ end }}
-                {{ end }}
-                {{ partial "author-extra.html" (dict "context" . "data" $authorData "link" $taxonomyLink) }}
-              {{- end -}}
-            {{ end }}
+        {{ if or $taxonomyLink $showAuthor }}
+          <div class="mb-5"></div>
+        {{ end }}
+      {{ end }}
 
-            {{ if or $taxonomyLink $showAuthor }}
-              <div class="mb-5"></div>
-            {{ end }}
-          {{ end }}
-
-          <div class="mt-1 mb-6 text-base red-meta print:hidden">
-            {{ partial "article-meta/basic.html" (dict "context" . "scope" "single") }}
-          </div>
-
-          <h1 class="mt-6 mb-2 text-4xl font-extrabold text-color-text">
-            {{ .Title | emojify }}
-          </h1>
-        </header>
-
-        <div class="article-content prose dark:prose-invert w-full mb-1">
-          {{ .Content }}
-          {{ $defaultReplyByEmail := .Site.Params.replyByEmail }}
-          {{ $replyByEmail := default $defaultReplyByEmail .Params.replyByEmail }}
-          {{ if $replyByEmail }}
-            <strong class="block mt-8">
-              <a target="_blank"
-              class="m-1 rounded border border-neutral-200 bg-neutral-50 px-2 py-1 text-sm text-neutral-800 hover:bg-neutral-100 hover:text-neutral-900 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:hover:text-neutral-100"
-              href="mailto:{{ $replyByEmail }}">
-                💬 Reply by Email
-              </a>
-            </strong>
-          {{ end }}
-        </div>
-
-        <footer class="pt-1 w-full print:hidden">
-          {{/* partial "single/footer.html" . */}}
-        </footer>
+      <div class="mt-1 mb-6 text-base red-meta print:hidden">
+        {{ partial "article-meta/basic.html" (dict "context" . "scope" "single") }}
       </div>
-    </article>
+
+      <h1 class="mt-6 mb-4 text-4xl font-extrabold text-color-text">
+        {{ .Title | emojify }}
+      </h1>
+    </header>
+
+    <div class="article-content w-full mb-1">
+      {{ .Content }}
+      {{ $defaultReplyByEmail := .Site.Params.replyByEmail }}
+      {{ $replyByEmail := default $defaultReplyByEmail .Params.replyByEmail }}
+      {{ if $replyByEmail }}
+        <strong class="block mt-8">
+          <a target="_blank"
+          class="m-1 rounded border border-neutral-200 bg-neutral-50 px-2 py-1 text-sm text-neutral-800 hover:bg-neutral-100 hover:text-neutral-900 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:hover:text-neutral-100"
+          href="mailto:{{ $replyByEmail }}">
+            💬 Reply by Email
+          </a>
+        </strong>
+      {{ end }}
+    </div>
+
+    <footer class="pt-1 w-full print:hidden">
+      {{/* partial "single/footer.html" . */}}
+    </footer>
+
   </div>
-</div>
+</article>
 {{ end }}

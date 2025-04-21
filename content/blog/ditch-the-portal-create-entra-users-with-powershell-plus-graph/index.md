@@ -11,16 +11,23 @@ draft: false
 showHero: false
 ---
 
-One-off user creation is fine—until you need scale, consistency, and future-proofing. That’s where Microsoft Graph comes in. In this post, I’ll walk you through how to create Microsoft Entra ID users using **PowerShell and Microsoft Graph**—with clean, scalable scripting.
+---
 
-## 🕰️ A (Very) Brief History of Microsoft Graph
+One-off user creation is fine—until you need scale, consistency, and future-proofing. That’s where Microsoft Graph comes in. In this post, I’ll walk you through how to create Microsoft Entra ID users using *PowerShell and Microsoft Graph*—with clean, scalable scripting.
+
+---
+
+{{< headingrow icon="logphile-hourglass" text="A (Very) Brief History of Microsoft Graph" >}}
+
 Introduced in 2015, Microsoft Graph unified dozens of fragmented Microsoft APIs—Azure AD, Exchange, SharePoint, Teams—into a single, modern endpoint. It's now the backbone of identity and data access across Microsoft 365 and Azure services. Microsoft is phasing out older modules like AzureAD and MSOnline in favor of Graph, making it the go-to tool for cloud-native management and automation.
 
-## 💡 Smarter Entra ID User Creation with PowerShell + Graph
+
+{{< headingrow icon="logphile-brain" text="Smarter Entra ID User Creation with PowerShell + Graph" >}}
+
 
 Here’s how to automate Entra ID user creation using PowerShell and Microsoft Graph—with smart defaults, error handling, and dynamic group assignment. Creating users through the Azure Portal works... until it doesn’t. Once you’re dealing with onboarding, consistency, or dynamic environments, it’s time to automate. 
 
-## ⚙️ Prerequisites
+{{< headingrow icon="logphile-checklist" text="Prerequisites" >}}
 
 Before we start scripting, make sure you have:
 
@@ -44,7 +51,7 @@ You'll get a consent prompt to grant permission the first time.
 
 ---
 
-## 🛠️ Define the User Creation Function
+{{< headingrow icon="logphile-define" text="Define the User Creation Function" >}}
 
 Here’s a reusable PowerShell function that creates a user and adds them to a security group.
 
@@ -87,7 +94,7 @@ function New-SmartUser {
 
 ---
 
-## ✅ Let’s Create a User
+{{< headingrow icon="logphile-potion" text="Let's Create a User" >}}
 
 ```bash
 New-SmartUser -DisplayName "Beast" `
@@ -97,7 +104,7 @@ New-SmartUser -DisplayName "Beast" `
     -GroupName "Research & Development"
 ```
 
-## :scroll: The Results 
+{{< headingrow icon="logphile-bonus" text="The Results" >}}
 
 ```bash
 C:\Users\logphile> New-SmartUser -DisplayName "Beast" `
@@ -112,7 +119,7 @@ User added to group 'Research & Development'.
 
 ---
 
-## 🔍 Verify in the Portal
+{{< headingrow icon="logphile-badge" text="Verify in the Portal" >}}
 
 Log into Entra ID > Users and confirm the user shows up with correct info.
 
@@ -124,56 +131,48 @@ Then check Groups to confirm group creation and membership.
 
 ---
 
-## 🧠 Why This Matters
+{{< headingrow icon="logphile-chip" text="Why This Matters" >}}
 
 Manual user creation introduces:
 
-* Typos in emails or departments
-
-* Missed group assignments
-
-* No audit trail
-
-* Automated creation ensures:
-
-* Consistency
-
-* Scalability
-
-* Auditability
+- Typos in emails or departments
+- Missed group assignments
+- No audit trail
+- Automated creation ensures:
+- Consistency
+- Scalability
+- Auditability
 
 Plus, you’re scripting against Microsoft Graph—the modern way to manage Microsoft 365.
 
 ---
 
-## 🚀 What’s Next?
+{{< headingrow icon="logphile-pirate" text="What's Next?" >}}
 
-* Make password generation secure (use New-Guid, or integrate with a vault)
-
-* Add license assignment via New-MgUserLicense
-
-* Export logs or send Teams alerts on creation
-
-* Bundle into a CI pipeline using GitHub Actions or Azure DevOps
-
-<hr>
+- Make password generation secure (use New-Guid, or integrate with a vault)
+- Add license assignment via New-MgUserLicense
+- Export logs or send Teams alerts on creation
+- Bundle into a CI pipeline using GitHub Actions or Azure DevOps
 
 ---
 
-## ⚖️ Why Use PowerShell + Graph Over the Portal?
+{{< headingrow icon="logphile-question" text="Why Use PowerShell + Graph Over the Portal?" >}}
 
 Still using the Azure Portal or legacy PowerShell modules like `AzureAD` or `MSOnline`? Reasons to change:
 
-- **✅ Modern + Supported**: Microsoft Graph is the future; older modules are deprecated.
-- **✅ Scriptable + Auditable**: Build repeatable workflows and keep them in source control.
-- **✅ Richer Control**: Set attributes, assign groups, and handle edge cases the portal hides.
-- **✅ Cross-Tenant Ready**: Run the same script across multiple environments without clicking around.
-- **✅ Least Privilege**: Use fine-grained Graph scopes instead of over-privileged admin accounts.
-- **✅ Error Handling**: Catch issues like duplicate UPNs or missing license capacity in real-time.
+<div class="grid purplecheck-spacing gap-6 sm:grid-cols-2 lg:grid-cols-3">
+  {{< purplecheck >}}**Modern + Supported:** Microsoft Graph is the future; older modules are deprecated.{{< /purplecheck >}}
+  {{< purplecheck >}}**Scriptable + Auditable:** Build repeatable workflows and keep them in source control.{{< /purplecheck >}}
+  {{< purplecheck >}}**Richer Control:** Set attributes, assign groups, and handle edge cases the portal hides.{{< /purplecheck >}}
+  {{< purplecheck >}}**Cross-Tenant Ready:** Run the same script across multiple environments without clicking around.{{< /purplecheck >}}
+  {{< purplecheck >}}**Least Privilege:** Use fine-grained Graph scopes instead of over-privileged admin accounts.{{< /purplecheck >}}
+  {{< purplecheck >}}**Error Handling:** Catch issues like duplicate UPNs or missing license capacity in real-time.{{< /purplecheck >}}
+</div>
 
 ---
 
-### 📊 Comparison: Portal vs Legacy PowerShell vs Graph + PowerShell
+{{< headingrow icon="logphile-scale" text="Comparison: Portal vs Legacy PowerShell vs Graph + PowerShell" >}}
+
 
 | Feature                         | Portal | Old PowerShell (`AzureAD`) | Graph + PowerShell |
 |-------------------------------|--------|-----------------------------|---------------------|
@@ -187,13 +186,11 @@ Still using the Azure Portal or legacy PowerShell modules like `AzureAD` or `MSO
 
 ---
 
-## 📎 Resources
+{{< headingrow icon="logphile-bonus" text="Bonus" >}}
 
-* [Microsoft Graph PowerShell SDK Docs](https://learn.microsoft.com/en-us/powershell/microsoftgraph/overview)
-
-* [User Object Docs](https://learn.microsoft.com/en-us/graph/api/resources/user)
-
-* [Graph Permissions Guide](https://learn.microsoft.com/en-us/graph/permissions-reference)
+- [Microsoft Graph PowerShell SDK Docs](https://learn.microsoft.com/en-us/powershell/microsoftgraph/overview)
+- [User Object Docs](https://learn.microsoft.com/en-us/graph/api/resources/user)
+- [Graph Permissions Guide](https://learn.microsoft.com/en-us/graph/permissions-reference)
 
 ---
 

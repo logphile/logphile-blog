@@ -33,8 +33,8 @@
   
   
   
-  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.7ff3b5cf801df45b739589e71c0bee9b690fd516577e3d3bf662c0440e1f197610a342f1e4308bf508431be3039a13f38f3f41d497bcbd1a047d8a55e1a19247.css"
-    integrity="sha512-f/O1z4Ad9FtzlYnnHAvum2kP1RZXfj079mLARA4fGXYQo0Lx5DCL9QhDG&#43;MDmhPzjz9B1Je8vRoEfYpV4aGSRw==" />
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.0db8f74e6453a61963aaf797944723070d7b717d1beb11829919a9e25f192005a2703f48757e243a2abe1a265f66bce5d7a3e640c55cd750792b15f1eb240aca.css"
+    integrity="sha512-Dbj3TmRTphljqveXlEcjBw17cX0b6xGCmRmp4l8ZIAWicD9IdX4kOiq&#43;GiZfZrzl16PmQMVc11B5KxXx6yQKyg==" />
   
   
   <script type="text/javascript" src="/js/appearance.min.a945cf4247d18e2a51e932a3f0c7f7c8ba05fc067f6857175e078d064ce60d2dd6bab8c141d8d3090fe662ddc63127bc93cd5faa86f9049c6af0cb8e8f93f29d.js"
@@ -163,7 +163,7 @@
   
 
 </head>
-<body class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32 scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600">
+<body class="font-sans flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32 scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600">
 
   <div id="the-top" class="absolute flex self-center">
     <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
@@ -182,7 +182,7 @@
             <span class="sr-only"></span>
 
             
-            <img src="/images/logo.png" class="h-24 w-auto object-contain logphile-logo" alt="" />
+            <img src="/images/logo.png" class="h-24 mt-4 w-auto object-contain logphile-logo" alt="" />
             
 
         </a>
@@ -386,7 +386,7 @@
 
  <header>
   
-  <h1 class="mt-8 text-4xl font-extrabold tag-spef">X-Men<span class="bash-suffix">@logphile:~$</span>
+  <h1 class="mt-8 text-4xl font-extrabold tag-spef-tax">X-Men<span class="bash-suffix">@logphile:~$</span>
   </h1>
   <div class="text-base print:hidden">
     
@@ -439,34 +439,28 @@
     <div class="grid grid-cols-1 md:grid-cols-2 mt-8 gap-6">
       
         
-<article class="rounded-xl overflow-hidden mb-10 mr-5 flex flex-col main-cards-shadow">
+<article class="rounded-xl overflow-hidden mb-6 mr-5 main-cards-shadow">
+
 
   
   
-    <a href="/blog/windows-terminal-xmen-colors/">
-      <img 
-        src="/blog/windows-terminal-xmen-colors/logphile-storm-interface-featured-post.png" 
-        alt="X-Men Colors in the Windows Terminal" 
-        loading="lazy"
-        class="w-full h-48 overflow-hidden object-cover main-cards"
-      />
-    </a>
   
   
+  <a href="/blog/windows-terminal-xmen-colors/" class="card-link-wrapper group h-full">
+    <div class="card-content-wrapper h-full">
+      <div class="card-content h-full p-6 rounded-x2 overflow-hidden grow flex flex-col">
+        <h2 class="card-title text-2xl font-extrabold text-white leading-tight group-hover:underline">
+          X-Men Colors in the Windows Terminal
+        </h2>
+        <p class="card-summary">Channel Jim Lee’s 90s X-Men in your Windows Terminal without the comic book store smell. A simple tweak that makes terminal life a little less painful.</p>
   
-  
-  <div class="card-content p-6 rounded-x2 overflow-hidden grow flex flex-col">
-    <h2 class="text-2xl font-extrabold text-white leading-tight mb-2 hover:underline">
-      <a href="/blog/windows-terminal-xmen-colors/">X-Men Colors in the Windows Terminal</a>
-    </h2>
-    <p class="text-base text-article-bg leading-relaxed mt-2 mb-4">Channel Jim Lee’s 90s X-Men in your Windows Terminal without the comic book store smell. A simple tweak that makes terminal life a little less painful.</p>
-    
-    <div class="text-sm text-neutral-300 font-bold mt-4 tracking-wide flex justify-between items-center listing-date-time">
-      <span>Mar 24, 2025</span>
-      
-      <span>3 min read</span>
+        <div class="card-meta text-sm text-neutral-300 font-bold tracking-wide flex justify-between items-center listing-date-time">
+          <span>Mar 24, 2025</span>
+          <span>3 min read</span>
+        </div>
+      </div>
     </div>
-  </div>
+  </a>
 </article>
 
       
@@ -680,7 +674,7 @@
       
     </main>
 
-    <footer id="site-footer" class="py-10 print:hidden">
+    <footer id="site-footer" class="py-6 mt-4 print:hidden">
   
   
     
@@ -690,7 +684,7 @@
 
     
     
-    <p class="text-sm text-neutral-500 dark:text-neutral-400">
+    <p class="text-sm footer-style text-neutral-500 dark:text-neutral-400">
       © 2025 logPhile. All Rights Reserved.
     </p>
     
@@ -772,7 +766,6 @@
 </div>
 
   </div>
-
   <div id="cookie-notice" style="display: none;">
   <div class="cookie-content">
     <p>Another day, another cookie banner. You know the drill.</p>
@@ -847,5 +840,17 @@
 </script>
 
 
+  <script>
+    if (typeof mediumZoom !== "undefined") {
+      mediumZoom('[data-zoomable]:not(.no-zoom)', {
+        background: 'rgba(0, 0, 0, 0.8)',
+        scrollOffset: 0,
+        margin: 24
+      });
+    }
+  </script>
+  
+
 </body>
+
 </html>

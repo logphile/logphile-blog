@@ -1,0 +1,5 @@
+{{ $icon := .icon }}
+{{ $size := .size | default "32" }}
+{{ $path := printf "icons/%s.svg" $icon }}
+{{ $svg := resources.Get $path | resources.ExecuteAsTemplate (printf "inline-%s.svg" $icon) . | resources.Minify }}
+{{ $svg.Content | safeHTML }}

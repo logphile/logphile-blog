@@ -15,7 +15,7 @@
   {{ if .Params.showBreadcrumbs | default (.Site.Params.term.showBreadcrumbs | default false) }}
   {{ partial "breadcrumbs.html" . }}
   {{ end }}
-  <h1 class="mt-8 text-4xl font-extrabold tag-spef">{{ .Title }}<span class="bash-suffix">@logphile:~$</span>
+  <h1 class="mt-8 text-4xl font-extrabold tag-spef-tax">{{ .Title }}<span class="bash-suffix">@logphile:~$</span>
   </h1>
   <div class="text-base print:hidden">
     {{ partial "article-meta/term.html" (dict "context" . "scope" "single") }}

@@ -1,4 +1,4 @@
-<footer id="site-footer" class="py-10 print:hidden">
+<footer id="site-footer" class="py-6 mt-4 print:hidden">
   {{/* Footer menu */}}
   {{ if .Site.Params.footer.showMenu | default true }}
     {{ if .Site.Menus.footer }}
@@ -26,7 +26,7 @@
 
     {{/* Copyright */}}
     {{ if .Site.Params.footer.showCopyright | default true }}
-    <p class="text-sm text-neutral-500 dark:text-neutral-400">
+    <p class="text-sm footer-style text-neutral-500 dark:text-neutral-400">
       {{- with replace .Site.Params.copyright "{ year }" now.Year  }}
       {{ . | markdownify }}
       {{- else }}

@@ -1,0 +1,31 @@
+{{- $icon := .Get "icon" | default "logphile-icon-fire" -}}
+{{- $icon := .Get "icon" | default "logphile-checklist" -}}
+{{- $icon := .Get "icon" | default "logphile-powershell" -}}
+{{- $icon := .Get "icon" | default "logphile-results" -}}
+{{- $icon := .Get "icon" | default "logphile-brain" -}}
+{{- $icon := .Get "icon" | default "logphile-extend" -}}
+{{- $icon := .Get "icon" | default "logphile-magnify" -}}
+{{- $icon := .Get "icon" | default "logphile-potion" -}}
+{{- $icon := .Get "icon" | default "logphile-question" -}}
+{{- $icon := .Get "icon" | default "logphile-bonus" -}}
+{{- $icon := .Get "icon" | default "logphile-scale" -}}
+{{- $icon := .Get "icon" | default "logphile-side-by-side" -}}
+{{- $icon := .Get "icon" | default "logphile-lightbulb" -}}
+{{- $icon := .Get "icon" | default "logphile-paperclip" -}}
+{{- $icon := .Get "icon" | default "logphile-diploma" -}}
+{{- $icon := .Get "icon" | default "logphile-key" -}}
+{{- $icon := .Get "icon" | default "logphile-loop" -}}
+{{- $icon := .Get "icon" | default "logphile-breaks" -}}
+{{- $icon := .Get "icon" | default "logphile-openbook" -}}
+{{- $icon := .Get "icon" | default "logphile-define" -}}
+{{- $icon := .Get "icon" | default "logphile-badge" -}}
+{{- $icon := .Get "icon" | default "logphile-chip" -}}
+{{- $icon := .Get "icon" | default "logphile-pirate" -}}
+{{- $icon := .Get "icon" | default "logphile-purple-check" -}}
+{{- $text := .Get "text" | default "Heading" -}}
+
+<h1 class="icon-heading">
+  {{ partial (printf "icons/%s.html" $icon) (dict "size" "1em") }}
+  {{ $text }}
+</h1>
+
