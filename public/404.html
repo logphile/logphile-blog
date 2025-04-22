@@ -158,6 +158,22 @@
   
   <meta name="theme-color"/>
   
+  <link id="favicon" rel="icon" href="/favicon-active.svg" type="image/svg+xml" />
+
+  <script>
+    const activeFavicon = "/favicon-active.svg";
+    const inactiveFavicon = "/favicon-inactive.svg";
+    const faviconEl = document.getElementById("favicon");
+  
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        faviconEl.href = inactiveFavicon;
+      } else {
+        faviconEl.href = activeFavicon;
+      }
+    });
+  </script>
+  
   
 
 </head>

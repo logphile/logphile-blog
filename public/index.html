@@ -38,8 +38,8 @@
   
   
   
-  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.0db8f74e6453a61963aaf797944723070d7b717d1beb11829919a9e25f192005a2703f48757e243a2abe1a265f66bce5d7a3e640c55cd750792b15f1eb240aca.css"
-    integrity="sha512-Dbj3TmRTphljqveXlEcjBw17cX0b6xGCmRmp4l8ZIAWicD9IdX4kOiq&#43;GiZfZrzl16PmQMVc11B5KxXx6yQKyg==" />
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.a4c3e265abd5ec56bfd6b7a735d8ba4cc3ad57aaa7b194fe75a24bbcf5f2495f824079ec1ecd969bd37324b4ba4d1cb1140d2ab83dfe0a3ed945f263e90635ae.css"
+    integrity="sha512-pMPiZavV7Fa/1renNdi6TMOtV6qnsZT&#43;daJLvPXySV&#43;CQHnsHs2Wm9NzJLS6TRyxFA0quD3&#43;Cj7ZRfJj6QY1rg==" />
   
   
   <script type="text/javascript" src="/js/appearance.min.a945cf4247d18e2a51e932a3f0c7f7c8ba05fc067f6857175e078d064ce60d2dd6bab8c141d8d3090fe662ddc63127bc93cd5faa86f9049c6af0cb8e8f93f29d.js"
@@ -180,6 +180,22 @@
   
   
   <meta name="theme-color"/>
+  
+  <link id="favicon" rel="icon" href="/favicon-active.svg" type="image/svg+xml" />
+
+  <script>
+    const activeFavicon = "/favicon-active.svg";
+    const inactiveFavicon = "/favicon-inactive.svg";
+    const faviconEl = document.getElementById("favicon");
+  
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        faviconEl.href = inactiveFavicon;
+      } else {
+        faviconEl.href = activeFavicon;
+      }
+    });
+  </script>
   
   
 

@@ -1,0 +1,28 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="64"
+  height="64"
+  viewBox="0 0 64 64"
+>
+  <style>
+    .cursor {
+      animation: blink 1s steps(2, start) infinite;
+    }
+
+    @keyframes blink {
+      to {
+        opacity: 0;
+      }
+    }
+  </style>
+  <rect width="64" height="64" fill="#FFD808"/>
+  <rect
+    class="cursor"
+    x="30"
+    y="10"
+    width="8"
+    height="40"
+    fill="#F4227A"
+    rx="1"
+  />
+</svg>

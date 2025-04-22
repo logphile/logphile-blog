@@ -125,30 +125,23 @@
   {{ partialCached "extend-head.html" .Site }}
   {{ end }}
   <meta name="theme-color"/>
-  {{/* Firebase */}}
-  {{ with $.Site.Params.firebase }}
-  {{ if isset $.Site.Params "firebase" }}
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  
+  <link id="favicon" rel="icon" href="/favicon-active.svg" type="image/svg+xml" />
+
   <script>
-
-    const firebaseConfig = {
-      apiKey: {{ $.Site.Params.firebase.apiKey }},
-      authDomain: {{ $.Site.Params.firebase.apiKey }},
-      projectId: {{ $.Site.Params.firebase.projectId }},
-      storageBucket: {{ $.Site.Params.firebase.storageBucket }},
-      messagingSenderId: {{ $.Site.Params.firebase.messagingSenderId }},
-      appId: {{ $.Site.Params.firebase.appId }},
-      measurementId: {{ $.Site.Params.firebase.measurementId }}
-    };
-
-    var app = firebase.initializeApp(firebaseConfig);
-    var db = firebase.firestore();
-    var auth = firebase.auth();
-
+    const activeFavicon = "/favicon-active.svg";
+    const inactiveFavicon = "/favicon-inactive.svg";
+    const faviconEl = document.getElementById("favicon");
+  
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        faviconEl.href = inactiveFavicon;
+      } else {
+        faviconEl.href = activeFavicon;
+      }
+    });
   </script>
-  {{ end }}
-  {{ end }}
+  
+  
 
 </head>
