@@ -19,7 +19,6 @@ This post walks through how to{{< glow >}} audit Entra ID user profiles{{< /glow
 
 ---
 {{< headingrow icon="logphile-icon-fire" text="Prerequisites" >}}
-<br><br>
 
 
 - PowerShell 7+
