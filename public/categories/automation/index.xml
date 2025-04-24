@@ -2,43 +2,43 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Automation on </title>
-    <link>http://localhost:1313/categories/automation/</link>
+    <link>https://logphile.com/categories/automation/</link>
     <description>Recent content in Automation on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>phil@logphile.com (Phil Boyce)</managingEditor>
     <webMaster>phil@logphile.com (Phil Boyce)</webMaster>
     <copyright>&amp;copy; 2025 logPhile. All Rights Reserved.</copyright>
-    <lastBuildDate>Fri, 28 Mar 2025 12:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/automation/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 28 Mar 2025 12:00:00 +0000</lastBuildDate><atom:link href="https://logphile.com/categories/automation/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Directory Drift: Auditing Incomplete Entra User Profiles with PowerShell &#43; Graph</title>
-      <link>http://localhost:1313/blog/directory-drift/</link>
+      <link>https://logphile.com/blog/directory-drift/</link>
       <pubDate>Fri, 28 Mar 2025 12:00:00 +0000</pubDate>
       <author>phil@logphile.com (Phil Boyce)</author>
-      <guid>http://localhost:1313/blog/directory-drift/</guid>
+      <guid>https://logphile.com/blog/directory-drift/</guid>
       <description>Missing user metadata can break your policies, groups, and reports. Learn how to audit Entra ID user profiles using PowerShell and Microsoft Graph.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/blog/directory-drift/logphile-profx-data-center-featured-post.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://logphile.com/blog/directory-drift/logphile-profx-data-center-featured-post.png" />
     </item>
     
     <item>
       <title>Faking an Org Chart in Entra: Mapping Hierarchies with PowerShell &#43; Graph</title>
-      <link>http://localhost:1313/blog/faking-org-chart/</link>
+      <link>https://logphile.com/blog/faking-org-chart/</link>
       <pubDate>Sun, 23 Mar 2025 12:00:00 +0000</pubDate>
       <author>phil@logphile.com (Phil Boyce)</author>
-      <guid>http://localhost:1313/blog/faking-org-chart/</guid>
+      <guid>https://logphile.com/blog/faking-org-chart/</guid>
       <description>What if your org chart wasn’t buried in HR PDFs but lived where access decisions are made? Use Microsoft Graph to recursively trace Entra ID hierarchies.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/blog/faking-org-chart/logphile-spiderman-torn-mask-featured-post.jpg" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://logphile.com/blog/faking-org-chart/logphile-spiderman-torn-mask-featured-post.jpg" />
     </item>
     
     <item>
       <title>Ditch the Portal: Create Entra Users with PowerShell &#43; Graph</title>
-      <link>http://localhost:1313/blog/ditch-the-portal-create-entra-users-with-powershell-plus-graph/</link>
+      <link>https://logphile.com/blog/ditch-the-portal-create-entra-users-with-powershell-plus-graph/</link>
       <pubDate>Tue, 18 Mar 2025 12:00:00 +0000</pubDate>
       <author>phil@logphile.com (Phil Boyce)</author>
-      <guid>http://localhost:1313/blog/ditch-the-portal-create-entra-users-with-powershell-plus-graph/</guid>
+      <guid>https://logphile.com/blog/ditch-the-portal-create-entra-users-with-powershell-plus-graph/</guid>
       <description>Ditch the portal and script like a pro—this post shows you how to create Entra ID users with PowerShell and Microsoft Graph for smarter, faster, mistake-free identity management.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/blog/ditch-the-portal-create-entra-users-with-powershell-plus-graph/logphile-beast-featured-post.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://logphile.com/blog/ditch-the-portal-create-entra-users-with-powershell-plus-graph/logphile-beast-featured-post.png" />
     </item>
     
   </channel>

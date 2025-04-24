@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="dark"
+  data-auto-appearance="false"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  
+  <meta http-equiv="content-language" content="en" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  
+  <title>Faking an Org Chart in Entra: Mapping Hierarchies with PowerShell &#43; Graph</title>
+  <meta name="title" content="Faking an Org Chart in Entra: Mapping Hierarchies with PowerShell &#43; Graph" />  
+  
+  <meta name="description" content="What if your org chart wasn’t buried in HR PDFs but lived where access decisions are made? Use Microsoft Graph to recursively trace Entra ID hierarchies." />
+  <meta name="keywords" content="entra id, microsoft graph, powershell, org chart, automation, " />
+  
+  
+  <link rel="canonical" href="http://localhost:1313/blog/faking-org-chart/" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.bdff976b679343d2757540dc35dce80d527d1629ccf8be24d492e87e722da81a6f88b5f22a6b34f8ea8f2c533f33dc25df1354ff53887a5c9f7242173922b474.css"
+    integrity="sha512-vf&#43;Xa2eTQ9J1dUDcNdzoDVJ9FinM&#43;L4k1JLofnItqBpviLXyKms0&#43;OqPLFM/M9wl3xNU/1OIelyfckIXOSK0dA==" />
+  
+  
+  <script type="text/javascript" src="/js/appearance.min.a945cf4247d18e2a51e932a3f0c7f7c8ba05fc067f6857175e078d064ce60d2dd6bab8c141d8d3090fe662ddc63127bc93cd5faa86f9049c6af0cb8e8f93f29d.js"
+    integrity="sha512-qUXPQkfRjipR6TKj8Mf3yLoF/AZ/aFcXXgeNBkzmDS3WurjBQdjTCQ/mYt3GMSe8k81fqob5BJxq8MuOj5PynQ=="></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script defer type="text/javascript" id="script-bundle" src="/js/main.bundle.min.827fa4e4523276d4fbafeb177baab022781a885b35699f60775ce8fdb94f87df6088e5e5555d1846206d67806aa47399593ea04bda1fff30dc398aaf5e718ec9.js"
+    integrity="sha512-gn&#43;k5FIydtT7r&#43;sXe6qwIngaiFs1aZ9gd1zo/blPh99giOXlVV0YRiBtZ4BqpHOZWT6gS9of/zDcOYqvXnGOyQ==" data-copy="" data-copied=""></script>
+  
+  
+  
+  <script src="/lib/zoom/zoom.min.fcbc7f7b3dcea96e3b5570cd322c5d7a12d5351c87f9889b1c31745a2cc711df58f6b70795a86d50e63813b236ade916668332c10a70a4ce26f7c0878f525fce.js" integrity="sha512-/Lx/ez3OqW47VXDNMixdehLVNRyH&#43;YibHDF0WizHEd9Y9rcHlahtUOY4E7I2rekWZoMywQpwpM4m98CHj1Jfzg=="></script>
+  
+  
+  <link id="favicon" rel="icon" href="/favicon-lp-on.svg?v=2" type="image/svg+xml" />
+<link rel="manifest" href="/site.webmanifest" />
+
+  
+  <link id="favicon" rel="icon" href="/favicon-lp-on.svg?v=2" type="image/svg+xml" />
+<link rel="manifest" href="/site.webmanifest" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZVBM8WM6B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FZVBM8WM6B');
+</script>
+  
+  <meta property="og:url" content="http://localhost:1313/blog/faking-org-chart/">
+  <meta property="og:title" content="Faking an Org Chart in Entra: Mapping Hierarchies with PowerShell &#43; Graph">
+  <meta property="og:description" content="Use Microsoft Graph and PowerShell to extract and visualize manager relationships in Microsoft Entra ID.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2025-03-23T12:00:00+00:00">
+    <meta property="article:modified_time" content="2025-03-23T12:00:00+00:00">
+    <meta property="article:tag" content="Entra Id">
+    <meta property="article:tag" content="Microsoft Graph">
+    <meta property="article:tag" content="Powershell">
+    <meta property="article:tag" content="Org Chart">
+    <meta property="article:tag" content="Automation">
+    <meta property="og:image" content="http://localhost:1313/blog/faking-org-chart/logphile-spiderman-torn-mask-featured-post.jpg">
+
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/blog/faking-org-chart/logphile-spiderman-torn-mask-featured-post.jpg">
+  <meta name="twitter:title" content="Faking an Org Chart in Entra: Mapping Hierarchies with PowerShell &#43; Graph">
+  <meta name="twitter:description" content="Use Microsoft Graph and PowerShell to extract and visualize manager relationships in Microsoft Entra ID.">
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "logPhile@blog:~$ | The Logs Know What Broke First",
+    "name": "Faking an Org Chart in Entra: Mapping Hierarchies with PowerShell \u002b Graph",
+    "headline": "Faking an Org Chart in Entra: Mapping Hierarchies with PowerShell \u002b Graph",
+    "description": "Use Microsoft Graph and PowerShell to extract and visualize manager relationships in Microsoft Entra ID.",
+    "abstract": "What if your org chart wasn’t buried in HR PDFs but lived where access decisions are made? Use Microsoft Graph to recursively trace Entra ID hierarchies.",
+    "inLanguage": "en",
+    "url" : "http:\/\/localhost:1313\/blog\/faking-org-chart\/",
+    "author" : {
+      "@type": "Person",
+      "name": "Phil Boyce"
+    },
+    "copyrightYear": "2025",
+    "dateCreated": "2025-03-23T12:00:00\u002b00:00",
+    "datePublished": "2025-03-23T12:00:00\u002b00:00",
+    
+    "dateModified": "2025-03-23T12:00:00\u002b00:00",
+    
+    "keywords": ["entra id","microsoft graph","powershell","org chart","automation"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "898"
+  }]
+  </script>
+
+
+  
+  
+  <meta name="Phil Boyce" content="Phil Boyce" />
+  
+  
+  
+  <link href="https://github.com/logphile" rel="me" />
+  
+  
+  <link href="https://www.linkedin.com/in/phil-boyce" rel="me" />
+  
+  
+  <link href="https://x.com/LogPhile" rel="me" />
+  
+  
+  <link href="mailto:phil@logphile.com" rel="me" />
+  
+  
+  
+  
+
+<script src="/lib/jquery/jquery.slim.min.03cb160e3cfdb2667a2e2c80d283bebcf63ff8bbc4b629c9ab2babf6fae1d0c07ad470edae783efa4fabda2ac01c58d60e63b98b3c336be8208460f08f4354f5.js" integrity="sha512-A8sWDjz9smZ6LiyA0oO&#43;vPY/&#43;LvEtinJqyur9vrh0MB61HDtrng&#43;&#43;k&#43;r2irAHFjWDmO5izwza&#43;gghGDwj0NU9Q=="></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZVBM8WM6B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FZVBM8WM6B');
+</script>
+
+
+
+  
+  
+  <meta name="theme-color"/>
+  
+  <link id="favicon" rel="icon" href="/favicon-lp-on.svg?v=3" type="image/svg+xml" />
+
+  <script>
+    const favicon = document.getElementById("favicon");
+    let isFocused = true;
+    let cursorOn = true;
+  
+    const activeOn = "/favicon-lp-on.svg?v=3";
+    const activeOff = "/favicon-lp-off.svg?v=3";
+    const inactiveOn = "/favicon-lp-inactive-on.svg?v=3";
+    const inactiveOff = "/favicon-lp-inactive-off.svg?v=3";
+  
+    function updateFavicon() {
+      const icon = isFocused
+        ? (cursorOn ? activeOn : activeOff)
+        : (cursorOn ? inactiveOn : inactiveOff);
+      favicon.href = icon;
+      cursorOn = !cursorOn;
+    }
+  
+    window.addEventListener("focus", () => { isFocused = true; });
+    window.addEventListener("blur", () => { isFocused = false; });
+  
+    setInterval(updateFavicon, 500);
+  </script> 
+
+</head>
+<body class="font-sans flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32 scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600">
+
+  <div id="the-top" class="absolute flex self-center">
+    <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+      href="#main-content"><span class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>Skip to main content</a>
+  </div>
+
+  
+  
+    <div style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px"
+    class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start gap-x-3">
+    
+    
+    
+    <div>
+        <a href="/" class="flex">
+            <span class="sr-only"></span>
+
+            
+            <img src="/images/logo.png" class="h-24 mt-4 w-auto object-contain logphile-logo" alt="" />
+            
+
+        </a>
+    </div>
+    
+    <div class="flex flex-1 items-center justify-between">
+        <nav class="flex space-x-3">
+
+            
+            <a href="/" class="text-base font-medium text-gray-500 hover:text-gray-900"></a>
+            
+
+        </nav>
+        <nav class="hidden md:flex items-center gap-x-5 md:ml-12 h-12">
+
+            
+            
+            
+  <a href="/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="logPhile@blog:~$ | The Logs Know What Broke First">
+        Home
+    </p>
+</a>
+
+
+
+            
+            
+  <a href="/blog/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="logPhile@blog:~$ | The Logs Know What Broke First">
+        Blog
+    </p>
+</a>
+
+
+
+            
+            
+  <a href="/about/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="logPhile@blog:~$ | The Logs Know What Broke First">
+        About Me
+    </p>
+</a>
+
+
+
+            
+            
+
+            
+
+
+            
+            <button id="search-button" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+
+            
+            
+
+        </nav>
+        <div class="flex md:hidden items-center gap-x-5 md:ml-12 h-12">
+
+            <span></span>
+
+            
+
+
+            
+            <button id="search-button-mobile" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+            
+            
+
+        </div>
+    </div>
+    <div class="-my-2 md:hidden">
+
+        <label id="menu-button" class="block">
+            
+            <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+                
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+
+  </span>
+
+
+            </div>
+            <div id="menu-wrapper" style="padding-top:5px;"
+                class="fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50">
+                <ul
+                    class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl">
+
+                    <li id="menu-close-button">
+                        <span
+                            class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+</span>
+                    </li>
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="logPhile@blog:~$ | The Logs Know What Broke First">
+            Home
+        </p>
+    </a>
+</li>
+
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/blog/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="logPhile@blog:~$ | The Logs Know What Broke First">
+            Blog
+        </p>
+    </a>
+</li>
+
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/about/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="logPhile@blog:~$ | The Logs Know What Broke First">
+            About Me
+        </p>
+    </a>
+</li>
+
+
+
+
+                    
+
+                </ul>
+                
+                
+
+            </div>
+        </label>
+    </div>
+</div>
+
+
+
+
+
+  
+
+  <div class="relative flex flex-col grow">
+    <main id="main-content" class="grow">
+      
+      <div class="flex flex-col lg:flex-row gap-8 w-full max-w-[110rem] mx-auto px-8 py-10">
+        <div class="flex-grow tags-rm-margin-baseof">
+          
+
+
+<article class="max-w-7xl mx-auto mt-8 px-4 py-10 rounded-xl shadow-lg post-wrapper post-sidebar-wrapper">
+  <div class="prose dark:prose-invert post-prose w-full">
+    
+    
+
+    
+    
+    
+    
+    
+
+    <header id="single_header" class="w-full">
+      
+
+      
+
+      
+        
+          
+          
+<div class="flex author">
+  
+    
+    
+      
+    
+    
+      
+        
+      
+      <img class="!mt-0 !mb-0 h-24 w-24 rounded-full ltr:mr-4 rtl:ml-4" width="96" height="96"
+      alt="Phil Boyce" src="/logphile-avatar_hu_b8ee3a9d64c04fc4.jpg" />
+    
+  
+  <div class="place-self-center">
+    
+    <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+      Author
+    </div>
+    <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+      Phil Boyce
+    </div>
+    
+    
+    <div class="text-2xl sm:text-lg">
+<div class="flex flex-wrap home-social-icons social-icons-grid">
+
+    
+      
+      <a
+      href="https://github.com/logphile"
+      target="_blank"
+      aria-label="Github"
+      rel="me noopener noreferrer"
+      class="social-icon" style="color: #FF0062;"
+    >
+    
+          <span class="inline-block align-text-bottom">
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+
+          </span>
+        </a>
+      
+    
+      
+      <a
+      href="https://www.linkedin.com/in/phil-boyce"
+      target="_blank"
+      aria-label="Linkedin"
+      rel="me noopener noreferrer"
+      class="social-icon" style="color: #FF0062;"
+    >
+    
+          <span class="inline-block align-text-bottom">
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+
+  </span>
+
+
+          </span>
+        </a>
+      
+    
+      
+      <a
+      href="https://x.com/LogPhile"
+      target="_blank"
+      aria-label="X-Twitter"
+      rel="me noopener noreferrer"
+      class="social-icon" style="color: #FF0062;"
+    >
+    
+          <span class="inline-block align-text-bottom">
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+  </span>
+
+
+          </span>
+        </a>
+      
+    
+      
+      <a
+      href="mailto:phil@logphile.com"
+      target="_blank"
+      aria-label="Email"
+      rel="me noopener noreferrer"
+      class="social-icon" style="color: #FF0062;"
+    >
+    
+          <span class="inline-block align-text-bottom">
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+
+  </span>
+
+
+          </span>
+        </a>
+      
+    
+  </div>
+
+
+</div>
+  </div>
+</div>
+
+        
+
+        
+
+        
+          <div class="mb-5"></div>
+        
+      
+
+      <div class="mt-1 mb-6 text-base red-meta print:hidden">
+        
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center blog-meta red-meta">
+  
+  
+  <time datetime="2025-03-23T12:00:00&#43;00:00">March 23, 2025</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">5 mins</span>
+  
+
+  
+  
+</div>
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center blog-meta red-meta">
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/azure-identity/&#34;,'_self');return false;">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Azure Identity
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/automation/&#34;,'_self');return false;">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Automation
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/entra-id/&#34;,'_self');return false;">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Entra Id
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/microsoft-graph/&#34;,'_self');return false;">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Microsoft Graph
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/powershell/&#34;,'_self');return false;">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Powershell
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/org-chart/&#34;,'_self');return false;">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Org Chart
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/automation/&#34;,'_self');return false;">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Automation
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+<div class="flex flex-row mt-5 flex-wrap items-center"></div>
+
+
+
+
+      </div>
+
+      <h1 class="mt-6 mb-4 text-4xl font-extrabold text-color-text">
+        Faking an Org Chart in Entra: Mapping Hierarchies with PowerShell + Graph
+      </h1>
+    </header>
+
+    <div class="article-content w-full mb-1">
+      <hr>
+<p>What if your org chart wasn’t buried in HR PDFs but lived where access decisions are made?</p>
+<p><span class="neon-blue">Microsoft Entra ID</span>
+ supports a <span class="neon-blue">manager</span>
+ property on each user object, which can be used to simulate an organizational chart—if populated correctly.</p>
+<p>In this post, we’ll use <span class="neon-blue">PowerShell</span>
+ and <span class="neon-blue">Microsoft Graph</span>
+ to recursively build an org chart based on <span class="neon-blue">manager</span>
+ relationships, then optionally export it to <span class="neon-blue">JSON</span>
+ or <span class="neon-blue">Graphviz DOT</span>
+ format for visualization.</p>
+<hr>
+<h1 class="icon-heading">
+  <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><title>800 logphile diploma</title><rect data-element="frame" x="0" y="0" width="32" height="32" rx="7" ry="7" stroke="none" fill="#FFD808"></rect><g transform="translate(6.4 6.4) scale(0.6)" fill="#F4227A" class="nc-icon-wrapper"><path d="M30.188 18.654l-1.678-0.991 1.613-0.973c0.364-0.223 0.603-0.619 0.603-1.071 0-0.137-0.022-0.269-0.063-0.393l0.003 0.009c-0.161-0.506-0.627-0.867-1.178-0.867-0.041 0-0.081 0.002-0.12 0.006l0.005-0-5.809 0.487c1.793-1.62 3.632-3.203 5.534-4.728 0.038-0.030 0.072-0.059 0.104-0.091l-0 0c0.586-0.589 0.949-1.401 0.949-2.297s-0.363-1.71-0.951-2.299l-3.418-3.417c-0.585-0.589-1.395-0.953-2.29-0.953-0.003 0-0.005 0-0.008 0h-0.002c-0.944 0.007-1.793 0.411-2.389 1.053l-0.002 0.002c-5.665 7.059-11.881 13.272-18.709 18.752l-0.235 0.182c-0.586 0.589-0.948 1.401-0.948 2.297s0.363 1.709 0.949 2.298l3.419 3.418c0.577 0.579 1.375 0.938 2.257 0.938 0 0 0.001 0 0.002 0h-0c0.955-0.008 1.815-0.406 2.431-1.042l0.001-0.001c1.466-1.843 3.009-3.642 4.603-5.409l-0.555 5.995c-0.003 0.035-0.005 0.075-0.005 0.115 0 0.69 0.56 1.25 1.25 1.25 0.456 0 0.855-0.244 1.074-0.61l0.003-0.006 0.991-1.678 0.973 1.613c0.223 0.365 0.619 0.605 1.071 0.605 0.69 0 1.25-0.56 1.25-1.25 0-0.037-0.002-0.074-0.005-0.11l0 0.005-0.787-9.382 9.317 0.862c0.039 0.004 0.078 0.006 0.115 0.006 0 0 0 0 0 0 0.69 0 1.25-0.559 1.25-1.25 0-0.456-0.244-0.855-0.61-1.073l-0.006-0.003zM22.953 3.795c0.135-0.136 0.321-0.22 0.528-0.22 0.001 0 0.001 0 0.002 0h0.002c0 0 0 0 0 0 0.207 0 0.394 0.084 0.529 0.22l3.418 3.418c0.136 0.136 0.22 0.324 0.22 0.532 0 0.189-0.069 0.361-0.184 0.493l0.001-0.001c-2.286 1.836-4.468 3.764-6.597 5.73l-3.611-3.604c1.963-2.128 3.881-4.302 5.692-6.567zM15.543 12.179l3.514 3.507q-1.792 1.723-3.494 3.499l-3.512-3.518q1.78-1.706 3.493-3.487zM8.396 27.309c-0.136 0.136-0.323 0.22-0.53 0.22s-0.395-0.084-0.53-0.22v0l-3.418-3.416c-0.144-0.138-0.234-0.333-0.234-0.548 0-0.156 0.047-0.301 0.128-0.422l-0.002 0.003c2.203-1.75 4.331-3.62 6.422-5.543l3.611 3.618c-1.898 2.063-3.738 4.157-5.447 6.308zM17.607 24.941c0 0-0 0-0 0-0.131 0-0.257 0.020-0.376 0.057l0.009-0.002 0.405-4.377 0.008-0.009 0.369 4.401c-0.124-0.044-0.267-0.070-0.416-0.070h-0zM24.875 18.043l-4.257-0.395 0.036-0.034 4.236-0.355c-0.045 0.124-0.070 0.268-0.070 0.418 0 0.002 0 0.003 0 0.005v-0c0 0.129 0.020 0.254 0.057 0.371l-0.002-0.009z"></path></g></svg>
+  What You&#39;ll Learn
+</h1>
+
+
+<ul>
+<li>How to query user-manager relationships with Microsoft Graph</li>
+<li>How to recursively walk Entra ID&rsquo;s hierarchy using PowerShell</li>
+<li>Where org chart data tends to break in the real world</li>
+<li>How to output to structured formats like JSON and DOT</li>
+</ul>
+<hr>
+<h1 class="icon-heading">
+  <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 48 48"><title>48 flask conical</title><rect data-element="frame" x="0" y="0" width="48" height="48" rx="10" ry="10" stroke="none" fill="#FFD808"></rect><g stroke-linecap="round" class="nc-icon-wrapper" fill="none" stroke="#F4227A" stroke-width="4" stroke-linejoin="round" transform="translate(9.600000000000001 9.600000000000001) scale(0.6)"><path d="M28 4v12a4 4 0 0 0 0.49 1.92l11.02 20.16a4 4 0 0 1-3.51 5.92h-24a4 4 0 0 1-3.51-5.92l11.02-20.16a4 4 0 0 0 0.49-1.92v-12"></path><path d="M12.91 30h22.18"></path><path d="M17 4h14"></path></g></svg>
+  Prerequisites
+</h1>
+
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>Install-Module Microsoft.Graph -Scope CurrentUser -Force
+</span></span><span style="display:flex;"><span>Connect-MgGraph -Scopes <span style="color:#e6db74">&#34;User.Read.All&#34;</span>, <span style="color:#e6db74">&#34;Directory.Read.All&#34;</span>
+</span></span></code></pre></div><hr>
+<h1 class="icon-heading">
+  <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><title>800 logphile key</title><rect data-element="frame" x="0" y="0" width="16" height="16" rx="4" ry="4" stroke="none" fill="#FFD808"></rect><g transform="translate(3.2 3.2) scale(0.6)" fill="none" class="nc-icon-wrapper"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 5.5C16 8.53757 13.5376 11 10.5 11H7V13H5V15L4 16H0V12L5.16351 6.83649C5.0567 6.40863 5 5.96094 5 5.5C5 2.46243 7.46243 0 10.5 0C13.5376 0 16 2.46243 16 5.5ZM13 4C13 4.55228 12.5523 5 12 5C11.4477 5 11 4.55228 11 4C11 3.44772 11.4477 3 12 3C12.5523 3 13 3.44772 13 4Z" fill="#F4227A"></path></g></svg>
+  Key Graph Properties
+</h1>
+
+
+<p>We’ll need:</p>
+<ul>
+<li><span class="neon-blue">Id</span>
+</li>
+<li><span class="neon-blue">DisplayName</span>
+</li>
+<li><span class="neon-blue">UserPrincipalName</span>
+</li>
+<li><span class="neon-blue">Department</span>
+</li>
+<li><span class="neon-blue">Manager</span>
+</li>
+</ul>
+<hr>
+<h1 class="icon-heading">
+  <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>64 logphile looop</title><rect data-element="frame" x="0" y="0" width="24" height="24" rx="5" ry="5" stroke="none" fill="#FFD808"></rect><g transform="translate(4.800000000000001 4.800000000000001) scale(0.6)" fill="#F4227A" class="nc-icon-wrapper"><g id="1745251585340-2963743_SVGRepo_iconCarrier"><g id="1745251585340-2963743_media-player" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="1745251585340-2963743_loop" fill="#F4227A"><path d="M6.8762659,15.1237341 C7.93014755,16.8486822 9.83062143,18 12,18 C14.6124377,18 16.8349158,16.3303847 17.6585886,14 L19.747965,14 C18.8598794,17.4504544 15.7276789,20 12,20 C9.28005374,20 6.87714422,18.6426044 5.43172915,16.5682708 L3,19 L3,13 L9,13 L6.8762659,15.1237341 Z M17.1245693,8.87543068 C16.0703077,7.15094618 14.1695981,6 12,6 C9.3868762,6 7.16381436,7.66961525 6.33992521,10 L4.25,10 C5.13831884,6.54954557 8.27134208,4 12,4 C14.7202162,4 17.123416,5.35695218 18.5692874,7.43071264 L21,5 L21,11 L15,11 L17.1245693,8.87543068 Z" id="1745251585340-2963743_Shape"></path></g></g></g></g></svg>
+  Recursive Org Chart Builder (Powershell)
+</h1>
+
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> Get-OrgNode {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">param</span> (
+</span></span><span style="display:flex;"><span>        [<span style="color:#66d9ef">string</span>]$UserId,
+</span></span><span style="display:flex;"><span>        [<span style="color:#66d9ef">int</span>]$Depth = <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $user = Get-MgUser -UserId $UserId -Property <span style="color:#e6db74">&#34;Id,DisplayName,UserPrincipalName,Department&#34;</span> -ErrorAction SilentlyContinue
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span> $user) { <span style="color:#66d9ef">return</span> }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $indent = <span style="color:#e6db74">&#34; &#34;</span> * ($Depth * <span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>    Write-Host <span style="color:#e6db74">&#34;</span>$indent<span style="color:#e6db74">├── </span>$($user.DisplayName)<span style="color:#e6db74"> [</span>$($user.Department)<span style="color:#e6db74">]&#34;</span> -ForegroundColor Cyan
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $directReports = Get-MgUserDirectReport -UserId $UserId -ErrorAction SilentlyContinue
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> ($report <span style="color:#66d9ef">in</span> $directReports) {
+</span></span><span style="display:flex;"><span>        Get-OrgNode -UserId $report.Id -Depth ($Depth + <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Replace with the ID of your top-level manager (e.g., CEO or head of department)</span>
+</span></span><span style="display:flex;"><span>$rootUser = Get-MgUser -Filter <span style="color:#e6db74">&#34;displayName eq &#39;Charles Xavier&#39;&#34;</span>
+</span></span><span style="display:flex;"><span>Get-OrgNode -UserId $rootUser.Id
+</span></span></code></pre></div><hr>
+<h1 class="icon-heading">
+  <svg xmlns="http://www.w3.org/2000/svg" width="64" height="57" viewBox="0 0 46 41"><title>48 treasure chest</title><rect data-element="frame" x="2.5" y="0" width="41" height="41" rx="9" ry="9" stroke="none" fill="#FFD808"></rect><g transform="translate(9.200000000000001 8.200000000000001) scale(0.6)" fill="#F4227A" class="nc-icon-wrapper"><path d="M28.16 26.88c0 0.71-0.57 1.28-1.28 1.28h-7.68c-0.71 0-1.28-0.57-1.28-1.28v-3.84h-7.68v15.36h25.6v-15.36h-7.68v3.84z m-28.16-16.64v10.24h7.68v-17.92c-4.24 0-7.68 3.44-7.68 7.68z m0 25.6c0 1.41 1.15 2.56 2.56 2.56h5.12v-15.36h-7.68v12.8z m38.4-33.28v17.92h7.68v-10.24c0-4.24-3.44-7.68-7.68-7.68z m-14.08 21.76v-5.12c0-0.71-0.57-1.28-1.28-1.28s-1.28 0.57-1.28 1.28v5.12c0 0.71 0.57 1.28 1.28 1.28s1.28-0.57 1.28-1.28z m14.08 14.08h5.12c1.41 0 2.56-1.15 2.56-2.56v-12.8h-7.68v15.36z m-28.16-17.92h7.68v-3.84c0-0.71 0.57-1.28 1.28-1.28h7.68c0.71 0 1.28 0.57 1.28 1.28v3.84h7.68v-17.92h-25.6v17.92z"></path></g></svg>
+  The Result
+</h1>
+
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>PS C:<span style="color:#ae81ff">\U</span>sers<span style="color:#ae81ff">\l</span>ogphile&gt;function Get-OrgNode <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    param <span style="color:#f92672">(</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">[</span>string<span style="color:#f92672">]</span>$UserId,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">[</span>int<span style="color:#f92672">]</span>$Depth <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    $user <span style="color:#f92672">=</span> Get-MgUser -UserId $UserId -Property <span style="color:#e6db74">&#34;Id,DisplayName,UserPrincipalName,Department&#34;</span> -ErrorAction SilentlyContinue
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>-not $user<span style="color:#f92672">)</span> <span style="color:#f92672">{</span> <span style="color:#66d9ef">return</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    $indent <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34; &#34;</span> * <span style="color:#f92672">(</span>$Depth * 4<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    Write-Host <span style="color:#e6db74">&#34;</span>$indent<span style="color:#e6db74">├── </span><span style="color:#66d9ef">$(</span>$user.DisplayName<span style="color:#66d9ef">)</span><span style="color:#e6db74"> [</span><span style="color:#66d9ef">$(</span>$user.Department<span style="color:#66d9ef">)</span><span style="color:#e6db74">]&#34;</span> -ForegroundColor Cyan
+</span></span><span style="display:flex;"><span>    $directReports <span style="color:#f92672">=</span> Get-MgUserDirectReport -UserId $UserId -ErrorAction SilentlyContinue
+</span></span><span style="display:flex;"><span>    foreach <span style="color:#f92672">(</span>$report in $directReports<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Get-OrgNode -UserId $report.Id -Depth <span style="color:#f92672">(</span>$Depth + 1<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Replace with the ID of your top-level manager (e.g., CEO or head of department)</span>
+</span></span><span style="display:flex;"><span>$rootUser <span style="color:#f92672">=</span> Get-MgUser -Filter <span style="color:#e6db74">&#34;displayName eq &#39;Charles Xavier&#39;&#34;</span>
+</span></span><span style="display:flex;"><span>Get-OrgNode -UserId $rootUser.Id
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>├── Charles Xavier <span style="color:#f92672">[</span>Leadership<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>    ├── Ororo Munroe <span style="color:#f92672">[</span>Mutant Affairs<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>        ├── Scott Summers <span style="color:#f92672">[</span>Field Operations<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>            ├── Hisako Ichiki <span style="color:#f92672">[</span>Field Operations<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>        ├── Warren Worthington <span style="color:#f92672">[</span>Finance<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>        ├── Bobby Drake <span style="color:#f92672">[</span>Field Operations<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>        ├── James Howlett <span style="color:#f92672">[</span>Security<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>            ├── Laura Kinney <span style="color:#f92672">[</span>Security<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>        ├── Piotr Nikolayevich Rasputin <span style="color:#f92672">[</span>Field Operations<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>        ├── Kurt Wagner <span style="color:#f92672">[</span>Teleportation Ops<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>            ├── Megan Gwynn <span style="color:#f92672">[</span>Teleportation Ops<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>            ├── Clarice Ferguson <span style="color:#f92672">[</span>Teleportation Ops<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>    ├── Hank McCoy <span style="color:#f92672">[</span>Science Division<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>        ├── Forge <span style="color:#f92672">[</span>Science Division<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>    ├── Tessa <span style="color:#f92672">[</span>Information Technology<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>PS C:<span style="color:#ae81ff">\U</span>sers<span style="color:#ae81ff">\l</span>ogphile&gt;
+</span></span></code></pre></div><hr>
+<h1 class="icon-heading">
+  <svg xmlns="http://www.w3.org/2000/svg" width="64" height="57" viewBox="0 0 46 41"><title>48 treasure chest</title><rect data-element="frame" x="2.5" y="0" width="41" height="41" rx="9" ry="9" stroke="none" fill="#FFD808"></rect><g transform="translate(9.200000000000001 8.200000000000001) scale(0.6)" fill="#F4227A" class="nc-icon-wrapper"><path d="M28.16 26.88c0 0.71-0.57 1.28-1.28 1.28h-7.68c-0.71 0-1.28-0.57-1.28-1.28v-3.84h-7.68v15.36h25.6v-15.36h-7.68v3.84z m-28.16-16.64v10.24h7.68v-17.92c-4.24 0-7.68 3.44-7.68 7.68z m0 25.6c0 1.41 1.15 2.56 2.56 2.56h5.12v-15.36h-7.68v12.8z m38.4-33.28v17.92h7.68v-10.24c0-4.24-3.44-7.68-7.68-7.68z m-14.08 21.76v-5.12c0-0.71-0.57-1.28-1.28-1.28s-1.28 0.57-1.28 1.28v5.12c0 0.71 0.57 1.28 1.28 1.28s1.28-0.57 1.28-1.28z m14.08 14.08h5.12c1.41 0 2.56-1.15 2.56-2.56v-12.8h-7.68v15.36z m-28.16-17.92h7.68v-3.84c0-0.71 0.57-1.28 1.28-1.28h7.68c0.71 0 1.28 0.57 1.28 1.28v3.84h7.68v-17.92h-25.6v17.92z"></path></g></svg>
+  Export to JSON (Optional)
+</h1>
+
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> Build-OrgTreeJson {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">param</span> ([<span style="color:#66d9ef">string</span>]$UserId)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $user = Get-MgUser -UserId $UserId -Property <span style="color:#e6db74">&#34;Id,DisplayName,UserPrincipalName,Department&#34;</span>
+</span></span><span style="display:flex;"><span>    $directReports = Get-MgUserDirectReport -UserId $UserId
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $children = <span style="color:#66d9ef">foreach</span> ($report <span style="color:#66d9ef">in</span> $directReports) {
+</span></span><span style="display:flex;"><span>        Build-OrgTreeJson -UserId $report.Id
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> [<span style="color:#66d9ef">PSCustomObject</span>]@{
+</span></span><span style="display:flex;"><span>        Name       = $user.DisplayName
+</span></span><span style="display:flex;"><span>        UPN        = $user.UserPrincipalName
+</span></span><span style="display:flex;"><span>        Department = $user.Department
+</span></span><span style="display:flex;"><span>        Reports    = $children
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Get the root node (replace with your actual root if needed)</span>
+</span></span><span style="display:flex;"><span>$rootUser = Get-MgUser -Filter <span style="color:#e6db74">&#34;displayName eq &#39;Charles Xavier&#39;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Build the tree</span>
+</span></span><span style="display:flex;"><span>$tree = Build-OrgTreeJson -UserId $rootUser.Id
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Export to JSON</span>
+</span></span><span style="display:flex;"><span>$tree | ConvertTo-Json -Depth <span style="color:#ae81ff">10</span> | Out-File <span style="color:#e6db74">&#34;.\\orgTree.json&#34;</span> -Encoding utf8
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Name&#34;</span>: <span style="color:#e6db74">&#34;Charles Xavier&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;UPN&#34;</span>: <span style="color:#e6db74">&#34;profx@logphile.com&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Department&#34;</span>: <span style="color:#e6db74">&#34;Leadership&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Reports&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Name&#34;</span>: <span style="color:#e6db74">&#34;Ororo Munroe&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;UPN&#34;</span>: <span style="color:#e6db74">&#34;storm@logphile.com&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Department&#34;</span>: <span style="color:#e6db74">&#34;Mutant Affairs&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Reports&#34;</span>: [
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;Name&#34;</span>: <span style="color:#e6db74">&#34;Scott Summers&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;UPN&#34;</span>: <span style="color:#e6db74">&#34;cyclops@logphile.com&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;Department&#34;</span>: <span style="color:#e6db74">&#34;Field Operations&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;Reports&#34;</span>: {
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Name&#34;</span>: <span style="color:#e6db74">&#34;Hisako Ichiki&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;UPN&#34;</span>: <span style="color:#e6db74">&#34;armor@logphile.com&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Department&#34;</span>: <span style="color:#e6db74">&#34;Field Operations&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Reports&#34;</span>: <span style="color:#66d9ef">null</span>
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;Name&#34;</span>: <span style="color:#e6db74">&#34;Warren Worthington&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;UPN&#34;</span>: <span style="color:#e6db74">&#34;angel@logphile.com&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;Department&#34;</span>: <span style="color:#e6db74">&#34;Finance&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;Reports&#34;</span>: <span style="color:#66d9ef">null</span>
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;Name&#34;</span>: <span style="color:#e6db74">&#34;Bobby Drake&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;UPN&#34;</span>: <span style="color:#e6db74">&#34;iceman@logphile.com&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;Department&#34;</span>: <span style="color:#e6db74">&#34;Field Operations&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;Reports&#34;</span>: <span style="color:#66d9ef">null</span>
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;Name&#34;</span>: <span style="color:#e6db74">&#34;James Howlett&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;UPN&#34;</span>: <span style="color:#e6db74">&#34;wolverine@logphile.com&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;Department&#34;</span>: <span style="color:#e6db74">&#34;Security&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;Reports&#34;</span>: {
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Name&#34;</span>: <span style="color:#e6db74">&#34;Laura Kinney&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;UPN&#34;</span>: <span style="color:#e6db74">&#34;x23@logphile.com&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Department&#34;</span>: <span style="color:#e6db74">&#34;Security&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Reports&#34;</span>: <span style="color:#66d9ef">null</span>
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;Name&#34;</span>: <span style="color:#e6db74">&#34;Piotr Nikolayevich Rasputin&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;UPN&#34;</span>: <span style="color:#e6db74">&#34;colossus@logphile.com&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;Department&#34;</span>: <span style="color:#e6db74">&#34;Field Operations&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;Reports&#34;</span>: <span style="color:#66d9ef">null</span>
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;Name&#34;</span>: <span style="color:#e6db74">&#34;Kurt Wagner&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;UPN&#34;</span>: <span style="color:#e6db74">&#34;nightcrawler@logphile.com&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;Department&#34;</span>: <span style="color:#e6db74">&#34;Teleportation Ops&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;Reports&#34;</span>: [
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">&#34;Name&#34;</span>: <span style="color:#e6db74">&#34;Megan Gwynn&#34;</span>,
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">&#34;UPN&#34;</span>: <span style="color:#e6db74">&#34;pixie@logphile.com&#34;</span>,
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">&#34;Department&#34;</span>: <span style="color:#e6db74">&#34;Teleportation Ops&#34;</span>,
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">&#34;Reports&#34;</span>: <span style="color:#66d9ef">null</span>
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">&#34;Name&#34;</span>: <span style="color:#e6db74">&#34;Clarice Ferguson&#34;</span>,
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">&#34;UPN&#34;</span>: <span style="color:#e6db74">&#34;blink@logphile.com&#34;</span>,
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">&#34;Department&#34;</span>: <span style="color:#e6db74">&#34;Teleportation Ops&#34;</span>,
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">&#34;Reports&#34;</span>: <span style="color:#66d9ef">null</span>
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>          ]
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      ]
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Name&#34;</span>: <span style="color:#e6db74">&#34;Hank McCoy&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;UPN&#34;</span>: <span style="color:#e6db74">&#34;beast@logphile.com&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Department&#34;</span>: <span style="color:#e6db74">&#34;Science Division&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Reports&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;Name&#34;</span>: <span style="color:#e6db74">&#34;Forge&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;UPN&#34;</span>: <span style="color:#e6db74">&#34;forge@logphile.com&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;Department&#34;</span>: <span style="color:#e6db74">&#34;Science Division&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;Reports&#34;</span>: <span style="color:#66d9ef">null</span>
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Name&#34;</span>: <span style="color:#e6db74">&#34;Tessa&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;UPN&#34;</span>: <span style="color:#e6db74">&#34;sage@logphile.com&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Department&#34;</span>: <span style="color:#e6db74">&#34;Information Technology&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Reports&#34;</span>: <span style="color:#66d9ef">null</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h1 class="icon-heading">
+  <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 2 2"><title>48 break svgrepo com</title><rect data-element="frame" x="0" y="0" width="2" height="2" rx="1" ry="1" stroke="none" fill="#FFD808"></rect><g transform="translate(0.4 0.4) scale(0.6)" fill="#F4227A" class="nc-icon-wrapper"><path class="linesandangles_een" d="M0.96 0.18c-0.35 0-0.66 0.47-0.66 0.9s0.33 0.66 0.66 0.66 0.66-0.23 0.66-0.66-0.31-0.9-0.66-0.9z m0 1.44c-0.26 0-0.54-0.17-0.54-0.54 0-0.31 0.17-0.62 0.38-0.73l0.14 0.13-0.18 0.18 0.18 0.18-0.18 0.18 0.22 0.22 0.08-0.08-0.14-0.14 0.18-0.18-0.18-0.18 0.18-0.18-0.17-0.18c0.01 0 0.02 0 0.03 0 0.27 0 0.54 0.39 0.54 0.78 0 0.37-0.28 0.54-0.54 0.54z" fill="#F4227A"></path></g></svg>
+  Where This Breaks
+</h1>
+
+
+<ul>
+<li>Missing <span class="neon-blue">manager</span>
+ field = orphaned node</li>
+<li>Cycles (rare but possible in messy directories)</li>
+<li>Manager points to deactivated or deleted accounts</li>
+<li>Top-level user has no <span class="neon-blue">manager</span>
+ = must start with known name</li>
+</ul>
+<hr>
+<h1 class="icon-heading">
+  <svg xmlns="http://www.w3.org/2000/svg" width="64" height="57" viewBox="0 0 46 41"><title>48 treasure chest</title><rect data-element="frame" x="2.5" y="0" width="41" height="41" rx="9" ry="9" stroke="none" fill="#FFD808"></rect><g transform="translate(9.200000000000001 8.200000000000001) scale(0.6)" fill="#F4227A" class="nc-icon-wrapper"><path d="M28.16 26.88c0 0.71-0.57 1.28-1.28 1.28h-7.68c-0.71 0-1.28-0.57-1.28-1.28v-3.84h-7.68v15.36h25.6v-15.36h-7.68v3.84z m-28.16-16.64v10.24h7.68v-17.92c-4.24 0-7.68 3.44-7.68 7.68z m0 25.6c0 1.41 1.15 2.56 2.56 2.56h5.12v-15.36h-7.68v12.8z m38.4-33.28v17.92h7.68v-10.24c0-4.24-3.44-7.68-7.68-7.68z m-14.08 21.76v-5.12c0-0.71-0.57-1.28-1.28-1.28s-1.28 0.57-1.28 1.28v5.12c0 0.71 0.57 1.28 1.28 1.28s1.28-0.57 1.28-1.28z m14.08 14.08h5.12c1.41 0 2.56-1.15 2.56-2.56v-12.8h-7.68v15.36z m-28.16-17.92h7.68v-3.84c0-0.71 0.57-1.28 1.28-1.28h7.68c0.71 0 1.28 0.57 1.28 1.28v3.84h7.68v-17.92h-25.6v17.92z"></path></g></svg>
+  Bonus: Graphviz DOT Export
+</h1>
+
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> Export-ToDot {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">param</span> ([<span style="color:#66d9ef">object</span>]$Node)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $lines = @()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> ($report <span style="color:#66d9ef">in</span> $Node.Reports) {
+</span></span><span style="display:flex;"><span>        $lines += <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">`&#34;</span><span style="color:#e6db74">{0}</span><span style="color:#ae81ff">`&#34;</span><span style="color:#e6db74"> -&gt; </span><span style="color:#ae81ff">`&#34;</span><span style="color:#e6db74">{1}</span><span style="color:#ae81ff">`&#34;</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">-f</span> $Node.Name, $report.Name
+</span></span><span style="display:flex;"><span>        $lines += Export-ToDot -Node $report
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $lines
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$dot = @(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;digraph OrgChart {&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;    node [shape=box style=filled color=\&#34;</span><span style="color:#75715e">#E3F2FD\&#34; fontname=\&#34;Segoe UI\&#34; fontsize=10];&#34;,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;    edge [arrowhead=vee color=\&#34;</span><span style="color:#75715e">#90CAF9\&#34;];&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>$dot += Export-ToDot -Node $tree
+</span></span><span style="display:flex;"><span>$dot += <span style="color:#e6db74">&#34;}&#34;</span>
+</span></span><span style="display:flex;"><span>$dot -join <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">`n</span><span style="color:#e6db74">&#34;</span> | Out-File <span style="color:#e6db74">&#34;.\\orgchart.dot&#34;</span>
+</span></span></code></pre></div>
+
+<h2 class="relative group">Run New <em>orgchart.dot</em> Through GraphViz 
+    <div id="run-new-orgchartdot-through-graphviz" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#run-new-orgchartdot-through-graphviz" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmd" data-lang="cmd"><span style="display:flex;"><span>C:\Users\logphile<span style="color:#75715e">&gt;dot -Tpng orgchart.dot -o orgchart.png</span>
+</span></span></code></pre></div><hr>
+<h1 class="icon-heading">
+  <svg xmlns="http://www.w3.org/2000/svg" width="64" height="57" viewBox="0 0 46 41"><title>48 scroll</title><rect data-element="frame" x="2.5" y="0" width="41" height="41" rx="9" ry="9" stroke="none" fill="#FFD808"></rect><g transform="translate(9.200000000000001 8.200000000000001) scale(0.6)" fill="#F4227A" class="nc-icon-wrapper"><path d="M42.24 24.32h-3.84v-15.36c0-3.53-2.87-6.4-6.4-6.4h-25.6c-3.53 0-6.4 2.87-6.4 6.4v3.84c0 2.12 1.72 3.84 3.84 3.84h2.56v-3.84h-2.56v-3.84c0-1.41 1.15-2.56 2.56-2.56s2.56 1.15 2.56 2.56v23.04c0 3.53 2.87 6.4 6.4 6.4h21.33c5.18 0 9.39-4.21 9.39-9.39v-0.85c0-2.12-1.72-3.84-3.84-3.84z m-24.32 2.56v5.12c0 1.41-1.15 2.56-2.56 2.56s-2.56-1.15-2.56-2.56v-23.04c0-0.91-0.2-1.77-0.54-2.56h19.74c1.41 0 2.56 1.15 2.56 2.56v15.36h-14.08c-1.41 0-2.56 1.15-2.56 2.56z m24.32 2.13c0 3.06-2.49 5.55-5.55 5.55h-15.47c0.34-0.79 0.54-1.65 0.54-2.56v-3.84h20.48v0.85z"></path></g></svg>
+  The Results
+</h1>
+
+
+
+<figure>
+
+      <img data-zoomable class="rounded-md" src="/blog/faking-org-chart/logphile-graphviz-simple-orgchart.png" alt="" />
+  
+  
+  </figure>
+<p>GraphViz can display data in a lot of cool ways. We can add color and more data.</p>
+
+<figure>
+
+      <img data-zoomable class="rounded-md" src="/blog/faking-org-chart/logphile-graphviz-enhanced-orgchart.png" alt="" />
+  
+  
+  </figure>
+<p>Want your org chart to update itself? Use this with Azure Automation or GitHub Actions and post the output to Teams or SharePoint. Clean. Reusable. Always current.</p>
+<hr>
+<h1 class="icon-heading">
+  <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><title>64 logphile paperclip</title><rect data-element="frame" x="0" y="0" width="32" height="32" rx="7" ry="7" stroke="none" fill="#FFD808"></rect><g transform="translate(6.4 6.4) scale(0.6)" fill="#F4227A" class="nc-icon-wrapper"><path d="M4.992 21.024q0 2.208 0.864 4.256t2.368 3.52 3.52 2.336 4.256 0.864 4.288-0.864 3.488-2.336 2.368-3.52 0.864-4.256v-19.008q0-0.832-0.608-1.408t-1.408-0.608-1.408 0.608-0.576 1.408v19.008q0 2.88-2.048 4.928t-4.96 2.048-4.928-2.048-2.080-4.928v-13.024q0-1.632 1.184-2.816t2.816-1.184 2.848 1.184 1.152 2.816v13.024q0 0.384-0.288 0.704t-0.704 0.288-0.704-0.288-0.288-0.704v-13.024q0-0.832-0.608-1.408t-1.408-0.576-1.408 0.576-0.576 1.408v13.024q0 2.080 1.44 3.52t3.552 1.472 3.552-1.472 1.44-3.52v-13.024q0-3.296-2.336-5.632t-5.664-2.368-5.632 2.368-2.368 5.632v13.024z" id="1745250937386-8069938_SVGRepo_iconCarrier"></path></g></svg>
+  References
+</h1>
+
+
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/graph/api/user-list-manager" target="_blank">Microsoft Graph <code>manager</code> relationship</a></li>
+<li><a href="https://dreampuf.github.io/GraphvizOnline/" target="_blank">Graphviz Online Renderer</a></li>
+<li><a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.graph.users/get-mguserdirectreport" target="_blank">Get-MgUserDirectReport Docs</a></li>
+</ul>
+<hr>
+
+  
+  
+  
+  
+
+
+<div
+  
+    class="flex px-4 py-3 rounded-md logphile-blurb-cardcolor"
+    style="background-color: #F4227A"
+  >
+
+  <span
+    
+      class="text-primary-400  flex items-center"
+    >    
+  </span>
+
+  <span
+    
+      class="logphile-blurb-textcolor"      
+    >Thanks for reading. I stepped away to be a stay-at-home dad and now plugging back in—one post, one project at a time. <b>LogPhile</b> is a learning log, a signal to employers, and proof of progress. Spot a mistake? Edge case I missed? Just want to connect? Don’t hesitate to reach out.</span>
+</div>
+
+
+      
+      
+      
+    </div>
+
+    <footer class="pt-1 w-full print:hidden">
+      
+    </footer>
+
+  </div>
+</article>
+
+        </div>
+        <aside class="hidden lg:block w-[36rem] shrink-0 mt-8 sidebar-wrapper">
+          <div class="space-y-6 text-xs">
+  
+
+<div class="px-6 pt-6 pb-5 mt-4 rounded-lg sidebar-box w-full sidebar-panel">  
+  <div class="home-social-icons social-icons-grid mt-2">
+    
+        
+          
+          <a
+          href="https://github.com/logphile"
+          target="_blank"
+          aria-label="Github"
+          rel="me noopener noreferrer"
+          class="social-icon"
+        >
+          <span class="inline-block align-text-bottom">
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+
+          </span>
+        </a>        
+          
+        
+          
+          <a
+          href="https://www.linkedin.com/in/phil-boyce"
+          target="_blank"
+          aria-label="Linkedin"
+          rel="me noopener noreferrer"
+          class="social-icon"
+        >
+          <span class="inline-block align-text-bottom">
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+
+  </span>
+
+
+          </span>
+        </a>        
+          
+        
+          
+          <a
+          href="https://x.com/LogPhile"
+          target="_blank"
+          aria-label="X-Twitter"
+          rel="me noopener noreferrer"
+          class="social-icon"
+        >
+          <span class="inline-block align-text-bottom">
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+  </span>
+
+
+          </span>
+        </a>        
+          
+        
+          
+          <a
+          href="mailto:phil@logphile.com"
+          target="_blank"
+          aria-label="Email"
+          rel="me noopener noreferrer"
+          class="social-icon"
+        >
+          <span class="inline-block align-text-bottom">
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+
+  </span>
+
+
+          </span>
+        </a>        
+          
+        
+    </div>
+    
+  </div>
+
+<hr class="sidebar-hr">
+
+<div class="px-6 pt-6 pb-5 rounded-lg sidebar-box w-full sidebar-panel">
+  
+  <div class="w-full text-center text-2xl font-semibold tags-title" style="color: rgb(var(--color-primary-500));">
+    <h2 class="sidebar-tags-title mb-2">
+      <a href="/tags" class="trace-label">tracepoints::</a>
+    </h2>
+  </div>
+  <div class="grid grid-cols-[minmax(0,_1fr)_minmax(0,_1fr)] gap-x-2 gap-y-2 w-full tags-grid">
+
+    
+    <a href="/tags/automation"
+    class="inline-block px-3 py-1 text-sm text-white text-center rounded-md whitespace-nowrap transition-colors duration-200">
+    
+      #automation
+    </a>
+     
+    <a href="/tags/az-module"
+    class="inline-block px-3 py-1 text-sm text-white text-center rounded-md whitespace-nowrap transition-colors duration-200">
+    
+      #az module
+    </a>
+     
+    <a href="/tags/azure"
+    class="inline-block px-3 py-1 text-sm text-white text-center rounded-md whitespace-nowrap transition-colors duration-200">
+    
+      #azure
+    </a>
+     
+    <a href="/tags/customization"
+    class="inline-block px-3 py-1 text-sm text-white text-center rounded-md whitespace-nowrap transition-colors duration-200">
+    
+      #customization
+    </a>
+     
+    <a href="/tags/entra"
+    class="inline-block px-3 py-1 text-sm text-white text-center rounded-md whitespace-nowrap transition-colors duration-200">
+    
+      #entra
+    </a>
+     
+    <a href="/tags/entra-id"
+    class="inline-block px-3 py-1 text-sm text-white text-center rounded-md whitespace-nowrap transition-colors duration-200">
+    
+      #entra id
+    </a>
+     
+    <a href="/tags/microsoft-graph"
+    class="inline-block px-3 py-1 text-sm text-white text-center rounded-md whitespace-nowrap transition-colors duration-200">
+    
+      #microsoft graph
+    </a>
+     
+    <a href="/tags/org-chart"
+    class="inline-block px-3 py-1 text-sm text-white text-center rounded-md whitespace-nowrap transition-colors duration-200">
+    
+      #org chart
+    </a>
+     
+    <a href="/tags/powershell"
+    class="inline-block px-3 py-1 text-sm text-white text-center rounded-md whitespace-nowrap transition-colors duration-200">
+    
+      #powershell
+    </a>
+     
+    <a href="/tags/terminal"
+    class="inline-block px-3 py-1 text-sm text-white text-center rounded-md whitespace-nowrap transition-colors duration-200">
+    
+      #terminal
+    </a>
+     
+    <a href="/tags/themes"
+    class="inline-block px-3 py-1 text-sm text-white text-center rounded-md whitespace-nowrap transition-colors duration-200">
+    
+      #themes
+    </a>
+     
+    <a href="/tags/user-audit"
+    class="inline-block px-3 py-1 text-sm text-white text-center rounded-md whitespace-nowrap transition-colors duration-200">
+    
+      #user audit
+    </a>
+     
+    <a href="/tags/windows"
+    class="inline-block px-3 py-1 text-sm text-white text-center rounded-md whitespace-nowrap transition-colors duration-200">
+    
+      #windows
+    </a>
+     
+    <a href="/tags/x-men"
+    class="inline-block px-3 py-1 text-sm text-white text-center rounded-md whitespace-nowrap transition-colors duration-200">
+    
+      #x-men
+    </a>
+     
+  </div>
+</div>
+        </aside>
+      </div>
+      
+    </main>
+
+    <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
+  <a href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="Scroll to top" title="Scroll to top">
+    &uarr;
+  </a>
+</div><footer id="site-footer" class="py-6 mt-4 print:hidden">
+  
+  
+    
+  
+
+  <div class="flex items-center justify-between">
+
+    
+    
+    <p class="text-sm footer-style text-neutral-500 dark:text-neutral-400">
+      © 2025 logPhile. All Rights Reserved.
+    </p>
+    
+
+    
+    
+
+  </div>
+
+  
+  <script>
+    
+    mediumZoom(document.querySelectorAll(".medium-zoom-image"), {
+      margin: 24,
+      background: 'rgba(0,0,0,0.5)',
+      scrollOffset: 0,
+    })
+    
+  </script>
+
+  
+  
+  <script type="text/javascript" src="/js/process.min.ee03488f19c93c2efb199e2e3014ea5f3cb2ce7d45154adb3399a158cac27ca52831db249ede5bb602700ef87eb02434139de0858af1818ab0fb4182472204a4.js" integrity="sha512-7gNIjxnJPC77GZ4uMBTqXzyyzn1FFUrbM5mhWMrCfKUoMdsknt5btgJwDvh&#43;sCQ0E53ghYrxgYqw&#43;0GCRyIEpA=="></script>
+
+  
+  
+</footer>
+<div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="http://localhost:1313/"
+  style="z-index:500"
+>
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="Search"
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="Close (Esc)"
+      >
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+  </div>
+  <div id="cookie-notice" style="display: none;">
+  <div class="cookie-content">
+    <p>Another day, another cookie banner. You know the drill.</p>
+    <div class="cookie-buttons">
+      <button id="cookie-notice-accept">Accept</button>
+      <button id="cookie-notice-deny">Decline</button>
+      <a href="/privacy" id="cookie-notice-read">Privacy Policy</a>
+    </div>
+  </div>
+</div>
+
+
+<div id="cookie-notice" style="display: none;">
+  <div class="cookie-content">
+    <p>Another day, another cookie banner. You know the drill.</p>
+    <div class="cookie-buttons">
+      <button id="cookie-notice-accept">Accept</button>
+      <button id="cookie-notice-deny">Decline</button>
+      <a href="/privacy" id="cookie-notice-read">Privacy Policy</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    function createCookie(name, value, days) {
+      var expires = "";
+      if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+      }
+      document.cookie = name + "=" + value + expires + "; path=/";
+      console.log("✅ Cookie set:", name, "=", value);
+    }
+
+    function readCookie(name) {
+      var nameEQ = name + "=";
+      var ca = document.cookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i].trim();
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length);
+      }
+      return null;
+    }
+
+    const cookieNotice = document.getElementById("cookie-notice");
+    const acceptBtn = document.getElementById("cookie-notice-accept");
+    const denyBtn = document.getElementById("cookie-notice-deny");
+
+    const accepted = readCookie("cookie-notice-option");
+    console.log("🍪 Detected cookie:", accepted);
+
+    if (!accepted && cookieNotice) {
+      cookieNotice.style.display = "flex"; 
+    }
+
+    if (acceptBtn) {
+      acceptBtn.addEventListener("click", function () {
+        createCookie("cookie-notice-option", "true", 365);
+        cookieNotice.style.display = "none";
+      });
+    }
+
+    if (denyBtn) {
+      denyBtn.addEventListener("click", function () {
+        createCookie("cookie-notice-option", "false", 365);
+        cookieNotice.style.display = "none";
+      });
+    }
+  });
+</script>
+
+
+  <script>
+    if (typeof mediumZoom !== "undefined") {
+      mediumZoom('[data-zoomable]:not(.no-zoom)', {
+        background: 'rgba(0, 0, 0, 0.8)',
+        scrollOffset: 0,
+        margin: 24
+      });
+    }
+  </script>
+  
+
+</body>
+
+</html>

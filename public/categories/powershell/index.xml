@@ -2,23 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>PowerShell on </title>
-    <link>http://localhost:1313/categories/powershell/</link>
+    <link>https://logphile.com/categories/powershell/</link>
     <description>Recent content in PowerShell on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>phil@logphile.com (Phil Boyce)</managingEditor>
     <webMaster>phil@logphile.com (Phil Boyce)</webMaster>
     <copyright>&amp;copy; 2025 logPhile. All Rights Reserved.</copyright>
-    <lastBuildDate>Sat, 22 Mar 2025 12:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/powershell/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 22 Mar 2025 12:00:00 +0000</lastBuildDate><atom:link href="https://logphile.com/categories/powershell/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Az vs Graph: What PowerShell Module to Use (and When)</title>
-      <link>http://localhost:1313/blog/az-graph-powershell/</link>
+      <link>https://logphile.com/blog/az-graph-powershell/</link>
       <pubDate>Sat, 22 Mar 2025 12:00:00 +0000</pubDate>
       <author>phil@logphile.com (Phil Boyce)</author>
-      <guid>http://localhost:1313/blog/az-graph-powershell/</guid>
+      <guid>https://logphile.com/blog/az-graph-powershell/</guid>
       <description>Azure has two major PowerShell modules: Az and Microsoft.Graph. Learn when to use each, why it matters, and how they overlap.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/blog/az-graph-powershell/logphile-hulk-vs-wolverine-featured-post.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://logphile.com/blog/az-graph-powershell/logphile-hulk-vs-wolverine-featured-post.png" />
     </item>
     
   </channel>

@@ -2,23 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Customization on </title>
-    <link>http://localhost:1313/tags/customization/</link>
+    <link>https://logphile.com/tags/customization/</link>
     <description>Recent content in Customization on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>phil@logphile.com (Phil Boyce)</managingEditor>
     <webMaster>phil@logphile.com (Phil Boyce)</webMaster>
     <copyright>&amp;copy; 2025 logPhile. All Rights Reserved.</copyright>
-    <lastBuildDate>Mon, 24 Mar 2025 12:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/customization/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 24 Mar 2025 12:00:00 +0000</lastBuildDate><atom:link href="https://logphile.com/tags/customization/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>X-Men Colors in the Windows Terminal</title>
-      <link>http://localhost:1313/blog/windows-terminal-xmen-colors/</link>
+      <link>https://logphile.com/blog/windows-terminal-xmen-colors/</link>
       <pubDate>Mon, 24 Mar 2025 12:00:00 +0000</pubDate>
       <author>phil@logphile.com (Phil Boyce)</author>
-      <guid>http://localhost:1313/blog/windows-terminal-xmen-colors/</guid>
+      <guid>https://logphile.com/blog/windows-terminal-xmen-colors/</guid>
       <description>Channel Jim Lee’s 90s X-Men in your Windows Terminal without the comic book store smell. A simple tweak that makes terminal life a little less painful.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/blog/windows-terminal-xmen-colors/logphile-storm-interface-featured-post.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://logphile.com/blog/windows-terminal-xmen-colors/logphile-storm-interface-featured-post.png" />
     </item>
     
   </channel>

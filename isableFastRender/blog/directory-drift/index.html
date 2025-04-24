@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="dark"
+  data-auto-appearance="false"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  
+  <meta http-equiv="content-language" content="en" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  
+  <title>Directory Drift: Auditing Incomplete Entra User Profiles with PowerShell &#43; Graph</title>
+  <meta name="title" content="Directory Drift: Auditing Incomplete Entra User Profiles with PowerShell &#43; Graph" />  
+  
+  <meta name="description" content="Missing user metadata can break your policies, groups, and reports. Learn how to audit Entra ID user profiles using PowerShell and Microsoft Graph." />
+  <meta name="keywords" content="entra id, microsoft graph, powershell, automation, user audit, " />
+  
+  
+  <link rel="canonical" href="http://localhost:1313/blog/directory-drift/" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.bdff976b679343d2757540dc35dce80d527d1629ccf8be24d492e87e722da81a6f88b5f22a6b34f8ea8f2c533f33dc25df1354ff53887a5c9f7242173922b474.css"
+    integrity="sha512-vf&#43;Xa2eTQ9J1dUDcNdzoDVJ9FinM&#43;L4k1JLofnItqBpviLXyKms0&#43;OqPLFM/M9wl3xNU/1OIelyfckIXOSK0dA==" />
+  
+  
+  <script type="text/javascript" src="/js/appearance.min.a945cf4247d18e2a51e932a3f0c7f7c8ba05fc067f6857175e078d064ce60d2dd6bab8c141d8d3090fe662ddc63127bc93cd5faa86f9049c6af0cb8e8f93f29d.js"
+    integrity="sha512-qUXPQkfRjipR6TKj8Mf3yLoF/AZ/aFcXXgeNBkzmDS3WurjBQdjTCQ/mYt3GMSe8k81fqob5BJxq8MuOj5PynQ=="></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script defer type="text/javascript" id="script-bundle" src="/js/main.bundle.min.827fa4e4523276d4fbafeb177baab022781a885b35699f60775ce8fdb94f87df6088e5e5555d1846206d67806aa47399593ea04bda1fff30dc398aaf5e718ec9.js"
+    integrity="sha512-gn&#43;k5FIydtT7r&#43;sXe6qwIngaiFs1aZ9gd1zo/blPh99giOXlVV0YRiBtZ4BqpHOZWT6gS9of/zDcOYqvXnGOyQ==" data-copy="" data-copied=""></script>
+  
+  
+  
+  <script src="/lib/zoom/zoom.min.fcbc7f7b3dcea96e3b5570cd322c5d7a12d5351c87f9889b1c31745a2cc711df58f6b70795a86d50e63813b236ade916668332c10a70a4ce26f7c0878f525fce.js" integrity="sha512-/Lx/ez3OqW47VXDNMixdehLVNRyH&#43;YibHDF0WizHEd9Y9rcHlahtUOY4E7I2rekWZoMywQpwpM4m98CHj1Jfzg=="></script>
+  
+  
+  <link id="favicon" rel="icon" href="/favicon-lp-on.svg?v=2" type="image/svg+xml" />
+<link rel="manifest" href="/site.webmanifest" />
+
+  
+  <link id="favicon" rel="icon" href="/favicon-lp-on.svg?v=2" type="image/svg+xml" />
+<link rel="manifest" href="/site.webmanifest" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZVBM8WM6B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FZVBM8WM6B');
+</script>
+  
+  <meta property="og:url" content="http://localhost:1313/blog/directory-drift/">
+  <meta property="og:title" content="Directory Drift: Auditing Incomplete Entra User Profiles with PowerShell &#43; Graph">
+  <meta property="og:description" content="Audit Microsoft Entra ID users for missing key properties using PowerShell and Microsoft Graph.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2025-03-28T12:00:00+00:00">
+    <meta property="article:modified_time" content="2025-03-28T12:00:00+00:00">
+    <meta property="article:tag" content="Entra Id">
+    <meta property="article:tag" content="Microsoft Graph">
+    <meta property="article:tag" content="Powershell">
+    <meta property="article:tag" content="Automation">
+    <meta property="article:tag" content="User Audit">
+    <meta property="og:image" content="http://localhost:1313/blog/directory-drift/logphile-profx-data-center-featured-post.png">
+
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/blog/directory-drift/logphile-profx-data-center-featured-post.png">
+  <meta name="twitter:title" content="Directory Drift: Auditing Incomplete Entra User Profiles with PowerShell &#43; Graph">
+  <meta name="twitter:description" content="Audit Microsoft Entra ID users for missing key properties using PowerShell and Microsoft Graph.">
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "logPhile@blog:~$ | The Logs Know What Broke First",
+    "name": "Directory Drift: Auditing Incomplete Entra User Profiles with PowerShell \u002b Graph",
+    "headline": "Directory Drift: Auditing Incomplete Entra User Profiles with PowerShell \u002b Graph",
+    "description": "Audit Microsoft Entra ID users for missing key properties using PowerShell and Microsoft Graph.",
+    "abstract": "Missing user metadata can break your policies, groups, and reports. Learn how to audit Entra ID user profiles using PowerShell and Microsoft Graph.",
+    "inLanguage": "en",
+    "url" : "http:\/\/localhost:1313\/blog\/directory-drift\/",
+    "author" : {
+      "@type": "Person",
+      "name": "Phil Boyce"
+    },
+    "copyrightYear": "2025",
+    "dateCreated": "2025-03-28T12:00:00\u002b00:00",
+    "datePublished": "2025-03-28T12:00:00\u002b00:00",
+    
+    "dateModified": "2025-03-28T12:00:00\u002b00:00",
+    
+    "keywords": ["entra id","microsoft graph","powershell","automation","user audit"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "485"
+  }]
+  </script>
+
+
+  
+  
+  <meta name="Phil Boyce" content="Phil Boyce" />
+  
+  
+  
+  <link href="https://github.com/logphile" rel="me" />
+  
+  
+  <link href="https://www.linkedin.com/in/phil-boyce" rel="me" />
+  
+  
+  <link href="https://x.com/LogPhile" rel="me" />
+  
+  
+  <link href="mailto:phil@logphile.com" rel="me" />
+  
+  
+  
+  
+
+<script src="/lib/jquery/jquery.slim.min.03cb160e3cfdb2667a2e2c80d283bebcf63ff8bbc4b629c9ab2babf6fae1d0c07ad470edae783efa4fabda2ac01c58d60e63b98b3c336be8208460f08f4354f5.js" integrity="sha512-A8sWDjz9smZ6LiyA0oO&#43;vPY/&#43;LvEtinJqyur9vrh0MB61HDtrng&#43;&#43;k&#43;r2irAHFjWDmO5izwza&#43;gghGDwj0NU9Q=="></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZVBM8WM6B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FZVBM8WM6B');
+</script>
+
+
+
+  
+  
+  <meta name="theme-color"/>
+  
+  <link id="favicon" rel="icon" href="/favicon-lp-on.svg?v=3" type="image/svg+xml" />
+
+  <script>
+    const favicon = document.getElementById("favicon");
+    let isFocused = true;
+    let cursorOn = true;
+  
+    const activeOn = "/favicon-lp-on.svg?v=3";
+    const activeOff = "/favicon-lp-off.svg?v=3";
+    const inactiveOn = "/favicon-lp-inactive-on.svg?v=3";
+    const inactiveOff = "/favicon-lp-inactive-off.svg?v=3";
+  
+    function updateFavicon() {
+      const icon = isFocused
+        ? (cursorOn ? activeOn : activeOff)
+        : (cursorOn ? inactiveOn : inactiveOff);
+      favicon.href = icon;
+      cursorOn = !cursorOn;
+    }
+  
+    window.addEventListener("focus", () => { isFocused = true; });
+    window.addEventListener("blur", () => { isFocused = false; });
+  
+    setInterval(updateFavicon, 500);
+  </script> 
+
+</head>
+<body class="font-sans flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32 scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600">
+
+  <div id="the-top" class="absolute flex self-center">
+    <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+      href="#main-content"><span class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>Skip to main content</a>
+  </div>
+
+  
+  
+    <div style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px"
+    class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start gap-x-3">
+    
+    
+    
+    <div>
+        <a href="/" class="flex">
+            <span class="sr-only"></span>
+
+            
+            <img src="/images/logo.png" class="h-24 mt-4 w-auto object-contain logphile-logo" alt="" />
+            
+
+        </a>
+    </div>
+    
+    <div class="flex flex-1 items-center justify-between">
+        <nav class="flex space-x-3">
+
+            
+            <a href="/" class="text-base font-medium text-gray-500 hover:text-gray-900"></a>
+            
+
+        </nav>
+        <nav class="hidden md:flex items-center gap-x-5 md:ml-12 h-12">
+
+            
+            
+            
+  <a href="/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="logPhile@blog:~$ | The Logs Know What Broke First">
+        Home
+    </p>
+</a>
+
+
+
+            
+            
+  <a href="/blog/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="logPhile@blog:~$ | The Logs Know What Broke First">
+        Blog
+    </p>
+</a>
+
+
+
+            
+            
+  <a href="/about/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="logPhile@blog:~$ | The Logs Know What Broke First">
+        About Me
+    </p>
+</a>
+
+
+
+            
+            
+
+            
+
+
+            
+            <button id="search-button" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+
+            
+            
+
+        </nav>
+        <div class="flex md:hidden items-center gap-x-5 md:ml-12 h-12">
+
+            <span></span>
+
+            
+
+
+            
+            <button id="search-button-mobile" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+            
+            
+
+        </div>
+    </div>
+    <div class="-my-2 md:hidden">
+
+        <label id="menu-button" class="block">
+            
+            <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+                
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+
+  </span>
+
+
+            </div>
+            <div id="menu-wrapper" style="padding-top:5px;"
+                class="fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50">
+                <ul
+                    class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl">
+
+                    <li id="menu-close-button">
+                        <span
+                            class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+</span>
+                    </li>
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="logPhile@blog:~$ | The Logs Know What Broke First">
+            Home
+        </p>
+    </a>
+</li>
+
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/blog/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="logPhile@blog:~$ | The Logs Know What Broke First">
+            Blog
+        </p>
+    </a>
+</li>
+
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/about/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="logPhile@blog:~$ | The Logs Know What Broke First">
+            About Me
+        </p>
+    </a>
+</li>
+
+
+
+
+                    
+
+                </ul>
+                
+                
+
+            </div>
+        </label>
+    </div>
+</div>
+
+
+
+
+
+  
+
+  <div class="relative flex flex-col grow">
+    <main id="main-content" class="grow">
+      
+      <div class="flex flex-col lg:flex-row gap-8 w-full max-w-[110rem] mx-auto px-8 py-10">
+        <div class="flex-grow tags-rm-margin-baseof">
+          
+
+
+<article class="max-w-7xl mx-auto mt-8 px-4 py-10 rounded-xl shadow-lg post-wrapper post-sidebar-wrapper">
+  <div class="prose dark:prose-invert post-prose w-full">
+    
+    
+
+    
+    
+    
+    
+    
+
+    <header id="single_header" class="w-full">
+      
+
+      
+
+      
+        
+          
+          
+<div class="flex author">
+  
+    
+    
+      
+    
+    
+      
+        
+      
+      <img class="!mt-0 !mb-0 h-24 w-24 rounded-full ltr:mr-4 rtl:ml-4" width="96" height="96"
+      alt="Phil Boyce" src="/logphile-avatar_hu_b8ee3a9d64c04fc4.jpg" />
+    
+  
+  <div class="place-self-center">
+    
+    <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+      Author
+    </div>
+    <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+      Phil Boyce
+    </div>
+    
+    
+    <div class="text-2xl sm:text-lg">
+<div class="flex flex-wrap home-social-icons social-icons-grid">
+
+    
+      
+      <a
+      href="https://github.com/logphile"
+      target="_blank"
+      aria-label="Github"
+      rel="me noopener noreferrer"
+      class="social-icon" style="color: #FF0062;"
+    >
+    
+          <span class="inline-block align-text-bottom">
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+
+          </span>
+        </a>
+      
+    
+      
+      <a
+      href="https://www.linkedin.com/in/phil-boyce"
+      target="_blank"
+      aria-label="Linkedin"
+      rel="me noopener noreferrer"
+      class="social-icon" style="color: #FF0062;"
+    >
+    
+          <span class="inline-block align-text-bottom">
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+
+  </span>
+
+
+          </span>
+        </a>
+      
+    
+      
+      <a
+      href="https://x.com/LogPhile"
+      target="_blank"
+      aria-label="X-Twitter"
+      rel="me noopener noreferrer"
+      class="social-icon" style="color: #FF0062;"
+    >
+    
+          <span class="inline-block align-text-bottom">
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+  </span>
+
+
+          </span>
+        </a>
+      
+    
+      
+      <a
+      href="mailto:phil@logphile.com"
+      target="_blank"
+      aria-label="Email"
+      rel="me noopener noreferrer"
+      class="social-icon" style="color: #FF0062;"
+    >
+    
+          <span class="inline-block align-text-bottom">
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+
+  </span>
+
+
+          </span>
+        </a>
+      
+    
+  </div>
+
+
+</div>
+  </div>
+</div>
+
+        
+
+        
+
+        
+          <div class="mb-5"></div>
+        
+      
+
+      <div class="mt-1 mb-6 text-base red-meta print:hidden">
+        
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center blog-meta red-meta">
+  
+  
+  <time datetime="2025-03-28T12:00:00&#43;00:00">March 28, 2025</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">3 mins</span>
+  
+
+  
+  
+</div>
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center blog-meta red-meta">
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/azure-identity/&#34;,'_self');return false;">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Azure Identity
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/automation/&#34;,'_self');return false;">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Automation
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/entra-id/&#34;,'_self');return false;">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Entra Id
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/microsoft-graph/&#34;,'_self');return false;">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Microsoft Graph
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/powershell/&#34;,'_self');return false;">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Powershell
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/automation/&#34;,'_self');return false;">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Automation
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/user-audit/&#34;,'_self');return false;">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    User Audit
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+<div class="flex flex-row mt-5 flex-wrap items-center"></div>
+
+
+
+
+      </div>
+
+      <h1 class="mt-6 mb-4 text-4xl font-extrabold text-color-text">
+        Directory Drift: Auditing Incomplete Entra User Profiles with PowerShell + Graph
+      </h1>
+    </header>
+
+    <div class="article-content w-full mb-1">
+      <hr>
+<p>If it&rsquo;s not in Entra, it doesn&rsquo;t exist—to your policies, dynamic groups, or audit logs. Missing user metadata like <span class="neon-blue">department, </span>
+<span class="neon-blue">title, </span>
+or <span class="neon-blue">usageLocation</span>
+can silently break downstream automations and cause inconsistencies that are hard to debug.</p>
+<p>This post walks through how to<span class="neon-blue"> audit Entra ID user profiles</span>
+ using <span class="neon-blue">PowerShell and Microsoft Graph,</span>
+ flagging any accounts with incomplete or empty property fields.</p>
+<hr>
+<h1 class="icon-heading">
+  <svg xmlns="http://www.w3.org/2000/svg" height="120" width="105" viewBox="0 0 103 118">
+  <title>Prerequisites</title>
+  <rect data-element="frame" x="0" y="7.5" width="103" height="103" rx="21" ry="21" stroke="none" fill="#FFD808"></rect>
+  <g transform="translate(20.6 23.6) scale(0.6)" fill="#F4227A" class="nc-icon-wrapper">
+  <defs fill="#F4227A"></defs>
+  <path d="M74.41 11.79c-4.77 4.43-9.09 9.09-12.91 13.77-6.27-8.63-14.06-17.39-22.86-25.56-22.6 20.96-38.64 48.3-38.64 64.77 0 29.27 23.06 52.99 51.52 52.99s51.52-23.72 51.52-52.99c0-12.25-11.96-37.52-28.64-52.98z m-4.46 78.34c-5 3.48-11.13 5.55-17.77 5.55-16.59 0-30.1-10.98-30.1-28.81 0-8.88 5.58-16.7 16.73-30.07 1.61 1.84 22.74 28.84 22.74 28.84l13.49-15.39c0.95 1.55 1.81 3.1 2.59 4.58 6.3 12.02 3.65 27.37-7.68 35.3z" class="fa-secondary" opacity=".4" fill="#F4227A">  </path>  <path d="M69.95 90.13c-5 3.48-11.13 5.55-17.77 5.55-16.59 0-30.1-10.98-30.1-28.81 0-8.88 5.58-16.7 16.73-30.07 1.61 1.84 22.74 28.84 22.74 28.84l13.49-15.38c0.95 1.55 1.81 3.1 2.59 4.57 6.3 12.02 3.65 27.37-7.68 35.3z" class="fa-primary" fill="#F4227A"></path></g></svg>
+  Prerequisites
+</h1>
+
+
+<ul>
+<li>PowerShell 7+</li>
+<li><a href="https://learn.microsoft.com/en-us/powershell/microsoftgraph/installation" target="_blank">Microsoft Graph PowerShell SDK</a></li>
+<li>Admin permissions to Microsoft Entra ID</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>Install-Module Microsoft.Graph -Scope CurrentUser
+</span></span><span style="display:flex;"><span>Connect-MgGraph -Scopes <span style="color:#e6db74">&#34;User.Read.All&#34;</span>, <span style="color:#e6db74">&#34;Directory.Read.All&#34;</span>
+</span></span></code></pre></div>
+  
+  
+  
+  
+
+
+<div
+  
+    class="flex px-4 py-3 rounded-md logphile-blurb-cardcolor"
+    style="background-color: #F5F4F1"
+  >
+
+  <span
+    
+      class="flex items-center logphile-blurb-iconcolor"
+      style="color: #FC5749"
+    >    
+  </span>
+
+  <span
+    
+      class="logphile-blurb-textcolor"      
+    >Note: You only need read access for this operation, not <em>User.Write.All</em>.</span>
+</div>
+
+<hr>
+<h1 class="icon-heading">
+  <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>800 list clipboard svgrepo com</title><rect data-element="frame" x="0" y="0" width="24" height="24" rx="5" ry="5" stroke="none" fill="#FFD808"></rect><g transform="translate(4.800000000000001 4.800000000000001) scale(0.6)" fill="none" class="nc-icon-wrapper"><path d="M9 5H7C5.89543 5 5 5.89543 5 7V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V7C19 5.89543 18.1046 5 17 5H15" stroke="#F4227A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 12H15" stroke="#F4227A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 16H15" stroke="#F4227A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#F4227A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="9" cy="12" r="1" fill="#F4227A"></circle><circle cx="9" cy="16" r="1" fill="#F4227A"></circle></g></svg>
+  Properties We&#39;re Auditing
+</h1>
+
+
+<p>We’ll be checking each user for the following missing or blank fields:</p>
+<ul>
+<li><span class="neon-blue">department</span>
+</li>
+<li><span class="neon-blue">jobTitle</span>
+</li>
+<li><span class="neon-blue">usageLocation</span>
+</li>
+<li><span class="neon-blue">manager</span>
+</li>
+<li><span class="neon-blue">mobilePhone</span>
+, <span class="neon-blue">officeLocation</span>
+ (both optional)</li>
+</ul>
+<p>You can customize this based on your environment.</p>
+<hr>
+<h1 class="icon-heading">
+  <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 2"><title>48 powershell svgrepo com</title><rect data-element="frame" x="0" y="0" width="2" height="2" rx="1" ry="1" stroke="none" fill="#FFD808"></rect><g transform="translate(0.4 0.4) scale(0.6)" fill="#F4227A" class="nc-icon-wrapper"><path d="M0.96 1.31h0a0.07 0.07 0 1 0 0 0.14h0.33a0.07 0.07 0 1 0 0-0.14h0 0z m0.21-0.33a0.08 0.08 0 0 0-0.01-0.09l0 0-0.42-0.45a0.08 0.08 0 0 0-0.11 0.11l0 0 0.35 0.38v0l-0.56 0.41a0.08 0.08 0 0 0 0.1 0.13l-0.01 0 0.62-0.45c0.02-0.01 0.03-0.02 0.04-0.04l0 0z m0.63-0.7l0 0a0.06 0.06 0 0 1 0.06 0.08l0 0-0.28 1.2a0.1 0.1 0 0 1-0.09 0.08h-1.37a0.06 0.06 0 0 1-0.06-0.08l0 0 0.28-1.2a0.1 0.1 0 0 1 0.09-0.08h0z"></path></g></svg>
+  Powershell Script
+</h1>
+
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>$propertiesToCheck = @(<span style="color:#e6db74">&#34;Department&#34;</span>, <span style="color:#e6db74">&#34;JobTitle&#34;</span>, <span style="color:#e6db74">&#34;UsageLocation&#34;</span>, <span style="color:#e6db74">&#34;Manager&#34;</span>, <span style="color:#e6db74">&#34;MobilePhone&#34;</span>, <span style="color:#e6db74">&#34;OfficeLocation&#34;</span>)
+</span></span><span style="display:flex;"><span>$results = @()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$users = Get-MgUser -All -Property <span style="color:#e6db74">&#34;Id,DisplayName,UserPrincipalName,Department,JobTitle,UsageLocation,Manager,MobilePhone,OfficeLocation&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">foreach</span> ($user <span style="color:#66d9ef">in</span> $users) {
+</span></span><span style="display:flex;"><span>    $missingProps = @()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> ($prop <span style="color:#66d9ef">in</span> $propertiesToCheck) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span> $user.$prop) {
+</span></span><span style="display:flex;"><span>            $missingProps += $prop
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ($missingProps.Count <span style="color:#f92672">-gt</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>        $results += [<span style="color:#66d9ef">PSCustomObject</span>]@{
+</span></span><span style="display:flex;"><span>            DisplayName = $user.DisplayName
+</span></span><span style="display:flex;"><span>            UserPrincipalName = $user.UserPrincipalName
+</span></span><span style="display:flex;"><span>            MissingProperties = ($missingProps -join <span style="color:#e6db74">&#34;, &#34;</span>)
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$results | Format-Table -AutoSize
+</span></span></code></pre></div><hr>
+<h1 class="icon-heading">
+  <svg xmlns="http://www.w3.org/2000/svg" width="64" height="57" viewBox="0 0 46 41"><title>48 scroll</title><rect data-element="frame" x="2.5" y="0" width="41" height="41" rx="9" ry="9" stroke="none" fill="#FFD808"></rect><g transform="translate(9.200000000000001 8.200000000000001) scale(0.6)" fill="#F4227A" class="nc-icon-wrapper"><path d="M42.24 24.32h-3.84v-15.36c0-3.53-2.87-6.4-6.4-6.4h-25.6c-3.53 0-6.4 2.87-6.4 6.4v3.84c0 2.12 1.72 3.84 3.84 3.84h2.56v-3.84h-2.56v-3.84c0-1.41 1.15-2.56 2.56-2.56s2.56 1.15 2.56 2.56v23.04c0 3.53 2.87 6.4 6.4 6.4h21.33c5.18 0 9.39-4.21 9.39-9.39v-0.85c0-2.12-1.72-3.84-3.84-3.84z m-24.32 2.56v5.12c0 1.41-1.15 2.56-2.56 2.56s-2.56-1.15-2.56-2.56v-23.04c0-0.91-0.2-1.77-0.54-2.56h19.74c1.41 0 2.56 1.15 2.56 2.56v15.36h-14.08c-1.41 0-2.56 1.15-2.56 2.56z m24.32 2.13c0 3.06-2.49 5.55-5.55 5.55h-15.47c0.34-0.79 0.54-1.65 0.54-2.56v-3.84h20.48v0.85z"></path></g></svg>
+  The Results
+</h1>
+
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>PS C:<span style="color:#ae81ff">\U</span>sers<span style="color:#ae81ff">\l</span>ogphile&gt; New-SmartUser $propertiesToCheck <span style="color:#f92672">=</span> @<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Department&#34;</span>, <span style="color:#e6db74">&#34;JobTitle&#34;</span>, <span style="color:#e6db74">&#34;UsageLocation&#34;</span>, <span style="color:#e6db74">&#34;Manager&#34;</span>, <span style="color:#e6db74">&#34;MobilePhone&#34;</span>, <span style="color:#e6db74">&#34;OfficeLocation&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>&gt;&gt; $results <span style="color:#f92672">=</span> @<span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>&gt;&gt; $users <span style="color:#f92672">=</span> Get-MgUser -All -Property <span style="color:#e6db74">&#34;Id,DisplayName,UserPrincipalName,Department,JobTitle,UsageLocation,Manager,MobilePhone,OfficeLocation&#34;</span>
+</span></span><span style="display:flex;"><span>&gt;&gt; foreach <span style="color:#f92672">(</span>$user in $users<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>&gt;&gt;     $missingProps <span style="color:#f92672">=</span> @<span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>&gt;&gt;     foreach <span style="color:#f92672">(</span>$prop in $propertiesToCheck<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>&gt;&gt;         <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>-not $user.$prop<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>&gt;&gt;             $missingProps +<span style="color:#f92672">=</span> $prop
+</span></span><span style="display:flex;"><span>&gt;&gt;         <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>&gt;&gt;     <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>&gt;&gt;     <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>$missingProps.Count -gt 0<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>&gt;&gt;         $results +<span style="color:#f92672">=</span> <span style="color:#f92672">[</span>PSCustomObject<span style="color:#f92672">]</span>@<span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>&gt;&gt;             DisplayName <span style="color:#f92672">=</span> $user.DisplayName
+</span></span><span style="display:flex;"><span>&gt;&gt;             UserPrincipalName <span style="color:#f92672">=</span> $user.UserPrincipalName
+</span></span><span style="display:flex;"><span>&gt;&gt;             MissingProperties <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>$missingProps -join <span style="color:#e6db74">&#34;, &#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>&gt;&gt;         <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>&gt;&gt;     <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>&gt;&gt; <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>&gt;&gt; $results | Format-Table -AutoSize
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>DisplayName                         UserPrincipalName                            Missing Properties
+</span></span><span style="display:flex;"><span>-----------                         -----------------                            ------------------
+</span></span><span style="display:flex;"><span>Warren Worthington                  angel@logphile.com                           UsageLocation
+</span></span><span style="display:flex;"><span>Hank McCoy                          beast@logphile.com                           UsageLocation
+</span></span><span style="display:flex;"><span>Piotr Nikolayevich Rasputin         colossus@logphile.com                        UsageLocation
+</span></span><span style="display:flex;"><span>Scott Summers                       cyclops@logphile.com                         UsageLocation
+</span></span><span style="display:flex;"><span>Bobby Drake                         iceman@logphile.com                          UsageLocation
+</span></span><span style="display:flex;"><span>Jean Grey                           marvelgirl@logphile.com                      UsageLocation
+</span></span><span style="display:flex;"><span>Kurt Wagner                         nightcrawler@logphile.com                    OfficeLocation
+</span></span><span style="display:flex;"><span>Phil Boyce                          phil@logphile.com                            Department, JobTitle, MobilePhone, OfficeLocation            
+</span></span><span style="display:flex;"><span>Charles Xavier                      profx@logphile.com                           UsageLocation
+</span></span><span style="display:flex;"><span>James Howlett                       wolverine@logphile.com                       UsageLocation
+</span></span></code></pre></div><hr>
+<h1 class="icon-heading">
+  <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 46 46"><title>48 rocket launch</title><rect data-element="frame" x="0" y="0" width="46" height="46" rx="10" ry="10" stroke="none" fill="#FFD808"></rect><g transform="translate(9.200000000000001 9.200000000000001) scale(0.6)" fill="#F4227A" class="nc-icon-wrapper"><path d="M3.21 31.69c-2.32 2.32-3.48 8.14-3.15 14.33 6.22 0.33 12.01-0.84 14.34-3.16 3.62-3.62 3.86-8.45 0.56-11.74-3.3-3.28-8.12-3.06-11.75 0.57z m7.35 7.56c-0.78 0.77-2.71 1.16-4.78 1.05-0.11-2.06 0.27-4 1.05-4.77 1.21-1.21 2.82-1.29 3.91-0.19 1.1 1.09 1.02 2.7-0.18 3.91z m34.9-37.52c-0.1-0.48-0.63-1.01-1.11-1.11-2.89-0.62-5.15-0.62-7.42-0.62-9.28 0-14.86 4.97-19.01 11.52h-9.38c-1.46 0-3.21 1.07-3.86 2.39l-4.44 8.88c-0.15 0.3-0.21 0.63-0.24 0.97 0.01 1.19 0.97 2.16 2.17 2.16h9.35c4.77 0 8.64 3.87 8.64 8.64v9.36c0 1.19 0.97 2.16 2.16 2.16 0.34-0.01 0.66-0.09 0.97-0.22l8.88-4.45c1.3-0.66 2.38-2.4 2.39-3.86v-9.4c6.52-4.16 11.52-9.75 11.52-18.99 0.01-2.27 0.01-4.53-0.62-7.43z m-13.23 22.78c-2.28 1.45-0.67 0.61-8.93 4.7-1.3-2.83-3.59-5.12-6.44-6.43 4.08-8.25 3.23-6.64 4.71-8.94 4.23-6.67 8.83-9.52 15.36-9.52 1.6 0 3.03 0 4.63 0.2 0.21 1.64 0.2 3.1 0.2 4.64 0 6.5-2.85 11.09-9.53 15.35z m0.89-15.15c-1.98 0-3.6 1.61-3.6 3.6 0.01 1.99 1.62 3.6 3.61 3.6 1.98 0 3.59-1.61 3.59-3.6s-1.61-3.6-3.6-3.6z"></path></g></svg>
+  Exporting to CSV (Optional)
+</h1>
+
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>$results | Export-Csv -Path <span style="color:#e6db74">&#34;EntraUserAudit.csv&#34;</span> -NoTypeInformation
+</span></span></code></pre></div>
+<figure>
+
+      <img data-zoomable class="rounded-md" src="/blog/directory-drift/logphile-csv-missing-properties.png" alt="" />
+  
+  
+  </figure>
+<hr>
+<h1 class="icon-heading">
+  <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31 31"><title>48 brain svgrepo com</title><rect data-element="frame" x="0" y="0" width="31" height="31" rx="7" ry="7" stroke="none" fill="#FFD808"></rect><g transform="translate(6.2 6.2) scale(0.6)" fill="#F4227A" class="nc-icon-wrapper"><path fill="#F4227A" d="M14.46 3.26a17.62 17.62 0 0 0-0.74 0.02c-0.53 0.09-0.77 0.33-0.9 0.59-0.15 0.29-0.14 0.69 0.02 1.04 0.16 0.35 0.46 0.64 0.88 0.74 0.42 0.11 0.99 0.05 1.75-0.43l0.6 0.94c-0.95 0.61-1.87 0.77-2.63 0.57-0.76-0.19-1.33-0.73-1.61-1.35-0.28-0.59-0.33-1.28-0.07-1.9-2.58 0.42-4.91 1.4-6.69 2.8-0.59 0.64-0.65 1.39-0.39 1.89 0.29 0.57 0.97 0.99 2.34 0.56l0.34 1.07c-1.71 0.54-3.13-0.04-3.68-1.12-0.13-0.26-0.22-0.55-0.25-0.84-0.29 0.34-0.55 0.7-0.78 1.07l0.01 0c-0.52 1.18-0.53 1.99-0.32 2.52 0.21 0.53 0.64 0.87 1.3 1.06 1.33 0.37 3.48-0.08 5-1.21 0.65-0.48 1.26-1.66 1.32-2.58 0.03-0.46-0.07-0.82-0.26-1.04-0.19-0.23-0.5-0.4-1.13-0.4l-0.01-1.12c0.87-0.01 1.57 0.29 2 0.8 0.43 0.52 0.56 1.18 0.52 1.83-0.08 1.3-0.76 2.65-1.77 3.4-1.79 1.34-4.16 1.9-5.97 1.4-0.84-0.23-1.58-0.74-1.97-1.54-0.57 2.73 0.26 5.26 1.85 7.02 0.21 0.23 0.43 0.45 0.66 0.64-0.17-0.47-0.24-0.97-0.23-1.44 0.03-0.86 0.36-1.7 1.04-2.28 0.55-0.48 1.31-0.75 2.21-0.75 0.06 0 0.12 0 0.18 0 0.14 0.01 0.29 0.02 0.43 0.04l-0.14 1.11c-0.94-0.12-1.54 0.09-1.95 0.44-0.4 0.35-0.63 0.88-0.65 1.48-0.04 1.2 0.72 2.6 2.38 3.01l0 0.01c1.63 0.31 3.45 0.02 5.28-1.09 0 0 0 0 0.01 0 0.38-0.27 0.59-0.53 0.68-0.76 0.12-0.27 0.12-0.5 0.03-0.74-0.17-0.5-0.78-1.01-1.33-1.16-0.9-0.23-1.47 0.09-1.74 0.47-0.27 0.38-0.28 0.75 0.13 1.07l-0.69 0.88c-0.85-0.66-0.91-1.83-0.35-2.6 0.41-0.58 1.14-0.98 2.01-1.01a2.82 2.82 0 0 1 0.11 0c0.26 0 0.53 0.04 0.81 0.11 0.93 0.24 1.79 0.92 2.11 1.87a2.17 2.17 0 0 1 0.12 0.8c1-0.51 2.06-0.97 3.13-1.31 1.81-0.83 2.59-2.28 2.57-3.49-0.03-1.23-0.79-2.26-2.55-2.44l0.12-1.12c2.2 0.22 3.51 1.79 3.55 3.53 0.03 1.01-0.35 2.06-1.09 2.96 0.96-0.11 1.92-0.09 2.85 0.09-0.19-0.39-0.28-0.81-0.27-1.22 0.04-1.32 1.17-2.56 2.93-2.58a3.97 3.97 0 0 1 0.36 0.02l-0.09 1.11c-1.5-0.12-2.06 0.67-2.08 1.48-0.02 0.81 0.51 1.71 2.05 1.83 1.7 0.01 2.92-0.91 3.52-2.28 0.8-1.83 0.42-4.58-2.1-7.09-0.05-0.05-0.09-0.1-0.14-0.14a2.43 2.43 0 0 1-0.17 0.65c-0.43 1.04-1.45 1.75-2.51 1.95-1.46 0.27-2.66-0.32-3.21-1.23-0.55-0.9-0.41-2.18 0.59-2.85l0.62 0.93c-0.53 0.36-0.56 0.85-0.25 1.34 0.3 0.49 0.97 0.91 2.04 0.71 0.68-0.13 1.43-0.68 1.69-1.28 0.12-0.3 0.15-0.59 0.02-0.93-0.1-0.27-0.31-0.59-0.7-0.91l-0.01-0.01c-1.64-1.24-3.38-2.12-5.15-2.71 0 0 0 0 0.01 0 0.4 0.73 0.43 1.56 0.18 2.3-0.49 1.47-2.04 2.63-3.96 2.57-0.42-0.01-0.81 0.19-1.15 0.58-0.34 0.39-0.58 0.97-0.65 1.58-0.11 1.22 0.42 2.57 2.49 3.24l-0.35 1.07c-2.46-0.8-3.41-2.73-3.25-4.41 0.08-0.84 0.4-1.62 0.91-2.21 0.51-0.59 1.23-1 2.03-0.97 1.44 0.05 2.54-0.85 2.87-1.8 0.16-0.48 0.14-0.96-0.11-1.41-0.24-0.44-0.71-0.87-1.55-1.18a17.55 17.55 0 0 0-3.06-0.26z m6.08 15.12c-2.51 0.2-5.24 1.4-7.52 2.79-3.36 2.05-6.89 1.6-9.4-0.25 0.99 3.53 4.48 4.25 8.13 3.35 0.36-0.14 0.72-0.39 1.03-0.72 0.42-0.46 0.73-1.05 0.82-1.54l1.11 0.22c-0.15 0.74-0.54 1.48-1.11 2.08-0.54 0.58-1.24 1.04-2.04 1.17-0.41 0.9-0.74 1.78-0.88 2.39-0.21 0.96 0.85 1.33 1.33 0.36 1.14-2.32 2.75-4.39 4.76-6.18 1.56-1.03 2.9-2.3 3.77-3.67z"></path></g></svg>
+  Why This Matters
+</h1>
+
+
+<ul>
+<li>Broken dynamic group rules</li>
+<li>License assignment failures</li>
+<li>Inaccurate compliance or org charts</li>
+<li>Missed automation triggers</li>
+</ul>
+<p>Directory drift happens quietly. This gives you visibility and control.</p>
+<hr>
+<h1 class="icon-heading">
+  <svg role="img" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 48 48"><title>48 odysee</title><rect data-element="frame" x="0" y="0" width="48" height="48" rx="10" ry="10" stroke="none" fill="#FFD808"></rect><g transform="translate(9.600000000000001 9.600000000000001) scale(0.6)" fill="#F4227A" class="nc-icon-wrapper"><path d="M23.93 0a24 24 0 0 0-23.93 24 24 24 0 0 0 24 24 24 24 0 0 0 24-24 24 24 0 0 0-6.42-16.33 14.54 14.54 0 0 1-1.6 6.43c-1.1 1.91-4.56 5.54-6.52 7.4a1.45 1.45 0 0 0 0.11 2.21c1.99 1.48 5.32 4.3 5.57 6.84 0.35 3.67 3.2 8.04 3.35 8.32a1.34 1.34 0 0 1-0.21 0.65 24.13 24.13 0 0 1-4.06 3.8 4.87 4.87 0 0 1-1.61 0.25c-3.89-0.08-3.05-3.73-3.42-5.81s-1.56-6.17-5.44-5.57c0 0 0.97 8.49-2.97 11.09s-11.69 4.54-13.1-0.82 4.92-4.77 5.36-4.77c0.45 0 4.47-1.26 2.54-5.06-1.93-3.8-4.02-7-4.02-7a22.74 22.74 0 0 0-5.47 2.57 10.84 10.84 0 0 0-2.12 1.64c-2.13 2.21-4.38 3.43-5.91 2.72a2.74 2.74 0 0 1-0.64-0.44 23.85 23.85 0 0 1-1.22-5.11c0.86-1.28 4.16-4.08 7.39-5.82 2.61-1.4 5.47-1.98 6.24-2.71-1.34-4.47-3.76-11.41 1.66-14.66 4.27-2.56 9.89-4.11 12.05 2.1 2.16 6.2 1.6 7.59 2.53 7.59 0.93 0 3.22 0.45 4.18-3.5 0.71-2.89 1.15-5.37 2.76-6.18a24 24 0 0 0-13.01-3.83 24 24 0 0 0-0.07 0z m-1 4.25c-0.71-0.04-1.56 0.1-2.6 0.45 0 0-3.79 1.04-3.5 5.06 0.26 3.55 2.16 5.51 6.11 4.02 3.94-1.47 4.62-2.53 3.64-5.51-0.73-2.23-1.53-3.91-3.65-4.02z m0.96 1.45a0.5 0.5 0 0 1 0.37 0.14 3.16 3.16 0 0 1 0.46 0.69 0.51 0.51 0 0 1-0.39 0.74 0.51 0.51 0 0 1-0.47-0.26 3.12 3.12 0 0 0-0.29-0.46 0.51 0.51 0 0 1 0-0.71 0.5 0.5 0 0 1 0.32-0.14z m7.06 0.31a0.44 0.44 0 0 1 0.39 0.2 0.44 0.44 0 0 1-0.14 0.61 0.44 0.44 0 1 1-0.25-0.81z m-5.73 2.53a0.51 0.51 0 0 1 0.45 0.27 3 3 0 0 1 0.21 1.96 0.51 0.51 0 0 1-0.5 0.41h-0.09a0.51 0.51 0 0 1-0.4-0.59 2.03 2.03 0 0 0-0.15-1.39 0.51 0.51 0 0 1 0.48-0.66z m-16.07 1.1a0.24 0.24 0 0 1 0.06 0.01 0.24 0.24 0 1 1-0.3 0.18 0.24 0.24 0 0 1 0.24-0.19z m31.54 6.84l0.54 1.08 1.19 0.24-1.08 0.55-0.24 1.18-0.55-1.07-1.18-0.25 1.07-0.54z m-35.54 1.07a0.44 0.44 0 0 1 0.39 0.21 0.44 0.44 0 0 1-0.14 0.61 0.44 0.44 0 1 1-0.25-0.82z m32.01 5.58a0.52 0.52 0 0 1 0.13 0.02 0.52 0.52 0 1 1-0.62 0.39 0.52 0.52 0 0 1 0.49-0.41z m-27.33 9.1a0.34 0.34 0 0 1 0.33 0.28 0.34 0.34 0 0 1-0.28 0.39 0.34 0.34 0 1 1-0.05-0.67z m19.54 8.19a0.4 0.4 0 0 1 0.07 0.01 0.4 0.4 0 1 1-0.47 0.3 0.4 0.4 0 0 1 0.4-0.31z"></path></g></svg>
+  Ideas to Extend This
+</h1>
+
+
+<ul>
+<li>Auto-tag users with <span class="neon-blue">profileStatus = incomplete</span>
+</li>
+<li>Send Teams alerts or email summaries</li>
+<li>Schedule via Azure Automation or GitHub Actions</li>
+</ul>
+<hr>
+<h1 class="icon-heading">
+  <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><title>64 logphile paperclip</title><rect data-element="frame" x="0" y="0" width="32" height="32" rx="7" ry="7" stroke="none" fill="#FFD808"></rect><g transform="translate(6.4 6.4) scale(0.6)" fill="#F4227A" class="nc-icon-wrapper"><path d="M4.992 21.024q0 2.208 0.864 4.256t2.368 3.52 3.52 2.336 4.256 0.864 4.288-0.864 3.488-2.336 2.368-3.52 0.864-4.256v-19.008q0-0.832-0.608-1.408t-1.408-0.608-1.408 0.608-0.576 1.408v19.008q0 2.88-2.048 4.928t-4.96 2.048-4.928-2.048-2.080-4.928v-13.024q0-1.632 1.184-2.816t2.816-1.184 2.848 1.184 1.152 2.816v13.024q0 0.384-0.288 0.704t-0.704 0.288-0.704-0.288-0.288-0.704v-13.024q0-0.832-0.608-1.408t-1.408-0.576-1.408 0.576-0.576 1.408v13.024q0 2.080 1.44 3.52t3.552 1.472 3.552-1.472 1.44-3.52v-13.024q0-3.296-2.336-5.632t-5.664-2.368-5.632 2.368-2.368 5.632v13.024z" id="1745250937386-8069938_SVGRepo_iconCarrier"></path></g></svg>
+  References
+</h1>
+
+
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/powershell/microsoftgraph/overview" target="_blank">Microsoft Graph PowerShell SDK Docs</a></li>
+<li><a href="https://learn.microsoft.com/en-us/graph/api/resources/user" target="_blank">User Resource Type - Microsoft Graph</a></li>
+<li><a href="https://learn.microsoft.com/en-us/graph/query-parameters" target="_blank">Graph Query Parameters Reference</a></li>
+</ul>
+<hr>
+
+  
+  
+  
+  
+
+
+<div
+  
+    class="flex px-4 py-3 rounded-md logphile-blurb-cardcolor"
+    style="background-color: #F4227A"
+  >
+
+  <span
+    
+      class="text-primary-400  flex items-center"
+    >    
+  </span>
+
+  <span
+    
+      class="logphile-blurb-textcolor"      
+    >Thanks for reading. I stepped away to be a stay-at-home dad and now plugging back in—one post, one project at a time. <b>LogPhile</b> is a learning log, a signal to employers, and proof of progress. Spot a mistake? Edge case I missed? Just want to connect? Don’t hesitate to reach out.</span>
+</div>
+
+
+      
+      
+      
+    </div>
+
+    <footer class="pt-1 w-full print:hidden">
+      
+    </footer>
+
+  </div>
+</article>
+
+        </div>
+        <aside class="hidden lg:block w-[36rem] shrink-0 mt-8 sidebar-wrapper">
+          <div class="space-y-6 text-xs">
+  
+
+<div class="px-6 pt-6 pb-5 mt-4 rounded-lg sidebar-box w-full sidebar-panel">  
+  <div class="home-social-icons social-icons-grid mt-2">
+    
+        
+          
+          <a
+          href="https://github.com/logphile"
+          target="_blank"
+          aria-label="Github"
+          rel="me noopener noreferrer"
+          class="social-icon"
+        >
+          <span class="inline-block align-text-bottom">
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+
+          </span>
+        </a>        
+          
+        
+          
+          <a
+          href="https://www.linkedin.com/in/phil-boyce"
+          target="_blank"
+          aria-label="Linkedin"
+          rel="me noopener noreferrer"
+          class="social-icon"
+        >
+          <span class="inline-block align-text-bottom">
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+
+  </span>
+
+
+          </span>
+        </a>        
+          
+        
+          
+          <a
+          href="https://x.com/LogPhile"
+          target="_blank"
+          aria-label="X-Twitter"
+          rel="me noopener noreferrer"
+          class="social-icon"
+        >
+          <span class="inline-block align-text-bottom">
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+  </span>
+
+
+          </span>
+        </a>        
+          
+        
+          
+          <a
+          href="mailto:phil@logphile.com"
+          target="_blank"
+          aria-label="Email"
+          rel="me noopener noreferrer"
+          class="social-icon"
+        >
+          <span class="inline-block align-text-bottom">
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+
+  </span>
+
+
+          </span>
+        </a>        
+          
+        
+    </div>
+    
+  </div>
+
+<hr class="sidebar-hr">
+
+<div class="px-6 pt-6 pb-5 rounded-lg sidebar-box w-full sidebar-panel">
+  
+  <div class="w-full text-center text-2xl font-semibold tags-title" style="color: rgb(var(--color-primary-500));">
+    <h2 class="sidebar-tags-title mb-2">
+      <a href="/tags" class="trace-label">tracepoints::</a>
+    </h2>
+  </div>
+  <div class="grid grid-cols-[minmax(0,_1fr)_minmax(0,_1fr)] gap-x-2 gap-y-2 w-full tags-grid">
+
+    
+    <a href="/tags/automation"
+    class="inline-block px-3 py-1 text-sm text-white text-center rounded-md whitespace-nowrap transition-colors duration-200">
+    
+      #automation
+    </a>
+     
+    <a href="/tags/az-module"
+    class="inline-block px-3 py-1 text-sm text-white text-center rounded-md whitespace-nowrap transition-colors duration-200">
+    
+      #az module
+    </a>
+     
+    <a href="/tags/azure"
+    class="inline-block px-3 py-1 text-sm text-white text-center rounded-md whitespace-nowrap transition-colors duration-200">
+    
+      #azure
+    </a>
+     
+    <a href="/tags/customization"
+    class="inline-block px-3 py-1 text-sm text-white text-center rounded-md whitespace-nowrap transition-colors duration-200">
+    
+      #customization
+    </a>
+     
+    <a href="/tags/entra"
+    class="inline-block px-3 py-1 text-sm text-white text-center rounded-md whitespace-nowrap transition-colors duration-200">
+    
+      #entra
+    </a>
+     
+    <a href="/tags/entra-id"
+    class="inline-block px-3 py-1 text-sm text-white text-center rounded-md whitespace-nowrap transition-colors duration-200">
+    
+      #entra id
+    </a>
+     
+    <a href="/tags/microsoft-graph"
+    class="inline-block px-3 py-1 text-sm text-white text-center rounded-md whitespace-nowrap transition-colors duration-200">
+    
+      #microsoft graph
+    </a>
+     
+    <a href="/tags/org-chart"
+    class="inline-block px-3 py-1 text-sm text-white text-center rounded-md whitespace-nowrap transition-colors duration-200">
+    
+      #org chart
+    </a>
+     
+    <a href="/tags/powershell"
+    class="inline-block px-3 py-1 text-sm text-white text-center rounded-md whitespace-nowrap transition-colors duration-200">
+    
+      #powershell
+    </a>
+     
+    <a href="/tags/terminal"
+    class="inline-block px-3 py-1 text-sm text-white text-center rounded-md whitespace-nowrap transition-colors duration-200">
+    
+      #terminal
+    </a>
+     
+    <a href="/tags/themes"
+    class="inline-block px-3 py-1 text-sm text-white text-center rounded-md whitespace-nowrap transition-colors duration-200">
+    
+      #themes
+    </a>
+     
+    <a href="/tags/user-audit"
+    class="inline-block px-3 py-1 text-sm text-white text-center rounded-md whitespace-nowrap transition-colors duration-200">
+    
+      #user audit
+    </a>
+     
+    <a href="/tags/windows"
+    class="inline-block px-3 py-1 text-sm text-white text-center rounded-md whitespace-nowrap transition-colors duration-200">
+    
+      #windows
+    </a>
+     
+    <a href="/tags/x-men"
+    class="inline-block px-3 py-1 text-sm text-white text-center rounded-md whitespace-nowrap transition-colors duration-200">
+    
+      #x-men
+    </a>
+     
+  </div>
+</div>
+        </aside>
+      </div>
+      
+    </main>
+
+    <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
+  <a href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="Scroll to top" title="Scroll to top">
+    &uarr;
+  </a>
+</div><footer id="site-footer" class="py-6 mt-4 print:hidden">
+  
+  
+    
+  
+
+  <div class="flex items-center justify-between">
+
+    
+    
+    <p class="text-sm footer-style text-neutral-500 dark:text-neutral-400">
+      © 2025 logPhile. All Rights Reserved.
+    </p>
+    
+
+    
+    
+
+  </div>
+
+  
+  <script>
+    
+    mediumZoom(document.querySelectorAll(".medium-zoom-image"), {
+      margin: 24,
+      background: 'rgba(0,0,0,0.5)',
+      scrollOffset: 0,
+    })
+    
+  </script>
+
+  
+  
+  <script type="text/javascript" src="/js/process.min.ee03488f19c93c2efb199e2e3014ea5f3cb2ce7d45154adb3399a158cac27ca52831db249ede5bb602700ef87eb02434139de0858af1818ab0fb4182472204a4.js" integrity="sha512-7gNIjxnJPC77GZ4uMBTqXzyyzn1FFUrbM5mhWMrCfKUoMdsknt5btgJwDvh&#43;sCQ0E53ghYrxgYqw&#43;0GCRyIEpA=="></script>
+
+  
+  
+</footer>
+<div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="http://localhost:1313/"
+  style="z-index:500"
+>
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="Search"
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="Close (Esc)"
+      >
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+  </div>
+  <div id="cookie-notice" style="display: none;">
+  <div class="cookie-content">
+    <p>Another day, another cookie banner. You know the drill.</p>
+    <div class="cookie-buttons">
+      <button id="cookie-notice-accept">Accept</button>
+      <button id="cookie-notice-deny">Decline</button>
+      <a href="/privacy" id="cookie-notice-read">Privacy Policy</a>
+    </div>
+  </div>
+</div>
+
+
+<div id="cookie-notice" style="display: none;">
+  <div class="cookie-content">
+    <p>Another day, another cookie banner. You know the drill.</p>
+    <div class="cookie-buttons">
+      <button id="cookie-notice-accept">Accept</button>
+      <button id="cookie-notice-deny">Decline</button>
+      <a href="/privacy" id="cookie-notice-read">Privacy Policy</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    function createCookie(name, value, days) {
+      var expires = "";
+      if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+      }
+      document.cookie = name + "=" + value + expires + "; path=/";
+      console.log("✅ Cookie set:", name, "=", value);
+    }
+
+    function readCookie(name) {
+      var nameEQ = name + "=";
+      var ca = document.cookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i].trim();
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length);
+      }
+      return null;
+    }
+
+    const cookieNotice = document.getElementById("cookie-notice");
+    const acceptBtn = document.getElementById("cookie-notice-accept");
+    const denyBtn = document.getElementById("cookie-notice-deny");
+
+    const accepted = readCookie("cookie-notice-option");
+    console.log("🍪 Detected cookie:", accepted);
+
+    if (!accepted && cookieNotice) {
+      cookieNotice.style.display = "flex"; 
+    }
+
+    if (acceptBtn) {
+      acceptBtn.addEventListener("click", function () {
+        createCookie("cookie-notice-option", "true", 365);
+        cookieNotice.style.display = "none";
+      });
+    }
+
+    if (denyBtn) {
+      denyBtn.addEventListener("click", function () {
+        createCookie("cookie-notice-option", "false", 365);
+        cookieNotice.style.display = "none";
+      });
+    }
+  });
+</script>
+
+
+  <script>
+    if (typeof mediumZoom !== "undefined") {
+      mediumZoom('[data-zoomable]:not(.no-zoom)', {
+        background: 'rgba(0, 0, 0, 0.8)',
+        scrollOffset: 0,
+        margin: 24
+      });
+    }
+  </script>
+  
+
+</body>
+
+</html>

@@ -76,13 +76,12 @@
   <script src="{{ $zoomJS.RelPermalink }}" integrity="{{ $zoomJS.Data.Integrity }}"></script>
   {{ end }}
   {{/* Icons */}}
+  {{ partial "favicons.html" .Site }}
   {{ if templates.Exists "partials/favicons.html" }}
   {{ partialCached "favicons.html" .Site }}
   {{ else }}
-  <link rel="apple-touch-icon" sizes="180x180" href="{{ "apple-touch-icon.png" | relURL }}" />
-  <link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | relURL }}" />
-  <link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | relURL }}" />
-  <link rel="manifest" href="{{ "site.webmanifest" | relURL }}" />
+  <link id="favicon" rel="icon" href="/favicon-lp-on.svg?v=2" type="image/svg+xml" />
+  
   {{ end }}
   {{/* Site Verification */}}
   {{ with .Site.Params.verification.google }}
@@ -126,17 +125,17 @@
   {{ end }}
   <meta name="theme-color"/>
   
-  <link id="favicon" rel="icon" href="/favicon-lp-on.svg" type="image/svg+xml" />
+  <link id="favicon" rel="icon" href="/favicon-lp-on.svg?v=3" type="image/svg+xml" />
 
   <script>
     const favicon = document.getElementById("favicon");
     let isFocused = true;
     let cursorOn = true;
   
-    const activeOn = "/favicon-lp-on.svg";
-    const activeOff = "/favicon-lp-off.svg";
-    const inactiveOn = "/favicon-lp-inactive-on.svg";
-    const inactiveOff = "/favicon-lp-inactive-off.svg";
+    const activeOn = "/favicon-lp-on.svg?v=3";
+    const activeOff = "/favicon-lp-off.svg?v=3";
+    const inactiveOn = "/favicon-lp-inactive-on.svg?v=3";
+    const inactiveOff = "/favicon-lp-inactive-off.svg?v=3";
   
     function updateFavicon() {
       const icon = isFocused
