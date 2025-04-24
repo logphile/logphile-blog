@@ -13,9 +13,9 @@ showHero: false
 
 ---
 
-If it's not in Entra, it doesn't exist—to your policies, dynamic groups, or audit logs. Missing user metadata like {{< glow >}}department, {{< /glow >}}{{< glow >}}title, {{< /glow >}}or {{< glow >}}usageLocation{{< /glow >}}can silently break downstream automations and cause inconsistencies that are hard to debug.  
+If it's not in Entra, it doesn't exist—to your policies, dynamic groups, or audit logs. Missing user metadata like *department*, *title*, or *usageLocation* can silently break downstream automations and cause inconsistencies that are hard to debug.  
 
-This post walks through how to{{< glow >}} audit Entra ID user profiles{{< /glow >}} using {{< glow >}}PowerShell and Microsoft Graph,{{< /glow >}} flagging any accounts with incomplete or empty property fields.
+This post walks through how to audit **Entra ID** user profiles using **PowerShell** and **Microsoft Graph**, flagging any accounts with incomplete or empty property fields.
 
 <div class="post-heading-container">
 <img src="/icons/logphile-icon-fire.svg" alt="Alert" width="75" height="75" />
@@ -50,11 +50,11 @@ Note: You only need read access for this operation, not *User.Write.All*.
 
 We’ll be checking each user for the following missing or blank fields:
 
-- {{< glow >}}department{{< /glow >}}
-- {{< glow >}}jobTitle{{< /glow >}}
-- {{< glow >}}usageLocation{{< /glow >}}
-- {{< glow >}}manager{{< /glow >}}
-- {{< glow >}}mobilePhone{{< /glow >}}, {{< glow >}}officeLocation{{< /glow >}} (both optional)
+- *department*
+- *jobTitle*
+- *usageLocation*
+- *manager*
+- *mobilePhone*, *officeLocation* (both optional)
 
 You can customize this based on your environment.
 
@@ -175,7 +175,7 @@ Directory drift happens quietly. This gives you visibility and control.
   </div>
 </div>
 
-- Auto-tag users with {{< glow >}}profileStatus = incomplete{{< /glow >}}
+- Auto-tag users with *profileStatus = incomplete*
 - Send Teams alerts or email summaries
 - Schedule via Azure Automation or GitHub Actions
 

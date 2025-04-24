@@ -31,8 +31,8 @@
   
   
   
-  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.b17dd1a917c1643c43782038c9084e46257583cd1cfa4b863067d86d9ba6e4dc9573d32d5118a343d800df7154bb017aad9ca590517f2f81a01a5fc2124e6104.css"
-    integrity="sha512-sX3RqRfBZDxDeCA4yQhORiV1g80c&#43;kuGMGfYbZum5NyVc9MtURijQ9gA33FUuwF6rZylkFF/L4GgGl/CEk5hBA==" />
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.2654903c92acbf000a23966e21134844bc9158da8bf4c07fa5c44356d802716f369500f13d2d08eeac6e54c21e5d97159534bc2ba8e3c2f4849bfd8ecde10263.css"
+    integrity="sha512-JlSQPJKsvwAKI5ZuIRNIRLyRWNqL9MB/pcRDVtgCcW82lQDxPS0I7qxuVMIeXZcVlTS8K6jjwvSEm/2OzeECYw==" />
   
   
   <script type="text/javascript" src="/js/appearance.min.a945cf4247d18e2a51e932a3f0c7f7c8ba05fc067f6857175e078d064ce60d2dd6bab8c141d8d3090fe662ddc63127bc93cd5faa86f9049c6af0cb8e8f93f29d.js"
@@ -141,31 +141,19 @@
   
   
   <link href="https://github.com/logphile" rel="me" />
-    <div class="home-social-icons post-social-icons mt-2">
-    
-  </div>
-
+  
   
   
   <link href="https://www.linkedin.com/in/phil-boyce" rel="me" />
-    <div class="home-social-icons post-social-icons mt-2">
-    
-  </div>
-
+  
   
   
   <link href="https://x.com/LogPhile" rel="me" />
-    <div class="home-social-icons post-social-icons mt-2">
-    
-  </div>
-
+  
   
   
   <link href="mailto:phil@logphile.com" rel="me" />
-    <div class="home-social-icons post-social-icons mt-2">
-    
-  </div>
-
+  
   
   
   
@@ -755,15 +743,8 @@
     <div class="article-content w-full mb-1">
       <hr>
 <p>What if your org chart wasn’t buried in HR PDFs but lived where access decisions are made?</p>
-<p><span class="neon-blue">Microsoft Entra ID</span>
- supports a <span class="neon-blue">manager</span>
- property on each user object, which can be used to simulate an organizational chart—if populated correctly.</p>
-<p>In this post, we’ll use <span class="neon-blue">PowerShell</span>
- and <span class="neon-blue">Microsoft Graph</span>
- to recursively build an org chart based on <span class="neon-blue">manager</span>
- relationships, then optionally export it to <span class="neon-blue">JSON</span>
- or <span class="neon-blue">Graphviz DOT</span>
- format for visualization.</p>
+<p><em>Microsoft Entra ID</em> supports a <em>manager</em> property on each user object, which can be used to simulate an organizational chart—if populated correctly.</p>
+<p>In this post, we’ll use <strong>PowerShell</strong> and <strong>Microsoft Graph</strong> to recursively build an org chart based on <em>manager</em> relationships, then optionally export it to <strong>JSON</strong> or <strong>Graphviz DOT</strong> format for visualization.</p>
 <hr>
 <div class="post-heading-container">
 <img src="/icons/logphile-diploma.svg" alt="Alert" width="75" height="75" />
@@ -775,7 +756,7 @@
 <li>How to query user-manager relationships with Microsoft Graph</li>
 <li>How to recursively walk Entra ID&rsquo;s hierarchy using PowerShell</li>
 <li>Where org chart data tends to break in the real world</li>
-<li>How to output to structured formats like JSON and DOT</li>
+<li>How to output to structured formats like <strong>JSON</strong> and <strong>DOT</strong></li>
 </ul>
 <hr>
 <div class="post-heading-container">
@@ -795,16 +776,11 @@
 </div>
 <p>We’ll need:</p>
 <ul>
-<li><span class="neon-blue">Id</span>
-</li>
-<li><span class="neon-blue">DisplayName</span>
-</li>
-<li><span class="neon-blue">UserPrincipalName</span>
-</li>
-<li><span class="neon-blue">Department</span>
-</li>
-<li><span class="neon-blue">Manager</span>
-</li>
+<li><em>Id</em></li>
+<li><em>DisplayName</em></li>
+<li><em>UserPrincipalName</em></li>
+<li><em>Department</em></li>
+<li><em>Manager</em></li>
 </ul>
 <hr>
 <div class="post-heading-container">
@@ -1007,12 +983,10 @@
   </div>
 </div>
 <ul>
-<li>Missing <span class="neon-blue">manager</span>
- field = orphaned node</li>
+<li>Missing <em>manager</em> field = orphaned node</li>
 <li>Cycles (rare but possible in messy directories)</li>
 <li>Manager points to deactivated or deleted accounts</li>
-<li>Top-level user has no <span class="neon-blue">manager</span>
- = must start with known name</li>
+<li>Top-level user has no <em>manager</em> = must start with known name</li>
 </ul>
 <hr>
 <div class="post-heading-container">

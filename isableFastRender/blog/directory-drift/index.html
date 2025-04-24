@@ -129,7 +129,7 @@
     "keywords": ["entra id","microsoft graph","powershell","automation","user audit"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "461"
+    "wordCount": "460"
   }]
   </script>
 
@@ -742,13 +742,8 @@
 
     <div class="article-content w-full mb-1">
       <hr>
-<p>If it&rsquo;s not in Entra, it doesn&rsquo;t exist—to your policies, dynamic groups, or audit logs. Missing user metadata like <span class="neon-blue">department, </span>
-<span class="neon-blue">title, </span>
-or <span class="neon-blue">usageLocation</span>
-can silently break downstream automations and cause inconsistencies that are hard to debug.</p>
-<p>This post walks through how to<span class="neon-blue"> audit Entra ID user profiles</span>
- using <span class="neon-blue">PowerShell and Microsoft Graph,</span>
- flagging any accounts with incomplete or empty property fields.</p>
+<p>If it&rsquo;s not in Entra, it doesn&rsquo;t exist—to your policies, dynamic groups, or audit logs. Missing user metadata like <em>department</em>, <em>title</em>, or <em>usageLocation</em> can silently break downstream automations and cause inconsistencies that are hard to debug.</p>
+<p>This post walks through how to audit <strong>Entra ID</strong> user profiles using <strong>PowerShell</strong> and <strong>Microsoft Graph</strong>, flagging any accounts with incomplete or empty property fields.</p>
 <div class="post-heading-container">
 <img src="/icons/logphile-icon-fire.svg" alt="Alert" width="75" height="75" />
   <div class="post-headings">
@@ -797,17 +792,11 @@ can silently break downstream automations and cause inconsistencies that are har
 </div>
 <p>We’ll be checking each user for the following missing or blank fields:</p>
 <ul>
-<li><span class="neon-blue">department</span>
-</li>
-<li><span class="neon-blue">jobTitle</span>
-</li>
-<li><span class="neon-blue">usageLocation</span>
-</li>
-<li><span class="neon-blue">manager</span>
-</li>
-<li><span class="neon-blue">mobilePhone</span>
-, <span class="neon-blue">officeLocation</span>
- (both optional)</li>
+<li><em>department</em></li>
+<li><em>jobTitle</em></li>
+<li><em>usageLocation</em></li>
+<li><em>manager</em></li>
+<li><em>mobilePhone</em>, <em>officeLocation</em> (both optional)</li>
 </ul>
 <p>You can customize this based on your environment.</p>
 <hr>
@@ -916,8 +905,7 @@ can silently break downstream automations and cause inconsistencies that are har
   </div>
 </div>
 <ul>
-<li>Auto-tag users with <span class="neon-blue">profileStatus = incomplete</span>
-</li>
+<li>Auto-tag users with <em>profileStatus = incomplete</em></li>
 <li>Send Teams alerts or email summaries</li>
 <li>Schedule via Azure Automation or GitHub Actions</li>
 </ul>

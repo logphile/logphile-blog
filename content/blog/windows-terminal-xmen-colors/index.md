@@ -12,8 +12,6 @@ showHero: false
 
 ---
 
-After a fresh install recently, I took the opportunity to rebuild my terminal environment.
-
 X-Men was one of the first comic books I picked up. Who can forget that blue, yellow, and white color palette that dominated the 90s comics during Jim Lee’s iconic run. It was the perfect balance of bold, clean, and readable. Hopefully this Windows Terminal color scheme across the same way.
 
 ---
@@ -71,9 +69,9 @@ Colors used in this theme:
 If you're new to Windows Terminal and asking where the settings.json file is...
 {{< /alert >}}
 
-1. Open {{< glow >}}Windows Terminal{{< /glow >}}
-2. Hit {{< glow >}}Ctrl{{< /glow >}} + {{< glow >}},{{< /glow >}}
-3. Click {{< glow >}}Open JSON{{< /glow >}} file in the bottom left.
+1. Open *Windows Terminal*
+2. Hit *Ctrl* + *,*
+3. Click *Open JSON* file in the bottom left.
 
 ---
 
@@ -104,7 +102,6 @@ foreach ($user in $users) {
         }
     }
 }
-
 ```
 
 ---
@@ -116,7 +113,7 @@ foreach ($user in $users) {
   </div>
 </div>
 
-If you spend hours a day in the terminal, it should be a place that feels good to be in—like Storm’s hot tub, sipping wine—not a 1v1 with Wolverine in the Danger Room. Changes that make life easier on your eyes and help create a more focused, personalized workspace add up—and should absolutely be taken advantage of.
+If you spend hours a day in the terminal, it should be a place that feels good to be in. Changes that make life easier on your eyes and help create a more focused, personalized workspace add up—and should absolutely be taken advantage of. It's the little things.
 
 **Go down the customization rabbit hole:**
 
@@ -135,7 +132,7 @@ If you spend hours a day in the terminal, it should be a place that feels good t
   </div>
 </div>
 
-I highly recommend *[Windows Terminal Themes](https://windowsterminalthemes.dev/)* to explore more themes. It’s a simple site that lets you browse and copy themes with a click — super useful when hunting for new ideas.
+I highly recommend *[Windows Terminal Themes](https://windowsterminalthemes.dev/)* to explore more themes. It’s a simple site that lets you browse and copy themes with a click — super useful and great for inspiration.
 
 ---
   

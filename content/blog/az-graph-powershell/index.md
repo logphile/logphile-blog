@@ -15,7 +15,7 @@ showHero: false
 
 > *“Why do I need two different PowerShell modules just to manage Azure?”*
 
-That’s the common frustration—*Az* and *Microsoft.Graph* are both official modules, but they serve completely different purposes. This post breaks down when to use each, with examples, a comparison matrix, and tips for choosing the right one.
+That’s the common frustration—*Az* and *Microsoft.Graph* are both official modules, but they serve completely different purposes. Let's look atwhen to use each, with examples, a comparison matrix, and tips for choosing the right one.
 
 ---
 
@@ -42,15 +42,15 @@ They're both used in the Azure ecosystem, but they hit different APIs and serve 
 
 | Feature / Action                             | `Az` Module             | `Microsoft.Graph` Module       | Use This When…                                  |
 |---------------------------------------------|-------------------------|-------------------------------|-------------------------------------------------|
-| Create/Manage VMs, Storage, etc.            | ✅ `Az.Compute`, etc.    | ❌                            | You’re managing Azure infrastructure.           |
-| Create/Update Users & Groups in Entra ID    | ❌                      | ✅ `Microsoft.Graph.Users`     | You’re managing Entra identity objects.         |
+| Create/Manage VMs, Storage, etc.            | ✅ `Az.Compute`, etc.    | ✖️                            | You’re managing Azure infrastructure.           |
+| Create/Update Users & Groups in Entra ID    | ✖️                      | ✅ `Microsoft.Graph.Users`     | You’re managing Entra identity objects.         |
 | Assign RBAC Roles to Azure resources        | ✅                       | ✅ (via role assignments)      | Either works, but `Az` is more common.          |
-| Create/Manage Subscriptions & Resource Groups | ✅ `Az.Resources`       | ❌                            | Managing the Azure structure itself.            |
-| Assign Microsoft 365 licenses               | ❌                      | ✅ `Microsoft.Graph.Licenses`  | Working with SaaS identity entitlements.        |
-| Use Azure Policy / ARM Templates            | ✅                       | ❌                            | Infrastructure governance and templates.        |
-| Modify Conditional Access / Entra Policies  | ❌                      | ✅                             | Identity security config.                       |
-| Read/Write Entra Group Memberships          | ❌                      | ✅                             | Directory group automation.                     |
-| Automate Identity Lifecycle (HR sync, etc.) | ❌                      | ✅                             | Microsoft Graph is the only option.             |
+| Create/Manage Subscriptions & Resource Groups | ✅ `Az.Resources`       | ✖️                            | Managing the Azure structure itself.            |
+| Assign Microsoft 365 licenses               | ✖️                      | ✅ `Microsoft.Graph.Licenses`  | Working with SaaS identity entitlements.        |
+| Use Azure Policy / ARM Templates            | ✅                       | ✖️                            | Infrastructure governance and templates.        |
+| Modify Conditional Access / Entra Policies  | ✖️                      | ✅                             | Identity security config.                       |
+| Read/Write Entra Group Memberships          | ✖️                      | ✅                             | Directory group automation.                     |
+| Automate Identity Lifecycle (HR sync, etc.) | ✖️                      | ✅                             | Microsoft Graph is the only option.             |
 
 ---
 

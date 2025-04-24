@@ -15,9 +15,9 @@ showHero: false
 
 What if your org chart wasn’t buried in HR PDFs but lived where access decisions are made?
 
-{{< glow >}}Microsoft Entra ID{{< /glow >}} supports a {{< glow >}}manager{{< /glow >}} property on each user object, which can be used to simulate an organizational chart—if populated correctly.
+*Microsoft Entra ID* supports a *manager* property on each user object, which can be used to simulate an organizational chart—if populated correctly.
 
-In this post, we’ll use {{< glow >}}PowerShell{{< /glow >}} and {{< glow >}}Microsoft Graph{{< /glow >}} to recursively build an org chart based on {{< glow >}}manager{{< /glow >}} relationships, then optionally export it to {{< glow >}}JSON{{< /glow >}} or {{< glow >}}Graphviz DOT{{< /glow >}} format for visualization.
+In this post, we’ll use **PowerShell** and **Microsoft Graph** to recursively build an org chart based on *manager* relationships, then optionally export it to **JSON** or **Graphviz DOT** format for visualization.
 
 ---
 
@@ -31,7 +31,7 @@ In this post, we’ll use {{< glow >}}PowerShell{{< /glow >}} and {{< glow >}}Mi
 - How to query user-manager relationships with Microsoft Graph
 - How to recursively walk Entra ID's hierarchy using PowerShell
 - Where org chart data tends to break in the real world
-- How to output to structured formats like JSON and DOT
+- How to output to structured formats like **JSON** and **DOT**
 
 ---
 
@@ -57,11 +57,11 @@ Connect-MgGraph -Scopes "User.Read.All", "Directory.Read.All"
 </div>
 
 We’ll need:
-- {{< glow >}}Id{{< /glow >}}
-- {{< glow >}}DisplayName{{< /glow >}}
-- {{< glow >}}UserPrincipalName{{< /glow >}}
-- {{< glow >}}Department{{< /glow >}}
-- {{< glow >}}Manager{{< /glow >}}
+- *Id*
+- *DisplayName*
+- *UserPrincipalName*
+- *Department*
+- *Manager*
 
 ---
 
@@ -285,10 +285,10 @@ $tree | ConvertTo-Json -Depth 10 | Out-File ".\\orgTree.json" -Encoding utf8
   </div>
 </div>
 
-- Missing {{< glow >}}manager{{< /glow >}} field = orphaned node
+- Missing *manager* field = orphaned node
 - Cycles (rare but possible in messy directories)
 - Manager points to deactivated or deleted accounts
-- Top-level user has no {{< glow >}}manager{{< /glow >}} = must start with known name
+- Top-level user has no *manager* = must start with known name
 
 ---
 
@@ -341,7 +341,7 @@ GraphViz can display data in a lot of cool ways. We can add color and more data.
 {{< figure src="/logphile-graphviz-enhanced-orgchart.png" class="wider-image no-zoom" >}}
 
 
-Want your org chart to update itself? Use this with Azure Automation or GitHub Actions and post the output to Teams or SharePoint. Clean. Reusable. Always current.
+Want your org chart to update itself? Use this with Azure Automation or GitHub Actions and post the output to Teams or SharePoint. Clean. Reusable. Always current. 
 
 ---
 

@@ -31,8 +31,8 @@
   
   
   
-  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.b17dd1a917c1643c43782038c9084e46257583cd1cfa4b863067d86d9ba6e4dc9573d32d5118a343d800df7154bb017aad9ca590517f2f81a01a5fc2124e6104.css"
-    integrity="sha512-sX3RqRfBZDxDeCA4yQhORiV1g80c&#43;kuGMGfYbZum5NyVc9MtURijQ9gA33FUuwF6rZylkFF/L4GgGl/CEk5hBA==" />
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.2654903c92acbf000a23966e21134844bc9158da8bf4c07fa5c44356d802716f369500f13d2d08eeac6e54c21e5d97159534bc2ba8e3c2f4849bfd8ecde10263.css"
+    integrity="sha512-JlSQPJKsvwAKI5ZuIRNIRLyRWNqL9MB/pcRDVtgCcW82lQDxPS0I7qxuVMIeXZcVlTS8K6jjwvSEm/2OzeECYw==" />
   
   
   <script type="text/javascript" src="/js/appearance.min.a945cf4247d18e2a51e932a3f0c7f7c8ba05fc067f6857175e078d064ce60d2dd6bab8c141d8d3090fe662ddc63127bc93cd5faa86f9049c6af0cb8e8f93f29d.js"
@@ -128,7 +128,7 @@
     "keywords": ["microsoft graph","powershell","entra","azure"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "705"
+    "wordCount": "697"
   }]
   </script>
 
@@ -140,31 +140,19 @@
   
   
   <link href="https://github.com/logphile" rel="me" />
-    <div class="home-social-icons post-social-icons mt-2">
-    
-  </div>
-
+  
   
   
   <link href="https://www.linkedin.com/in/phil-boyce" rel="me" />
-    <div class="home-social-icons post-social-icons mt-2">
-    
-  </div>
-
+  
   
   
   <link href="https://x.com/LogPhile" rel="me" />
-    <div class="home-social-icons post-social-icons mt-2">
-    
-  </div>
-
+  
   
   
   <link href="mailto:phil@logphile.com" rel="me" />
-    <div class="home-social-icons post-social-icons mt-2">
-    
-  </div>
-
+  
   
   
   
@@ -745,7 +733,7 @@
 
     <div class="article-content w-full mb-1">
       <hr>
-<p>One-off user creation is fine—until you need scale, consistency, and future-proofing. That’s where Microsoft Graph comes in. In this post, I’ll walk you through how to create Microsoft Entra ID users using <em>PowerShell and Microsoft Graph</em>—with clean, scalable scripting.</p>
+<p>One-off user creation is fine. Scale, consistency, and future-proofing is better. That’s where Microsoft Graph comes in. In this post, we&rsquo;ll create Microsoft Entra ID users using <em>PowerShell and Microsoft Graph</em>—with clean, scalable scripting.</p>
 <hr>
 <div class="post-heading-container">
 <img src="/icons/logphile-hourglass.svg" alt="Alert" width="75" height="75" />
@@ -753,14 +741,16 @@
     A Brief History of Microsoft Graph
   </div>
 </div>
-<p>Introduced in 2015, Microsoft Graph unified dozens of fragmented Microsoft APIs—Azure AD, Exchange, SharePoint, Teams—into a single, modern endpoint. It&rsquo;s now the backbone of identity and data access across Microsoft 365 and Azure services. Microsoft is phasing out older modules like AzureAD and MSOnline in favor of Graph, making it the go-to tool for cloud-native management and automation.</p>
+<p>Microsoft Graph was introduced in 2015 to unite dozens of fragmented Microsoft APIs—Azure AD, Exchange, SharePoint, Teams—into a single, modern endpoint. It&rsquo;s now the backbone of identity and data access across Microsoft 365 and Azure services. AzureAD and MSOnline are being phased out in favor of Graph, making it the go-to tool for cloud-native management and automation.</p>
+<hr>
 <div class="post-heading-container">
 <img src="/icons/logphile-brain.svg" alt="Alert" width="100" height="100" />
   <div class="post-headings">
     Smarter Entra ID User Creation with Powershell + Graph
   </div>
 </div>
-<p>Here’s how to automate Entra ID user creation using PowerShell and Microsoft Graph—with smart defaults, error handling, and dynamic group assignment. Creating users through the Azure Portal works&hellip; until it doesn’t. Once you’re dealing with onboarding, consistency, or dynamic environments, it’s time to automate.</p>
+<p>Let&rsquo;s automate Entra ID user creation using PowerShell and Microsoft Graph—with smart defaults, error handling, and dynamic group assignment. Creating users through the Azure Portal works&hellip; until it doesn’t. Once you’re dealing with onboarding, consistency, or dynamic environments, it’s time to automate.</p>
+<hr>
 <div class="post-heading-container">
 <img src="/icons/logphile-checklist.svg" alt="Alert" width="75" height="75" />
   <div class="post-headings">
@@ -856,7 +846,8 @@
 </span></span><span style="display:flex;"><span>    -Password <span style="color:#e6db74">&#34;l1n3arFus1on&#34;</span> <span style="color:#e6db74">`</span>
 </span></span><span style="display:flex;"><span>    -Department <span style="color:#e6db74">&#34;R&amp;D&#34;</span> <span style="color:#e6db74">`</span>
 </span></span><span style="display:flex;"><span>    -GroupName <span style="color:#e6db74">&#34;Research &amp; Development&#34;</span>
-</span></span></code></pre></div><div class="post-heading-container">
+</span></span></code></pre></div><hr>
+<div class="post-heading-container">
 <img src="/icons/logphile-bonus.svg" alt="Alert" width="75" height="75" />
   <div class="post-headings">
     The Results
@@ -877,7 +868,7 @@
     Verify in the Portal
   </div>
 </div>
-<p>Log into Entra ID &gt; Users and confirm the user shows up with correct info.</p>
+<p>Log into <em>Entra ID</em> &gt; <em>Users</em> and confirm the user shows up with correct info.</p>
 
 <figure>
 
@@ -885,7 +876,7 @@
   
   
   </figure>
-<p>Then check Groups to confirm group creation and membership.</p>
+<p>Then check <em>Groups</em> to confirm group creation and membership.</p>
 
 <figure>
 
@@ -919,8 +910,8 @@
   </div>
 </div>
 <ul>
-<li>Make password generation secure (use New-Guid, or integrate with a vault)</li>
-<li>Add license assignment via New-MgUserLicense</li>
+<li>Make password generation secure (use <em>New-Guid</em>, or integrate with a vault)</li>
+<li>Add license assignment via <em>New-MgUserLicense</em></li>
 <li>Export logs or send Teams alerts on creation</li>
 <li>Bundle into a CI pipeline using GitHub Actions or Azure DevOps</li>
 </ul>
@@ -931,7 +922,7 @@
     Why Use Powershell + Graph Over the Portal?
   </div>
 </div>
-<p>Still using the Azure Portal or legacy PowerShell modules like <code>AzureAD</code> or <code>MSOnline</code>? Reasons to change:</p>
+<p>Still using the Azure Portal or legacy PowerShell modules like <em>AzureAD</em> or <em>MSOnline</em>? Reasons to change:</p>
 <div class="grid purplecheck-spacing gap-6 sm:grid-cols-2 lg:grid-cols-3">
   <div class="flex purple-check-styling items-start gap-3">
   <div class="w-5 purple-check-spacing mt-1">
@@ -1031,43 +1022,43 @@
   <tbody>
       <tr>
           <td>Automation-ready</td>
-          <td>❌</td>
+          <td>✖️</td>
           <td>✅</td>
           <td>✅✅</td>
       </tr>
       <tr>
           <td>Modern, supported</td>
-          <td>❌</td>
+          <td>✖️</td>
           <td>⚠️ Deprecated</td>
           <td>✅✅</td>
       </tr>
       <tr>
           <td>Full attribute support</td>
-          <td>❌</td>
-          <td>❌</td>
+          <td>✖️</td>
+          <td>✖️</td>
           <td>✅✅</td>
       </tr>
       <tr>
           <td>API-level consistency</td>
-          <td>❌</td>
-          <td>❌</td>
+          <td>✖️</td>
+          <td>✖️</td>
           <td>✅✅</td>
       </tr>
       <tr>
           <td>Fine-grained permissions</td>
-          <td>❌</td>
-          <td>❌</td>
+          <td>✖️</td>
+          <td>✖️</td>
           <td>✅✅</td>
       </tr>
       <tr>
           <td>Auditable/source-controllable</td>
-          <td>❌</td>
+          <td>✖️</td>
           <td>✅</td>
           <td>✅✅</td>
       </tr>
       <tr>
           <td>Scalable across tenants</td>
-          <td>❌</td>
+          <td>✖️</td>
           <td>✅</td>
           <td>✅✅</td>
       </tr>

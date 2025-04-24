@@ -13,7 +13,7 @@ showHero: false
 
 ---
 
-One-off user creation is fine—until you need scale, consistency, and future-proofing. That’s where Microsoft Graph comes in. In this post, I’ll walk you through how to create Microsoft Entra ID users using *PowerShell and Microsoft Graph*—with clean, scalable scripting.
+One-off user creation is fine. Scale, consistency, and future-proofing is better. That’s where Microsoft Graph comes in. In this post, we'll create Microsoft Entra ID users using *PowerShell and Microsoft Graph*—with clean, scalable scripting.
 
 ---
 
@@ -25,8 +25,10 @@ One-off user creation is fine—until you need scale, consistency, and future-pr
 </div>
 
 
-Introduced in 2015, Microsoft Graph unified dozens of fragmented Microsoft APIs—Azure AD, Exchange, SharePoint, Teams—into a single, modern endpoint. It's now the backbone of identity and data access across Microsoft 365 and Azure services. Microsoft is phasing out older modules like AzureAD and MSOnline in favor of Graph, making it the go-to tool for cloud-native management and automation.
 
+Microsoft Graph was introduced in 2015 to unite dozens of fragmented Microsoft APIs—Azure AD, Exchange, SharePoint, Teams—into a single, modern endpoint. It's now the backbone of identity and data access across Microsoft 365 and Azure services. AzureAD and MSOnline are being phased out in favor of Graph, making it the go-to tool for cloud-native management and automation.
+
+---
 
 <div class="post-heading-container">
 <img src="/icons/logphile-brain.svg" alt="Alert" width="100" height="100" />
@@ -35,8 +37,9 @@ Introduced in 2015, Microsoft Graph unified dozens of fragmented Microsoft APIs�
   </div>
 </div>
 
+Let's automate Entra ID user creation using PowerShell and Microsoft Graph—with smart defaults, error handling, and dynamic group assignment. Creating users through the Azure Portal works... until it doesn’t. Once you’re dealing with onboarding, consistency, or dynamic environments, it’s time to automate. 
 
-Here’s how to automate Entra ID user creation using PowerShell and Microsoft Graph—with smart defaults, error handling, and dynamic group assignment. Creating users through the Azure Portal works... until it doesn’t. Once you’re dealing with onboarding, consistency, or dynamic environments, it’s time to automate. 
+---
 
 <div class="post-heading-container">
 <img src="/icons/logphile-checklist.svg" alt="Alert" width="75" height="75" />
@@ -129,6 +132,7 @@ New-SmartUser -DisplayName "Beast" `
     -Department "R&D" `
     -GroupName "Research & Development"
 ```
+---
 
 <div class="post-heading-container">
 <img src="/icons/logphile-bonus.svg" alt="Alert" width="75" height="75" />
@@ -157,11 +161,11 @@ User added to group 'Research & Development'.
   </div>
 </div>
 
-Log into Entra ID > Users and confirm the user shows up with correct info.
+Log into *Entra ID* > *Users* and confirm the user shows up with correct info.
 
 {{< figure src="/logphile-user-beast-created.png" class="wider-image no-zoom" >}}
 
-Then check Groups to confirm group creation and membership.
+Then check *Groups* to confirm group creation and membership.
 
 {{< figure src="/logphile-group-created-beast-added.png" class="wider-image no-zoom" >}}
 
@@ -195,8 +199,8 @@ Plus, you’re scripting against Microsoft Graph—the modern way to manage Micr
   </div>
 </div>
 
-- Make password generation secure (use New-Guid, or integrate with a vault)
-- Add license assignment via New-MgUserLicense
+- Make password generation secure (use *New-Guid*, or integrate with a vault)
+- Add license assignment via *New-MgUserLicense*
 - Export logs or send Teams alerts on creation
 - Bundle into a CI pipeline using GitHub Actions or Azure DevOps
 
@@ -209,7 +213,7 @@ Plus, you’re scripting against Microsoft Graph—the modern way to manage Micr
   </div>
 </div>
 
-Still using the Azure Portal or legacy PowerShell modules like `AzureAD` or `MSOnline`? Reasons to change:
+Still using the Azure Portal or legacy PowerShell modules like *AzureAD* or *MSOnline*? Reasons to change:
 
 <div class="grid purplecheck-spacing gap-6 sm:grid-cols-2 lg:grid-cols-3">
   {{< purplecheck >}}**Modern + Supported:** Microsoft Graph is the future; older modules are deprecated.{{< /purplecheck >}}
@@ -232,13 +236,13 @@ Still using the Azure Portal or legacy PowerShell modules like `AzureAD` or `MSO
 
 | Feature                         | Portal | Old PowerShell (`AzureAD`) | Graph + PowerShell |
 |-------------------------------|--------|-----------------------------|---------------------|
-| Automation-ready              | ❌     | ✅                          | ✅✅                |
-| Modern, supported             | ❌     | ⚠️ Deprecated               | ✅✅                |
-| Full attribute support        | ❌     | ❌                          | ✅✅                |
-| API-level consistency         | ❌     | ❌                          | ✅✅                |
-| Fine-grained permissions      | ❌     | ❌                          | ✅✅                |
-| Auditable/source-controllable | ❌     | ✅                          | ✅✅                |
-| Scalable across tenants       | ❌     | ✅                          | ✅✅                |
+| Automation-ready              | ✖️     | ✅                          | ✅✅                |
+| Modern, supported             | ✖️     | ⚠️ Deprecated               | ✅✅                |
+| Full attribute support        | ✖️     | ✖️                          | ✅✅                |
+| API-level consistency         | ✖️     | ✖️                          | ✅✅                |
+| Fine-grained permissions      | ✖️     | ✖️                          | ✅✅                |
+| Auditable/source-controllable | ✖️     | ✅                          | ✅✅                |
+| Scalable across tenants       | ✖️     | ✅                          | ✅✅                |
 
 ---
 
