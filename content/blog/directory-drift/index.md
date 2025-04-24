@@ -17,8 +17,13 @@ If it's not in Entra, it doesn't exist—to your policies, dynamic groups, or au
 
 This post walks through how to{{< glow >}} audit Entra ID user profiles{{< /glow >}} using {{< glow >}}PowerShell and Microsoft Graph,{{< /glow >}} flagging any accounts with incomplete or empty property fields.
 
----
-{{< headingrow icon="logphile-icon-fire" text="Prerequisites" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-icon-fire.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    Prerequisites
+  </div>
+</div>
+
 
 
 - PowerShell 7+
@@ -36,7 +41,12 @@ Note: You only need read access for this operation, not *User.Write.All*.
 
 ---
 
-{{< headingrow icon="logphile-checklist" text="Properties We're Auditing" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-checklist.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    Properties We're Auditing
+  </div>
+</div>
 
 We’ll be checking each user for the following missing or blank fields:
 
@@ -50,7 +60,12 @@ You can customize this based on your environment.
 
 ---
 
-{{< headingrow icon="logphile-powershell" text="Powershell Script" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-powershell.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    Powershell Script
+  </div>
+</div>
 
 ```powershell
 $propertiesToCheck = @("Department", "JobTitle", "UsageLocation", "Manager", "MobilePhone", "OfficeLocation")
@@ -79,7 +94,12 @@ $results | Format-Table -AutoSize
 ```
 ---
 
-{{< headingrow icon="logphile-results" text="The Results" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-results.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    The Results
+  </div>
+</div>
 
 ```bash
 PS C:\Users\logphile> New-SmartUser $propertiesToCheck = @("Department", "JobTitle", "UsageLocation", "Manager", "MobilePhone", "OfficeLocation")
@@ -118,7 +138,12 @@ James Howlett                       wolverine@logphile.com                      
 
 ---
 
-{{< headingrow icon="logphile-export" text="Exporting to CSV (Optional)" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-export.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    Exporting to CSV (Optional)
+  </div>
+</div>
 
 ```powershell
 $results | Export-Csv -Path "EntraUserAudit.csv" -NoTypeInformation
@@ -127,7 +152,12 @@ $results | Export-Csv -Path "EntraUserAudit.csv" -NoTypeInformation
 
 ---
 
-{{< headingrow icon="logphile-brain" text="Why This Matters" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-brain.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    Why This Matters
+  </div>
+</div>
 
 - Broken dynamic group rules  
 - License assignment failures  
@@ -138,7 +168,12 @@ Directory drift happens quietly. This gives you visibility and control.
 
 ---
 
-{{< headingrow icon="logphile-extend" text="Ideas to Extend This" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-extend.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    Ideas to Extend This
+  </div>
+</div>
 
 - Auto-tag users with {{< glow >}}profileStatus = incomplete{{< /glow >}}
 - Send Teams alerts or email summaries
@@ -146,7 +181,12 @@ Directory drift happens quietly. This gives you visibility and control.
 
 ---
 
-{{< headingrow icon="logphile-paperclip" text="References" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-paperclip.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    References
+  </div>
+</div>
 
 - [Microsoft Graph PowerShell SDK Docs](https://learn.microsoft.com/en-us/powershell/microsoftgraph/overview)
 - [User Resource Type - Microsoft Graph](https://learn.microsoft.com/en-us/graph/api/resources/user)
@@ -154,6 +194,6 @@ Directory drift happens quietly. This gives you visibility and control.
 
 ---
 
-{{< alert icon="fire" cardColor="#F4227A" textColor="#FFD808">}}
+<div class=post-closing>
 Thanks for reading. I stepped away to be a stay-at-home dad and now plugging back in—one post, one project at a time. <b>LogPhile</b> is a learning log, a signal to employers, and proof of progress. Spot a mistake? Edge case I missed? Just want to connect? Don’t hesitate to reach out.
-{{< /alert >}}
+</div>

@@ -253,10 +253,10 @@ div.flex.flex-row.flex-wrap.items-center span {
 article hr,
 p.border-t,
 hr {
-  border-bottom: 1px solid rgb(var(--color-secondary-500)) !important;
-  background-color: rgb(var(--color-secondary-500)) !important;
+  border: none;
+  border-bottom: 1px solid #FFD808 !important;
+  background-color: #FFD808 !important;
   height: 1px;
-  border: none;  
 }
 
 ol,
@@ -1785,10 +1785,15 @@ figure figcaption {
 }
 
 .logphile-blurb-cardcolor {
-  background-color: #00BFFF !important;
+  background-color: #FFD808 !important;
   box-shadow: 0 0 12px rgba(0, 191, 255, 1);
-  transform: scale(1.03);
-  
+  transform: scale(1.03);  
+}
+
+.logphile-blurb-iconcolor {
+  background-color: #F4227A !important;
+  box-shadow: 0 0 12px rgba(0, 191, 255, 1);
+  transform: scale(1.03);  
 }
 
 .logphile-blurb-textcolor {
@@ -1799,3 +1804,62 @@ figure figcaption {
   padding-left: .25rem;
   padding-right: .25rem;
 }
+
+.post-heading-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0 1rem 0;
+}
+
+.post-icon {
+  background: #FFD808;
+  
+  border-radius: 0.75rem;
+  box-shadow: 0 0 6px #F4227Aaa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.post-icon img {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.post-headings {
+  background: linear-gradient(145deg, #7F7FAA, #FFFBEA);
+  color: #2A2A72;
+  font-weight: 700;
+  padding-top: .50rem;
+  padding-left: 2rem;
+  padding-bottom: .50rem;
+  border: 2px solid #FFD808;
+  border-radius: 0.75rem;
+  box-shadow: 0 0 10px #FFD80888;
+  font-size: 2rem;
+  line-height: 1.4;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.post-closing {
+  background-color: #FFD808;
+  color: #2A2A72 !important;
+  border: 2px solid #FFD808;
+  border-radius: 0.75rem;
+  box-shadow: 0 0 10px #FFD80888;
+  font-size: 1.25rem;
+  padding: 1.25rem;
+  margin: 2rem 0;
+  
+  line-height: 1.6;
+}
+
+
+
+
+
+
