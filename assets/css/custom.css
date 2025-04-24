@@ -407,22 +407,6 @@ a.text-base.font-medium.text-gray-500[href="/"]:hover {
   color: white !important;
 }
 
-/*
-.aside-social a {
-  color: rgb(var(--color-primary-500));
-  transition: fill 0.3s ease;
-}
-.aside-social a svg {
-  fill: rgb(var(--color-primary-500));
-  transition: fill 0.3s ease;
-}
-
-.aside-social a:hover svg {
-  fill: rgb(var(--color-secondary-500));
-}
-*/
-
-
 footer p.text-sm {
   color: #FF0062 !important;
   font-size: 1rem;
@@ -838,32 +822,31 @@ code, pre, kbd, samp {
   font-size: 0.95rem;
 }
 
+
 .home-social-icons .social-icon {
   display: inline-flex;
   justify-content: center;
   align-items: center;
   width: 2.5rem;
-  height: 2.5rem;  
-  background-color: transparent;
-  color: #FFD808;
+  height: 2.5rem;    
   transition: all 0.3s ease-in-out;
   font-size: 1.25rem;
-  transform: translateY(0);  
+  transform: translateY(0);
 }
 
-.home-social-icons .social-icon:hover {
-  color: #2A2A72;  
-  transform: translateY(+4px); /* slight lift */
-  transform: scale(1.2);
+.home-social-icons .social-icon:hover {  
+  transform: translateY(+5px);
+  transform: scale(1.3);
   border-radius: 9999px;
 }
 
-.home-social-icons .social-icon:hover svg {
-  color: #2A2A72;  
+.home-social-icons .social-icon svg {
+  fill: #F4227A;
+  width: 2.5rem;
+  height: 2.5rem;  
 }
 
-.home-social-icons .social-icon svg {
-  fill: currentColor;
+.home-social-icons .social-icon:hover svg {
   width: 2.5rem;
   height: 2.5rem;  
 }
@@ -1366,8 +1349,6 @@ span.border-primary-400 {
   margin-top: 0;
 }
 
-
-
 .icon-inline {
   width: 2rem;
   height: auto;
@@ -1785,18 +1766,21 @@ figure figcaption {
 }
 
 .logphile-blurb-cardcolor {
+  background: #FFD808;  
   background-color: #FFD808 !important;
-  box-shadow: 0 0 12px rgba(0, 191, 255, 1);
+  border-radius: 0.75rem;
+  box-shadow: 0 0 6px #F4227Aaa;
   transform: scale(1.03);  
 }
 
 .logphile-blurb-iconcolor {
-  background-color: #F4227A !important;
-  box-shadow: 0 0 12px rgba(0, 191, 255, 1);
+  background-color: #FFD808;
+  box-shadow: 0 0 6px #F4227Aaa;
   transform: scale(1.03);  
 }
 
 .logphile-blurb-textcolor {
+  background-color: #FFD808 !important;
   color: #2A2A72 !important;
   line-height: 1.6rem;
   padding-top: .25rem;
@@ -1813,8 +1797,7 @@ figure figcaption {
 }
 
 .post-icon {
-  background: #FFD808;
-  
+  background: #FFD808;  
   border-radius: 0.75rem;
   box-shadow: 0 0 6px #F4227Aaa;
   display: flex;
@@ -1829,13 +1812,13 @@ figure figcaption {
 }
 
 .post-headings {
-  background: linear-gradient(145deg, #7F7FAA, #FFFBEA);
-  color: #2A2A72;
+  background: #FF0062;
+  background: linear-gradient(150deg, rgba(255, 0, 98, 1) 20%, rgba(255, 114, 51, 1) 60%, rgba(255, 139, 40, 1) 76%, rgba(255, 216, 8, 1) 87%);
   font-weight: 700;
   padding-top: .50rem;
   padding-left: 2rem;
   padding-bottom: .50rem;
-  border: 2px solid #FFD808;
+  border: 2px solid #F4227A;
   border-radius: 0.75rem;
   box-shadow: 0 0 10px #FFD80888;
   font-size: 2rem;
@@ -1853,13 +1836,35 @@ figure figcaption {
   box-shadow: 0 0 10px #FFD80888;
   font-size: 1.25rem;
   padding: 1.25rem;
-  margin: 2rem 0;
-  
+  margin: 2rem 0;  
   line-height: 1.6;
 }
 
 
+.post-social-icons .social-icon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: transparent;
+  color: #FFD808;
+  transition: all 0.3s ease-in-out;
+  font-size: 1.25rem;
+}
 
+.post-social-icons .social-icon:hover {
+  color: #FFD808 !important;
+  transform: scale(1.15);
+  border-radius: 9999px;
+}
 
+.post-social-icons .social-icon:hover svg {
+  fill: currentColor !important;
+}
 
-
+.post-social-icons .social-icon svg {
+  fill: #FFD808 !important;
+  width: 2.5rem;
+  height: 2.5rem;
+}

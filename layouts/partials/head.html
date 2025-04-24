@@ -98,6 +98,7 @@
   {{ end }}
   {{ partial "gtm" . }}
   {{/* Social */}}
+  
   {{ template "_internal/opengraph.html" . }}
   {{ template "_internal/twitter_cards.html" . }}
   {{/* Schema */}}
@@ -109,6 +110,7 @@
   {{ range $links := . }}
   {{ range $name, $url := $links }}
   <link href="{{ $url }}" rel="me" />{{ end }}
+  
   {{ end }}
   {{ end }}
   {{/* Vendor */}}

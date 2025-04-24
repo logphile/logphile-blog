@@ -191,7 +191,7 @@ Plus, you’re scripting against Microsoft Graph—the modern way to manage Micr
 <div class="post-heading-container">
 <img src="/icons/logphile-pirate.svg" alt="Alert" width="75" height="75" />
   <div class="post-headings">
-    What's Next
+    What's Next?
   </div>
 </div>
 
@@ -203,7 +203,7 @@ Plus, you’re scripting against Microsoft Graph—the modern way to manage Micr
 ---
 
 <div class="post-heading-container">
-<img src="/icons/logphile-question.svg" alt="Alert" width="75" height="75" />
+<img src="/icons/logphile-question.svg" alt="Alert" width="85" height="85" />
   <div class="post-headings">
     Why Use Powershell + Graph Over the Portal?
   </div>
@@ -223,7 +223,7 @@ Still using the Azure Portal or legacy PowerShell modules like `AzureAD` or `MSO
 ---
 
 <div class="post-heading-container">
-<img src="/icons/logphile-scale.svg" alt="Alert" width="75" height="75" />
+<img src="/icons/logphile-scale.svg" alt="Alert" width="85" height="85" />
   <div class="post-headings">
     Comparison: Portal vs. Legacy Powershell vs. Graph + Powershell
   </div>
