@@ -31,8 +31,8 @@
   
   
   
-  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.a4c3e265abd5ec56bfd6b7a735d8ba4cc3ad57aaa7b194fe75a24bbcf5f2495f824079ec1ecd969bd37324b4ba4d1cb1140d2ab83dfe0a3ed945f263e90635ae.css"
-    integrity="sha512-pMPiZavV7Fa/1renNdi6TMOtV6qnsZT&#43;daJLvPXySV&#43;CQHnsHs2Wm9NzJLS6TRyxFA0quD3&#43;Cj7ZRfJj6QY1rg==" />
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.bdff976b679343d2757540dc35dce80d527d1629ccf8be24d492e87e722da81a6f88b5f22a6b34f8ea8f2c533f33dc25df1354ff53887a5c9f7242173922b474.css"
+    integrity="sha512-vf&#43;Xa2eTQ9J1dUDcNdzoDVJ9FinM&#43;L4k1JLofnItqBpviLXyKms0&#43;OqPLFM/M9wl3xNU/1OIelyfckIXOSK0dA==" />
   
   
   <script type="text/javascript" src="/js/appearance.min.a945cf4247d18e2a51e932a3f0c7f7c8ba05fc067f6857175e078d064ce60d2dd6bab8c141d8d3090fe662ddc63127bc93cd5faa86f9049c6af0cb8e8f93f29d.js"
@@ -126,7 +126,7 @@
     "keywords": ["microsoft graph","powershell","entra","azure"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "747"
+    "wordCount": "751"
   }]
   </script>
 
@@ -194,23 +194,31 @@
   
   <meta name="theme-color"/>
   
-  <link id="favicon" rel="icon" href="/favicon-active.svg" type="image/svg+xml" />
+  <link id="favicon" rel="icon" href="/favicon-lp-on.svg" type="image/svg+xml" />
 
   <script>
-    const activeFavicon = "/favicon-active.svg";
-    const inactiveFavicon = "/favicon-inactive.svg";
-    const faviconEl = document.getElementById("favicon");
+    const favicon = document.getElementById("favicon");
+    let isFocused = true;
+    let cursorOn = true;
   
-    document.addEventListener("visibilitychange", () => {
-      if (document.hidden) {
-        faviconEl.href = inactiveFavicon;
-      } else {
-        faviconEl.href = activeFavicon;
-      }
-    });
-  </script>
+    const activeOn = "/favicon-lp-on.svg";
+    const activeOff = "/favicon-lp-off.svg";
+    const inactiveOn = "/favicon-lp-inactive-on.svg";
+    const inactiveOff = "/favicon-lp-inactive-off.svg";
   
+    function updateFavicon() {
+      const icon = isFocused
+        ? (cursorOn ? activeOn : activeOff)
+        : (cursorOn ? inactiveOn : inactiveOff);
+      favicon.href = icon;
+      cursorOn = !cursorOn;
+    }
   
+    window.addEventListener("focus", () => { isFocused = true; });
+    window.addEventListener("blur", () => { isFocused = false; });
+  
+    setInterval(updateFavicon, 500);
+  </script> 
 
 </head>
 <body class="font-sans flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32 scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600">
@@ -757,32 +765,22 @@
   
 
 
-
 <div
   
-    class="flex px-4 py-3 rounded-md"
+    class="flex px-4 py-3 rounded-md logphile-blurb-cardcolor"
     style="background-color: #FC5749"
   >
 
   <span
     
-      class="ltr:pr-3 rtl:pl-3 flex items-center"
+      class="flex items-center logphile-blurb-iconcolor"
       style="color: #F5F4F1"
-    >
-
-    
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M48 32H197.5C214.5 32 230.7 38.74 242.7 50.75L418.7 226.7C443.7 251.7 443.7 292.3 418.7 317.3L285.3 450.7C260.3 475.7 219.7 475.7 194.7 450.7L18.75 274.7C6.743 262.7 0 246.5 0 229.5V80C0 53.49 21.49 32 48 32L48 32zM112 176C129.7 176 144 161.7 144 144C144 126.3 129.7 112 112 112C94.33 112 80 126.3 80 144C80 161.7 94.33 176 112 176z"/></svg>
-
-  </span>
-
-
+    >    
   </span>
 
   <span
     
-      style="color: #2D2C36"
+      class="logphile-blurb-textcolor"      
     >You&rsquo;ll get a consent prompt to grant permission the first time.</span>
 </div>
 
@@ -1161,32 +1159,22 @@
   
 
 
-
 <div
   
-    class="flex px-4 py-3 rounded-md"
-    style="background-color: #FC5749"
+    class="flex px-4 py-3 rounded-md logphile-blurb-cardcolor"
+    style="background-color: #F4227A"
   >
 
   <span
     
-      class="text-primary-400 ltr:pr-3 rtl:pl-3 flex items-center"
-    >
-
-    
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-<path fill="currentColor"  d="M159.3 5.4c7.8-7.3 19.9-7.2 27.7 .1c27.6 25.9 53.5 53.8 77.7 84c11-14.4 23.5-30.1 37-42.9c7.9-7.4 20.1-7.4 28 .1c34.6 33 63.9 76.6 84.5 118c20.3 40.8 33.8 82.5 33.8 111.9C448 404.2 348.2 512 224 512C98.4 512 0 404.1 0 276.5c0-38.4 17.8-85.3 45.4-131.7C73.3 97.7 112.7 48.6 159.3 5.4zM225.7 416c25.3 0 47.7-7 68.8-21c42.1-29.4 53.4-88.2 28.1-134.4c-2.8-5.6-5.6-11.2-9.8-16.8l-50.6 58.8s-81.4-103.6-87.1-110.6C133.1 243.8 112 273.2 112 306.8C112 375.4 162.6 416 225.7 416z"/></svg>
-  </span>
-
-
+      class="text-primary-400  flex items-center"
+    >    
   </span>
 
   <span
     
-      style="color: #F5F4F1"
-    >After several years as a stay-at-home dad, I&rsquo;m working my way back into the tech field—brushing up on tools, learning what’s changed, and sharing the journey along the way. This blog is part learning tool, part signal to employers, and part proof of work. Thanks for reading!</span>
+      class="logphile-blurb-textcolor"      
+    >Thanks for reading. I stepped away to be a stay-at-home dad and now plugging back in—one post, one project at a time. <b>LogPhile</b> is a learning log, a signal to employers, and proof of progress. Spot a mistake? Edge case I missed? Just want to connect? Don’t hesitate to reach out.</span>
 </div>
 
 

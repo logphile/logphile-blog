@@ -1,0 +1,35 @@
+{{ if .IsNamedParams }}
+  {{ $.Scratch.Set "icon" (default "triangle-exclamation" (.Get "icon") ) }}
+  {{ $.Scratch.Set "cardColor" (.Get "cardColor") }}
+  {{ $.Scratch.Set "iconColor" (.Get "iconColor") }}
+  {{ $.Scratch.Set "textColor" (.Get "textColor") }}
+{{ else }}
+  {{ $.Scratch.Set "icon" (default "triangle-exclamation" (.Get 0) ) }}
+{{ end }}
+
+<div
+  {{ if not ($.Scratch.Get "cardColor") }}
+    class="flex px-4 py-3 rounded-md"
+  {{ else }}
+    class="flex px-4 py-3 rounded-md logphile-blurb-cardcolor"
+    style="background-color: {{ $.Scratch.Get "cardColor" }}"
+  {{ end }}>
+
+  <span
+    {{ if not ($.Scratch.Get "iconColor") }}
+      class="text-primary-400  flex items-center"
+    {{ else }}
+      class="flex items-center logphile-blurb-iconcolor"
+      style="color: {{ $.Scratch.Get "iconColor" }}"
+    {{ end }}>    
+  </span>
+
+  <span
+    {{ if not ($.Scratch.Get "textColor") }}
+      class="logphile-blurb-textcolor"
+    {{ else }}
+      class="logphile-blurb-textcolor"      
+    {{ end }}>    
+    {{- .Inner | markdownify -}}
+  </span>
+</div>

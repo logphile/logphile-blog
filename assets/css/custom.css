@@ -1738,16 +1738,17 @@ figure figcaption {
 
 .icon-heading {
   display: flex;
-  align-items:normal;
+  align-items:center;
   gap: 0.6rem;
-  font-size: 2.25rem; /* Tailwind's text-4xl if you want */
+  font-size: 2rem; /* Tailwind's text-4xl if you want */
   line-height: 1.2;
+  text-decoration: underline #FFD808;
 }
 
 .icon-heading svg {
   margin-top: 2px;
-  width: 1em;
-  height: 1em;
+  width: 1.5em;
+  height: 1.5em;
   flex-shrink: 0;
 }
 
@@ -1781,4 +1782,20 @@ figure figcaption {
 .purple-check-spacing svg{
   height: 32px;
   width: 32px;
+}
+
+.logphile-blurb-cardcolor {
+  background-color: #00BFFF !important;
+  box-shadow: 0 0 12px rgba(0, 191, 255, 1);
+  transform: scale(1.03);
+  
+}
+
+.logphile-blurb-textcolor {
+  color: #2A2A72 !important;
+  line-height: 1.6rem;
+  padding-top: .25rem;
+  padding-bottom: .25rem;
+  padding-left: .25rem;
+  padding-right: .25rem;
 }

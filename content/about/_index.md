@@ -12,7 +12,3 @@ In 1991, I fell in love. A computer was brought home. The first AOL CD was cool,
 I’ve spent two decades as a sysadmin, here in Virginia and Los Angeles, of those “jack of all trades” types. I’ve worked across stacks, made broken things work again, and kept things running quietly behind the scenes. Then I hit pause to focus on something even more important--my daughter. She came with her own version of uptime monitoring, triage, and soft skills.
 
 Now that she’s older, I’m eager to implement and fix things again—-with fresh perspective, sharpened skills, and the same curiosity that got me into tech in the first place.
-
-
-
-<hr class="mt-2 mb-6 border-neutral-700 dark:border-neutral-600 thicc">

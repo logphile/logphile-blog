@@ -93,6 +93,6 @@ It's not either/or—it’s knowing when each tool is appropriate.
 
 
 
-{{< alert icon="fire" cardColor="#FC5749" textColor="#F5F4F1">}}
-After several years as a stay-at-home dad, I'm working my way back into the tech field—brushing up on tools, learning what’s changed, and sharing the journey along the way. This blog is part learning tool, part signal to employers, and part proof of work. Thanks for reading!
+{{< alert icon="fire" cardColor="#F4227A" textColor="#FFD808">}}
+Thanks for reading. I stepped away to be a stay-at-home dad and now plugging back in—one post, one project at a time. <b>LogPhile</b> is a learning log, a signal to employers, and proof of progress. Spot a mistake? Edge case I missed? Just want to connect? Don’t hesitate to reach out.
 {{< /alert >}}

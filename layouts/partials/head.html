@@ -126,22 +126,30 @@
   {{ end }}
   <meta name="theme-color"/>
   
-  <link id="favicon" rel="icon" href="/favicon-active.svg" type="image/svg+xml" />
+  <link id="favicon" rel="icon" href="/favicon-lp-on.svg" type="image/svg+xml" />
 
   <script>
-    const activeFavicon = "/favicon-active.svg";
-    const inactiveFavicon = "/favicon-inactive.svg";
-    const faviconEl = document.getElementById("favicon");
+    const favicon = document.getElementById("favicon");
+    let isFocused = true;
+    let cursorOn = true;
   
-    document.addEventListener("visibilitychange", () => {
-      if (document.hidden) {
-        faviconEl.href = inactiveFavicon;
-      } else {
-        faviconEl.href = activeFavicon;
-      }
-    });
-  </script>
+    const activeOn = "/favicon-lp-on.svg";
+    const activeOff = "/favicon-lp-off.svg";
+    const inactiveOn = "/favicon-lp-inactive-on.svg";
+    const inactiveOff = "/favicon-lp-inactive-off.svg";
   
+    function updateFavicon() {
+      const icon = isFocused
+        ? (cursorOn ? activeOn : activeOff)
+        : (cursorOn ? inactiveOn : inactiveOff);
+      favicon.href = icon;
+      cursorOn = !cursorOn;
+    }
   
+    window.addEventListener("focus", () => { isFocused = true; });
+    window.addEventListener("blur", () => { isFocused = false; });
+  
+    setInterval(updateFavicon, 500);
+  </script> 
 
 </head>
