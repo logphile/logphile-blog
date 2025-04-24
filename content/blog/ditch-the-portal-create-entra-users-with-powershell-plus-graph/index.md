@@ -17,17 +17,33 @@ One-off user creation is fine—until you need scale, consistency, and future-pr
 
 ---
 
-{{< headingrow icon="logphile-hourglass" text="A (Very) Brief History of Microsoft Graph" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-hourglass.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    A Brief History of Microsoft Graph
+  </div>
+</div>
+
 
 Introduced in 2015, Microsoft Graph unified dozens of fragmented Microsoft APIs—Azure AD, Exchange, SharePoint, Teams—into a single, modern endpoint. It's now the backbone of identity and data access across Microsoft 365 and Azure services. Microsoft is phasing out older modules like AzureAD and MSOnline in favor of Graph, making it the go-to tool for cloud-native management and automation.
 
 
-{{< headingrow icon="logphile-brain" text="Smarter Entra ID User Creation with PowerShell + Graph" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-brain.svg" alt="Alert" width="100" height="100" />
+  <div class="post-headings">
+    Smarter Entra ID User Creation with Powershell + Graph
+  </div>
+</div>
 
 
 Here’s how to automate Entra ID user creation using PowerShell and Microsoft Graph—with smart defaults, error handling, and dynamic group assignment. Creating users through the Azure Portal works... until it doesn’t. Once you’re dealing with onboarding, consistency, or dynamic environments, it’s time to automate. 
 
-{{< headingrow icon="logphile-checklist" text="Prerequisites" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-checklist.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    Prerequisites
+  </div>
+</div>
 
 Before we start scripting, make sure you have:
 
@@ -51,7 +67,12 @@ You'll get a consent prompt to grant permission the first time.
 
 ---
 
-{{< headingrow icon="logphile-define" text="Define the User Creation Function" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-define.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    Define the User Creation Function
+  </div>
+</div>
 
 Here’s a reusable PowerShell function that creates a user and adds them to a security group.
 
@@ -94,7 +115,12 @@ function New-SmartUser {
 
 ---
 
-{{< headingrow icon="logphile-potion" text="Let's Create a User" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-potion.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    Let's Create a User
+  </div>
+</div>
 
 ```bash
 New-SmartUser -DisplayName "Beast" `
@@ -104,7 +130,12 @@ New-SmartUser -DisplayName "Beast" `
     -GroupName "Research & Development"
 ```
 
-{{< headingrow icon="logphile-bonus" text="The Results" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-bonus.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    The Results
+  </div>
+</div>
 
 ```bash
 C:\Users\logphile> New-SmartUser -DisplayName "Beast" `
@@ -119,7 +150,12 @@ User added to group 'Research & Development'.
 
 ---
 
-{{< headingrow icon="logphile-badge" text="Verify in the Portal" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-badge.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    Verify in the Portal
+  </div>
+</div>
 
 Log into Entra ID > Users and confirm the user shows up with correct info.
 
@@ -131,7 +167,12 @@ Then check Groups to confirm group creation and membership.
 
 ---
 
-{{< headingrow icon="logphile-chip" text="Why This Matters" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-chip.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    Why This Matters
+  </div>
+</div>
 
 Manual user creation introduces:
 
@@ -147,7 +188,12 @@ Plus, you’re scripting against Microsoft Graph—the modern way to manage Micr
 
 ---
 
-{{< headingrow icon="logphile-pirate" text="What's Next?" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-pirate.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    What's Next
+  </div>
+</div>
 
 - Make password generation secure (use New-Guid, or integrate with a vault)
 - Add license assignment via New-MgUserLicense
@@ -156,7 +202,12 @@ Plus, you’re scripting against Microsoft Graph—the modern way to manage Micr
 
 ---
 
-{{< headingrow icon="logphile-question" text="Why Use PowerShell + Graph Over the Portal?" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-question.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    Why Use Powershell + Graph Over the Portal?
+  </div>
+</div>
 
 Still using the Azure Portal or legacy PowerShell modules like `AzureAD` or `MSOnline`? Reasons to change:
 
@@ -171,7 +222,12 @@ Still using the Azure Portal or legacy PowerShell modules like `AzureAD` or `MSO
 
 ---
 
-{{< headingrow icon="logphile-scale" text="Comparison: Portal vs Legacy PowerShell vs Graph + PowerShell" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-scale.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    Comparison: Portal vs. Legacy Powershell vs. Graph + Powershell
+  </div>
+</div>
 
 
 | Feature                         | Portal | Old PowerShell (`AzureAD`) | Graph + PowerShell |
@@ -186,7 +242,12 @@ Still using the Azure Portal or legacy PowerShell modules like `AzureAD` or `MSO
 
 ---
 
-{{< headingrow icon="logphile-bonus" text="Bonus" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-bonus.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    Bonus
+  </div>
+</div>
 
 - [Microsoft Graph PowerShell SDK Docs](https://learn.microsoft.com/en-us/powershell/microsoftgraph/overview)
 - [User Object Docs](https://learn.microsoft.com/en-us/graph/api/resources/user)

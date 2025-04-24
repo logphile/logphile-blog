@@ -21,7 +21,12 @@ In this post, we’ll use {{< glow >}}PowerShell{{< /glow >}} and {{< glow >}}Mi
 
 ---
 
-{{< headingrow icon="logphile-diploma" text="What You'll Learn" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-diploma.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    What You'll Learn
+  </div>
+</div>
 
 - How to query user-manager relationships with Microsoft Graph
 - How to recursively walk Entra ID's hierarchy using PowerShell
@@ -30,7 +35,12 @@ In this post, we’ll use {{< glow >}}PowerShell{{< /glow >}} and {{< glow >}}Mi
 
 ---
 
-{{< headingrow icon="logphile-potion" text="Prerequisites" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-potion.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    Prerequisites
+  </div>
+</div>
 
 ```powershell
 Install-Module Microsoft.Graph -Scope CurrentUser -Force
@@ -39,7 +49,12 @@ Connect-MgGraph -Scopes "User.Read.All", "Directory.Read.All"
 
 ---
 
-{{< headingrow icon="logphile-key" text="Key Graph Properties" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-key.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    Key Graph Properties
+  </div>
+</div>
 
 We’ll need:
 - {{< glow >}}Id{{< /glow >}}
@@ -50,7 +65,12 @@ We’ll need:
 
 ---
 
-{{< headingrow icon="logphile-loop" text="Recursive Org Chart Builder (Powershell)" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-loop.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    Recursive Org Chart Builder (PS)
+  </div>
+</div>
 
 
 ```powershell
@@ -79,7 +99,12 @@ Get-OrgNode -UserId $rootUser.Id
 ```
 ---
 
-{{< headingrow icon="logphile-bonus" text="The Result" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-bonus.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    The Result
+  </div>
+</div>
 
 
 ```bash
@@ -122,7 +147,12 @@ PS C:\Users\logphile>
 
 ---
 
-{{< headingrow icon="logphile-bonus" text="Export to JSON (Optional)" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-export.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    Export to JSON (Optional)
+  </div>
+</div>
 
 ```powershell
 function Build-OrgTreeJson {
@@ -248,7 +278,12 @@ $tree | ConvertTo-Json -Depth 10 | Out-File ".\\orgTree.json" -Encoding utf8
 
 ---
 
-{{< headingrow icon="logphile-breaks" text="Where This Breaks" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-breaks.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    Where This Breaks
+  </div>
+</div>
 
 - Missing {{< glow >}}manager{{< /glow >}} field = orphaned node
 - Cycles (rare but possible in messy directories)
@@ -257,7 +292,12 @@ $tree | ConvertTo-Json -Depth 10 | Out-File ".\\orgTree.json" -Encoding utf8
 
 ---
 
-{{< headingrow icon="logphile-bonus" text="Bonus: Graphviz DOT Export" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-bonus.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    Bonus: Graphviz DOT Export
+  </div>
+</div>
 
 
 ```powershell
@@ -287,7 +327,12 @@ $dot -join "`n" | Out-File ".\\orgchart.dot"
 C:\Users\logphile>dot -Tpng orgchart.dot -o orgchart.png
 ```
 ---
-{{< headingrow icon="logphile-results" text="The Results" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-results.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    The Results
+  </div>
+</div>
 
 {{< figure src="/logphile-graphviz-simple-orgchart.png" class="wider-image no-zoom" >}}
 
@@ -300,7 +345,12 @@ Want your org chart to update itself? Use this with Azure Automation or GitHub A
 
 ---
 
-{{< headingrow icon="logphile-paperclip" text="References" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-paperclip.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    References
+  </div>
+</div>
 
 - [Microsoft Graph `manager` relationship](https://learn.microsoft.com/en-us/graph/api/user-list-manager)
 - [Graphviz Online Renderer](https://dreampuf.github.io/GraphvizOnline/)

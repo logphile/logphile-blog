@@ -31,8 +31,8 @@
   
   
   
-  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.bdff976b679343d2757540dc35dce80d527d1629ccf8be24d492e87e722da81a6f88b5f22a6b34f8ea8f2c533f33dc25df1354ff53887a5c9f7242173922b474.css"
-    integrity="sha512-vf&#43;Xa2eTQ9J1dUDcNdzoDVJ9FinM&#43;L4k1JLofnItqBpviLXyKms0&#43;OqPLFM/M9wl3xNU/1OIelyfckIXOSK0dA==" />
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.bb9c5062dfb01f88b90b10c4942313370a0c03316327b3a218dbbb7f16d102d8951c11aeb11955dffbd7920b7bc4be0f6a2e1cfe6879d20ad1537a8ab53da1bd.css"
+    integrity="sha512-u5xQYt&#43;wH4i5CxDElCMTNwoMAzFjJ7OiGNu7fxbRAtiVHBGusRlV3/vXkgt7xL4Pai4c/mh50grRU3qKtT2hvQ==" />
   
   
   <script type="text/javascript" src="/js/appearance.min.a945cf4247d18e2a51e932a3f0c7f7c8ba05fc067f6857175e078d064ce60d2dd6bab8c141d8d3090fe662ddc63127bc93cd5faa86f9049c6af0cb8e8f93f29d.js"
@@ -127,7 +127,7 @@
     "keywords": ["microsoft graph","powershell","entra","azure"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "751"
+    "wordCount": "705"
   }]
   </script>
 
@@ -730,26 +730,26 @@
       <hr>
 <p>One-off user creation is fine—until you need scale, consistency, and future-proofing. That’s where Microsoft Graph comes in. In this post, I’ll walk you through how to create Microsoft Entra ID users using <em>PowerShell and Microsoft Graph</em>—with clean, scalable scripting.</p>
 <hr>
-<h1 class="icon-heading">
-  <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><title>64 logphile hourglass</title><rect data-element="frame" x="0" y="0" width="16" height="16" rx="4" ry="4" stroke="none" fill="#FFD808"></rect><g transform="translate(3.2 3.2) scale(0.6)" fill="none" class="nc-icon-wrapper"><path fill-rule="evenodd" clip-rule="evenodd" d="M13 2H14V0H2V2H3V4.41421L6.58579 8L3 11.5858V14H2V16H14V14H13V11.5858L9.41421 8L13 4.41421V2ZM5 3.58579V2H11V3.58579L8 6.58579L5 3.58579Z" fill="#F4227A" id="1745252377408-1862971_SVGRepo_iconCarrier"></path></g></svg>
-  A (Very) Brief History of Microsoft Graph
-</h1>
-
-
+<div class="post-heading-container">
+<img src="/icons/logphile-hourglass.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    A Brief History of Microsoft Graph
+  </div>
+</div>
 <p>Introduced in 2015, Microsoft Graph unified dozens of fragmented Microsoft APIs—Azure AD, Exchange, SharePoint, Teams—into a single, modern endpoint. It&rsquo;s now the backbone of identity and data access across Microsoft 365 and Azure services. Microsoft is phasing out older modules like AzureAD and MSOnline in favor of Graph, making it the go-to tool for cloud-native management and automation.</p>
-<h1 class="icon-heading">
-  <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31 31"><title>48 brain svgrepo com</title><rect data-element="frame" x="0" y="0" width="31" height="31" rx="7" ry="7" stroke="none" fill="#FFD808"></rect><g transform="translate(6.2 6.2) scale(0.6)" fill="#F4227A" class="nc-icon-wrapper"><path fill="#F4227A" d="M14.46 3.26a17.62 17.62 0 0 0-0.74 0.02c-0.53 0.09-0.77 0.33-0.9 0.59-0.15 0.29-0.14 0.69 0.02 1.04 0.16 0.35 0.46 0.64 0.88 0.74 0.42 0.11 0.99 0.05 1.75-0.43l0.6 0.94c-0.95 0.61-1.87 0.77-2.63 0.57-0.76-0.19-1.33-0.73-1.61-1.35-0.28-0.59-0.33-1.28-0.07-1.9-2.58 0.42-4.91 1.4-6.69 2.8-0.59 0.64-0.65 1.39-0.39 1.89 0.29 0.57 0.97 0.99 2.34 0.56l0.34 1.07c-1.71 0.54-3.13-0.04-3.68-1.12-0.13-0.26-0.22-0.55-0.25-0.84-0.29 0.34-0.55 0.7-0.78 1.07l0.01 0c-0.52 1.18-0.53 1.99-0.32 2.52 0.21 0.53 0.64 0.87 1.3 1.06 1.33 0.37 3.48-0.08 5-1.21 0.65-0.48 1.26-1.66 1.32-2.58 0.03-0.46-0.07-0.82-0.26-1.04-0.19-0.23-0.5-0.4-1.13-0.4l-0.01-1.12c0.87-0.01 1.57 0.29 2 0.8 0.43 0.52 0.56 1.18 0.52 1.83-0.08 1.3-0.76 2.65-1.77 3.4-1.79 1.34-4.16 1.9-5.97 1.4-0.84-0.23-1.58-0.74-1.97-1.54-0.57 2.73 0.26 5.26 1.85 7.02 0.21 0.23 0.43 0.45 0.66 0.64-0.17-0.47-0.24-0.97-0.23-1.44 0.03-0.86 0.36-1.7 1.04-2.28 0.55-0.48 1.31-0.75 2.21-0.75 0.06 0 0.12 0 0.18 0 0.14 0.01 0.29 0.02 0.43 0.04l-0.14 1.11c-0.94-0.12-1.54 0.09-1.95 0.44-0.4 0.35-0.63 0.88-0.65 1.48-0.04 1.2 0.72 2.6 2.38 3.01l0 0.01c1.63 0.31 3.45 0.02 5.28-1.09 0 0 0 0 0.01 0 0.38-0.27 0.59-0.53 0.68-0.76 0.12-0.27 0.12-0.5 0.03-0.74-0.17-0.5-0.78-1.01-1.33-1.16-0.9-0.23-1.47 0.09-1.74 0.47-0.27 0.38-0.28 0.75 0.13 1.07l-0.69 0.88c-0.85-0.66-0.91-1.83-0.35-2.6 0.41-0.58 1.14-0.98 2.01-1.01a2.82 2.82 0 0 1 0.11 0c0.26 0 0.53 0.04 0.81 0.11 0.93 0.24 1.79 0.92 2.11 1.87a2.17 2.17 0 0 1 0.12 0.8c1-0.51 2.06-0.97 3.13-1.31 1.81-0.83 2.59-2.28 2.57-3.49-0.03-1.23-0.79-2.26-2.55-2.44l0.12-1.12c2.2 0.22 3.51 1.79 3.55 3.53 0.03 1.01-0.35 2.06-1.09 2.96 0.96-0.11 1.92-0.09 2.85 0.09-0.19-0.39-0.28-0.81-0.27-1.22 0.04-1.32 1.17-2.56 2.93-2.58a3.97 3.97 0 0 1 0.36 0.02l-0.09 1.11c-1.5-0.12-2.06 0.67-2.08 1.48-0.02 0.81 0.51 1.71 2.05 1.83 1.7 0.01 2.92-0.91 3.52-2.28 0.8-1.83 0.42-4.58-2.1-7.09-0.05-0.05-0.09-0.1-0.14-0.14a2.43 2.43 0 0 1-0.17 0.65c-0.43 1.04-1.45 1.75-2.51 1.95-1.46 0.27-2.66-0.32-3.21-1.23-0.55-0.9-0.41-2.18 0.59-2.85l0.62 0.93c-0.53 0.36-0.56 0.85-0.25 1.34 0.3 0.49 0.97 0.91 2.04 0.71 0.68-0.13 1.43-0.68 1.69-1.28 0.12-0.3 0.15-0.59 0.02-0.93-0.1-0.27-0.31-0.59-0.7-0.91l-0.01-0.01c-1.64-1.24-3.38-2.12-5.15-2.71 0 0 0 0 0.01 0 0.4 0.73 0.43 1.56 0.18 2.3-0.49 1.47-2.04 2.63-3.96 2.57-0.42-0.01-0.81 0.19-1.15 0.58-0.34 0.39-0.58 0.97-0.65 1.58-0.11 1.22 0.42 2.57 2.49 3.24l-0.35 1.07c-2.46-0.8-3.41-2.73-3.25-4.41 0.08-0.84 0.4-1.62 0.91-2.21 0.51-0.59 1.23-1 2.03-0.97 1.44 0.05 2.54-0.85 2.87-1.8 0.16-0.48 0.14-0.96-0.11-1.41-0.24-0.44-0.71-0.87-1.55-1.18a17.55 17.55 0 0 0-3.06-0.26z m6.08 15.12c-2.51 0.2-5.24 1.4-7.52 2.79-3.36 2.05-6.89 1.6-9.4-0.25 0.99 3.53 4.48 4.25 8.13 3.35 0.36-0.14 0.72-0.39 1.03-0.72 0.42-0.46 0.73-1.05 0.82-1.54l1.11 0.22c-0.15 0.74-0.54 1.48-1.11 2.08-0.54 0.58-1.24 1.04-2.04 1.17-0.41 0.9-0.74 1.78-0.88 2.39-0.21 0.96 0.85 1.33 1.33 0.36 1.14-2.32 2.75-4.39 4.76-6.18 1.56-1.03 2.9-2.3 3.77-3.67z"></path></g></svg>
-  Smarter Entra ID User Creation with PowerShell &#43; Graph
-</h1>
-
-
+<div class="post-heading-container">
+<img src="/icons/logphile-brain.svg" alt="Alert" width="100" height="100" />
+  <div class="post-headings">
+    Smarter Entra ID User Creation with Powershell + Graph
+  </div>
+</div>
 <p>Here’s how to automate Entra ID user creation using PowerShell and Microsoft Graph—with smart defaults, error handling, and dynamic group assignment. Creating users through the Azure Portal works&hellip; until it doesn’t. Once you’re dealing with onboarding, consistency, or dynamic environments, it’s time to automate.</p>
-<h1 class="icon-heading">
-  <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>800 list clipboard svgrepo com</title><rect data-element="frame" x="0" y="0" width="24" height="24" rx="5" ry="5" stroke="none" fill="#FFD808"></rect><g transform="translate(4.800000000000001 4.800000000000001) scale(0.6)" fill="none" class="nc-icon-wrapper"><path d="M9 5H7C5.89543 5 5 5.89543 5 7V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V7C19 5.89543 18.1046 5 17 5H15" stroke="#F4227A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 12H15" stroke="#F4227A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 16H15" stroke="#F4227A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#F4227A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="9" cy="12" r="1" fill="#F4227A"></circle><circle cx="9" cy="16" r="1" fill="#F4227A"></circle></g></svg>
-  Prerequisites
-</h1>
-
-
+<div class="post-heading-container">
+<img src="/icons/logphile-checklist.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    Prerequisites
+  </div>
+</div>
 <p>Before we start scripting, make sure you have:</p>
 <ul>
 <li>PowerShell 7+</li>
@@ -786,12 +786,12 @@
 </div>
 
 <hr>
-<h1 class="icon-heading">
-  <svg xmlns="http://www.w3.org/2000/svg" height="64" width="64" viewBox="0 0 512 512"><title>512 edit</title><rect data-element="frame" x="0" y="0" width="512" height="512" rx="103" ry="103" stroke="none" fill="#FFD808"></rect><g transform="translate(102.4 102.4) scale(0.6)" fill="#F4227A" class="nc-icon-wrapper"><path fill="#F4227A" d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z"></path></g></svg>
-  Define the User Creation Function
-</h1>
-
-
+<div class="post-heading-container">
+<img src="/icons/logphile-define.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    Define the User Creation Function
+  </div>
+</div>
 <p>Here’s a reusable PowerShell function that creates a user and adds them to a security group.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> New-SmartUser <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>    param<span style="color:#f92672">(</span>
@@ -828,23 +828,23 @@
 </span></span><span style="display:flex;"><span>    Write-Host <span style="color:#e6db74">&#34;User added to group &#39;</span>$GroupName<span style="color:#e6db74">&#39;.&#34;</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
 </span></span></code></pre></div><hr>
-<h1 class="icon-heading">
-  <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 48 48"><title>48 flask conical</title><rect data-element="frame" x="0" y="0" width="48" height="48" rx="10" ry="10" stroke="none" fill="#FFD808"></rect><g stroke-linecap="round" class="nc-icon-wrapper" fill="none" stroke="#F4227A" stroke-width="4" stroke-linejoin="round" transform="translate(9.600000000000001 9.600000000000001) scale(0.6)"><path d="M28 4v12a4 4 0 0 0 0.49 1.92l11.02 20.16a4 4 0 0 1-3.51 5.92h-24a4 4 0 0 1-3.51-5.92l11.02-20.16a4 4 0 0 0 0.49-1.92v-12"></path><path d="M12.91 30h22.18"></path><path d="M17 4h14"></path></g></svg>
-  Let&#39;s Create a User
-</h1>
-
-
+<div class="post-heading-container">
+<img src="/icons/logphile-potion.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    Let's Create a User
+  </div>
+</div>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>New-SmartUser -DisplayName <span style="color:#e6db74">&#34;Beast&#34;</span> <span style="color:#e6db74">`</span>
 </span></span><span style="display:flex;"><span>    -UserPrincipalName <span style="color:#e6db74">&#34;hank.mccoy@logphile.com&#34;</span> <span style="color:#e6db74">`</span>
 </span></span><span style="display:flex;"><span>    -Password <span style="color:#e6db74">&#34;l1n3arFus1on&#34;</span> <span style="color:#e6db74">`</span>
 </span></span><span style="display:flex;"><span>    -Department <span style="color:#e6db74">&#34;R&amp;D&#34;</span> <span style="color:#e6db74">`</span>
 </span></span><span style="display:flex;"><span>    -GroupName <span style="color:#e6db74">&#34;Research &amp; Development&#34;</span>
-</span></span></code></pre></div><h1 class="icon-heading">
-  <svg xmlns="http://www.w3.org/2000/svg" width="64" height="57" viewBox="0 0 46 41"><title>48 treasure chest</title><rect data-element="frame" x="2.5" y="0" width="41" height="41" rx="9" ry="9" stroke="none" fill="#FFD808"></rect><g transform="translate(9.200000000000001 8.200000000000001) scale(0.6)" fill="#F4227A" class="nc-icon-wrapper"><path d="M28.16 26.88c0 0.71-0.57 1.28-1.28 1.28h-7.68c-0.71 0-1.28-0.57-1.28-1.28v-3.84h-7.68v15.36h25.6v-15.36h-7.68v3.84z m-28.16-16.64v10.24h7.68v-17.92c-4.24 0-7.68 3.44-7.68 7.68z m0 25.6c0 1.41 1.15 2.56 2.56 2.56h5.12v-15.36h-7.68v12.8z m38.4-33.28v17.92h7.68v-10.24c0-4.24-3.44-7.68-7.68-7.68z m-14.08 21.76v-5.12c0-0.71-0.57-1.28-1.28-1.28s-1.28 0.57-1.28 1.28v5.12c0 0.71 0.57 1.28 1.28 1.28s1.28-0.57 1.28-1.28z m14.08 14.08h5.12c1.41 0 2.56-1.15 2.56-2.56v-12.8h-7.68v15.36z m-28.16-17.92h7.68v-3.84c0-0.71 0.57-1.28 1.28-1.28h7.68c0.71 0 1.28 0.57 1.28 1.28v3.84h7.68v-17.92h-25.6v17.92z"></path></g></svg>
-  The Results
-</h1>
-
-
+</span></span></code></pre></div><div class="post-heading-container">
+<img src="/icons/logphile-bonus.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    The Results
+  </div>
+</div>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>C:<span style="color:#ae81ff">\U</span>sers<span style="color:#ae81ff">\l</span>ogphile&gt; New-SmartUser -DisplayName <span style="color:#e6db74">&#34;Beast&#34;</span> <span style="color:#e6db74">`</span>
 </span></span><span style="display:flex;"><span>&gt;&gt;     -UserPrincipalName <span style="color:#e6db74">&#34;hank.mccoy@logphile.com&#34;</span> <span style="color:#e6db74">`</span>
 </span></span><span style="display:flex;"><span>&gt;&gt;     -Password <span style="color:#e6db74">&#34;P@ssword123!&#34;</span> <span style="color:#e6db74">`</span>
@@ -854,12 +854,12 @@
 </span></span><span style="display:flex;"><span>Group <span style="color:#e6db74">&#39;Research &amp; Development&#39;</span> created.
 </span></span><span style="display:flex;"><span>User added to group <span style="color:#e6db74">&#39;Research &amp; Development&#39;</span>.
 </span></span></code></pre></div><hr>
-<h1 class="icon-heading">
-  <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>64 badge svgrepo com 1</title><rect data-element="frame" x="0" y="0" width="24" height="24" rx="5" ry="5" stroke="none" fill="#FFD808"></rect><g transform="translate(4.800000000000001 4.800000000000001) scale(0.6)" fill="#000" class="nc-icon-wrapper"><g id="nccp1745253942830-7687268_SVGRepo_iconCarrier"><g id="nccp1745253942830-7687268_页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="nccp1745253942830-7687268_User" transform="translate(-576)" fill-rule="nonzero"><g id="nccp1745253942830-7687268_badge_line" transform="translate(576)"><path d="M24,0 L24,24 L0,24 L0,0 L24,0 Z M12.5934901,23.257841 L12.5819402,23.2595131 L12.5108777,23.2950439 L12.4918791,23.2987469 L12.4918791,23.2987469 L12.4767152,23.2950439 L12.4056548,23.2595131 C12.3958229,23.2563662 12.3870493,23.2590235 12.3821421,23.2649074 L12.3780323,23.275831 L12.360941,23.7031097 L12.3658947,23.7234994 L12.3769048,23.7357139 L12.4804777,23.8096931 L12.4953491,23.8136134 L12.4953491,23.8136134 L12.5071152,23.8096931 L12.6106902,23.7357139 L12.6232938,23.7196733 L12.6232938,23.7196733 L12.6266527,23.7031097 L12.609561,23.275831 C12.6075724,23.2657013 12.6010112,23.2592993 12.5934901,23.257841 L12.5934901,23.257841 Z M12.8583906,23.1452862 L12.8445485,23.1473072 L12.6598443,23.2396597 L12.6498822,23.2499052 L12.6498822,23.2499052 L12.6471943,23.2611114 L12.6650943,23.6906389 L12.6699349,23.7034178 L12.6699349,23.7034178 L12.678386,23.7104931 L12.8793402,23.8032389 C12.8914285,23.8068999 12.9022333,23.8029875 12.9078286,23.7952264 L12.9118235,23.7811639 L12.8776777,23.1665331 C12.8752882,23.1545897 12.8674102,23.1470016 12.8583906,23.1452862 L12.8583906,23.1452862 Z M12.1430473,23.1473072 C12.1332178,23.1423925 12.1221763,23.1452606 12.1156365,23.1525954 L12.1099173,23.1665331 L12.0757714,23.7811639 C12.0751323,23.7926639 12.0828099,23.8018602 12.0926481,23.8045676 L12.108256,23.8032389 L12.3092106,23.7104931 L12.3186497,23.7024347 L12.3186497,23.7024347 L12.3225043,23.6906389 L12.340401,23.2611114 L12.337245,23.2485176 L12.337245,23.2485176 L12.3277531,23.2396597 L12.1430473,23.1473072 Z" id="nccp1745253942830-7687268_MingCute" fill-rule="nonzero"></path><path d="M14.4472,1.10555 C14.9412,1.35254 15.1414,1.95321 14.8944,2.44719 L14.118,3.99997 L18,3.99997 C19.1046,3.99997 20,4.89541 20,5.99998 L20,20 C20,21.1045 19.1046,22 18,22 L6,22 C4.89543,22 4,21.1045 4,20 L4,5.99998 C4,4.89541 4.89543,3.99997 6,3.99997 L9.88197,3.99997 L9.10557,2.44719 C8.85858,1.95321 9.05881,1.35254 9.55279,1.10555 C10.0468,0.858558 10.6474,1.05878 10.8944,1.55276 L12,3.76391 L13.1056,1.55276 C13.3526,1.05878 13.9532,0.858558 14.4472,1.10555 Z M10.882,5.99998 L6,5.99998 L6,20 L18,20 L18,5.99998 L13.0002,5.99998 C12.9999,6.36652 12.7974,6.71932 12.4472,6.8944 C11.9532,7.14139 11.3526,6.94117 11.1056,6.44719 L10.882,5.99998 Z M13.5,14 C14.8807,14 16,15.1193 16,16.5 L16,17 C16,17.5523 15.5523,18 15,18 C14.4477,18 14,17.5523 14,17 L14,16.5 C14,16.2238 13.7761,16 13.5,16 L10.5,16 C10.2239,16 10,16.2238 10,16.5 L10,17 C10,17.5523 9.55228,18 9,18 C8.44772,18 8,17.5523 8,17 L8,16.5 C8,15.1193 9.11929,14 10.5,14 L13.5,14 Z M12,8.99998 C13.1046,8.99998 14,9.89541 14,11 C14,12.1045 13.1046,13 12,13 C10.8954,13 10,12.1045 10,11 C10,9.89541 10.8954,8.99998 12,8.99998 Z" id="nccp1745253942830-7687268_形状" fill="#f4227a"></path></g></g></g></g></g></svg>
-  Verify in the Portal
-</h1>
-
-
+<div class="post-heading-container">
+<img src="/icons/logphile-badge.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    Verify in the Portal
+  </div>
+</div>
 <p>Log into Entra ID &gt; Users and confirm the user shows up with correct info.</p>
 
 <figure>
@@ -877,12 +877,12 @@
   
   </figure>
 <hr>
-<h1 class="icon-heading">
-  <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 32 32"><title>64 chip component svgrepo com</title><rect data-element="frame" x="0" y="0" width="32" height="32" rx="7" ry="7" stroke="none" fill="#FFD808"></rect><g transform="translate(6.4 6.4) scale(0.6)" fill="#f4227a" class="nc-icon-wrapper"><g id="1745254541171-3926380_SVGRepo_iconCarrier"><path class="st0" d="M23,25H9c-1.1,0-2-0.9-2-2V9c0-1.1,0.9-2,2-2h14c1.1,0,2,0.9,2,2v14C25,24.1,24.1,25,23,25z" fill="none" stroke="#f4227a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></path><path class="st0" d="M19,21h-6c-1.1,0-2-0.9-2-2v-6c0-1.1,0.9-2,2-2h6c1.1,0,2,0.9,2,2v6C21,20.1,20.1,21,19,21z" fill="none" stroke="#f4227a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></path><path class="st0" d="M14 3L14 7" fill="none" stroke="#f4227a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></path><path class="st0" d="M10 3L10 7" fill="none" stroke="#f4227a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></path><path class="st0" d="M22 3L22 7" fill="none" stroke="#f4227a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></path><path class="st0" d="M18 3L18 7" fill="none" stroke="#f4227a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></path><path class="st0" d="M14 25L14 29" fill="none" stroke="#f4227a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></path><path class="st0" d="M10 25L10 29" fill="none" stroke="#f4227a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></path><path class="st0" d="M22 25L22 29" fill="none" stroke="#f4227a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></path><path class="st0" d="M18 25L18 29" fill="none" stroke="#f4227a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></path><path class="st0" d="M25 18L29 18" fill="none" stroke="#f4227a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></path><path class="st0" d="M25 22L29 22" fill="none" stroke="#f4227a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></path><path class="st0" d="M25 10L29 10" fill="none" stroke="#f4227a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></path><path class="st0" d="M25 14L29 14" fill="none" stroke="#f4227a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></path><path class="st0" d="M3 18L7 18" fill="none" stroke="#f4227a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></path><path class="st0" d="M3 22L7 22" fill="none" stroke="#f4227a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></path><path class="st0" d="M3 10L7 10" fill="none" stroke="#f4227a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></path><path class="st0" d="M3 14L7 14" fill="none" stroke="#f4227a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></path></g></g></svg>
-  Why This Matters
-</h1>
-
-
+<div class="post-heading-container">
+<img src="/icons/logphile-chip.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    Why This Matters
+  </div>
+</div>
 <p>Manual user creation introduces:</p>
 <ul>
 <li>Typos in emails or departments</li>
@@ -895,12 +895,12 @@
 </ul>
 <p>Plus, you’re scripting against Microsoft Graph—the modern way to manage Microsoft 365.</p>
 <hr>
-<h1 class="icon-heading">
-  <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>64 emoji pirate svgrepo com</title><rect data-element="frame" x="0" y="0" width="24" height="24" rx="5" ry="5" stroke="none" fill="#FFD808"></rect><g transform="translate(4.800000000000001 4.800000000000001) scale(0.6)" fill="#F4227A" class="nc-icon-wrapper"><path d="M12,1A11,11,0,1,0,23,12,11.013,11.013,0,0,0,12,1Zm0,2a8.97,8.97,0,0,1,1.457.129L10.019,6.567A3.947,3.947,0,0,0,8,6a4,4,0,0,0-4,4,3.947,3.947,0,0,0,.567,2.019L3.129,13.457A8.943,8.943,0,0,1,12,3ZM6,10a2,2,0,1,1,2,2A2,2,0,0,1,6,10Zm6,11a9.009,9.009,0,0,1-8.225-5.362l2.206-2.2A3.947,3.947,0,0,0,8,14a4,4,0,0,0,4-4,3.947,3.947,0,0,0-.567-2.019l4.206-4.206A9,9,0,0,1,12,21Zm2-10V9a1,1,0,0,1,2,0v2a1,1,0,0,1-2,0Zm2.632,3.225a1,1,0,0,1,.143,1.407A6.033,6.033,0,0,1,12,18a1,1,0,0,1,0-2,4.045,4.045,0,0,0,3.225-1.632A1,1,0,0,1,16.632,14.225Z" id="1745255713506-3434190_SVGRepo_iconCarrier"></path></g></svg>
-  What&#39;s Next?
-</h1>
-
-
+<div class="post-heading-container">
+<img src="/icons/logphile-pirate.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    What's Next
+  </div>
+</div>
 <ul>
 <li>Make password generation secure (use New-Guid, or integrate with a vault)</li>
 <li>Add license assignment via New-MgUserLicense</li>
@@ -908,12 +908,12 @@
 <li>Bundle into a CI pipeline using GitHub Actions or Azure DevOps</li>
 </ul>
 <hr>
-<h1 class="icon-heading">
-  <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 48 48"><title>48 flask conical</title><rect data-element="frame" x="0" y="0" width="48" height="48" rx="10" ry="10" stroke="none" fill="#FFD808"></rect><g stroke-linecap="round" class="nc-icon-wrapper" fill="none" stroke="#F4227A" stroke-width="4" stroke-linejoin="round" transform="translate(9.600000000000001 9.600000000000001) scale(0.6)"><path d="M28 4v12a4 4 0 0 0 0.49 1.92l11.02 20.16a4 4 0 0 1-3.51 5.92h-24a4 4 0 0 1-3.51-5.92l11.02-20.16a4 4 0 0 0 0.49-1.92v-12"></path><path d="M12.91 30h22.18"></path><path d="M17 4h14"></path></g></svg>
-  Why Use PowerShell &#43; Graph Over the Portal?
-</h1>
-
-
+<div class="post-heading-container">
+<img src="/icons/logphile-question.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    Why Use Powershell + Graph Over the Portal?
+  </div>
+</div>
 <p>Still using the Azure Portal or legacy PowerShell modules like <code>AzureAD</code> or <code>MSOnline</code>? Reasons to change:</p>
 <div class="grid purplecheck-spacing gap-6 sm:grid-cols-2 lg:grid-cols-3">
   <div class="flex purple-check-styling items-start gap-3">
@@ -1080,12 +1080,12 @@
 
 </div>
 <hr>
-<h1 class="icon-heading">
-  <svg xmlns="http://www.w3.org/2000/svg" height="64" width="64" viewBox="0 0 512 512"><title>512 cil balance scale</title><rect data-element="frame" x="0" y="0" width="512" height="512" rx="103" ry="103" stroke="none" fill="#FFD808"></rect><g transform="translate(102.4 102.4) scale(0.6)" fill="#F4227A" class="nc-icon-wrapper"><path fill="#F4227A" d="M203.247,386.414,208,381.185V355.4L130.125,191H93.875L16,355.4v27.042l4.234,4.595a124.347,124.347,0,0,0,91.224,39.982h.42A124.343,124.343,0,0,0,203.247,386.414ZM176,368.608a90.924,90.924,0,0,1-64.231,26.413h-.33A90.907,90.907,0,0,1,48,369.667V362.6l64-135.112L176,362.6Z" class="ci-primary"></path><path fill="#F4227A" d="M418.125,191h-36.25L304,355.4v27.042l4.234,4.595a124.347,124.347,0,0,0,91.224,39.982h.42a124.343,124.343,0,0,0,91.369-40.607L496,381.185V355.4ZM464,368.608a90.924,90.924,0,0,1-64.231,26.413h-.33A90.907,90.907,0,0,1,336,369.667V362.6l64-135.112L464,362.6Z" class="ci-primary"></path><path fill="#F4227A" d="M272,196.659A56.223,56.223,0,0,0,309.659,159H416V127H309.659a55.991,55.991,0,0,0-107.318,0H96v32H202.341A56.223,56.223,0,0,0,240,196.659V463H136v32H376V463H272ZM232,143a24,24,0,1,1,24,24A24,24,0,0,1,232,143Z" class="ci-primary"></path></g></svg>
-  Comparison: Portal vs Legacy PowerShell vs Graph &#43; PowerShell
-</h1>
-
-
+<div class="post-heading-container">
+<img src="/icons/logphile-scale.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    Comparison: Portal vs. Legacy Powershell vs. Graph + Powershell
+  </div>
+</div>
 <table>
   <thead>
       <tr>
@@ -1141,12 +1141,12 @@
   </tbody>
 </table>
 <hr>
-<h1 class="icon-heading">
-  <svg xmlns="http://www.w3.org/2000/svg" width="64" height="57" viewBox="0 0 46 41"><title>48 treasure chest</title><rect data-element="frame" x="2.5" y="0" width="41" height="41" rx="9" ry="9" stroke="none" fill="#FFD808"></rect><g transform="translate(9.200000000000001 8.200000000000001) scale(0.6)" fill="#F4227A" class="nc-icon-wrapper"><path d="M28.16 26.88c0 0.71-0.57 1.28-1.28 1.28h-7.68c-0.71 0-1.28-0.57-1.28-1.28v-3.84h-7.68v15.36h25.6v-15.36h-7.68v3.84z m-28.16-16.64v10.24h7.68v-17.92c-4.24 0-7.68 3.44-7.68 7.68z m0 25.6c0 1.41 1.15 2.56 2.56 2.56h5.12v-15.36h-7.68v12.8z m38.4-33.28v17.92h7.68v-10.24c0-4.24-3.44-7.68-7.68-7.68z m-14.08 21.76v-5.12c0-0.71-0.57-1.28-1.28-1.28s-1.28 0.57-1.28 1.28v5.12c0 0.71 0.57 1.28 1.28 1.28s1.28-0.57 1.28-1.28z m14.08 14.08h5.12c1.41 0 2.56-1.15 2.56-2.56v-12.8h-7.68v15.36z m-28.16-17.92h7.68v-3.84c0-0.71 0.57-1.28 1.28-1.28h7.68c0.71 0 1.28 0.57 1.28 1.28v3.84h7.68v-17.92h-25.6v17.92z"></path></g></svg>
-  Bonus
-</h1>
-
-
+<div class="post-heading-container">
+<img src="/icons/logphile-bonus.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    Bonus
+  </div>
+</div>
 <ul>
 <li><a href="https://learn.microsoft.com/en-us/powershell/microsoftgraph/overview" target="_blank">Microsoft Graph PowerShell SDK Docs</a></li>
 <li><a href="https://learn.microsoft.com/en-us/graph/api/resources/user" target="_blank">User Object Docs</a></li>
@@ -1168,7 +1168,7 @@
 
   <span
     
-      class="text-primary-400  flex items-center"
+      class="flex items-center"
     >    
   </span>
 

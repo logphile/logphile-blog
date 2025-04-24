@@ -19,7 +19,12 @@ That’s the common frustration—*Az* and *Microsoft.Graph* are both official m
 
 ---
 
-{{< headingrow icon="logphile-question" text="What's the Difference?" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-question.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    What's the Difference?
+  </div>
+</div>
 
 - *Az* is for managing *Azure resources*—think subscriptions, VMs, networking, storage.
 - *Microsoft.Graph* is for managing *Microsoft Entra ID* (Azure AD) and Microsoft 365 identities—users, groups, licenses, directory roles.
@@ -28,7 +33,12 @@ They're both used in the Azure ecosystem, but they hit different APIs and serve 
 
 ---
 
-{{< headingrow icon="logphile-scale" text="Comparison Matrix" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-scale.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    Comparison Matrix
+  </div>
+</div>
 
 | Feature / Action                             | `Az` Module             | `Microsoft.Graph` Module       | Use This When…                                  |
 |---------------------------------------------|-------------------------|-------------------------------|-------------------------------------------------|
@@ -44,7 +54,12 @@ They're both used in the Azure ecosystem, but they hit different APIs and serve 
 
 ---
 
-{{< headingrow icon="logphile-question" text="Syntax Side-by-Side" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-magnify.svg" alt="Alert" width="90" height="90" />
+  <div class="post-headings">
+    Syntax Side-by-Side
+  </div>
+</div>
 
 
 ### Create Resource Group (Az)
@@ -64,7 +79,12 @@ New-MgUser -DisplayName "Logphile Test" -UserPrincipalName "logtest@domain.com" 
 
 ---
 
-{{< headingrow icon="logphile-brain" text="Syntax Side-by-Side" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-magnify.svg" alt="Alert" width="90" height="90" />
+  <div class="post-headings">
+    Syntax Side-by-Side
+  </div>
+</div>
 
 Here’s a practical scenario:
 
@@ -75,7 +95,12 @@ It's not either/or—it’s knowing when each tool is appropriate.
 
 ---
 
-{{< headingrow icon="logphile-lightbulb" text="Syntax Side-by-Side" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-lightbulb.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    When: Az vs. Graph
+  </div>
+</div>
 
 - If you’re dealing with *subscriptions*, *infra*, *RBAC*, use *Az*.
 - If you’re touching *users*, *groups*, *licenses*, *roles*, use *Microsoft.Graph*.
@@ -83,7 +108,12 @@ It's not either/or—it’s knowing when each tool is appropriate.
 
 ---
 
-{{< headingrow icon="logphile-paperclip" text="References" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-paperclip.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    References
+  </div>
+</div>
 
 - [Microsoft.Graph PowerShell Docs](https://learn.microsoft.com/en-us/powershell/microsoftgraph/overview)
 - [Az PowerShell Module Docs](https://learn.microsoft.com/en-us/powershell/azure/new-azureps-module-az)

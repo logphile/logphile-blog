@@ -18,7 +18,12 @@ X-Men was one of the first comic books I picked up. Who can forget that blue, ye
 
 ---
 
-{{< headingrow icon="logphile-brain" text="Customizing Windows Terminal with X-Men Colors" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-brain.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    X-Men Colors in the Terminal
+  </div>
+</div>
 
 Here’s a snapshot of the terminal with the theme applied:
 
@@ -104,7 +109,12 @@ foreach ($user in $users) {
 
 ---
 
-{{< headingrow icon="logphile-question" text="Why Customize?" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-question.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    Why Customize?
+  </div>
+</div>
 
 If you spend hours a day in the terminal, it should be a place that feels good to be in—like Storm’s hot tub, sipping wine—not a 1v1 with Wolverine in the Danger Room. Changes that make life easier on your eyes and help create a more focused, personalized workspace add up—and should absolutely be taken advantage of.
 
@@ -118,7 +128,12 @@ If you spend hours a day in the terminal, it should be a place that feels good t
 
 ---
 
-{{< headingrow icon="logphile-bonus" text="Bonus" >}}
+<div class="post-heading-container">
+<img src="/icons/logphile-bonus.svg" alt="Alert" width="75" height="75" />
+  <div class="post-headings">
+    Bonus
+  </div>
+</div>
 
 I highly recommend *[Windows Terminal Themes](https://windowsterminalthemes.dev/)* to explore more themes. It’s a simple site that lets you browse and copy themes with a click — super useful when hunting for new ideas.
 
